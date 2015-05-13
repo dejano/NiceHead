@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/projekat/mt103"
+    xmlns:mp="http://www.ftn.uns.ac.rs/xws/projekat/mp"
+    xmlns:mt103="http://www.ftn.uns.ac.rs/xws/projekat/mt103">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mp"
+        schemaLocation="mp.xsd"/>
+    <xs:complexType name="Mt103">
+        <xs:complexContent>
+            <xs:extension base="mp:Message">
+                <xs:sequence>
+                    <xs:element name="podaci_o_banci_duznika"
+                        type="mp:BankDetails"/>
+                    <xs:element form="qualified" name="debtorBankDetails"
+                        type="mp:BankDetails"/>
+                    <xs:element name="debtor">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="255"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="paymentPurpose">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="255"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="creditor">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="255"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="orderDate" type="xs:date"/>
+                    <xs:element maxOccurs="1" name="debtorAccountDetails"
+                        type="mp:AccountDetails"/>
+                    <xs:element maxOccurs="1" name="creditorAccountDetails"
+                        type="mp:AccountDetails"/>
+                    <xs:element name="amount">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:totalDigits value="17"/>
+                                <xs:fractionDigits value="2"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="currencyDetails" type="mp:CurrencyDetails"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="mt103" type="mt103:Mt103" abstract="false"/>
+</xs:schema>

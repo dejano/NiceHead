@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="HelloDocumentService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/projekat/mt103" xmlns:mt910="http://www.ftn.uns.ac.rs/xws/projekat/mt910"
+	xmlns:mt102="http://www.ftn.uns.ac.rs/xws/projekat/mt102" xmlns:mpb="http://www.ftn.uns.ac.rs/xws/projekat/ws/mpb"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/projekat/ws/mpb">
+
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+			xmlns:mpb="http://www.ftn.uns.ac.rs/xws/projekat/ws/mpb"
+			targetNamespace="http://www.ftn.uns.ac.rs/xws/projekat/ws/mpb">
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt102"
+				schemaLocation="../xsd/MT102.xsd" />
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt103"
+				schemaLocation="../xsd/MT103.xsd" />
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt910"
+				schemaLocation="../xsd/MT910.xsd" />
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mp"
+				schemaLocation="../xsd/medjubankarskoPoslovanje.xsd" />
+			<xsd:complexType name="RtgsConfirmType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" name="mt910" type="mt910:TMT910" />
+					<xsd:element maxOccurs="1" name="mt103" type="mt103:TMT103" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ClearingConfirmType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" name="mt910" type="mt910:TMT910" />
+					<xsd:element maxOccurs="1" name="mt102" type="mt102:TMT102" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="rtgsConfirm" type="mpb:RtgsConfirmType" />
+			<xsd:element name="clearingConfirm" type="mpb:ClearingConfirmType" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="rtgsConfirmMessage">
+		<wsdl:part name="MT103" element="mpb:rtgsConfirm" />
+	</wsdl:message>
+	<wsdl:message name="clearingConfirmMessage">
+		<wsdl:part name="MT102" element="mpb:clearingConfirm" />
+	</wsdl:message>
+	<wsdl:portType name="MpbDocument">
+		<wsdl:operation name="rtgsConfirm">
+			<wsdl:input message="mpb:rtgsConfirmMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="clearingConfirm">
+			<wsdl:input message="mpb:clearingConfirmMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="MpbServiceSoapBinding" type="mpb:MpbDocument">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="rtgsConfirm">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+		<wsdl:operation name="clearingConfirm">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MpbDocumentService">
+		<wsdl:port name="MpbDocumentPort" binding="mpb:MpbServiceSoapBinding">
+			<soap:address location="http://localhost:8080/mpb" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

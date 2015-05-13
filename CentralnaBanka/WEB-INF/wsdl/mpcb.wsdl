@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="HelloDocumentService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:mt900="http://www.ftn.uns.ac.rs/xws/projekat/mt900" xmlns:mt103="http://www.ftn.uns.ac.rs/xws/projekat/mt103"
+	xmlns:mt910="http://www.ftn.uns.ac.rs/xws/projekat/mt910" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/projekat/mt102"
+	xmlns:cb="http://www.ftn.uns.ac.rs/xws/projekat/ws/cb"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/projekat/ws/cb">
+
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt102"
+				schemaLocation="../xsd/MT102.xsd" />
+			<import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt103"
+				schemaLocation="../xsd/MT103.xsd" />
+			<import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt900"
+				schemaLocation="../xsd/MT900.xsd" />
+			<import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mp"
+				schemaLocation="../xsd/medjubankarskoPoslovanje.xsd" />
+		</schema>
+	</wsdl:types>
+
+	<wsdl:message name="mt102Message">
+		<wsdl:part name="MT102" element="mt102:MT102" />
+	</wsdl:message>
+	<wsdl:message name="mt103Message">
+		<wsdl:part name="MT103" element="mt103:MT103" />
+	</wsdl:message>
+	<wsdl:message name="mt900Message">
+		<wsdl:part name="MT900" element="mt900:MT900" />
+	</wsdl:message>
+	<wsdl:portType name="CbWsDocument">
+		<wsdl:operation name="handleMT102">
+			<wsdl:input message="cb:mt102Message" />
+			<wsdl:output message="cb:mt900Message" />
+		</wsdl:operation>
+		<wsdl:operation name="handleMT103">
+			<wsdl:input message="cb:mt103Message" />
+			<wsdl:output message="cb:mt900Message" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CbWsServiceSoapBinding" type="cb:CbWsDocument">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="handleMT102">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="handleMT103">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CbWsDocumentService">
+		<wsdl:port name="CbWsDocumentPort" binding="cb:CbWsServiceSoapBinding">
+			<soap:address location="http://localhost:8080/cb" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
