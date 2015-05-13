@@ -3,32 +3,32 @@
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/projekat/mt103" xmlns:mt910="http://www.ftn.uns.ac.rs/xws/projekat/mt910"
-	xmlns:mt102="http://www.ftn.uns.ac.rs/xws/projekat/mt102" xmlns:mpb="http://www.ftn.uns.ac.rs/xws/projekat/ws/mpb"
-	targetNamespace="http://www.ftn.uns.ac.rs/xws/projekat/ws/mpb">
+	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/bo/mt103" xmlns:mt910="http://www.ftn.uns.ac.rs/xws/bo/mt910"
+	xmlns:mt102="http://www.ftn.uns.ac.rs/xws/bo/mt102" xmlns:mpb="http://www.ftn.uns.ac.rs/xws/ws/mpb"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
 
 	<wsdl:types>
 		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:mpb="http://www.ftn.uns.ac.rs/xws/projekat/ws/mpb"
-			targetNamespace="http://www.ftn.uns.ac.rs/xws/projekat/ws/mpb">
-			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt102"
-				schemaLocation="../xsd/MT102.xsd" />
-			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt103"
-				schemaLocation="../xsd/MT103.xsd" />
-			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mt910"
-				schemaLocation="../xsd/MT910.xsd" />
-			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mp"
-				schemaLocation="../xsd/medjubankarskoPoslovanje.xsd" />
+			xmlns:mpb="http://www.ftn.uns.ac.rs/xws/ws/mpb"
+			targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/bo/mt102"
+				schemaLocation="../xsd/mt102.xsd" />
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/bo/mt103"
+				schemaLocation="../xsd/mt103.xsd" />
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/bo/mt910"
+				schemaLocation="../xsd/mt910.xsd" />
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/bo/mp"
+				schemaLocation="../xsd/mp.xsd" />
 			<xsd:complexType name="RtgsConfirmType">
 				<xsd:sequence>
-					<xsd:element maxOccurs="1" name="mt910" type="mt910:TMT910" />
-					<xsd:element maxOccurs="1" name="mt103" type="mt103:TMT103" />
+					<xsd:element maxOccurs="1" name="mt910" type="mt910:Mt910" />
+					<xsd:element maxOccurs="1" name="mt103" type="mt103:Mt103" />
 				</xsd:sequence>
 			</xsd:complexType>
 			<xsd:complexType name="ClearingConfirmType">
 				<xsd:sequence>
-					<xsd:element maxOccurs="1" name="mt910" type="mt910:TMT910" />
-					<xsd:element maxOccurs="1" name="mt102" type="mt102:TMT102" />
+					<xsd:element maxOccurs="1" name="mt910" type="mt910:Mt910" />
+					<xsd:element maxOccurs="1" name="mt102" type="mt102:Mt102" />
 				</xsd:sequence>
 			</xsd:complexType>
 			<xsd:element name="rtgsConfirm" type="mpb:RtgsConfirmType" />
@@ -37,10 +37,10 @@
 	</wsdl:types>
 
 	<wsdl:message name="rtgsConfirmMessage">
-		<wsdl:part name="MT103" element="mpb:rtgsConfirm" />
+		<wsdl:part name="rtgsConfirmPart" element="mpb:rtgsConfirm" />
 	</wsdl:message>
 	<wsdl:message name="clearingConfirmMessage">
-		<wsdl:part name="MT102" element="mpb:clearingConfirm" />
+		<wsdl:part name="clearingConfirmPart" element="mpb:clearingConfirm" />
 	</wsdl:message>
 	<wsdl:portType name="MpbDocument">
 		<wsdl:operation name="rtgsConfirm">

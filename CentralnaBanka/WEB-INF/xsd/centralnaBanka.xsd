@@ -2,9 +2,9 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.ftn.uns.ac.rs/xws/projekat/cb"
     xmlns:cb="http://www.ftn.uns.ac.rs/xws/projekat/cb"
-    xmlns:mp="http://www.ftn.uns.ac.rs/xws/projekat/mp">
-    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/projekat/mp"
-        schemaLocation="medjubankarskoPoslovanje.xsd"/>
+    xmlns:mp="http://www.ftn.uns.ac.rs/xws/bo/mp">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/bo/mp"
+        schemaLocation="mp.xsd"/>
     <xs:element name="BanksData">
         <xs:complexType>
             <xs:sequence>
