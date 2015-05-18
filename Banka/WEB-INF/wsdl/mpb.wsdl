@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="HelloDocumentService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/xsd/mt103" xmlns:mt910="http://www.ftn.uns.ac.rs/xws/xsd/mt910"
+	xmlns:mpb="http://www.ftn.uns.ac.rs/xws/xsd/mpb" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102"
+	xmlns:mpbws="http://www.ftn.uns.ac.rs/xws/ws/mpb" targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
+
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mpb"
+				schemaLocation="../xsd/mpb.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="rtgsConfirmMessage">
+		<wsdl:part name="rtgsConfirmPart" element="mpb:rtgsConfirmMessage" />
+	</wsdl:message>
+	<wsdl:message name="clearingConfirmMessage">
+		<wsdl:part name="clearingConfirmPart" element="mpb:clearingConfirmMessage" />
+	</wsdl:message>
+	<wsdl:portType name="MpbDocument">
+		<wsdl:operation name="rtgsConfirm">
+			<wsdl:input message="mpbws:rtgsConfirmMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="clearingConfirm">
+			<wsdl:input message="mpbws:clearingConfirmMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="MpbServiceSoapBinding" type="mpbws:MpbDocument">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="rtgsConfirm">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+		<wsdl:operation name="clearingConfirm">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MpbDocumentService">
+		<wsdl:port name="MpbDocumentPort" binding="mpbws:MpbServiceSoapBinding">
+			<soap:address location="http://localhost:8080/mpb" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
