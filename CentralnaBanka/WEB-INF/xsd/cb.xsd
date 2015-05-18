@@ -3,7 +3,7 @@
 	elementFormDefault="qualified" targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/cb"
 	xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb" xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
 	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
-
+  
 	<xs:annotation>
 		<xs:appinfo>
 			<jxb:globalBindings collectionType="java.util.ArrayList" />
