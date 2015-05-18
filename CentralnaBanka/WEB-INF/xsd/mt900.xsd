@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.ftn.uns.ac.rs/xws/bo/mt900"
-    xmlns:mt900="http://www.ftn.uns.ac.rs/xws/bo/mt900"
-    xmlns:mp="http://www.ftn.uns.ac.rs/xws/bo/mp">
-    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/bo/mp"
-        schemaLocation="mp.xsd"/>
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/mt900"
+    xmlns:mt900="http://www.ftn.uns.ac.rs/xws/xsd/mt900"
+    xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	jxb:version="2.0">
+	
+	<xs:annotation>
+		<xs:appinfo>
+			<jxb:globalBindings collectionType="java.util.ArrayList" />
+			<jxb:schemaBindings>
+				<jxb:package name="rs.ac.uns.ftn.xws.generated" />
+			</jxb:schemaBindings>
+		</xs:appinfo>
+	</xs:annotation>
+	
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
     <xs:complexType name="Mt900">
         <xs:complexContent>
-            <xs:extension base="mp:Message">
+            <xs:extension base="cmn:Message">
                 <xs:sequence>
-                    <xs:element name="debtorBankDetails"
-                        type="mp:BankDetails"/>
+                    <xs:element name="debtorBankDetails" type="cmn:BankDetails"/>
                     <xs:element name="paymentOrderId">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">
@@ -26,7 +35,8 @@
                             </xs:restriction>
                         </xs:simpleType>
                     </xs:element>
-                    <xs:element name="currencyDetails" type="mp:CurrencyDetails"/>
+                    <xs:element name="currencyDate" type="xs:date"/>
+                    <xs:element name="currencyCode" type="cmn:CurrencyCode"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
