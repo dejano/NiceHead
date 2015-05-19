@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/bstatement" elementFormDefault="qualified"
+    xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bstatement"
+    xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common">
+
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
+    <xs:complexType name="SectionalHeader">
+        <xs:sequence>
+            <xs:element name="accountNumber" type="cmn:AccountNumber"/>
+            <xs:element name="orderDate" type="xs:date"/>
+            <xs:element name="sectionalNumber" type="cmn:SectionalNumber"/>
+            <xs:element name="previousState" type="cmn:Balance"/>
+            <xs:element name="positiveChangesCount">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="99"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="postiveOverallAmount" type="cmn:Balance"/>
+            <xs:element name="negativeChangesCount">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="99"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="negativeOverallAmount" type="cmn:Balance"/>
+            <xs:element name="newState" type="cmn:Balance"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Asset">
+        <xs:sequence>
+            <xs:element name="debtor" type="xs:string"/>
+            <xs:element name="paymentPurpose" type="xs:string"/>
+            <xs:element name="acceptor" type="xs:string"/>
+            <xs:element name="orderDate" type="xs:date"/>
+            <xs:element name="valueDate" type="xs:date"/>
+            <xs:element name="debtorAccountDetails" type="cmn:AccountDetails"/>
+            <xs:element name="acceptorAccountDetails" type="cmn:AccountDetails"/>
+            <xs:element name="value" type="cmn:Balance"/>
+            <xs:element name="direction" type="cmn:Character"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AssetsData">
+        <xs:sequence>
+            <xs:element name="assets">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="asset"
+                            nillable="false" type="bs:Asset"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="asset" type="bs:Asset"/>
+    <xs:element name="assetsData" type="bs:AssetsData"/>
+</xs:schema>

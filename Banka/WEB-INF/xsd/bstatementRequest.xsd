@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/bstatementRequest" elementFormDefault="qualified" xmlns:bsr="http://www.ftn.uns.ac.rs/xws/xsd/bstatementRequest" xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common">
+    
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
+    
+    <xs:complexType name="BankStatmentRequest">
+        <xs:sequence>
+            <xs:element name="accountNumber" type="cmn:AccountNumber"/>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="sectionalNumber" type="cmn:SectionalNumber"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="bankStatementRequest" type="bsr:BankStatmentRequest"/>
+</xs:schema>
