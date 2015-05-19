@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.xws.dao;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.math.BigDecimal;
 
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
@@ -20,7 +21,8 @@ public class BanksDataDao {
 			"']/wsUrl/text()&wrap=no" };
 
 	private static final String[] updateBankBalanceQuery = {
-			"replace value of node //bank[swiftCode='", "']/balance with '", "'" };
+			"replace value of node //bank[swiftCode='", "']/balance with '",
+			"'" };
 
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
@@ -36,12 +38,12 @@ public class BanksDataDao {
 
 		System.out.println(bdd.getBankSwiftCode("111-1111111111111-11"));
 
-		long balance = bdd.getBankBalance("CONARS22");
+		BigDecimal balance = bdd.getBankBalance("CONARS22");
 		System.out.println(balance);
 
-		bdd.updateBankBalance("CONARS22", balance + 10);
+//		bdd.updateBankBalance("CONARS22", balance.add(new BigDecimal(10)));
 
-		balance = bdd.getBankBalance("CONARS22");
+		balance = bdd.getBankBalance("CONARS23");
 		System.out.println(balance);
 
 		System.out.println(bdd.getBankWsUrl("CONARS22"));
@@ -77,12 +79,12 @@ public class BanksDataDao {
 		return ret;
 	}
 
-	public long getBankBalance(String swiftCode) {
-		long ret = 0;
+	public BigDecimal getBankBalance(String swiftCode) {
+		BigDecimal ret = null;
 
 		String q = getBankBalanceQuery[0] + swiftCode + getBankBalanceQuery[1];
 		try {
-			ret = Long.parseLong(RESTUtil.readString(RESTUtil.retrieveResource(
+			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(
 					q, "banks", RequestMethod.GET)));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,9 +107,9 @@ public class BanksDataDao {
 		return ret;
 	}
 
-	public void updateBankBalance(String swiftCode, long newBalance) {
+	public void updateBankBalance(String swiftCode, BigDecimal newBalance) {
 		String q = updateBankBalanceQuery[0] + swiftCode
-				+ updateBankBalanceQuery[1] + newBalance
+				+ updateBankBalanceQuery[1] + newBalance.toPlainString()
 				+ updateBankBalanceQuery[2];
 		try {
 			RESTUtil.readString(RESTUtil.retrieveResource(q, "banks",

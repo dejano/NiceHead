@@ -22,7 +22,7 @@
 			<xs:element name="wsUrl" type="xs:string" />
 			<xs:element name="balance">
 				<xs:simpleType>
-					<xs:restriction base="xs:long">
+					<xs:restriction base="xs:decimal">
 						<xs:minInclusive value="0" />
 					</xs:restriction>
 				</xs:simpleType>
