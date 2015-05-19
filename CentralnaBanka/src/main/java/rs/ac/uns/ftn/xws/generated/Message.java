@@ -4,6 +4,7 @@ package rs.ac.uns.ftn.xws.generated;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -25,7 +26,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Message")
+@XmlType(name = "Message", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/common")
+@XmlSeeAlso({
+    Mt103 .class,
+    Mt102 .class,
+    Mt910 .class,
+    Mt900 .class
+})
 public abstract class Message {
 
     @XmlAttribute(name = "messageId")

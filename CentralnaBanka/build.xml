@@ -103,7 +103,7 @@
 	<target name="generate-code-wsdl">
 		<echo level="info" message="Generating code using wsdl2java..." />
 
-		<wsdl2java file="${wsdl.dir}/swiftCode.wsdl" />
+		<wsdl2java file="${wsdl.dir}/mpcb.wsdl" />
 	</target>
 
 	<target name="compile" depends="init">
@@ -154,6 +154,7 @@
 	<target name="clean">
 		<delete file="${dist.dir}/${war.name}" />
 		<delete file="${tomee.dir}/webapps/${war.name}" />
+		<delete dir="${tomee.dir}/webapps/${war.name}" />
 	</target>
 
 	<target name="main" depends="deploy">

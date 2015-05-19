@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AccountDetails", propOrder = {
+@XmlType(name = "AccountDetails", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/common", propOrder = {
     "accountNumber",
     "model",
     "referenceNumber"

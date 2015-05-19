@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102"
+	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/xsd/mt103"
+	xmlns:mt910="http://www.ftn.uns.ac.rs/xws/xsd/mt910"
+	xmlns:mt900="http://www.ftn.uns.ac.rs/xws/xsd/mt900"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+
+	<xs:annotation>
+		<xs:appinfo>
+			<jxb:globalBindings collectionType="java.util.ArrayList"/>
+			<jxb:schemaBindings>
+				<jxb:package name="rs.ac.uns.ftn.xws.generated"/>
+			</jxb:schemaBindings>
+		</xs:appinfo>
+	</xs:annotation>
+
+	<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt102" schemaLocation="../xsd/mt102.xsd"/>
+	<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt103" schemaLocation="../xsd/mt103.xsd"/>
+	<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt900" schemaLocation="../xsd/mt900.xsd"/>
+	<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt910" schemaLocation="../xsd/mt910.xsd"/>
+	<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common"
+		schemaLocation="../xsd/common.xsd"/>
+
+	<xs:simpleType name="MpExceptionEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="invalidSwiftCode"/>
+			<xs:enumeration value="invalidAmount"/>
+			<xs:enumeration value="multipleBanks"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xsd:complexType name="RtgsRequestMessage">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" name="mt103" type="mt103:Mt103"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ClearingRequestMessage">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" name="mt102" type="mt102:Mt102"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MpcbResponseMessage">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" name="mt900" type="mt900:Mt900"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RtgsConfirmMessage">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" name="mt910" type="mt910:Mt910"/>
+			<xsd:element maxOccurs="1" name="mt103" type="mt103:Mt103"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ClearingConfirmMessage">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" name="mt910" type="mt910:Mt910"/>
+			<xsd:element maxOccurs="1" name="mt102" type="mt102:Mt102"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="rtgsRequestMessage" type="mp:RtgsRequestMessage"/>
+	<xsd:element name="clearingRequestMessage" type="mp:ClearingRequestMessage"/>
+	<xsd:element name="mpcbResponseMessage" type="mp:MpcbResponseMessage"/>
+	<xsd:element name="clearingConfirmMessage" type="mp:ClearingConfirmMessage"/>
+	<xs:element name="mpExceptionEnum" type="mp:MpExceptionEnum"/>
+</xs:schema>

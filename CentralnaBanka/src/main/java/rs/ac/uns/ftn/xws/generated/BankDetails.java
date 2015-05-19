@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BankDetails", propOrder = {
+@XmlType(name = "BankDetails", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/common", propOrder = {
     "swiftCode",
     "bankClearingAccountNumber"
 })

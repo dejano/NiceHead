@@ -28,6 +28,7 @@
 	<wsdl:message name="noBankAccountException">
 		<wsdl:part name="fault" element="swiftCode:noBankAccountException" />
 	</wsdl:message>
+	
 	<wsdl:portType name="SwiftCodeDocument">
 		<wsdl:operation name="getSwiftCode">
 			<wsdl:input message="swiftCode:bankClearingAccountNumberMessage" />
@@ -36,6 +37,7 @@
 				name="NoBankAccountException" />
 		</wsdl:operation>
 	</wsdl:portType>
+	
 	<wsdl:binding name="SwiftCodeServiceSoapBinding" type="swiftCode:SwiftCodeDocument">
 		<soap:binding style="document"
 			transport="http://schemas.xmlsoap.org/soap/http" />
@@ -52,9 +54,11 @@
 			</wsdl:fault>
 		</wsdl:operation>
 	</wsdl:binding>
+	
 	<wsdl:service name="SwiftCodeDocumentService">
 		<wsdl:port name="SwiftCodeDocumentPort" binding="swiftCode:SwiftCodeServiceSoapBinding">
 			<soap:address location="http://localhost:8080/swiftCode" />
 		</wsdl:port>
 	</wsdl:service>
+	
 </wsdl:definitions>
