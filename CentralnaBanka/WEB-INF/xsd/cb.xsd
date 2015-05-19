@@ -38,7 +38,7 @@
 							type="cb:Bank">
 							<xs:unique name="unique-bank">
 								<xs:selector xpath="bank" />
-								<xs:field xpath="@swiftCode" />
+								<xs:field xpath="swiftCode" />
 								<xs:field xpath="bankClearingAccountNumber" />
 								<xs:field xpath="wsUrl" />
 							</xs:unique>

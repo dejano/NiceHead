@@ -22,7 +22,7 @@ public final class CbDocument_CbDocumentPort_Client {
 
 	public static void main(String[] args) throws MalformedURLException {
 		URL wsdl = new URL(
-				"http://localhost:8080/vezbe-wsdl-ws/services/CbDocument?wsdl");
+				"http://localhost:8080/cb/services/CbDocument?wsdl");
 
 		QName serviceName = new QName("http://www.ftn.uns.ac.rs/xws/ws/cb",
 				"CbDocumentService");

@@ -14,6 +14,8 @@
 			<element name="swiftCode" type="cmn:SwiftCode" block="" />
 			<element name="bankClearingAccountNumber" type="cmn:AccountNumber"
 				block="" />
+			<element name="noBankAccountException" type="xsd:string"
+				block="" />
 		</schema>
 	</wsdl:types>
 
@@ -23,10 +25,15 @@
 	<wsdl:message name="swiftCodeMessage">
 		<wsdl:part name="swiftCode" element="swiftCode:swiftCode" />
 	</wsdl:message>
+	<wsdl:message name="noBankAccountException">
+		<wsdl:part name="fault" element="swiftCode:noBankAccountException" />
+	</wsdl:message>
 	<wsdl:portType name="SwiftCodeDocument">
 		<wsdl:operation name="getSwiftCode">
 			<wsdl:input message="swiftCode:bankClearingAccountNumberMessage" />
 			<wsdl:output message="swiftCode:swiftCodeMessage" />
+			<wsdl:fault message="swiftCode:noBankAccountException"
+				name="NoBankAccountException" />
 		</wsdl:operation>
 	</wsdl:portType>
 	<wsdl:binding name="SwiftCodeServiceSoapBinding" type="swiftCode:SwiftCodeDocument">
@@ -40,6 +47,9 @@
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
+			<wsdl:fault name="NoBankAccountException">
+				<soap:fault name="NoBankAccountException" use="literal" />
+			</wsdl:fault>
 		</wsdl:operation>
 	</wsdl:binding>
 	<wsdl:service name="SwiftCodeDocumentService">
