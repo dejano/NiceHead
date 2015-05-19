@@ -1,8 +1,8 @@
 package rs.ac.uns.ftn.xws.dao;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
@@ -24,13 +24,15 @@ public class BanksDataDao {
 			"replace value of node //bank[swiftCode='", "']/balance with '",
 			"'" };
 
+	private static final int ROUNDING_SCALE = 4;
+
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
 
-//		RESTUtil.dropSchema("banks");
-//		RESTUtil.createSchema("banks");
-//		RESTUtil.createResource("banks", "banks.xml", new FileInputStream(
-//				new File(file, "banks.xml")));
+		// RESTUtil.dropSchema("banks");
+		// RESTUtil.createSchema("banks");
+		// RESTUtil.createResource("banks", "banks.xml", new FileInputStream(
+		// new File(file, "banks.xml")));
 
 		BanksDataDao bdd = new BanksDataDao();
 
@@ -41,7 +43,7 @@ public class BanksDataDao {
 		BigDecimal balance = bdd.getBankBalance("CONARS22");
 		System.out.println(balance);
 
-//		bdd.updateBankBalance("CONARS22", balance.add(new BigDecimal(10)));
+		// bdd.updateBankBalance("CONARS22", balance.add(new BigDecimal(10)));
 
 		balance = bdd.getBankBalance("CONARS23");
 		System.out.println(balance);
@@ -108,9 +110,11 @@ public class BanksDataDao {
 	}
 
 	public void updateBankBalance(String swiftCode, BigDecimal newBalance) {
-		String q = updateBankBalanceQuery[0] + swiftCode
-				+ updateBankBalanceQuery[1] + newBalance.toPlainString()
-				+ updateBankBalanceQuery[2];
+		String q = updateBankBalanceQuery[0]
+				+ swiftCode
+				+ updateBankBalanceQuery[1]
+				+ newBalance.setScale(ROUNDING_SCALE, RoundingMode.CEILING)
+						.toPlainString() + updateBankBalanceQuery[2];
 		try {
 			RESTUtil.readString(RESTUtil.retrieveResource(q, "banks",
 					RequestMethod.POST));
