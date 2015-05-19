@@ -19,8 +19,8 @@
         <xs:complexContent>
             <xs:extension base="cmn:Message">
                 <xs:sequence>
-                    <xs:element name="podaci_o_banci_duznika" type="cmn:BankDetails"/>
                     <xs:element form="qualified" name="debtorBankDetails" type="cmn:BankDetails"/>
+                    <xs:element form="qualified" name="creditorBankDetails" type="cmn:BankDetails"/>
                     <xs:element name="debtor">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">

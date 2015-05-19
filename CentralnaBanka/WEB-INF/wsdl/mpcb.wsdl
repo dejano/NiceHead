@@ -3,25 +3,32 @@
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/xsd/mt103" xmlns:mt910="http://www.ftn.uns.ac.rs/xws/xsd/mt910"
-	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102"
-	xmlns:mpcbws="http://www.ftn.uns.ac.rs/xws/ws/mpcb" targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpcb">
+	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/xsd/mt103" xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102" xmlns:mt900="http://www.ftn.uns.ac.rs/xws/xsd/mt900"
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/cmn" xmlns:mpcbws="http://www.ftn.uns.ac.rs/xws/ws/mpcb"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpcb">
 
 	<wsdl:types>
 		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
 				schemaLocation="../xsd/mp.xsd" />
+			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt102"
+				schemaLocation="../xsd/mt102.xsd" />
+			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt103"
+				schemaLocation="../xsd/mt103.xsd" />
+			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt900"
+				schemaLocation="../xsd/mt900.xsd" />
 		</xsd:schema>
 	</wsdl:types>
 
 	<wsdl:message name="rtgsRequestMessage">
-		<wsdl:part name="rtgsRequestPart" element="mp:rtgsRequestMessage" />
+		<wsdl:part name="rtgsRequestPart" element="mt102:mt102" />
 	</wsdl:message>
 	<wsdl:message name="clearingRequestMessage">
-		<wsdl:part name="clearingRequestPart" element="mp:clearingRequestMessage" />
+		<wsdl:part name="clearingRequestPart" element="mt103:mt103" />
 	</wsdl:message>
 	<wsdl:message name="mpcbResponseMessage">
-		<wsdl:part name="mpcbResponsePart" element="mp:mpcbResponseMessage" />
+		<wsdl:part name="mpcbResponsePart" element="mt900:mt900" />
 	</wsdl:message>
 	<wsdl:message name="mpException">
 		<wsdl:part name="fault" element="mp:mpExceptionEnum" />

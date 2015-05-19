@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Message", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/common")
+@XmlType(name = "Message")
 @XmlSeeAlso({
     Mt103 .class,
     Mt102 .class,

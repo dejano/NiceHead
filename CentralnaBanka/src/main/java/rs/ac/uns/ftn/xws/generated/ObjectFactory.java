@@ -25,12 +25,10 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _MpExceptionEnum_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "mpExceptionEnum");
-    private final static QName _RtgsRequestMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "rtgsRequestMessage");
-    private final static QName _ClearingRequestMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "clearingRequestMessage");
+    private final static QName _RtgsConfirmMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "rtgsConfirmMessage");
     private final static QName _Mt103_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mt103", "mt103");
     private final static QName _Mt102_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mt102", "mt102");
     private final static QName _Mt910_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mt910", "mt910");
-    private final static QName _MpcbResponseMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "mpcbResponseMessage");
     private final static QName _ClearingConfirmMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "clearingConfirmMessage");
     private final static QName _Mt900_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mt900", "mt900");
 
@@ -66,35 +64,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ClearingRequestMessage }
-     * 
-     */
-    public ClearingRequestMessage createClearingRequestMessage() {
-        return new ClearingRequestMessage();
-    }
-
-    /**
-     * Create an instance of {@link MpcbResponseMessage }
-     * 
-     */
-    public MpcbResponseMessage createMpcbResponseMessage() {
-        return new MpcbResponseMessage();
-    }
-
-    /**
      * Create an instance of {@link ClearingConfirmMessage }
      * 
      */
     public ClearingConfirmMessage createClearingConfirmMessage() {
         return new ClearingConfirmMessage();
-    }
-
-    /**
-     * Create an instance of {@link RtgsRequestMessage }
-     * 
-     */
-    public RtgsRequestMessage createRtgsRequestMessage() {
-        return new RtgsRequestMessage();
     }
 
     /**
@@ -155,21 +129,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RtgsRequestMessage }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RtgsConfirmMessage }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "rtgsRequestMessage")
-    public JAXBElement<RtgsRequestMessage> createRtgsRequestMessage(RtgsRequestMessage value) {
-        return new JAXBElement<RtgsRequestMessage>(_RtgsRequestMessage_QNAME, RtgsRequestMessage.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ClearingRequestMessage }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "clearingRequestMessage")
-    public JAXBElement<ClearingRequestMessage> createClearingRequestMessage(ClearingRequestMessage value) {
-        return new JAXBElement<ClearingRequestMessage>(_ClearingRequestMessage_QNAME, ClearingRequestMessage.class, null, value);
+    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "rtgsConfirmMessage")
+    public JAXBElement<RtgsConfirmMessage> createRtgsConfirmMessage(RtgsConfirmMessage value) {
+        return new JAXBElement<RtgsConfirmMessage>(_RtgsConfirmMessage_QNAME, RtgsConfirmMessage.class, null, value);
     }
 
     /**
@@ -197,15 +162,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mt910", name = "mt910")
     public JAXBElement<Mt910> createMt910(Mt910 value) {
         return new JAXBElement<Mt910>(_Mt910_QNAME, Mt910 .class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MpcbResponseMessage }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "mpcbResponseMessage")
-    public JAXBElement<MpcbResponseMessage> createMpcbResponseMessage(MpcbResponseMessage value) {
-        return new JAXBElement<MpcbResponseMessage>(_MpcbResponseMessage_QNAME, MpcbResponseMessage.class, null, value);
     }
 
     /**
