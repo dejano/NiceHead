@@ -98,12 +98,14 @@
 
 	<target name="generate-code-xsd" depends="init">
 		<xjc schema="${webinf.dir}/xsd/cb.xsd" destdir="${gen.dir}" />
+		<xjc schema="${webinf.dir}/xsd/bstatement.xsd" destdir="${gen.dir}" />
 	</target>
 
 	<target name="generate-code-wsdl">
 		<echo level="info" message="Generating code using wsdl2java..." />
 
 		<wsdl2java file="${wsdl.dir}/mpb.wsdl" />
+		<wsdl2java file="${wsdl.dir}/bstatement.wsdl" />
 	</target>
 
 	<target name="compile" depends="init">

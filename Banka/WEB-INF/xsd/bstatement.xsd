@@ -57,6 +57,15 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:element name="sectionalHeader" type="bs:SectionalHeader"/>
     <xs:element name="asset" type="bs:Asset"/>
     <xs:element name="assetsData" type="bs:AssetsData"/>
+    <xs:element name="sectionalData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="bs:sectionalHeader"/>
+                <xs:element ref="bs:assetsData"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
