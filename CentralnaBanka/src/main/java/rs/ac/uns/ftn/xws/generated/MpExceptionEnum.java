@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "MpExceptionEnum")
+@XmlType(name = "MpExceptionEnum", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp")
 @XmlEnum
 public enum MpExceptionEnum {
 
