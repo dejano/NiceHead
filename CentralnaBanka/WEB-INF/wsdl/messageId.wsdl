@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="HelloDocumentService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:miws="http://www.ftn.uns.ac.rs/xws/ws/messageId"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/messageId">
+
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:miws="http://www.ftn.uns.ac.rs/xws/ws/messageId"
+			targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/messageId">
+			<element name="messageId" type="xsd:string" block="" />
+		</schema>
+	</wsdl:types>
+
+	<wsdl:message name="messageIdRequest">
+	</wsdl:message>
+	<wsdl:message name="messageIdMessage">
+		<wsdl:part name="messageId" element="miws:messageId" />
+	</wsdl:message>
+
+	<wsdl:portType name="MessageIdDocument">
+		<wsdl:operation name="getMessageId">
+			<wsdl:input message="miws:messageIdRequest" />
+			<wsdl:output message="miws:messageIdMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="MessageIdServiceSoapBinding" type="miws:MessageIdDocument">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getMessageId">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="MessageIdDocumentService">
+		<wsdl:port name="MessageIdDocumentPort" binding="miws:MessageIdServiceSoapBinding">
+			<soap:address location="http://localhost:8080/messageId" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

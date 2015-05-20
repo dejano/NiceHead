@@ -119,8 +119,7 @@ public class BanksDataDao {
 				+ newBalance.setScale(ROUNDING_SCALE, RoundingMode.CEILING)
 						.toPlainString() + updateBankBalanceQuery[2];
 		try {
-			RESTUtil.readString(RESTUtil.retrieveResource(q, SCHEMA_NAME,
-					RequestMethod.POST));
+			RESTUtil.retrieveResource(q, SCHEMA_NAME, RequestMethod.POST);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
