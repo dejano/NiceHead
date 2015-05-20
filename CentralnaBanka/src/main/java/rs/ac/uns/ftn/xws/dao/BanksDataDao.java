@@ -1,7 +1,5 @@
 package rs.ac.uns.ftn.xws.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -31,8 +29,7 @@ public class BanksDataDao {
 			"'" };
 
 	public static void main(String[] args) throws Exception {
-		File file = new File("src/main/resources/");
-
+//		File file = new File("src/main/resources/");
 //		RESTUtil.dropSchema(SCHEMA_NAME);
 //		RESTUtil.createSchema(SCHEMA_NAME);
 //		RESTUtil.createResource(SCHEMA_NAME, "banks.xml", new FileInputStream(
@@ -125,8 +122,7 @@ public class BanksDataDao {
 	}
 
 	public static boolean isSwiftCodeValid(String swiftCode) {
-		// TODO
-		return true;//getBankClearingAccountNumber(swiftCode) != null;
+		return getBankClearingAccountNumber(swiftCode) != null;
 	}
 
 	private BanksDataDao() {
