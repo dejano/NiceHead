@@ -19,17 +19,13 @@ public class MessageIdDao {
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
 
-		RESTUtil.dropSchema(SCHEMA_NAME);
-		RESTUtil.createSchema(SCHEMA_NAME);
 		RESTUtil.createResource(SCHEMA_NAME, "messageId.xml",
 				new FileInputStream(new File(file, "messageId.xml")));
 
-		MessageIdDao mid = new MessageIdDao();
-
-		System.out.println(mid.getMessageId());
+		System.out.println(getMessageId());
 	}
 
-	public String getMessageId() {
+	public static String getMessageId() {
 		String ret = null;
 
 		String updateQuery;
@@ -53,5 +49,8 @@ public class MessageIdDao {
 		}
 
 		return ret;
+	}
+
+	private MessageIdDao() {
 	}
 }

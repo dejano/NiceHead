@@ -22,10 +22,10 @@
 	</wsdl:types>
 
 	<wsdl:message name="rtgsRequestMessage">
-		<wsdl:part name="rtgsRequestPart" element="mt102:mt102" />
+		<wsdl:part name="rtgsRequestPart" element="mt103:mt103" />
 	</wsdl:message>
 	<wsdl:message name="clearingRequestMessage">
-		<wsdl:part name="clearingRequestPart" element="mt103:mt103" />
+		<wsdl:part name="clearingRequestPart" element="mt102:mt102" />
 	</wsdl:message>
 	<wsdl:message name="mpcbResponseMessage">
 		<wsdl:part name="mpcbResponsePart" element="mt900:mt900" />

@@ -10,8 +10,9 @@ import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
 
 public class BanksDataDao {
 
-	private static final int ROUNDING_SCALE = 4;
 	private static final String SCHEMA_NAME = "centralBank";
+
+	private static final int ROUNDING_SCALE = 4;
 
 	private static final String[] getBankClearingAccountNumberQuery = {
 			"//bank[swiftCode='", "']/bankClearingAccountNumber/text()&wrap=no" };
@@ -32,29 +33,27 @@ public class BanksDataDao {
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
 
-		RESTUtil.dropSchema(SCHEMA_NAME);
-		RESTUtil.createSchema(SCHEMA_NAME);
-		RESTUtil.createResource(SCHEMA_NAME, "banks.xml", new FileInputStream(
-				new File(file, "banks.xml")));
+//		RESTUtil.dropSchema(SCHEMA_NAME);
+//		RESTUtil.createSchema(SCHEMA_NAME);
+//		RESTUtil.createResource(SCHEMA_NAME, "banks.xml", new FileInputStream(
+//				new File(file, "banks.xml")));
 
-		BanksDataDao bdd = new BanksDataDao();
+		System.out.println(getBankClearingAccountNumber("CONARS22"));
 
-		System.out.println(bdd.getBankClearingAccountNumber("CONARS22"));
+		System.out.println(getBankSwiftCode("111-1111111111111-11"));
 
-		System.out.println(bdd.getBankSwiftCode("111-1111111111111-11"));
-
-		BigDecimal balance = bdd.getBankBalance("CONARS22");
+		BigDecimal balance = getBankBalance("CONARS22");
 		System.out.println(balance);
 
 		// bdd.updateBankBalance("CONARS22", balance.add(new BigDecimal(10)));
 
-		balance = bdd.getBankBalance("CONARS23");
+		balance = getBankBalance("CONARS23");
 		System.out.println(balance);
 
-		System.out.println(bdd.getBankWsUrl("CONARS22"));
+		System.out.println(getBankWsUrl("CONARS22"));
 	}
 
-	public String getBankClearingAccountNumber(String swiftCode) {
+	public static String getBankClearingAccountNumber(String swiftCode) {
 		String ret = null;
 
 		String q = getBankClearingAccountNumberQuery[0] + swiftCode
@@ -69,7 +68,7 @@ public class BanksDataDao {
 		return ret;
 	}
 
-	public String getBankSwiftCode(String clearingAccountNumber) {
+	public static String getBankSwiftCode(String clearingAccountNumber) {
 		String ret = null;
 
 		String q = getBankSwiftCodeQuery[0] + clearingAccountNumber
@@ -84,7 +83,7 @@ public class BanksDataDao {
 		return ret;
 	}
 
-	public BigDecimal getBankBalance(String swiftCode) {
+	public static BigDecimal getBankBalance(String swiftCode) {
 		BigDecimal ret = null;
 
 		String q = getBankBalanceQuery[0] + swiftCode + getBankBalanceQuery[1];
@@ -98,7 +97,7 @@ public class BanksDataDao {
 		return ret;
 	}
 
-	public String getBankWsUrl(String swiftCode) {
+	public static String getBankWsUrl(String swiftCode) {
 		String ret = null;
 
 		String q = getBankWsUrl[0] + swiftCode + getBankWsUrl[1];
@@ -112,7 +111,7 @@ public class BanksDataDao {
 		return ret;
 	}
 
-	public void updateBankBalance(String swiftCode, BigDecimal newBalance) {
+	public static void updateBankBalance(String swiftCode, BigDecimal newBalance) {
 		String q = updateBankBalanceQuery[0]
 				+ swiftCode
 				+ updateBankBalanceQuery[1]
@@ -125,4 +124,11 @@ public class BanksDataDao {
 		}
 	}
 
+	public static boolean isSwiftCodeValid(String swiftCode) {
+		// TODO
+		return true;//getBankClearingAccountNumber(swiftCode) != null;
+	}
+
+	private BanksDataDao() {
+	}
 }

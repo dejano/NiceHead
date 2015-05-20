@@ -40,14 +40,14 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			mt103.setAmount(new BigDecimal(22));
 
 			BankDetails bdd = new BankDetails();
-			bdd.setSwiftCode("CONARS22");
+			bdd.setSwiftCode("CONARS23");
 			mt103.setDebtorBankDetails(bdd);
 
 			BankDetails bdc = new BankDetails();
-			bdc.setSwiftCode("CONARS23");
+			bdc.setSwiftCode("CONARS22");
 			mt103.setCreditorBankDetails(bdc);
 
-			mpcbService.clearingRequest(mt103);
+			mpcbService.rtgsRequest(mt103);
 			
 			// test rtgs
 			Mt102 mt102 = new Mt102();
@@ -55,11 +55,11 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			mt102.setPayments(new Payments());
 			
 			BankDetails bd1 = new BankDetails();
-			bd1.setSwiftCode("CONARS22");
+			bd1.setSwiftCode("CONARS23");
 			mt102.setDebtorBankDetails(bd1);
 			
 			BankDetails bd2 = new BankDetails();
-			bd2.setSwiftCode("CONARS23");
+			bd2.setSwiftCode("CONARS22");
 			mt102.setCreditorBankDetails(bd2);
 			
 			AccountDetails ad1 = new AccountDetails();
@@ -78,7 +78,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			p2.setAmount(new BigDecimal(4.1));
 			mt102.getPayments().getPayments().add(p2);
 			
-			mpcbService.rtgsRequest(mt102);
+			mpcbService.clearingRequest(mt102);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (MpException e) {

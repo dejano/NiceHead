@@ -40,7 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="placanje" type="{http://www.ftn.uns.ac.rs/xws/xsd/mt102}Payment" maxOccurs="unbounded" form="qualified"/>
+ *                   &lt;element name="payments" type="{http://www.ftn.uns.ac.rs/xws/xsd/mt102}Payment" maxOccurs="unbounded" form="qualified"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -264,7 +264,7 @@ public class Mt102
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="placanje" type="{http://www.ftn.uns.ac.rs/xws/xsd/mt102}Payment" maxOccurs="unbounded" form="qualified"/>
+     *         &lt;element name="payments" type="{http://www.ftn.uns.ac.rs/xws/xsd/mt102}Payment" maxOccurs="unbounded" form="qualified"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -275,26 +275,26 @@ public class Mt102
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "placanje"
+        "payments"
     })
     public static class Payments {
 
         @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mt102", required = true)
-        protected List<Payment> placanje;
+        protected List<Payment> payments;
 
         /**
-         * Gets the value of the placanje property.
+         * Gets the value of the payments property.
          * 
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the placanje property.
+         * This is why there is not a <CODE>set</CODE> method for the payments property.
          * 
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
-         *    getPlacanje().add(newItem);
+         *    getPayments().add(newItem);
          * </pre>
          * 
          * 
@@ -304,11 +304,11 @@ public class Mt102
          * 
          * 
          */
-        public List<Payment> getPlacanje() {
-            if (placanje == null) {
-                placanje = new ArrayList<Payment>();
+        public List<Payment> getPayments() {
+            if (payments == null) {
+                payments = new ArrayList<Payment>();
             }
-            return this.placanje;
+            return this.payments;
         }
 
     }

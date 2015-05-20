@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.xws.util;
 import java.math.BigDecimal;
 import java.util.List;
 
+import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.generated.AccountDetails;
 import rs.ac.uns.ftn.xws.generated.Mt102;
 import rs.ac.uns.ftn.xws.generated.Mt102.Payments;
@@ -38,8 +39,7 @@ public class CentralBankUtil {
 	}
 
 	public static boolean isSwiftCodeValid(String swiftCode) {
-		// TODO impl validaciju
-		return true;
+		return BanksDataDao.isSwiftCodeValid(swiftCode);
 	}
 
 	public static boolean areAllPaymentsToSameBank(Mt102 mt102) {

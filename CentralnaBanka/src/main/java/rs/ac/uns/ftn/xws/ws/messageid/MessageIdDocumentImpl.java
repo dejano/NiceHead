@@ -15,9 +15,7 @@ public class MessageIdDocumentImpl implements MessageIdDocument {
 
 	public String getMessageId() {
 		LOG.info("getMessageId called");
-		MessageIdDao mid = new MessageIdDao();
-
-		return mid.getMessageId();
+		
+		return MessageIdDao.getMessageId();
 	}
-
 }

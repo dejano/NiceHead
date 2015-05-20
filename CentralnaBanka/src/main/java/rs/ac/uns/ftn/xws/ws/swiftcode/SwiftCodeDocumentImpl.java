@@ -36,10 +36,9 @@ public class SwiftCodeDocumentImpl implements SwiftCodeDocument {
 			java.lang.String bankClearingAccountNumber)
 			throws NoBankAccountException {
 		String swiftCode;
-		BanksDataDao bdd = new BanksDataDao();
 
 		LOG.info("scws - check for AN : " + bankClearingAccountNumber);
-		swiftCode = bdd.getBankSwiftCode(bankClearingAccountNumber);
+		swiftCode = BanksDataDao.getBankSwiftCode(bankClearingAccountNumber);
 
 		if (swiftCode == null || swiftCode.isEmpty()) {
 			String altFormAccountNumber = CentralBankUtil
@@ -48,7 +47,7 @@ public class SwiftCodeDocumentImpl implements SwiftCodeDocument {
 			LOG.info("scws - check for alternative form AN : "
 					+ altFormAccountNumber);
 
-			swiftCode = bdd.getBankSwiftCode(altFormAccountNumber);
+			swiftCode = BanksDataDao.getBankSwiftCode(altFormAccountNumber);
 		}
 
 		LOG.info("scws - swift code : " + swiftCode);
