@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <banksData xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb"
 	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb cb.xsd ">
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd ">
 	<banks>
 		<bank>
 			<swiftCode>CONARS22</swiftCode>
