@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.xws.dao;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -8,6 +9,10 @@ import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
 
 public class BanksDataDao {
+
+	private static final int ROUNDING_SCALE = 4;
+	private static final String SCHEMA_NAME = "centralBank";
+
 	private static final String[] getBankClearingAccountNumberQuery = {
 			"//bank[swiftCode='", "']/bankClearingAccountNumber/text()&wrap=no" };
 
@@ -24,15 +29,13 @@ public class BanksDataDao {
 			"replace value of node //bank[swiftCode='", "']/balance with '",
 			"'" };
 
-	private static final int ROUNDING_SCALE = 4;
-
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
 
-		// RESTUtil.dropSchema("banks");
-		// RESTUtil.createSchema("banks");
-		// RESTUtil.createResource("banks", "banks.xml", new FileInputStream(
-		// new File(file, "banks.xml")));
+		RESTUtil.dropSchema(SCHEMA_NAME);
+		RESTUtil.createSchema(SCHEMA_NAME);
+		RESTUtil.createResource(SCHEMA_NAME, "banks.xml", new FileInputStream(
+				new File(file, "banks.xml")));
 
 		BanksDataDao bdd = new BanksDataDao();
 
@@ -57,7 +60,7 @@ public class BanksDataDao {
 		String q = getBankClearingAccountNumberQuery[0] + swiftCode
 				+ getBankClearingAccountNumberQuery[1];
 		try {
-			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, "banks",
+			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, SCHEMA_NAME,
 					RequestMethod.GET));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,7 +75,7 @@ public class BanksDataDao {
 		String q = getBankSwiftCodeQuery[0] + clearingAccountNumber
 				+ getBankSwiftCodeQuery[1];
 		try {
-			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, "banks",
+			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, SCHEMA_NAME,
 					RequestMethod.GET));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,7 +90,7 @@ public class BanksDataDao {
 		String q = getBankBalanceQuery[0] + swiftCode + getBankBalanceQuery[1];
 		try {
 			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(
-					q, "banks", RequestMethod.GET)));
+					q, SCHEMA_NAME, RequestMethod.GET)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -100,7 +103,7 @@ public class BanksDataDao {
 
 		String q = getBankWsUrl[0] + swiftCode + getBankWsUrl[1];
 		try {
-			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, "banks",
+			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, SCHEMA_NAME,
 					RequestMethod.GET));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,7 +119,7 @@ public class BanksDataDao {
 				+ newBalance.setScale(ROUNDING_SCALE, RoundingMode.CEILING)
 						.toPlainString() + updateBankBalanceQuery[2];
 		try {
-			RESTUtil.readString(RESTUtil.retrieveResource(q, "banks",
+			RESTUtil.readString(RESTUtil.retrieveResource(q, SCHEMA_NAME,
 					RequestMethod.POST));
 		} catch (Exception e) {
 			e.printStackTrace();
