@@ -24,8 +24,7 @@ public interface MpcbDocument {
 			throws MpException;
 
 	@WebMethod
-	@WebResult(name = "mt900", targetNamespace = "http://www.ftn.uns.ac.rs/xws/xsd/mt900", partName = "mpcbResponsePart")
-	public rs.ac.uns.ftn.xws.generated.Mt900 clearingRequest(
+	public void clearingRequest(
 			@WebParam(partName = "clearingRequestPart", name = "mt102", targetNamespace = "http://www.ftn.uns.ac.rs/xws/xsd/mt102") rs.ac.uns.ftn.xws.generated.Mt102 clearingRequestPart)
 			throws MpException;
 }

@@ -35,7 +35,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			MpcbDocument mpcbService = service.getPort(portName,
 					MpcbDocument.class);
 
-			// test clearing
+			// test rtgs
 			Mt103 mt103 = new Mt103();
 			mt103.setAmount(new BigDecimal(22));
 
@@ -49,7 +49,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 
 			mpcbService.rtgsRequest(mt103);
 			
-			// test rtgs
+			// test clearing
 			Mt102 mt102 = new Mt102();
 			mt102.setTotalAmount(new BigDecimal(9.2));
 			mt102.setPayments(new Payments());

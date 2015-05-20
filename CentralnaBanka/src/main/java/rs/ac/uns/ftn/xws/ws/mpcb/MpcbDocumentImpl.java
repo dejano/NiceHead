@@ -67,7 +67,7 @@ public class MpcbDocumentImpl implements MpcbDocument {
 		return ObjectFactory.getMt900(rtgsRequestPart);
 	}
 
-	public Mt900 clearingRequest(Mt102 clearingRequestPart) throws MpException {
+	public void clearingRequest(Mt102 clearingRequestPart) throws MpException {
 		LOG.info("Executing operation clearingRequest");
 
 		BigDecimal debtorBankBalance;
@@ -102,6 +102,8 @@ public class MpcbDocumentImpl implements MpcbDocument {
 					MpExceptionEnum.INVALID_AMOUNT);
 		}
 
+		// TODO remove code below someplace else..?
+		
 		// update debtor balance
 		debtorBankBalance = BanksDataDao.getBankBalance(debtorBankSwiftCode);
 		BanksDataDao.updateBankBalance(debtorBankSwiftCode,
@@ -115,8 +117,6 @@ public class MpcbDocumentImpl implements MpcbDocument {
 
 		// send clearing confirm message to creditor's bank
 		MpbDocumentClient.invokeClearingConfirm(clearingRequestPart);
-
-		return ObjectFactory.getMt900(clearingRequestPart);
 	}
 
 }

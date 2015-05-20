@@ -3,7 +3,7 @@
 	targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/cb"
 	xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb"
 	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
-	jxb:version="2.0">
+	jxb:version="2.0" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102">
 
 	<xs:annotation>
 		<xs:appinfo>
@@ -15,6 +15,7 @@
 	</xs:annotation>
 
 	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
+	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt102" schemaLocation="mt102.xsd"/>
 	<xs:complexType name="Bank">
 		<xs:sequence>
 			<xs:element name="swiftCode" type="cmn:SwiftCode"/>
@@ -54,8 +55,14 @@
 			<xs:pattern value="[0-9]+"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:complexType name="ClearingData">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="mt102"/>
+		</xs:sequence>
+	</xs:complexType>
+	
 	<xs:element name="bank" type="cb:Bank"/>
 	<xs:element name="banksData" type="cb:BanksData"> </xs:element>
-
 	<xs:element name="messageIdData" type="cb:MessageIdData"/>
+	<xs:element name="clearingData" type="cb:ClearingData"/>
 </xs:schema>

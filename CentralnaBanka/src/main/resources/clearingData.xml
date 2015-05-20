@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clearingData xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb"
+	xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd">
+	<mt102 messageId="1">
+		<debtorBankDetails>
+			<swiftCode>AAAAAA00</swiftCode>
+			<bankClearingAccountNumber>000-0000000000000-00</bankClearingAccountNumber>
+		</debtorBankDetails>
+		<creditorBankDetails>
+			<swiftCode>AAAAAA00</swiftCode>
+			<bankClearingAccountNumber>000-0000000000000-00</bankClearingAccountNumber>
+		</creditorBankDetails>
+		<totalAmount>
+			0.00
+		</totalAmount>
+		<currencyDate>2006-05-04</currencyDate>
+		<currencyCode>A</currencyCode>
+		<date>2006-05-04</date>
+		<payments>
+			<payments>
+				<paymentOrderId>paymentOrderId0</paymentOrderId>
+				<debtor>debtor0</debtor>
+				<paymentPurpose>paymentPurpose0</paymentPurpose>
+				<creditor>creditor0</creditor>
+				<orderDate>2006-05-04</orderDate>
+				<debtorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber0</referenceNumber>
+				</debtorAccountDetails>
+				<creditorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber1</referenceNumber>
+				</creditorAccountDetails>
+				<amount>0.00</amount>
+				<currencyCode>cur</currencyCode>
+			</payments>
+			<payments>
+				<paymentOrderId>paymentOrderId1</paymentOrderId>
+				<debtor>debtor1</debtor>
+				<paymentPurpose>paymentPurpose1</paymentPurpose>
+				<creditor>creditor1</creditor>
+				<orderDate>2006-05-04</orderDate>
+				<debtorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber2</referenceNumber>
+				</debtorAccountDetails>
+				<creditorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber3</referenceNumber>
+				</creditorAccountDetails>
+				<amount>0.00</amount>
+				<currencyCode>cur</currencyCode>
+			</payments>
+		</payments>
+	</mt102>
+</clearingData>
