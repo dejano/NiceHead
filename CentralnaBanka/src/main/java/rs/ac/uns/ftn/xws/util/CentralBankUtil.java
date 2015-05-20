@@ -62,6 +62,10 @@ public class CentralBankUtil {
 		
 		return ret;
 	}
+	
+	public static boolean getBankCanPayAmount(String swiftCode, BigDecimal amount) {
+		return BanksDataDao.getBankBalance(swiftCode).compareTo(amount) >= 0;
+	}
 
 	public static String getBankCode(AccountDetails accountDetails) {
 		return accountDetails.getAccountNumber().substring(0, 3);

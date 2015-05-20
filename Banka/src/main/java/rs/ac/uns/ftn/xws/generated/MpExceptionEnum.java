@@ -31,7 +31,9 @@ public enum MpExceptionEnum {
     @XmlEnumValue("invalidAmount")
     INVALID_AMOUNT("invalidAmount"),
     @XmlEnumValue("multipleBanks")
-    MULTIPLE_BANKS("multipleBanks");
+    MULTIPLE_BANKS("multipleBanks"),
+    @XmlEnumValue("debtorBankHasInsufficientFunds")
+    DEBTOR_BANK_HAS_INSUFFIENT_FUNDS("debtorBankHasInsufficientFunds");
     private final String value;
 
     MpExceptionEnum(String v) {

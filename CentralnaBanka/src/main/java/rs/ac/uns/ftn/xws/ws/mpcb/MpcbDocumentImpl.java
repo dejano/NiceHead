@@ -43,6 +43,12 @@ public class MpcbDocumentImpl implements MpcbDocument {
 			throw new MpException("Creditor swift code invalid.",
 					MpExceptionEnum.INVALID_SWIFT_CODE);
 		}
+		
+		// validate debtor bank funds
+		if (!CentralBankUtil.getBankCanPayAmount(debtorBankSwiftCode, amount)) {
+			throw new MpException("Debtor bank has insufficien funds.",
+					MpExceptionEnum.DEBTOR_BANK_HAS_INSUFFIENT_FUNDS);
+		}
 
 		// update debtor balance
 		debtorBankBalance = BanksDataDao.getBankBalance(debtorBankSwiftCode);

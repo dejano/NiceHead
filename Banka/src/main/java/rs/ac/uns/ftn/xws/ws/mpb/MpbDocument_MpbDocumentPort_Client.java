@@ -10,9 +10,6 @@ import rs.ac.uns.ftn.xws.generated.RtgsConfirmMessage;
 
 public final class MpbDocument_MpbDocumentPort_Client {
 
-	private static final QName SERVICE_NAME = new QName(
-			"http://www.ftn.uns.ac.rs/xws/ws/mpb", "MpbDocumentService");
-
 	private MpbDocument_MpbDocumentPort_Client() {
 	}
 

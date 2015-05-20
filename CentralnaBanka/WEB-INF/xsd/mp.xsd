@@ -26,6 +26,7 @@
 
 	<xs:simpleType name="MpExceptionEnum">
 		<xs:restriction base="xs:string">
+			<xs:enumeration value="debtorBankHasInsufficientFunds"/>
 			<xs:enumeration value="invalidSwiftCode"/>
 			<xs:enumeration value="invalidAmount"/>
 			<xs:enumeration value="multipleBanks"/>

@@ -26,26 +26,12 @@
 
 	<xs:simpleType name="MpExceptionEnum">
 		<xs:restriction base="xs:string">
+			<xs:enumeration value="debtorBankHasInsufficientFunds"/>
 			<xs:enumeration value="invalidSwiftCode"/>
 			<xs:enumeration value="invalidAmount"/>
 			<xs:enumeration value="multipleBanks"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xsd:complexType name="RtgsRequestMessage">
-		<xsd:sequence>
-			<xsd:element maxOccurs="1" name="mt103" type="mt103:Mt103"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="ClearingRequestMessage">
-		<xsd:sequence>
-			<xsd:element maxOccurs="1" name="mt102" type="mt102:Mt102"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="MpcbResponseMessage">
-		<xsd:sequence>
-			<xsd:element maxOccurs="1" name="mt900" type="mt900:Mt900"/>
-		</xsd:sequence>
-	</xsd:complexType>
 	<xsd:complexType name="RtgsConfirmMessage">
 		<xsd:sequence>
 			<xsd:element maxOccurs="1" name="mt910" type="mt910:Mt910"/>
@@ -59,9 +45,6 @@
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:element name="rtgsRequestMessage" type="mp:RtgsRequestMessage"/>
-	<xsd:element name="clearingRequestMessage" type="mp:ClearingRequestMessage"/>
-	<xsd:element name="mpcbResponseMessage" type="mp:MpcbResponseMessage"/>
 	<xsd:element name="rtgsConfirmMessage" type="mp:RtgsConfirmMessage"/>
 	<xsd:element name="clearingConfirmMessage" type="mp:ClearingConfirmMessage"/>
 	<xs:element name="mpExceptionEnum" type="mp:MpExceptionEnum"/>
