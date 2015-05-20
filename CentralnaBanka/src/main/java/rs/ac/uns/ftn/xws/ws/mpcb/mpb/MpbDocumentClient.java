@@ -31,7 +31,8 @@ public class MpbDocumentClient {
 			MpbDocument mpbService = service.getPort(portName,
 					MpbDocument.class);
 
-			mpbService.rtgsConfirm(ObjectFactory.getRtgsConfirmMessage(mt103));
+			mpbService.rtgsApproval(ObjectFactory
+					.getRtgsApprovalMessageMessage(mt103));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -53,8 +54,8 @@ public class MpbDocumentClient {
 			MpbDocument mpbService = service.getPort(portName,
 					MpbDocument.class);
 
-			mpbService.clearingConfirm(ObjectFactory
-					.getClearingConfirmMessage(mt102));
+			mpbService.clearingApproval(ObjectFactory
+					.getClearingApprovalMessage(mt102));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

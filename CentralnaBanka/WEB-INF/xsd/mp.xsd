@@ -32,20 +32,20 @@
 			<xs:enumeration value="multipleBanks"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xsd:complexType name="RtgsConfirmMessage">
+	<xsd:complexType name="RtgsApprovalMessage">
 		<xsd:sequence>
 			<xsd:element maxOccurs="1" name="mt910" type="mt910:Mt910"/>
 			<xsd:element maxOccurs="1" name="mt103" type="mt103:Mt103"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="ClearingConfirmMessage">
+	<xsd:complexType name="ClearingApprovalMessage">
 		<xsd:sequence>
 			<xsd:element maxOccurs="1" name="mt910" type="mt910:Mt910"/>
 			<xsd:element maxOccurs="1" name="mt102" type="mt102:Mt102"/>
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:element name="rtgsConfirmMessage" type="mp:RtgsConfirmMessage"/>
-	<xsd:element name="clearingConfirmMessage" type="mp:ClearingConfirmMessage"/>
+	<xsd:element name="rtgsApprovalMessage" type="mp:RtgsApprovalMessage"/>
+	<xsd:element name="clearingApprovalMessage" type="mp:ClearingApprovalMessage"/>
 	<xs:element name="mpExceptionEnum" type="mp:MpExceptionEnum"/>
 </xs:schema>

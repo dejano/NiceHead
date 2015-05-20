@@ -1,12 +1,12 @@
 package rs.ac.uns.ftn.xws.util;
 
 import rs.ac.uns.ftn.xws.dao.MessageIdDao;
-import rs.ac.uns.ftn.xws.generated.ClearingConfirmMessage;
+import rs.ac.uns.ftn.xws.generated.ClearingApprovalMessage;
 import rs.ac.uns.ftn.xws.generated.Mt102;
 import rs.ac.uns.ftn.xws.generated.Mt103;
 import rs.ac.uns.ftn.xws.generated.Mt900;
 import rs.ac.uns.ftn.xws.generated.Mt910;
-import rs.ac.uns.ftn.xws.generated.RtgsConfirmMessage;
+import rs.ac.uns.ftn.xws.generated.RtgsApprovalMessage;
 
 public class ObjectFactory {
 
@@ -36,8 +36,8 @@ public class ObjectFactory {
 		return ret;
 	}
 
-	public static RtgsConfirmMessage getRtgsConfirmMessage(Mt103 mt103) {
-		RtgsConfirmMessage ret = new RtgsConfirmMessage();
+	public static RtgsApprovalMessage getRtgsApprovalMessageMessage(Mt103 mt103) {
+		RtgsApprovalMessage ret = new RtgsApprovalMessage();
 
 		ret.setMt103(mt103);
 
@@ -53,8 +53,8 @@ public class ObjectFactory {
 		return ret;
 	}
 
-	public static ClearingConfirmMessage getClearingConfirmMessage(Mt102 mt102) {
-		ClearingConfirmMessage ret = new ClearingConfirmMessage();
+	public static ClearingApprovalMessage getClearingApprovalMessage(Mt102 mt102) {
+		ClearingApprovalMessage ret = new ClearingApprovalMessage();
 
 		ret.setMt102(mt102);
 

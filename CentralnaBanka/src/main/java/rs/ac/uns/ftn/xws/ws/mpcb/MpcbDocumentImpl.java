@@ -47,7 +47,7 @@ public class MpcbDocumentImpl implements MpcbDocument {
 		// validate debtor bank funds
 		if (!CentralBankUtil.getBankCanPayAmount(debtorBankSwiftCode, amount)) {
 			throw new MpException("Debtor bank has insufficien funds.",
-					MpExceptionEnum.DEBTOR_BANK_HAS_INSUFFIENT_FUNDS);
+					MpExceptionEnum.DEBTOR_BANK_HAS_INSUFFICIENT_FUNDS);
 		}
 
 		// update debtor balance

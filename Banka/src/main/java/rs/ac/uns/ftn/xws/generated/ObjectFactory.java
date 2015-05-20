@@ -24,15 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _ClearingApprovalMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "clearingApprovalMessage");
     private final static QName _MpExceptionEnum_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "mpExceptionEnum");
-    private final static QName _RtgsRequestMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "rtgsRequestMessage");
-    private final static QName _RtgsConfirmMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "rtgsConfirmMessage");
-    private final static QName _ClearingRequestMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "clearingRequestMessage");
+    private final static QName _RtgsApprovalMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "rtgsApprovalMessage");
     private final static QName _Mt102_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mt102", "mt102");
     private final static QName _Mt910_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mt910", "mt910");
     private final static QName _Mt103_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mt103", "mt103");
-    private final static QName _MpcbResponseMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "mpcbResponseMessage");
-    private final static QName _ClearingConfirmMessage_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mp", "clearingConfirmMessage");
     private final static QName _Mt900_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/mt900", "mt900");
 
     /**
@@ -91,43 +88,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ClearingRequestMessage }
+     * Create an instance of {@link ClearingApprovalMessage }
      * 
      */
-    public ClearingRequestMessage createClearingRequestMessage() {
-        return new ClearingRequestMessage();
+    public ClearingApprovalMessage createClearingApprovalMessage() {
+        return new ClearingApprovalMessage();
     }
 
     /**
-     * Create an instance of {@link MpcbResponseMessage }
+     * Create an instance of {@link RtgsApprovalMessage }
      * 
      */
-    public MpcbResponseMessage createMpcbResponseMessage() {
-        return new MpcbResponseMessage();
-    }
-
-    /**
-     * Create an instance of {@link ClearingConfirmMessage }
-     * 
-     */
-    public ClearingConfirmMessage createClearingConfirmMessage() {
-        return new ClearingConfirmMessage();
-    }
-
-    /**
-     * Create an instance of {@link RtgsRequestMessage }
-     * 
-     */
-    public RtgsRequestMessage createRtgsRequestMessage() {
-        return new RtgsRequestMessage();
-    }
-
-    /**
-     * Create an instance of {@link RtgsConfirmMessage }
-     * 
-     */
-    public RtgsConfirmMessage createRtgsConfirmMessage() {
-        return new RtgsConfirmMessage();
+    public RtgsApprovalMessage createRtgsApprovalMessage() {
+        return new RtgsApprovalMessage();
     }
 
     /**
@@ -147,6 +120,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClearingApprovalMessage }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "clearingApprovalMessage")
+    public JAXBElement<ClearingApprovalMessage> createClearingApprovalMessage(ClearingApprovalMessage value) {
+        return new JAXBElement<ClearingApprovalMessage>(_ClearingApprovalMessage_QNAME, ClearingApprovalMessage.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link MpExceptionEnum }{@code >}}
      * 
      */
@@ -156,30 +138,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RtgsRequestMessage }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RtgsApprovalMessage }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "rtgsRequestMessage")
-    public JAXBElement<RtgsRequestMessage> createRtgsRequestMessage(RtgsRequestMessage value) {
-        return new JAXBElement<RtgsRequestMessage>(_RtgsRequestMessage_QNAME, RtgsRequestMessage.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RtgsConfirmMessage }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "rtgsConfirmMessage")
-    public JAXBElement<RtgsConfirmMessage> createRtgsConfirmMessage(RtgsConfirmMessage value) {
-        return new JAXBElement<RtgsConfirmMessage>(_RtgsConfirmMessage_QNAME, RtgsConfirmMessage.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ClearingRequestMessage }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "clearingRequestMessage")
-    public JAXBElement<ClearingRequestMessage> createClearingRequestMessage(ClearingRequestMessage value) {
-        return new JAXBElement<ClearingRequestMessage>(_ClearingRequestMessage_QNAME, ClearingRequestMessage.class, null, value);
+    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "rtgsApprovalMessage")
+    public JAXBElement<RtgsApprovalMessage> createRtgsApprovalMessage(RtgsApprovalMessage value) {
+        return new JAXBElement<RtgsApprovalMessage>(_RtgsApprovalMessage_QNAME, RtgsApprovalMessage.class, null, value);
     }
 
     /**
@@ -207,24 +171,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mt103", name = "mt103")
     public JAXBElement<Mt103> createMt103(Mt103 value) {
         return new JAXBElement<Mt103>(_Mt103_QNAME, Mt103 .class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MpcbResponseMessage }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "mpcbResponseMessage")
-    public JAXBElement<MpcbResponseMessage> createMpcbResponseMessage(MpcbResponseMessage value) {
-        return new JAXBElement<MpcbResponseMessage>(_MpcbResponseMessage_QNAME, MpcbResponseMessage.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ClearingConfirmMessage }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", name = "clearingConfirmMessage")
-    public JAXBElement<ClearingConfirmMessage> createClearingConfirmMessage(ClearingConfirmMessage value) {
-        return new JAXBElement<ClearingConfirmMessage>(_ClearingConfirmMessage_QNAME, ClearingConfirmMessage.class, null, value);
     }
 
     /**

@@ -3,12 +3,6 @@ package rs.ac.uns.ftn.xws.dao;
 import java.io.File;
 import java.io.FileInputStream;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
 import rs.ac.uns.ftn.xws.domain.ClearingData;
@@ -28,8 +22,7 @@ public class ClearingDataDao {
 
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
-		RESTUtil.dropSchema(SCHEMA_NAME);
-		RESTUtil.createSchema(SCHEMA_NAME);
+
 		RESTUtil.createResource(SCHEMA_NAME, "clearingData.xml",
 				new FileInputStream(new File(file, "clearingData.xml")));
 

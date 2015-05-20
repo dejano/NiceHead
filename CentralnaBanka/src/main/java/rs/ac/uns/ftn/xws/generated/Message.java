@@ -28,10 +28,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Message")
 @XmlSeeAlso({
-    Mt103 .class,
     Mt102 .class,
     Mt910 .class,
-    Mt900 .class
+    Mt900 .class,
+    Mt103 .class
 })
 public abstract class Message {
 
