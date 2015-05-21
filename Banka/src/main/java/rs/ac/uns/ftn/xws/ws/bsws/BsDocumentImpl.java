@@ -33,14 +33,25 @@ import javax.xml.bind.annotation.XmlSeeAlso;
                       
 public class BsDocumentImpl implements BsDocument {
 
+	//fiksni korak (maksimalan broj stavki u jednom preseku)
+	private static final int SECTIONAL_INCREMENT_VALUE = 3;
+	
     private static final Logger LOG = Logger.getLogger(BsDocumentImpl.class.getName());
 
     /* (non-Javadoc)
      * @see rs.ac.uns.ftn.xws.ws.bsws.BsDocument#getSectionalData(rs.ac.uns.ftn.xws.xsd.bstatementrequest.BankStatmentRequest  bsRequestPart )*
      */
     public rs.ac.uns.ftn.xws.xsd.bstatement.SectionalData getSectionalData(rs.ac.uns.ftn.xws.xsd.bstatementrequest.BankStatmentRequest bsRequestPart) { 
-        LOG.info("Executing operation getSectionalData");
-        System.out.println(bsRequestPart);
+        
+    	System.out.println("Redni broj trazenog preseka = "+bsRequestPart.getSectionalNumber());
+    	System.out.println("Account details (account number) = "+bsRequestPart.getAccountNumber());
+    	System.out.println("Order date  = "+bsRequestPart.getDate());
+    	
+    	System.out.println(bsRequestPart);
+    	
+    	System.out.println("DOING MAIN LOGIC ... RETRIEVE information from database");
+    	LOG.info("Executing operation getSectionalData");
+        
         try {
             rs.ac.uns.ftn.xws.xsd.bstatement.SectionalData _return = null;
             return _return;

@@ -7,6 +7,10 @@
 
 	<jaxws:endpoint id="mpbDoc" address="/MpbDocument"
 		implementor="rs.ac.uns.ftn.xws.ws.mpb.MpbDocumentImpl" wsdlLocation="WEB-INF/wsdl/mpb.wsdl" />
+	
+	<jaxws:endpoint id="bsDoc" address="/BsDocument"
+		implementor="rs.ac.uns.ftn.xws.ws.bsws.BsDocumentImpl" wsdlLocation="WEB-INF/wsdl/bstatement.wsdl" />	
+		
 </beans>
   
 
