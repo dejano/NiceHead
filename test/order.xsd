@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper"
+    xmlns:aw="http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper"
+    xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bstatement"
+    xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bstatement"
+        schemaLocation="Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/bstatement.xsd"/>
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common"
+        schemaLocation="Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/common.xsd"/>
+    <xs:element name="order">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="assetElements" type="bs:Asset"/>
+                <xs:element name="messageId" type="xs:string"/>
+                <xs:element name="urgent" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order xmlns="http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper file:/C:/Users/Bandjur/Desktop/order.xsd">
+    <assetElements>
+        <debtor xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">Debeli Debelic</debtor>
+        <paymentPurpose xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">random svrha</paymentPurpose>
+        <acceptor xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">Mika Mikic</acceptor>
+        <orderDate xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">2015-05-22</orderDate>
+        <valueDate xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">2015-05-29</valueDate>
+        <debtorAccountDetails xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">
+            <accountNumber xmlns="http://www.ftn.uns.ac.rs/xws/xsd/common">310-0000000000111-83</accountNumber>
+            <model xmlns="http://www.ftn.uns.ac.rs/xws/xsd/common">97</model>
+            <referenceNumber xmlns="http://www.ftn.uns.ac.rs/xws/xsd/common">61-113-201-0233536</referenceNumber>
+        </debtorAccountDetails>
+        <acceptorAccountDetails xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">
+            <accountNumber xmlns="http://www.ftn.uns.ac.rs/xws/xsd/common">310-0000000000011-83</accountNumber>
+            <model xmlns="http://www.ftn.uns.ac.rs/xws/xsd/common">97</model>
+            <referenceNumber xmlns="http://www.ftn.uns.ac.rs/xws/xsd/common">61-113-201-0233407</referenceNumber>
+        </acceptorAccountDetails>
+        <value xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">120000</value>
+        <direction xmlns="http://www.ftn.uns.ac.rs/xws/xsd/bstatement">A</direction>
+    </assetElements>
+    <messageId>123</messageId>
+    <urgent>false</urgent>
+</order>
