@@ -1,5 +1,5 @@
 
-package rs.ac.uns.ftn.xws.xsd.bstatementrequest;
+package rs.ac.uns.ftn.xws.bstatementRequest;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the rs.ac.uns.ftn.xws.xsd.bstatementrequest package. 
+ * generated in the rs.ac.uns.ftn.xws.bstatementRequest package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -27,7 +27,7 @@ public class ObjectFactory {
     private final static QName _BankStatementRequest_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/bstatementRequest", "bankStatementRequest");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: rs.ac.uns.ftn.xws.xsd.bstatementrequest
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: rs.ac.uns.ftn.xws.bstatementRequest
      * 
      */
     public ObjectFactory() {

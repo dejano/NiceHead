@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/orders"
+    xmlns:os="http://www.ftn.uns.ac.rs/xws/xsd/orders"
+    xmlns:aw="http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper"
+    xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bstatement"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+    
+    <xs:annotation>
+        <xs:appinfo>
+            <jxb:globalBindings collectionType="java.util.ArrayList" />
+            <jxb:schemaBindings>
+                <jxb:package name="rs.ac.uns.ftn.xws.orders" />
+            </jxb:schemaBindings>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bstatement"
+        schemaLocation="bstatement.xsd"/>
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper" schemaLocation="order.xsd"/>
+    
+    <xs:complexType name="OrdersData">
+        <xs:sequence>
+            <xs:element name="orders">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="order" type="aw:Order"
+                        />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="orders" type="os:OrdersData"/>
+</xs:schema>

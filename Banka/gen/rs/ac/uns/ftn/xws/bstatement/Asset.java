@@ -1,5 +1,5 @@
 
-package rs.ac.uns.ftn.xws.xsd.bstatement;
+package rs.ac.uns.ftn.xws.bstatement;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,11 +23,11 @@ import rs.ac.uns.ftn.xws.generated.AccountDetails;
  *       &lt;sequence>
  *         &lt;element name="debtor" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="paymentPurpose" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="acceptor" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="creditor" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="orderDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="valueDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="debtorAccountDetails" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}AccountDetails"/>
- *         &lt;element name="acceptorAccountDetails" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}AccountDetails"/>
+ *         &lt;element name="creditorAccountDetails" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}AccountDetails"/>
  *         &lt;element name="value" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}Balance"/>
  *         &lt;element name="direction" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}Character"/>
  *       &lt;/sequence>
@@ -42,11 +42,11 @@ import rs.ac.uns.ftn.xws.generated.AccountDetails;
 @XmlType(name = "Asset", propOrder = {
     "debtor",
     "paymentPurpose",
-    "acceptor",
+    "creditor",
     "orderDate",
     "valueDate",
     "debtorAccountDetails",
-    "acceptorAccountDetails",
+    "creditorAccountDetails",
     "value",
     "direction"
 })
@@ -57,7 +57,7 @@ public class Asset {
     @XmlElement(required = true)
     protected String paymentPurpose;
     @XmlElement(required = true)
-    protected String acceptor;
+    protected String creditor;
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar orderDate;
@@ -67,7 +67,7 @@ public class Asset {
     @XmlElement(required = true)
     protected AccountDetails debtorAccountDetails;
     @XmlElement(required = true)
-    protected AccountDetails acceptorAccountDetails;
+    protected AccountDetails creditorAccountDetails;
     @XmlElement(required = true)
     protected BigDecimal value;
     @XmlElement(required = true)
@@ -122,27 +122,27 @@ public class Asset {
     }
 
     /**
-     * Gets the value of the acceptor property.
+     * Gets the value of the creditor property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAcceptor() {
-        return acceptor;
+    public String getCreditor() {
+        return creditor;
     }
 
     /**
-     * Sets the value of the acceptor property.
+     * Sets the value of the creditor property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAcceptor(String value) {
-        this.acceptor = value;
+    public void setCreditor(String value) {
+        this.creditor = value;
     }
 
     /**
@@ -218,27 +218,27 @@ public class Asset {
     }
 
     /**
-     * Gets the value of the acceptorAccountDetails property.
+     * Gets the value of the creditorAccountDetails property.
      * 
      * @return
      *     possible object is
      *     {@link AccountDetails }
      *     
      */
-    public AccountDetails getAcceptorAccountDetails() {
-        return acceptorAccountDetails;
+    public AccountDetails getCreditorAccountDetails() {
+        return creditorAccountDetails;
     }
 
     /**
-     * Sets the value of the acceptorAccountDetails property.
+     * Sets the value of the creditorAccountDetails property.
      * 
      * @param value
      *     allowed object is
      *     {@link AccountDetails }
      *     
      */
-    public void setAcceptorAccountDetails(AccountDetails value) {
-        this.acceptorAccountDetails = value;
+    public void setCreditorAccountDetails(AccountDetails value) {
+        this.creditorAccountDetails = value;
     }
 
     /**

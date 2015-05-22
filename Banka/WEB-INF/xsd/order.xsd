@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper"
+    xmlns:aw="http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper"
+    xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bstatement"
+    xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+    
+    <xs:annotation>
+        <xs:appinfo>
+            <jxb:globalBindings collectionType="java.util.ArrayList" />
+            <jxb:schemaBindings>
+                <jxb:package name="rs.ac.uns.ftn.xws.generated" />
+            </jxb:schemaBindings>
+        </xs:appinfo>
+    </xs:annotation>
+    
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bstatement"
+        schemaLocation="bstatement.xsd"/>
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
+    <xs:complexType name="Order">
+        <xs:sequence>
+            <xs:element name="assetElements" type="bs:Asset"/>
+            <xs:element name="messageId" type="xs:string"/>
+            <xs:element name="urgent" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="order" type="aw:Order"> </xs:element>
+</xs:schema>

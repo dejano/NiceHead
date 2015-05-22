@@ -1,4 +1,4 @@
-<project name="Vezbe WSDL WS" default="main" basedir=".">
+<project name="bs" default="main" basedir=".">
 
 	<property file="ant.properties" />
 
@@ -97,8 +97,9 @@
 	</macrodef>
 
 	<target name="generate-code-xsd" depends="init">
-		<xjc schema="${webinf.dir}/xsd/cb.xsd" destdir="${gen.dir}" />
+		<!-- <xjc schema="${webinf.dir}/xsd/cb.xsd" destdir="${gen.dir}" /> -->
 		<xjc schema="${webinf.dir}/xsd/bstatement.xsd" destdir="${gen.dir}" />
+		<xjc schema="${webinf.dir}/xsd/orders.xsd" destdir="${gen.dir}" />
 	</target>
 
 	<target name="generate-code-wsdl">

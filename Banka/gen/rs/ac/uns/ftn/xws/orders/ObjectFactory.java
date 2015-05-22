@@ -6,7 +6,7 @@
 //
 
 
-package rs.ac.uns.ftn.xws.generated;
+package rs.ac.uns.ftn.xws.orders;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -17,7 +17,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the rs.ac.uns.ftn.xws.generated package. 
+ * generated in the rs.ac.uns.ftn.xws.orders package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -31,46 +31,38 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Order_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper", "order");
+    private final static QName _Orders_QNAME = new QName("http://www.ftn.uns.ac.rs/xws/xsd/orders", "orders");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: rs.ac.uns.ftn.xws.generated
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: rs.ac.uns.ftn.xws.orders
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link AccountDetails }
+     * Create an instance of {@link OrdersData }
      * 
      */
-    public AccountDetails createAccountDetails() {
-        return new AccountDetails();
+    public OrdersData createOrdersData() {
+        return new OrdersData();
     }
 
     /**
-     * Create an instance of {@link BankDetails }
+     * Create an instance of {@link OrdersData.Orders }
      * 
      */
-    public BankDetails createBankDetails() {
-        return new BankDetails();
+    public OrdersData.Orders createOrdersDataOrders() {
+        return new OrdersData.Orders();
     }
 
     /**
-     * Create an instance of {@link Order }
+     * Create an instance of {@link JAXBElement }{@code <}{@link OrdersData }{@code >}}
      * 
      */
-    public Order createOrder() {
-        return new Order();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Order }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/assetWrapper", name = "order")
-    public JAXBElement<Order> createOrder(Order value) {
-        return new JAXBElement<Order>(_Order_QNAME, Order.class, null, value);
+    @XmlElementDecl(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/orders", name = "orders")
+    public JAXBElement<OrdersData> createOrders(OrdersData value) {
+        return new JAXBElement<OrdersData>(_Orders_QNAME, OrdersData.class, null, value);
     }
 
 }

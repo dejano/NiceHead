@@ -1,5 +1,5 @@
 
-package rs.ac.uns.ftn.xws.xsd.bstatementrequest;
+package rs.ac.uns.ftn.xws.bstatementRequest;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -2,7 +2,17 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/bstatement" elementFormDefault="qualified"
     xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bstatement"
-    xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common">
+    xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    jxb:version="2.0">
+
+    <xs:annotation>
+        <xs:appinfo>
+            <jxb:globalBindings collectionType="java.util.ArrayList"/>
+            <jxb:schemaBindings>
+                <jxb:package name="rs.ac.uns.ftn.xws.bstatement"/>
+            </jxb:schemaBindings>
+        </xs:appinfo>
+    </xs:annotation>
 
     <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
     <xs:complexType name="SectionalHeader">
@@ -36,11 +46,11 @@
         <xs:sequence>
             <xs:element name="debtor" type="xs:string"/>
             <xs:element name="paymentPurpose" type="xs:string"/>
-            <xs:element name="acceptor" type="xs:string"/>
+            <xs:element name="creditor" type="xs:string"/>
             <xs:element name="orderDate" type="xs:date"/>
             <xs:element name="valueDate" type="xs:date"/>
             <xs:element name="debtorAccountDetails" type="cmn:AccountDetails"/>
-            <xs:element name="acceptorAccountDetails" type="cmn:AccountDetails"/>
+            <xs:element name="creditorAccountDetails" type="cmn:AccountDetails"/>
             <xs:element name="value" type="cmn:Balance"/>
             <xs:element name="direction" type="cmn:Character"/>
         </xs:sequence>
