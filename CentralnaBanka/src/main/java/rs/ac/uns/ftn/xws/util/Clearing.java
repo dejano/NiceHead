@@ -10,14 +10,26 @@ import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
 import rs.ac.uns.ftn.xws.domain.ClearingData;
 import rs.ac.uns.ftn.xws.generated.Mt102;
+import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
 
-public class ClearingHelper {
+public class Clearing {
 
-	public static void executeClearing() {
-		ClearingData clearingData = ClearingDataDao.getClearingData();
-		Map<String, BankClearingDetails> bankClearingDetails = new HashMap<String, BankClearingDetails>();
+	ClearingData clearingData;
+	Map<String, BankClearingDetails> bankClearingDetails;
 
-		// create clearing details for each bank
+	public Clearing() {
+		clearingData = ClearingDataDao.getClearingData();
+		bankClearingDetails = new HashMap<String, BankClearingDetails>();
+	}
+
+	public void executeClearing() {
+		createClearingDetails();
+		removeUnpayablePayments();
+		executePayments();
+		sendClearingDebitApprovalMessages();
+	}
+
+	private void createClearingDetails() {
 		for (int i = 0; i < clearingData.getMt102().size(); i++) {
 			Mt102 mt102 = clearingData.getMt102().get(i);
 
@@ -25,26 +37,29 @@ public class ClearingHelper {
 					.getSwiftCode();
 			String creditorBankSwiftCode = mt102.getCreditorBankDetails()
 					.getSwiftCode();
-			
+
 			if (!bankClearingDetails.containsKey(debtorBankSwiftCode)) {
 				BigDecimal balance = BanksDataDao
 						.getBankBalance(debtorBankSwiftCode);
 
-				bankClearingDetails.put(debtorBankSwiftCode, new BankClearingDetails(balance));
+				bankClearingDetails.put(debtorBankSwiftCode,
+						new BankClearingDetails(balance));
 			}
 
 			if (!bankClearingDetails.containsKey(creditorBankSwiftCode)) {
 				BigDecimal balance = BanksDataDao
 						.getBankBalance(creditorBankSwiftCode);
 
-				bankClearingDetails.put(creditorBankSwiftCode, new BankClearingDetails(balance));
+				bankClearingDetails.put(creditorBankSwiftCode,
+						new BankClearingDetails(balance));
 			}
 
 			bankClearingDetails.get(debtorBankSwiftCode).addPayment(mt102);
 			bankClearingDetails.get(creditorBankSwiftCode).addPayout(mt102);
 		}
+	}
 
-		// remove all mt102s that cannot be payed
+	private void removeUnpayablePayments() {
 		boolean allPayable = false;
 		while (!allPayable) {
 			boolean removedMt102 = false;
@@ -52,9 +67,10 @@ public class ClearingHelper {
 			for (BankClearingDetails cd : bankClearingDetails.values()) {
 				while (!cd.isPayable()) {
 					Mt102 mt102 = cd.removeLastPayment();
-					bankClearingDetails.get(mt102.getCreditorBankDetails().getSwiftCode())
+					bankClearingDetails.get(
+							mt102.getCreditorBankDetails().getSwiftCode())
 							.removePayout(mt102);
-					
+
 					removedMt102 = true;
 				}
 			}
@@ -62,8 +78,9 @@ public class ClearingHelper {
 			if (!removedMt102)
 				allPayable = true;
 		}
+	}
 
-		// pay mt102s
+	private void executePayments() {
 		for (String swiftCode : bankClearingDetails.keySet()) {
 			BankClearingDetails cd = bankClearingDetails.get(swiftCode);
 
@@ -75,12 +92,20 @@ public class ClearingHelper {
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
-		executeClearing();
+
+	private void sendClearingDebitApprovalMessages() {
+		for (String swiftCode : bankClearingDetails.keySet()) {
+			BankClearingDetails cd = bankClearingDetails.get(swiftCode);
+
+			for (Mt102 mt102 : cd.getPayments()) {
+				MpbDocumentClient.invokeClearingDebit(mt102);
+				MpbDocumentClient.invokeClearingApproval(mt102);
+			}
+		}
 	}
 
-	private ClearingHelper() {
+	public static void main(String[] args) {
+		new Clearing().executeClearing();
 	}
 }
 
