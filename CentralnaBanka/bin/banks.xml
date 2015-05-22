@@ -7,13 +7,13 @@
 			<swiftCode>CONARS22</swiftCode>
 			<bankClearingAccountNumber>111-1111111111111-11</bankClearingAccountNumber>
 			<wsUrl>http://localhost:8080/banka</wsUrl>
-			<balance>100000</balance>
+			<balance>11</balance>
 		</bank>
 		<bank>
 			<swiftCode>CONARS23</swiftCode>
 			<bankClearingAccountNumber>111-1111111111111-12</bankClearingAccountNumber>
 			<wsUrl>wsUrl</wsUrl>
-			<balance>10000</balance>
+			<balance>10</balance>
 		</bank>
 	</banks>
 </banksData>

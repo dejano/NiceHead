@@ -5,15 +5,127 @@
 	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd">
 	<mt102 messageId="1">
 		<debtorBankDetails>
-			<swiftCode>AAAAAA00</swiftCode>
+			<swiftCode>CONARS22</swiftCode>
 			<bankClearingAccountNumber>000-0000000000000-00</bankClearingAccountNumber>
 		</debtorBankDetails>
 		<creditorBankDetails>
-			<swiftCode>AAAAAA00</swiftCode>
+			<swiftCode>CONARS23</swiftCode>
 			<bankClearingAccountNumber>000-0000000000000-00</bankClearingAccountNumber>
 		</creditorBankDetails>
 		<totalAmount>
-			0.00
+			5.00
+		</totalAmount>
+		<currencyDate>2006-05-04</currencyDate>
+		<currencyCode>A</currencyCode>
+		<date>2006-05-04</date>
+		<payments>
+			<payments>
+				<paymentOrderId>paymentOrderId0</paymentOrderId>
+				<debtor>debtor0</debtor>
+				<paymentPurpose>paymentPurpose0</paymentPurpose>
+				<creditor>creditor0</creditor>
+				<orderDate>2006-05-04</orderDate>
+				<debtorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber0</referenceNumber>
+				</debtorAccountDetails>
+				<creditorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber1</referenceNumber>
+				</creditorAccountDetails>
+				<amount>0.00</amount>
+				<currencyCode>cur</currencyCode>
+			</payments>
+			<payments>
+				<paymentOrderId>paymentOrderId1</paymentOrderId>
+				<debtor>debtor1</debtor>
+				<paymentPurpose>paymentPurpose1</paymentPurpose>
+				<creditor>creditor1</creditor>
+				<orderDate>2006-05-04</orderDate>
+				<debtorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber2</referenceNumber>
+				</debtorAccountDetails>
+				<creditorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber3</referenceNumber>
+				</creditorAccountDetails>
+				<amount>0.00</amount>
+				<currencyCode>cur</currencyCode>
+			</payments>
+		</payments>
+	</mt102>
+	<mt102 messageId="2">
+		<debtorBankDetails>
+			<swiftCode>CONARS23</swiftCode>
+			<bankClearingAccountNumber>000-0000000000000-00</bankClearingAccountNumber>
+		</debtorBankDetails>
+		<creditorBankDetails>
+			<swiftCode>CONARS22</swiftCode>
+			<bankClearingAccountNumber>000-0000000000000-00</bankClearingAccountNumber>
+		</creditorBankDetails>
+		<totalAmount>
+			5.00
+		</totalAmount>
+		<currencyDate>2006-05-04</currencyDate>
+		<currencyCode>A</currencyCode>
+		<date>2006-05-04</date>
+		<payments>
+			<payments>
+				<paymentOrderId>paymentOrderId0</paymentOrderId>
+				<debtor>debtor0</debtor>
+				<paymentPurpose>paymentPurpose0</paymentPurpose>
+				<creditor>creditor0</creditor>
+				<orderDate>2006-05-04</orderDate>
+				<debtorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber0</referenceNumber>
+				</debtorAccountDetails>
+				<creditorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber1</referenceNumber>
+				</creditorAccountDetails>
+				<amount>0.00</amount>
+				<currencyCode>cur</currencyCode>
+			</payments>
+			<payments>
+				<paymentOrderId>paymentOrderId1</paymentOrderId>
+				<debtor>debtor1</debtor>
+				<paymentPurpose>paymentPurpose1</paymentPurpose>
+				<creditor>creditor1</creditor>
+				<orderDate>2006-05-04</orderDate>
+				<debtorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber2</referenceNumber>
+				</debtorAccountDetails>
+				<creditorAccountDetails>
+					<accountNumber>000-0000000000000-00</accountNumber>
+					<model>50</model>
+					<referenceNumber>referenceNumber3</referenceNumber>
+				</creditorAccountDetails>
+				<amount>0.00</amount>
+				<currencyCode>cur</currencyCode>
+			</payments>
+		</payments>
+	</mt102>
+	<mt102 messageId="3">
+		<debtorBankDetails>
+			<swiftCode>CONARS22</swiftCode>
+			<bankClearingAccountNumber>000-0000000000000-00</bankClearingAccountNumber>
+		</debtorBankDetails>
+		<creditorBankDetails>
+			<swiftCode>CONARS23</swiftCode>
+			<bankClearingAccountNumber>000-0000000000000-00</bankClearingAccountNumber>
+		</creditorBankDetails>
+		<totalAmount>
+			11.00
 		</totalAmount>
 		<currencyDate>2006-05-04</currencyDate>
 		<currencyCode>A</currencyCode>

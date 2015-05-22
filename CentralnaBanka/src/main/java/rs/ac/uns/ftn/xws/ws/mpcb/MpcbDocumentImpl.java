@@ -6,12 +6,14 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
+import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
 import rs.ac.uns.ftn.xws.generated.MpExceptionEnum;
 import rs.ac.uns.ftn.xws.generated.Mt102;
 import rs.ac.uns.ftn.xws.generated.Mt103;
 import rs.ac.uns.ftn.xws.generated.Mt900;
 import rs.ac.uns.ftn.xws.util.CentralBankUtil;
 import rs.ac.uns.ftn.xws.util.ObjectFactory;
+import rs.ac.uns.ftn.xws.util.XmlHelper;
 import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
 
 @Stateless
@@ -43,7 +45,7 @@ public class MpcbDocumentImpl implements MpcbDocument {
 			throw new MpException("Creditor swift code invalid.",
 					MpExceptionEnum.INVALID_SWIFT_CODE);
 		}
-		
+
 		// validate debtor bank funds
 		if (!CentralBankUtil.getBankCanPayAmount(debtorBankSwiftCode, amount)) {
 			throw new MpException("Debtor bank has insufficien funds.",
@@ -62,17 +64,13 @@ public class MpcbDocumentImpl implements MpcbDocument {
 				creditorBankBalance.add(amount));
 
 		// send rtgs confirm message to creditor's bank
-		MpbDocumentClient.invokeRtgsConfirm(rtgsRequestPart);
+		MpbDocumentClient.invokeRtgsApproval(rtgsRequestPart);
 
 		return ObjectFactory.getMt900(rtgsRequestPart);
 	}
 
 	public void clearingRequest(Mt102 clearingRequestPart) throws MpException {
 		LOG.info("Executing operation clearingRequest");
-
-		BigDecimal debtorBankBalance;
-		BigDecimal creditorBankBalance;
-		BigDecimal amount = clearingRequestPart.getTotalAmount();
 
 		String debtorBankSwiftCode = clearingRequestPart.getDebtorBankDetails()
 				.getSwiftCode();
@@ -102,21 +100,8 @@ public class MpcbDocumentImpl implements MpcbDocument {
 					MpExceptionEnum.INVALID_AMOUNT);
 		}
 
-		// TODO remove code below someplace else..?
-		
-		// update debtor balance
-		debtorBankBalance = BanksDataDao.getBankBalance(debtorBankSwiftCode);
-		BanksDataDao.updateBankBalance(debtorBankSwiftCode,
-				debtorBankBalance.subtract(amount));
-
-		// update creditor balance
-		creditorBankBalance = BanksDataDao
-				.getBankBalance(creditorBankSwiftCode);
-		BanksDataDao.updateBankBalance(creditorBankSwiftCode,
-				creditorBankBalance.add(amount));
-
-		// send clearing confirm message to creditor's bank
-		MpbDocumentClient.invokeClearingConfirm(clearingRequestPart);
+		// insert mt102 into db for later clearing
+		ClearingDataDao.insertMt102(XmlHelper.marshall(clearingRequestPart));
 	}
 
 }

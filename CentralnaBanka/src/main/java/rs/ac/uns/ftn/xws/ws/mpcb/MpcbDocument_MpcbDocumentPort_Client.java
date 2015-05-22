@@ -51,6 +51,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			
 			// test clearing
 			Mt102 mt102 = new Mt102();
+			mt102.setMessageId("999");
 			mt102.setTotalAmount(new BigDecimal(9.2));
 			mt102.setPayments(new Payments());
 			

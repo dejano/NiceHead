@@ -57,7 +57,7 @@
 	</xs:simpleType>
 	<xs:complexType name="ClearingData">
 		<xs:sequence>
-			<xs:element maxOccurs="unbounded" name="mt102"/>
+			<xs:element maxOccurs="unbounded" name="mt102" type="mt102:Mt102"/>
 		</xs:sequence>
 	</xs:complexType>
 	

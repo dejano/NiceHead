@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.xws.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -29,11 +31,11 @@ public class BanksDataDao {
 			"'" };
 
 	public static void main(String[] args) throws Exception {
-//		File file = new File("src/main/resources/");
+		File file = new File("src/main/resources/");
 //		RESTUtil.dropSchema(SCHEMA_NAME);
 //		RESTUtil.createSchema(SCHEMA_NAME);
-//		RESTUtil.createResource(SCHEMA_NAME, "banks.xml", new FileInputStream(
-//				new File(file, "banks.xml")));
+		RESTUtil.createResource(SCHEMA_NAME, "banks.xml", new FileInputStream(
+				new File(file, "banks.xml")));
 
 		System.out.println(getBankClearingAccountNumber("CONARS22"));
 

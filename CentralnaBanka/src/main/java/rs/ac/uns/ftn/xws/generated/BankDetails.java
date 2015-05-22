@@ -1,4 +1,3 @@
-
 package rs.ac.uns.ftn.xws.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -6,11 +5,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for BankDetails complex type.
+ * <p>
+ * Java class for BankDetails complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="BankDetails">
@@ -28,63 +29,55 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BankDetails", propOrder = {
-    "swiftCode",
-    "bankClearingAccountNumber"
-})
+@XmlType(name = "BankDetails", propOrder = { "swiftCode",
+		"bankClearingAccountNumber" })
 public class BankDetails {
 
-    @XmlElement(required = true)
-    protected String swiftCode;
-    @XmlElement(required = true)
-    protected String bankClearingAccountNumber;
+	@XmlElement(required = true)
+	protected String swiftCode;
+	@XmlElement(required = true)
+	protected String bankClearingAccountNumber;
 
-    /**
-     * Gets the value of the swiftCode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSwiftCode() {
-        return swiftCode;
-    }
+	/**
+	 * Gets the value of the swiftCode property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getSwiftCode() {
+		return swiftCode;
+	}
 
-    /**
-     * Sets the value of the swiftCode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSwiftCode(String value) {
-        this.swiftCode = value;
-    }
+	/**
+	 * Sets the value of the swiftCode property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setSwiftCode(String value) {
+		this.swiftCode = value;
+	}
 
-    /**
-     * Gets the value of the bankClearingAccountNumber property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBankClearingAccountNumber() {
-        return bankClearingAccountNumber;
-    }
+	/**
+	 * Gets the value of the bankClearingAccountNumber property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getBankClearingAccountNumber() {
+		return bankClearingAccountNumber;
+	}
 
-    /**
-     * Sets the value of the bankClearingAccountNumber property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBankClearingAccountNumber(String value) {
-        this.bankClearingAccountNumber = value;
-    }
+	/**
+	 * Sets the value of the bankClearingAccountNumber property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setBankClearingAccountNumber(String value) {
+		this.bankClearingAccountNumber = value;
+	}
 
 }
