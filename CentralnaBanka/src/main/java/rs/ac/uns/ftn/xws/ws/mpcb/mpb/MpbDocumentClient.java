@@ -15,10 +15,11 @@ public class MpbDocumentClient {
 
 	public static final String URL = "/services/MpbDocument?wsdl";
 
-	public static void invokeRtgsConfirm(Mt103 mt103) {
+	private static MpbDocument getService(String swiftCode) {
+		MpbDocument ret = null;
+
 		try {
-			String bankWsUrl = BanksDataDao.getBankWsUrl(mt103
-					.getCreditorBankDetails().getSwiftCode());
+			String bankWsUrl = BanksDataDao.getBankWsUrl(swiftCode);
 			URL wsdl = new URL(bankWsUrl + URL);
 
 			QName serviceName = new QName(
@@ -28,36 +29,34 @@ public class MpbDocumentClient {
 
 			Service service = Service.create(wsdl, serviceName);
 
-			MpbDocument mpbService = service.getPort(portName,
-					MpbDocument.class);
-
-			mpbService.rtgsApproval(ObjectFactory
-					.getRtgsApprovalMessageMessage(mt103));
+			ret = service.getPort(portName, MpbDocument.class);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
+
+		return ret;
 	}
 
-	public static void invokeClearingConfirm(Mt102 mt102) {
-		try {
-			String bankWsUrl = BanksDataDao.getBankWsUrl(mt102
-					.getCreditorBankDetails().getSwiftCode());
-			URL wsdl = new URL(bankWsUrl + URL);
+	public static void invokeClearingDebit(Mt102 mt102) {
+		MpbDocument mpbService = getService(mt102.getCreditorBankDetails()
+				.getSwiftCode());
 
-			QName serviceName = new QName(
-					"http://www.ftn.uns.ac.rs/xws/ws/mpb", "MpbDocumentService");
-			QName portName = new QName("http://www.ftn.uns.ac.rs/xws/ws/mpb",
-					"MpbDocumentPort");
+		mpbService.clearingDebit(ObjectFactory.getMt900(mt102));
+	}
 
-			Service service = Service.create(wsdl, serviceName);
+	public static void invokeRtgsApproval(Mt103 mt103) {
+		MpbDocument mpbService = getService(mt103.getCreditorBankDetails()
+				.getSwiftCode());
 
-			MpbDocument mpbService = service.getPort(portName,
-					MpbDocument.class);
+		mpbService.rtgsApproval(ObjectFactory
+				.getRtgsApprovalMessageMessage(mt103));
+	}
 
-			mpbService.clearingApproval(ObjectFactory
-					.getClearingApprovalMessage(mt102));
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
+	public static void invokeClearingApproval(Mt102 mt102) {
+		MpbDocument mpbService = getService(mt102.getCreditorBankDetails()
+				.getSwiftCode());
+
+		mpbService.clearingApproval(ObjectFactory
+				.getClearingApprovalMessage(mt102));
 	}
 }
