@@ -38,7 +38,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element form="qualified" maxOccurs="unbounded"
-									minOccurs="1" name="placanje" type="mt102:Payment" />
+									minOccurs="1" name="payments" type="mt102:Payment" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>

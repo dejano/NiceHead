@@ -20,8 +20,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.ftn.uns.ac.rs/xws/xsd/common}Message">
  *       &lt;sequence>
- *         &lt;element name="podaci_o_banci_duznika" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}BankDetails"/>
  *         &lt;element name="debtorBankDetails" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}BankDetails" form="qualified"/>
+ *         &lt;element name="creditorBankDetails" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}BankDetails" form="qualified"/>
  *         &lt;element name="debtor">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
@@ -66,8 +66,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Mt103", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mt103", propOrder = {
-    "podaciOBanciDuznika",
     "debtorBankDetails",
+    "creditorBankDetails",
     "debtor",
     "paymentPurpose",
     "creditor",
@@ -82,10 +82,10 @@ public class Mt103
     extends Message
 {
 
-    @XmlElement(name = "podaci_o_banci_duznika", required = true)
-    protected BankDetails podaciOBanciDuznika;
     @XmlElement(required = true)
     protected BankDetails debtorBankDetails;
+    @XmlElement(required = true)
+    protected BankDetails creditorBankDetails;
     @XmlElement(required = true)
     protected String debtor;
     @XmlElement(required = true)
@@ -106,30 +106,6 @@ public class Mt103
     protected XMLGregorianCalendar currencyDate;
     @XmlElement(required = true)
     protected String currencyCode;
-
-    /**
-     * Gets the value of the podaciOBanciDuznika property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BankDetails }
-     *     
-     */
-    public BankDetails getPodaciOBanciDuznika() {
-        return podaciOBanciDuznika;
-    }
-
-    /**
-     * Sets the value of the podaciOBanciDuznika property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BankDetails }
-     *     
-     */
-    public void setPodaciOBanciDuznika(BankDetails value) {
-        this.podaciOBanciDuznika = value;
-    }
 
     /**
      * Gets the value of the debtorBankDetails property.
@@ -153,6 +129,30 @@ public class Mt103
      */
     public void setDebtorBankDetails(BankDetails value) {
         this.debtorBankDetails = value;
+    }
+
+    /**
+     * Gets the value of the creditorBankDetails property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BankDetails }
+     *     
+     */
+    public BankDetails getCreditorBankDetails() {
+        return creditorBankDetails;
+    }
+
+    /**
+     * Sets the value of the creditorBankDetails property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BankDetails }
+     *     
+     */
+    public void setCreditorBankDetails(BankDetails value) {
+        this.creditorBankDetails = value;
     }
 
     /**

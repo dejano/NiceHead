@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.ws.mpb;
+package rs.ac.uns.ftn.xws.ws.mpcb.mpb;
 
 import javax.jws.Oneway;
 import javax.jws.WebMethod;

@@ -3,8 +3,6 @@ package rs.ac.uns.ftn.xws.util;
 import java.math.BigDecimal;
 import java.util.List;
 
-import rs.ac.uns.ftn.xws.generated.AccountDetails;
-import rs.ac.uns.ftn.xws.generated.BankDetails;
 import rs.ac.uns.ftn.xws.generated.Mt102;
 import rs.ac.uns.ftn.xws.generated.Mt102.Payments;
 import rs.ac.uns.ftn.xws.generated.Payment;
@@ -25,7 +23,8 @@ public class CentralBankUtil {
 		return ret;
 	}
 
-	public static boolean isAmountValid(Mt102 mt102) {
+
+	public static boolean isTotalAmountValid(Mt102 mt102) {
 		BigDecimal diff;
 		BigDecimal totalAmount = BigDecimal.ZERO;
 
@@ -39,11 +38,10 @@ public class CentralBankUtil {
 	}
 
 	public static boolean isSwiftCodeValid(String swiftCode) {
-		// TODO impl validaciju
-		return true;
+		return BanksDataDao.isSwiftCodeValid(swiftCode);
 	}
 
-	public static boolean areEqualCreditorBanks(Mt102 mt102) {
+	public static boolean areAllPaymentsToSameBank(Mt102 mt102) {
 		boolean ret = true;
 
 		String creditorBankCode;
@@ -62,6 +60,10 @@ public class CentralBankUtil {
 		}
 		
 		return ret;
+	}
+	
+	public static boolean getBankCanPayAmount(String swiftCode, BigDecimal amount) {
+		return BanksDataDao.getBankBalance(swiftCode).compareTo(amount) >= 0;
 	}
 
 	public static String getBankCode(AccountDetails accountDetails) {
@@ -89,10 +91,9 @@ public class CentralBankUtil {
 		p2.setAmount(new BigDecimal(4.1));
 		m.getPayments().getPayments().add(p2);
 
-		System.out.println(isAmountValid(m));
+		System.out.println(isTotalAmountValid(m));
 		
-		System.out.println(areEqualCreditorBanks(m));
-
+		System.out.println(areAllPaymentsToSameBank(m));
 		System.out.println(getAccountNumberAltForm("111-1234567891234-11"));
 		System.out.println(getAccountNumberAltForm("111123456789123411"));
 	}

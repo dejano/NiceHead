@@ -8,17 +8,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ClearingConfirmMessage complex type.
+ * <p>Java class for RtgsApprovalMessage complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ClearingConfirmMessage">
+ * &lt;complexType name="RtgsApprovalMessage">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="mt910" type="{http://www.ftn.uns.ac.rs/xws/xsd/mt910}Mt910"/>
- *         &lt;element name="mt102" type="{http://www.ftn.uns.ac.rs/xws/xsd/mt102}Mt102"/>
+ *         &lt;element name="mt103" type="{http://www.ftn.uns.ac.rs/xws/xsd/mt103}Mt103"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,16 +28,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ClearingConfirmMessage", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", propOrder = {
+@XmlType(name = "RtgsApprovalMessage", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", propOrder = {
     "mt910",
-    "mt102"
+    "mt103"
 })
-public class ClearingConfirmMessage {
+public class RtgsApprovalMessage {
 
     @XmlElement(required = true)
     protected Mt910 mt910;
     @XmlElement(required = true)
-    protected Mt102 mt102;
+    protected Mt103 mt103;
 
     /**
      * Gets the value of the mt910 property.
@@ -64,27 +64,27 @@ public class ClearingConfirmMessage {
     }
 
     /**
-     * Gets the value of the mt102 property.
+     * Gets the value of the mt103 property.
      * 
      * @return
      *     possible object is
-     *     {@link Mt102 }
+     *     {@link Mt103 }
      *     
      */
-    public Mt102 getMt102() {
-        return mt102;
+    public Mt103 getMt103() {
+        return mt103;
     }
 
     /**
-     * Sets the value of the mt102 property.
+     * Sets the value of the mt103 property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Mt102 }
+     *     {@link Mt103 }
      *     
      */
-    public void setMt102(Mt102 value) {
-        this.mt102 = value;
+    public void setMt103(Mt103 value) {
+        this.mt103 = value;
     }
 
 }

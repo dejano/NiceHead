@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for RtgsConfirmMessage complex type.
+ * <p>Java class for RtgsApprovalMessage complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="RtgsConfirmMessage">
+ * &lt;complexType name="RtgsApprovalMessage">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RtgsConfirmMessage", propOrder = {
+@XmlType(name = "RtgsApprovalMessage", namespace = "http://www.ftn.uns.ac.rs/xws/xsd/mp", propOrder = {
     "mt910",
     "mt103"
 })
-public class RtgsConfirmMessage {
+public class RtgsApprovalMessage {
 
     @XmlElement(required = true)
     protected Mt910 mt910;
