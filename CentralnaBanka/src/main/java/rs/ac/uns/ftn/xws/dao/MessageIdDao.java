@@ -19,8 +19,8 @@ public class MessageIdDao {
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
 
-		RESTUtil.createResource(SCHEMA_NAME, "messageId.xml",
-				new FileInputStream(new File(file, "messageId.xml")));
+//		RESTUtil.createResource(SCHEMA_NAME, "messageId.xml",
+//				new FileInputStream(new File(file, "messageId.xml")));
 
 		System.out.println(getMessageId());
 	}

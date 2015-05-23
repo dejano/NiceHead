@@ -25,8 +25,7 @@ public class Clearing {
 	public void executeClearing() {
 		createClearingDetails();
 		removeUnpayablePayments();
-		executePayments();
-		sendClearingDebitApprovalMessages();
+		executePaymentsSendClearingMessages();
 	}
 
 	private void createClearingDetails() {
@@ -80,7 +79,7 @@ public class Clearing {
 		}
 	}
 
-	private void executePayments() {
+	private void executePaymentsSendClearingMessages() {
 		for (String swiftCode : bankClearingDetails.keySet()) {
 			BankClearingDetails cd = bankClearingDetails.get(swiftCode);
 
@@ -89,15 +88,8 @@ public class Clearing {
 
 			for (Mt102 mt102 : cd.getPayments()) {
 				ClearingDataDao.deleteMt102(mt102.getMessageId());
-			}
-		}
-	}
-
-	private void sendClearingDebitApprovalMessages() {
-		for (String swiftCode : bankClearingDetails.keySet()) {
-			BankClearingDetails cd = bankClearingDetails.get(swiftCode);
-
-			for (Mt102 mt102 : cd.getPayments()) {
+				
+				// send clearing debit and approval messages
 				MpbDocumentClient.invokeClearingDebit(mt102);
 				MpbDocumentClient.invokeClearingApproval(mt102);
 			}

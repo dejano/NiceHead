@@ -24,7 +24,7 @@ public class MpcbDocumentImpl implements MpcbDocument {
 			.getName());
 
 	public Mt900 rtgsRequest(Mt103 rtgsRequestPart) throws MpException {
-		LOG.info("Executing operation clearingRequest");
+		LOG.info("Executing operation rtgsRequest");
 
 		BigDecimal debtorBankBalance;
 		BigDecimal creditorBankBalance;

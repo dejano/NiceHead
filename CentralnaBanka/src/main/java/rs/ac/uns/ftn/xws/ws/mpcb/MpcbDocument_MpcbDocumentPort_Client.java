@@ -40,6 +40,10 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 				Mt103 mt103 = new Mt103();
 				mt103.setAmount(new BigDecimal(22));
 
+				AccountDetails creditorAccountDetails = new AccountDetails();
+				creditorAccountDetails.setAccountNumber("222-2222222222222-22");
+				mt103.setCreditorAccountDetails(creditorAccountDetails);
+
 				BankDetails bdd = new BankDetails();
 				bdd.setSwiftCode("CONARS23");
 				mt103.setDebtorBankDetails(bdd);
@@ -56,7 +60,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 				// test clearing
 				Mt102 mt102 = new Mt102();
 				mt102.setMessageId("999");
-				mt102.setTotalAmount(new BigDecimal(9.2));
+				mt102.setTotalAmount(new BigDecimal(5.1));
 				mt102.setPayments(new Payments());
 
 				BankDetails bd1 = new BankDetails();
@@ -68,20 +72,20 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 				mt102.setCreditorBankDetails(bd2);
 
 				AccountDetails ad1 = new AccountDetails();
-				ad1.setAccountNumber("123111111111111111");
+				ad1.setAccountNumber("222-2222222222222-22");
 
-				AccountDetails ad2 = new AccountDetails();
-				ad2.setAccountNumber("123111111111111111");
+//				AccountDetails ad2 = new AccountDetails();
+//				ad2.setAccountNumber("223-2222222222222-22");
 
 				Payment p1 = new Payment();
 				p1.setCreditorAccountDetails(ad1);
 				p1.setAmount(new BigDecimal(5.1));
 				mt102.getPayments().getPayments().add(p1);
 
-				Payment p2 = new Payment();
-				p2.setCreditorAccountDetails(ad2);
-				p2.setAmount(new BigDecimal(4.1));
-				mt102.getPayments().getPayments().add(p2);
+//				Payment p2 = new Payment();
+//				p2.setCreditorAccountDetails(ad2);
+//				p2.setAmount(new BigDecimal(4.1));
+//				mt102.getPayments().getPayments().add(p2);
 
 				mpcbService.clearingRequest(mt102);
 			} catch (MpException e) {

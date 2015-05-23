@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="HelloDocumentService"
+<wsdl:definitions name="MpbDocumentService"
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/xsd/mt103" xmlns:mt910="http://www.ftn.uns.ac.rs/xws/xsd/mt910"
 	xmlns:mt900="http://www.ftn.uns.ac.rs/xws/xsd/mt900" xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
-	xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102" xmlns:mpbws="http://www.ftn.uns.ac.rs/xws/ws/mpb"
-	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
+	xmlns:mpbws="http://www.ftn.uns.ac.rs/xws/ws/mpb" targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
 
 	<wsdl:types>
 		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">

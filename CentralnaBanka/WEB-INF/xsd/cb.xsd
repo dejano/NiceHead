@@ -32,19 +32,13 @@
 	</xs:complexType>
 	<xs:complexType name="BanksData">
 		<xs:sequence>
-			<xs:element name="banks">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element maxOccurs="unbounded" minOccurs="0" name="bank" type="cb:Bank">
-							<xs:unique name="unique-bank">
-								<xs:selector xpath="bank"/>
-								<xs:field xpath="swiftCode"/>
-								<xs:field xpath="bankClearingAccountNumber"/>
-								<xs:field xpath="wsUrl"/>
-							</xs:unique>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="bank" type="cb:Bank">
+				<xs:unique name="unique-bank">
+					<xs:selector xpath="bank"/>
+					<xs:field xpath="swiftCode"/>
+					<xs:field xpath="bankClearingAccountNumber"/>
+					<xs:field xpath="wsUrl"/>
+				</xs:unique>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
@@ -60,7 +54,7 @@
 			<xs:element maxOccurs="unbounded" name="mt102" type="mt102:Mt102"/>
 		</xs:sequence>
 	</xs:complexType>
-	
+
 	<xs:element name="bank" type="cb:Bank"/>
 	<xs:element name="banksData" type="cb:BanksData"> </xs:element>
 	<xs:element name="messageIdData" type="cb:MessageIdData"/>

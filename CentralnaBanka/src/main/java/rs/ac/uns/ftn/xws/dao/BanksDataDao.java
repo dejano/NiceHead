@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
 
@@ -34,6 +36,7 @@ public class BanksDataDao {
 		File file = new File("src/main/resources/");
 //		RESTUtil.dropSchema(SCHEMA_NAME);
 //		RESTUtil.createSchema(SCHEMA_NAME);
+		RESTUtil.deleteResource(SCHEMA_NAME, "banks.xml");
 		RESTUtil.createResource(SCHEMA_NAME, "banks.xml", new FileInputStream(
 				new File(file, "banks.xml")));
 

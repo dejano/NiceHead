@@ -17,10 +17,10 @@ public final class MessageIdDocument_MessageIdDocumentPort_Client {
 					"http://localhost:8080/cb/services/MessageIdDocument?wsdl");
 
 			QName serviceName = new QName(
-					"http://www.ftn.uns.ac.rs/xws/ws/swiftCode",
+					"http://www.ftn.uns.ac.rs/xws/ws/messageId",
 					"MessageIdDocumentService");
 			QName portName = new QName(
-					"http://www.ftn.uns.ac.rs/xws/ws/swiftCode",
+					"http://www.ftn.uns.ac.rs/xws/ws/messageId",
 					"MessageIdDocumentPort");
 
 			Service service = Service.create(wsdl, serviceName);

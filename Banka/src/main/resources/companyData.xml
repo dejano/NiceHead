@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<companyData xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+	xmlns:mpb="http://www.ftn.uns.ac.rs/xws/xsd/mpb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/mpb ../../../WEB-INF/xsd/mpb.xsd ">
+	<company>
+		<accountNumber>222-2222222222222-22</accountNumber>
+		<balance>1000.0</balance>
+		<reservedAmount>1000.0</reservedAmount>
+		<wsUrl>foo</wsUrl>
+	</company>
+	<company>
+		<accountNumber>223-2222222222222-22</accountNumber>
+		<balance>1000.0</balance>
+		<reservedAmount>1000.0</reservedAmount>
+		<wsUrl>bar</wsUrl>
+	</company>
+</companyData>

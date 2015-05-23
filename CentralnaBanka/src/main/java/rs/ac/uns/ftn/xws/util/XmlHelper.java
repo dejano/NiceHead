@@ -29,6 +29,7 @@ public class XmlHelper {
 		return root.getValue();
 	}
 
+	// TODO marshall namespace problem
 	public static <T> String marshall(T obj) {
 		StringWriter sw = new StringWriter();
 
@@ -84,3 +85,5 @@ public class XmlHelper {
 	private XmlHelper() {
 	}
 }
+
+
