@@ -16,6 +16,8 @@
 				schemaLocation="../xsd/mt102.xsd" />
 			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt103"
 				schemaLocation="../xsd/mt103.xsd" />
+			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt900"
+				schemaLocation="../xsd/mt900.xsd" />
 		</xsd:schema>
 	</wsdl:types>
 
@@ -67,7 +69,7 @@
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
-			
+
 			<wsdl:fault name="MpException">
 				<soap:fault name="MpException" use="literal" />
 			</wsdl:fault>
