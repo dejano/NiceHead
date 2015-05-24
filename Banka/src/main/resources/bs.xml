@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bs:statement xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bs"
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/bs ../../../WEB-INF/xsd/bs.xsd ">
+	<bs:accountNumber>111-1111111111111-11</bs:accountNumber>
+	<bs:orderDate>2001-01-01</bs:orderDate>
+	<bs:statementNumber>0</bs:statementNumber>
+	<bs:previousBalance>0.0</bs:previousBalance>
+	<bs:payoutCount>0</bs:payoutCount>
+	<bs:payoutAmount>0.0</bs:payoutAmount>
+	<bs:paymentCount>0</bs:paymentCount>
+	<bs:paymentAmount>0.0</bs:paymentAmount>
+	<bs:newBalance>0.0</bs:newBalance>
+	
+	<bs:items>
+		<bs:item>
+			<cmn:debtor>cmn:debtor</cmn:debtor>
+			<cmn:paymentPurpose>cmn:paymentPurpose</cmn:paymentPurpose>
+			<cmn:creditor>cmn:creditor</cmn:creditor>
+			<cmn:orderDate>2001-01-01</cmn:orderDate>
+			<cmn:valueDate>2001-01-01</cmn:valueDate>
+			<cmn:debtorAccountDetails>
+				<cmn:accountNumber>111-1111111111111-11</cmn:accountNumber>
+				<cmn:model>0</cmn:model>
+				<cmn:referenceNumber>cmn:referenceNumber</cmn:referenceNumber>
+			</cmn:debtorAccountDetails>
+			<cmn:creditorAccountDetails>
+				<cmn:accountNumber>111-1111111111111-11</cmn:accountNumber>
+				<cmn:model>0</cmn:model>
+				<cmn:referenceNumber>cmn:referenceNumber</cmn:referenceNumber>
+			</cmn:creditorAccountDetails>
+			<cmn:value>0.0</cmn:value>
+			<bs:direction>a</bs:direction>
+		</bs:item>
+	</bs:items>
+</bs:statement>

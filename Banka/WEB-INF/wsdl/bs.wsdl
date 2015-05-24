@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BsDocumentService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bs"
+	xmlns:bsws="http://www.ftn.uns.ac.rs/xws/ws/bsws" 
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/bsws">
+	
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bs"
+				schemaLocation="../xsd/bs.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="bsRequestMessage">
+		<wsdl:part name="bsRequestPart" element="bs:statementRequest" />
+	</wsdl:message>
+	<wsdl:message name="bsResponseMessage">
+		<wsdl:part name="bsResponsePart" element="bs:statement" />
+	</wsdl:message>
+
+	<wsdl:portType name="BsDocument">
+		<wsdl:operation name="getStatement">
+			<wsdl:input message="bsws:bsRequestMessage" />
+			<wsdl:output message="bsws:bsResponseMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="BsServiceSoapBinding" type="bsws:BsDocument">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getStatement">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="BsDocumentService">
+		<wsdl:port name="BsDocumentPort" binding="bsws:BsServiceSoapBinding">
+			<soap:address location="http://localhost:8080/bs" />
+		</wsdl:port>
+	</wsdl:service>
+	
+</wsdl:definitions>

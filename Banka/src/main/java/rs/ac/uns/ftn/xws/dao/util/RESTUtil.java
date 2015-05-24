@@ -15,9 +15,6 @@ import org.apache.commons.io.IOUtils;
 public class RESTUtil {
 
 	public static final String REST_URL = ResourceBundle.getBundle("basex").getString("rest.url");
-	
-//	public static final String REST_URL = ResourceBundle.getBundle(
-//			"src/main/resources").getString("rest.url");
 
 	public static int createSchema(String schemaName) throws Exception {
 		System.out.println("=== PUT: create a new database: " + schemaName
@@ -26,9 +23,9 @@ public class RESTUtil {
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setDoOutput(true);
 		conn.setRequestMethod(RequestMethod.PUT);
-		
+
 		conn.disconnect();
-		
+
 		return conn.getResponseCode();
 	}
 
@@ -49,7 +46,7 @@ public class RESTUtil {
 		IOUtils.closeQuietly(out);
 
 		conn.disconnect();
-		
+
 		return conn.getResponseCode();
 	}
 
@@ -77,8 +74,10 @@ public class RESTUtil {
 		out.write(String.format(xml, xquery).getBytes("UTF-8"));
 		out.close();
 
-		if (conn.getResponseCode() == HttpURLConnection.HTTP_OK)
+		System.out.println(conn.getResponseMessage());
+		if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
 			return conn.getInputStream();
+		}
 
 		conn.disconnect();
 		return null;

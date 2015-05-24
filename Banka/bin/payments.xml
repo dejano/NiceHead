@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bsb:paymentsData xmlns:bsb="http://www.ftn.uns.ac.rs/xws/xsd/bsb"
+ xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+ xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/bsb file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/bsb.xsd">
+    <bsb:payment>
+        <cmn:debtor>Mika Mikic</cmn:debtor>
+        <cmn:paymentPurpose>Random svrha</cmn:paymentPurpose>
+        <cmn:creditor>Sima Simic</cmn:creditor>
+        <cmn:orderDate>2006-05-04</cmn:orderDate>
+        <cmn:valueDate>2006-05-04</cmn:valueDate>
+        <cmn:debtorAccountDetails>
+            <cmn:accountNumber>310-0000000000111-83</cmn:accountNumber>
+            <cmn:model>97</cmn:model>
+            <cmn:referenceNumber>61-113-201-0233536</cmn:referenceNumber>
+        </cmn:debtorAccountDetails>
+        <cmn:creditorAccountDetails>
+            <cmn:accountNumber>310-1110000000111-83</cmn:accountNumber>
+            <cmn:model>97</cmn:model>
+            <cmn:referenceNumber>61-113-201-0233407</cmn:referenceNumber>
+        </cmn:creditorAccountDetails>
+        <cmn:value>150000.00</cmn:value>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:payment>
+    <bsb:payment>
+        <cmn:debtor>Mika Mikic</cmn:debtor>
+        <cmn:paymentPurpose>Random svrha</cmn:paymentPurpose>
+        <cmn:creditor>Sima Simic</cmn:creditor>
+        <cmn:orderDate>2006-05-04</cmn:orderDate>
+        <cmn:valueDate>2006-05-04</cmn:valueDate>
+        <cmn:debtorAccountDetails>
+            <cmn:accountNumber>310-0000000000111-83</cmn:accountNumber>
+            <cmn:model>97</cmn:model>
+            <cmn:referenceNumber>61-113-201-0233536</cmn:referenceNumber>
+        </cmn:debtorAccountDetails>
+        <cmn:creditorAccountDetails>
+            <cmn:accountNumber>310-1110000000111-83</cmn:accountNumber>
+            <cmn:model>97</cmn:model>
+            <cmn:referenceNumber>61-113-201-0233407</cmn:referenceNumber>
+        </cmn:creditorAccountDetails>
+        <cmn:value>160000.00</cmn:value>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:payment>
+    <bsb:payment>
+        <cmn:debtor>Mika Mikic</cmn:debtor>
+        <cmn:paymentPurpose>Random svrha</cmn:paymentPurpose>
+        <cmn:creditor>Sima Simic</cmn:creditor>
+        <cmn:orderDate>2006-05-04</cmn:orderDate>
+        <cmn:valueDate>2006-05-04</cmn:valueDate>
+        <cmn:debtorAccountDetails>
+            <cmn:accountNumber>310-0000000000111-83</cmn:accountNumber>
+            <cmn:model>97</cmn:model>
+            <cmn:referenceNumber>61-113-201-0233536</cmn:referenceNumber>
+        </cmn:debtorAccountDetails>
+        <cmn:creditorAccountDetails>
+            <cmn:accountNumber>310-1110000000111-83</cmn:accountNumber>
+            <cmn:model>97</cmn:model>
+            <cmn:referenceNumber>61-113-201-0233407</cmn:referenceNumber>
+        </cmn:creditorAccountDetails>
+        <cmn:value>180000.00</cmn:value>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:payment>
+    <bsb:payment>
+        <cmn:debtor>Mika Mikic</cmn:debtor>
+        <cmn:paymentPurpose>Random svrha</cmn:paymentPurpose>
+        <cmn:creditor>Sima Simic</cmn:creditor>
+        <cmn:orderDate>2006-05-04</cmn:orderDate>
+        <cmn:valueDate>2006-05-04</cmn:valueDate>
+        <cmn:debtorAccountDetails>
+            <cmn:accountNumber>310-0000000000111-83</cmn:accountNumber>
+            <cmn:model>97</cmn:model>
+            <cmn:referenceNumber>61-113-201-0233536</cmn:referenceNumber>
+        </cmn:debtorAccountDetails>
+        <cmn:creditorAccountDetails>
+            <cmn:accountNumber>310-1110000000111-83</cmn:accountNumber>
+            <cmn:model>97</cmn:model>
+            <cmn:referenceNumber>61-113-201-0233407</cmn:referenceNumber>
+        </cmn:creditorAccountDetails>
+        <cmn:value>240000.00</cmn:value>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:payment>
+</bsb:paymentsData>

@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
+import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
+import rs.ac.uns.ftn.xws.generated.cmn.Message;
 
 
 /**

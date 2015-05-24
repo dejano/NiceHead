@@ -8,7 +8,7 @@
 		<xs:appinfo>
 			<jxb:globalBindings collectionType="java.util.ArrayList"/>
 			<jxb:schemaBindings>
-				<jxb:package name="rs.ac.uns.ftn.xws.generated"/>
+				<jxb:package name="rs.ac.uns.ftn.xws.generated.cmn"/>
 			</jxb:schemaBindings>
 		</xs:appinfo>
 	</xs:annotation>
@@ -64,16 +64,6 @@
 	<xs:complexType abstract="true" name="Message">
 		<xs:attribute name="messageId" type="cmn:MessageId"> </xs:attribute>
 	</xs:complexType>
-	<xs:simpleType name="SectionalNumber">
-		<xs:restriction>
-			<xs:simpleType>
-				<xs:restriction base="xs:integer">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="99"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:simpleType name="Balance">
 		<xs:restriction>
 			<xs:simpleType>
@@ -94,4 +84,16 @@
 			</xs:simpleType>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:complexType name="Payment">
+		<xs:sequence>
+			<xs:element name="debtor" type="xs:string"/>
+			<xs:element name="paymentPurpose" type="xs:string"/>
+			<xs:element name="creditor" type="xs:string"/>
+			<xs:element name="orderDate" type="xs:date"/>
+			<xs:element name="valueDate" type="xs:date"/>
+			<xs:element name="debtorAccountDetails" type="cmn:AccountDetails"/>
+			<xs:element name="creditorAccountDetails" type="cmn:AccountDetails"/>
+			<xs:element name="value" type="cmn:Balance"/>
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bsb:paymentsData xmlns:bsb="http://www.ftn.uns.ac.rs/xws/xsd/bsb"
+ xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+ xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/bsb file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/bsb.xsd">
+    <bsb:payment>
+        <cmn:debtor>debtor0</cmn:debtor>
+        <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
+        <cmn:creditor>creditor0</cmn:creditor>
+        <cmn:orderDate>2006-05-04</cmn:orderDate>
+        <cmn:valueDate>2006-05-04</cmn:valueDate>
+        <cmn:debtorAccountDetails>
+            <cmn:accountNumber>000-0000000000000-00</cmn:accountNumber>
+            <cmn:model>50</cmn:model>
+            <cmn:referenceNumber>referenceNumber0</cmn:referenceNumber>
+        </cmn:debtorAccountDetails>
+        <cmn:creditorAccountDetails>
+            <cmn:accountNumber>000-0000000000000-00</cmn:accountNumber>
+            <cmn:model>50</cmn:model>
+            <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
+        </cmn:creditorAccountDetails>
+        <cmn:value>0.00</cmn:value>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:payment>
+    <bsb:payment>
+        <cmn:debtor>debtor1</cmn:debtor>
+        <cmn:paymentPurpose>paymentPurpose1</cmn:paymentPurpose>
+        <cmn:creditor>creditor1</cmn:creditor>
+        <cmn:orderDate>2006-05-04</cmn:orderDate>
+        <cmn:valueDate>2006-05-04</cmn:valueDate>
+        <cmn:debtorAccountDetails>
+            <cmn:accountNumber>000-0000000000000-00</cmn:accountNumber>
+            <cmn:model>50</cmn:model>
+            <cmn:referenceNumber>referenceNumber2</cmn:referenceNumber>
+        </cmn:debtorAccountDetails>
+        <cmn:creditorAccountDetails>
+            <cmn:accountNumber>000-0000000000000-00</cmn:accountNumber>
+            <cmn:model>50</cmn:model>
+            <cmn:referenceNumber>referenceNumber3</cmn:referenceNumber>
+        </cmn:creditorAccountDetails>
+        <cmn:value>0.00</cmn:value>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:payment>
+</bsb:paymentsData>
