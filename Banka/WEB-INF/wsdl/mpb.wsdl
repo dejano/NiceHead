@@ -3,15 +3,13 @@
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-	xmlns:mt900="http://www.ftn.uns.ac.rs/xws/xsd/mt900" xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
-	xmlns:mpbws="http://www.ftn.uns.ac.rs/xws/ws/mpb" targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
+	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp" xmlns:mpbws="http://www.ftn.uns.ac.rs/xws/ws/mpb"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
 
 	<wsdl:types>
 		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
 				schemaLocation="../xsd/mp.xsd" />
-			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt900"
-				schemaLocation="../xsd/mt900.xsd" />
 		</xsd:schema>
 	</wsdl:types>
 
@@ -19,7 +17,7 @@
 		<wsdl:part name="rtgsApprovalPart" element="mp:rtgsApprovalMessage" />
 	</wsdl:message>
 	<wsdl:message name="clearingDebitMessage">
-		<wsdl:part name="clearingDebitPart" element="mt900:mt900" />
+		<wsdl:part name="clearingDebitPart" element="mp:mt900" />
 	</wsdl:message>
 	<wsdl:message name="clearingApprovalMessage">
 		<wsdl:part name="clearingApprovalPart" element="mp:clearingApprovalMessage" />

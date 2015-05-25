@@ -5,13 +5,14 @@ import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 
+import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
 import rs.ac.uns.ftn.xws.dao.CompanyDataDao;
-import rs.ac.uns.ftn.xws.generated.ClearingApprovalMessage;
-import rs.ac.uns.ftn.xws.generated.Mt102;
-import rs.ac.uns.ftn.xws.generated.Mt103;
-import rs.ac.uns.ftn.xws.generated.Mt900;
-import rs.ac.uns.ftn.xws.generated.Payment;
-import rs.ac.uns.ftn.xws.generated.RtgsApprovalMessage;
+import rs.ac.uns.ftn.xws.generated.mp.ClearingApprovalMessage;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt103;
+import rs.ac.uns.ftn.xws.generated.mp.Mt900;
+import rs.ac.uns.ftn.xws.generated.mp.Payment;
+import rs.ac.uns.ftn.xws.generated.mp.RtgsApprovalMessage;
 
 @Stateless
 @javax.jws.WebService(serviceName = "MpbDocumentService", portName = "MpbDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpb", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.mpb.MpbDocument")
@@ -23,22 +24,26 @@ public class MpbDocumentImpl implements MpbDocument {
 	public void clearingDebit(Mt900 clearingDebitPart) {
 		LOG.info("Executing operation clearingDebit");
 
-		// TODO use mt900.paymentOrderId to get and resolve mt102
-		// foreach payment : mt102.payments
-		String mockAccountNumber = "222-2222222222222-22";
-		BigDecimal mockAmount = clearingDebitPart.getAmount();
+		LOG.info("Clearing message mt102 : " + clearingDebitPart.getPaymentOrderId());
+		
+		Mt102 mt102 = ClearingDataDao.getMt102(clearingDebitPart.getPaymentOrderId());
 
-		BigDecimal balance = CompanyDataDao
-				.getCompanyBalance(mockAccountNumber);
-		BigDecimal reservedAmount = CompanyDataDao
-				.getCompanyReservedAmount(mockAccountNumber);
+		for (Payment payment : mt102.getPayments().getPayments()) {
+			String accountNumber = payment.getDebtorAccountDetails().getAccountNumber();
+			BigDecimal amount = payment.getAmount();
 
-		CompanyDataDao.updateCompanyBalance(mockAccountNumber,
-				balance.subtract(mockAmount));
-		CompanyDataDao.updateCompanyReservedAmount(mockAccountNumber,
-				reservedAmount.subtract(mockAmount));
+			BigDecimal balance = CompanyDataDao
+					.getCompanyBalance(accountNumber);
+			BigDecimal reservedAmount = CompanyDataDao
+					.getCompanyReservedAmount(accountNumber);
 
-		// TODO save payment
+			CompanyDataDao.updateCompanyBalance(accountNumber,
+					balance.subtract(amount));
+			CompanyDataDao.updateCompanyReservedAmount(accountNumber,
+					reservedAmount.subtract(amount));
+
+			// TODO save payment
+		}
 	}
 
 	public void rtgsApproval(RtgsApprovalMessage rtgsApprovalPart) {
@@ -51,6 +56,9 @@ public class MpbDocumentImpl implements MpbDocument {
 		BigDecimal amount = mt103.getAmount();
 
 		BigDecimal balance = CompanyDataDao.getCompanyBalance(accountNumber);
+
+		LOG.info("Updating balance of client with account number : "
+				+ accountNumber);
 
 		// pay-in funds to creditor account
 		CompanyDataDao.updateCompanyBalance(accountNumber, balance.add(amount));
@@ -71,6 +79,9 @@ public class MpbDocumentImpl implements MpbDocument {
 
 			BigDecimal balance = CompanyDataDao
 					.getCompanyBalance(accountNumber);
+
+			LOG.info("Updating balance of client with account number : "
+					+ accountNumber);
 
 			// pay-in funds
 			CompanyDataDao.updateCompanyBalance(accountNumber,

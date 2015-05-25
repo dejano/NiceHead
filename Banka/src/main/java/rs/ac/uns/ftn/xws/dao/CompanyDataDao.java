@@ -7,46 +7,50 @@ import java.math.RoundingMode;
 
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
+import rs.ac.uns.ftn.xws.util.BankConstants;
 
 public class CompanyDataDao {
-	private static final String SCHEMA_NAME = "bank";
 
 	private static final int ROUNDING_SCALE = 4;
 
 	private static final String[] getCompanyBalanceQuery = {
-			"//company[accountNumber='", "']/balance/text()&wrap=no" };
-	
+			"//*[local-name()='company'][*[local-name()='accountNumber']='",
+			"']/*[local-name()='balance']/text()&wrap=no" };
+
 	private static final String[] getCompanyReservedAmountQuery = {
-		"//company[accountNumber='", "']/reservedAmount/text()&wrap=no" };
+			"//*[local-name()='company'][*[local-name()='accountNumber']='",
+			"']/*[local-name()='reservedAmount']/text()&wrap=no" };
 
 	private static final String[] getCompanyWsUrl = {
-			"//company[accountNumber='", "']/wsUrl/text()&wrap=no" };
+			"//*[local-name()='company'][*[local-name()='accountNumber']='",
+			"']/*[local-name()='wsUrl']/text()&wrap=no" };
 
 	private static final String[] updateCompanyBalanceQuery = {
-			"replace value of node //company[accountNumber='",
-			"']/balance with '", "'" };
-	
+			"replace value of node //*[local-name()='company'][*[local-name()='accountNumber']='",
+			"']/*[local-name()='balance'] with '", "'" };
+
 	private static final String[] updateCompanyReservedAmountQuery = {
-		"replace value of node //company[accountNumber='",
-		"']/reservedAmount with '", "'" };
+			"replace value of node //*[local-name()='company'][*[local-name()='accountNumber']='",
+			"']/*[local-name()='reservedAmount'] with '", "'" };
 
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
-//		RESTUtil.dropSchema(SCHEMA_NAME);
-//		RESTUtil.createSchema(SCHEMA_NAME);
-//		RESTUtil.createResource(SCHEMA_NAME, "companyData.xml",
-//				new FileInputStream(new File(file, "companyData.xml")));
+		// RESTUtil.dropSchema("bank");
+		// RESTUtil.createSchema(BankConstants.BANK_NAME);
+		RESTUtil.createResource(BankConstants.BANK_NAME, "companyData.xml",
+				new FileInputStream(new File(file, "companyData.xml")));
 
-		BigDecimal balance = getCompanyBalance("222-2222222222222-22");
-		System.out.println(balance);
-
-		updateCompanyBalance("222-2222222222222-22",
-				balance.add(new BigDecimal(10)));
-
-		balance = getCompanyBalance("222-2222222222222-22");
-		System.out.println(balance);
+		// BigDecimal balance = getCompanyBalance("222-2222222222222-22");
+		// System.out.println(balance);
+		//
+		// updateCompanyBalance("222-2222222222222-22",
+		// balance.add(new BigDecimal(10)));
+		//
+		// balance = getCompanyBalance("222-2222222222222-22");
+		// System.out.println(balance);
 
 		System.out.println(getCompanyWsUrl("223-2222222222222-22"));
+		System.out.println(getCompanyWsUrl("222-2222222222222-22"));
 	}
 
 	public static BigDecimal getCompanyBalance(String accountNumber) {
@@ -56,14 +60,14 @@ public class CompanyDataDao {
 				+ getCompanyBalanceQuery[1];
 		try {
 			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(
-					q, SCHEMA_NAME, RequestMethod.GET)));
+					q, BankConstants.BANK_NAME, RequestMethod.GET)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return ret;
 	}
-	
+
 	public static BigDecimal getCompanyReservedAmount(String accountNumber) {
 		BigDecimal ret = null;
 
@@ -71,7 +75,7 @@ public class CompanyDataDao {
 				+ getCompanyReservedAmountQuery[1];
 		try {
 			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(
-					q, SCHEMA_NAME, RequestMethod.GET)));
+					q, BankConstants.BANK_NAME, RequestMethod.GET)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,8 +88,8 @@ public class CompanyDataDao {
 
 		String q = getCompanyWsUrl[0] + accountNumber + getCompanyWsUrl[1];
 		try {
-			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, SCHEMA_NAME,
-					RequestMethod.GET));
+			ret = RESTUtil.readString(RESTUtil.retrieveResource(q,
+					BankConstants.BANK_NAME, RequestMethod.GET));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -101,21 +105,24 @@ public class CompanyDataDao {
 				+ newBalance.setScale(ROUNDING_SCALE, RoundingMode.CEILING)
 						.toPlainString() + updateCompanyBalanceQuery[2];
 		try {
-			RESTUtil.retrieveResource(q, SCHEMA_NAME, RequestMethod.POST);
+			RESTUtil.retrieveResource(q, BankConstants.BANK_NAME,
+					RequestMethod.POST);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void updateCompanyReservedAmount(String accountNumber,
 			BigDecimal newReservedAmount) {
 		String q = updateCompanyReservedAmountQuery[0]
 				+ accountNumber
 				+ updateCompanyReservedAmountQuery[1]
-				+ newReservedAmount.setScale(ROUNDING_SCALE, RoundingMode.CEILING)
-						.toPlainString() + updateCompanyReservedAmountQuery[2];
+				+ newReservedAmount.setScale(ROUNDING_SCALE,
+						RoundingMode.CEILING).toPlainString()
+				+ updateCompanyReservedAmountQuery[2];
 		try {
-			RESTUtil.retrieveResource(q, SCHEMA_NAME, RequestMethod.POST);
+			RESTUtil.retrieveResource(q, BankConstants.BANK_NAME,
+					RequestMethod.POST);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -15,7 +15,7 @@ public final class MpbDocument_MpbDocumentPort_Client {
     public static void main(String args[]) throws java.lang.Exception {
     	try {
 			URL wsdl = new URL(
-					"http://localhost:8080/banka/services/MpbDocument?wsdl");
+					"http://localhost:8080/banka1/services/MpbDocument?wsdl");
 
 			QName serviceName = new QName(
 					"http://www.ftn.uns.ac.rs/xws/ws/mpb",
@@ -28,8 +28,6 @@ public final class MpbDocument_MpbDocumentPort_Client {
 
 			MpbDocument mpbService = service.getPort(portName,
 					MpbDocument.class);
-
-//			System.out.println(mpbService.());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

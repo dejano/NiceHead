@@ -12,10 +12,12 @@ import java.util.ResourceBundle;
 
 import org.apache.commons.io.IOUtils;
 
+import rs.ac.uns.ftn.xws.util.CentralBankConstants;
+
 public class RESTUtil {
 
 	public static final String REST_URL = ResourceBundle.getBundle(
-			"main/resources/basex").getString("rest.url");
+			CentralBankConstants.PROP_FILE_PATH).getString("basex.rest.url");
 
 	public static int createSchema(String schemaName) throws Exception {
 		System.out.println("=== PUT: create a new database: " + schemaName

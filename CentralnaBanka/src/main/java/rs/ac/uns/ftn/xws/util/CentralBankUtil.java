@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
-import rs.ac.uns.ftn.xws.generated.AccountDetails;
-import rs.ac.uns.ftn.xws.generated.Mt102;
-import rs.ac.uns.ftn.xws.generated.Mt102.Payments;
-import rs.ac.uns.ftn.xws.generated.Payment;
+import rs.ac.uns.ftn.xws.generated.cmn.AccountDetails;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102.Payments;
+import rs.ac.uns.ftn.xws.generated.mp.Payment;
 
 public class CentralBankUtil {
 

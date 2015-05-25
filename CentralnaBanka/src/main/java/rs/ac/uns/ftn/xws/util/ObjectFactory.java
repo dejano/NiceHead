@@ -1,12 +1,12 @@
 package rs.ac.uns.ftn.xws.util;
 
 import rs.ac.uns.ftn.xws.dao.MessageIdDao;
-import rs.ac.uns.ftn.xws.generated.ClearingApprovalMessage;
-import rs.ac.uns.ftn.xws.generated.Mt102;
-import rs.ac.uns.ftn.xws.generated.Mt103;
-import rs.ac.uns.ftn.xws.generated.Mt900;
-import rs.ac.uns.ftn.xws.generated.Mt910;
-import rs.ac.uns.ftn.xws.generated.RtgsApprovalMessage;
+import rs.ac.uns.ftn.xws.generated.mp.ClearingApprovalMessage;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt103;
+import rs.ac.uns.ftn.xws.generated.mp.Mt900;
+import rs.ac.uns.ftn.xws.generated.mp.Mt910;
+import rs.ac.uns.ftn.xws.generated.mp.RtgsApprovalMessage;
 
 public class ObjectFactory {
 

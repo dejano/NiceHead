@@ -8,7 +8,7 @@
 		<xs:appinfo>
 			<jxb:globalBindings collectionType="java.util.ArrayList" />
 			<jxb:schemaBindings>
-				<jxb:package name="rs.ac.uns.ftn.xws.generated" />
+				<jxb:package name="rs.ac.uns.ftn.xws.generated.cmn" />
 			</jxb:schemaBindings>
 		</xs:appinfo>
 	</xs:annotation>
