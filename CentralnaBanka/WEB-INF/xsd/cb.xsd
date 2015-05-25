@@ -3,7 +3,8 @@
 	targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/cb"
 	xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb"
 	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
-	jxb:version="2.0" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102">
+	jxb:version="2.0" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102"
+	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp">
 
 	<xs:annotation>
 		<xs:appinfo>
@@ -15,7 +16,7 @@
 	</xs:annotation>
 
 	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
-	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mt102" schemaLocation="mt102.xsd"/>
+	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp" schemaLocation="mp.xsd"/>
 	<xs:complexType name="Bank">
 		<xs:sequence>
 			<xs:element name="swiftCode" type="cmn:SwiftCode"/>
@@ -32,19 +33,13 @@
 	</xs:complexType>
 	<xs:complexType name="BanksData">
 		<xs:sequence>
-			<xs:element name="banks">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element maxOccurs="unbounded" minOccurs="0" name="bank" type="cb:Bank">
-							<xs:unique name="unique-bank">
-								<xs:selector xpath="bank"/>
-								<xs:field xpath="swiftCode"/>
-								<xs:field xpath="bankClearingAccountNumber"/>
-								<xs:field xpath="wsUrl"/>
-							</xs:unique>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="bank" type="cb:Bank">
+				<xs:unique name="unique-bank">
+					<xs:selector xpath="bank"/>
+					<xs:field xpath="swiftCode"/>
+					<xs:field xpath="bankClearingAccountNumber"/>
+					<xs:field xpath="wsUrl"/>
+				</xs:unique>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
@@ -55,12 +50,13 @@
 			<xs:pattern value="[0-9]+"/>
 		</xs:restriction>
 	</xs:simpleType>
+
 	<xs:complexType name="ClearingData">
 		<xs:sequence>
-			<xs:element maxOccurs="unbounded" name="mt102" type="mt102:Mt102"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="mp:mt102"/>
 		</xs:sequence>
 	</xs:complexType>
-	
+
 	<xs:element name="bank" type="cb:Bank"/>
 	<xs:element name="banksData" type="cb:BanksData"> </xs:element>
 	<xs:element name="messageIdData" type="cb:MessageIdData"/>

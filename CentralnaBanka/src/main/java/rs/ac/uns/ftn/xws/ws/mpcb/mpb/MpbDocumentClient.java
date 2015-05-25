@@ -7,8 +7,8 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
-import rs.ac.uns.ftn.xws.generated.Mt102;
-import rs.ac.uns.ftn.xws.generated.Mt103;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.util.ObjectFactory;
 
 public class MpbDocumentClient {

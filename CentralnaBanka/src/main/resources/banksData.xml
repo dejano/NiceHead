@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cb:banksData xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb"
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd">
+	<cb:bank>
+		<cb:swiftCode>CONARS22</cb:swiftCode>
+		<cb:bankClearingAccountNumber>111-1111111111111-11</cb:bankClearingAccountNumber>
+		<cb:wsUrl>http://localhost:8081/banka1</cb:wsUrl>
+		<cb:balance>100000</cb:balance>
+	</cb:bank>
+	<cb:bank>
+		<cb:swiftCode>CONARS23</cb:swiftCode>
+		<cb:bankClearingAccountNumber>111-1111111111111-12</cb:bankClearingAccountNumber>
+		<cb:wsUrl>http://localhost:8080/banka2</cb:wsUrl>
+		<cb:balance>10000</cb:balance>
+	</cb:bank>
+</cb:banksData>

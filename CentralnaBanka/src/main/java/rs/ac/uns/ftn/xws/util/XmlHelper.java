@@ -13,18 +13,18 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import rs.ac.uns.ftn.xws.generated.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 
 public class XmlHelper {
 
-	public static <T> T unmarshall(InputStream stream, Class<T> T)
+	public static <T> T unmarshall(InputStream stream, Class<T> clazz)
 			throws Exception {
 		Source source = new StreamSource(stream);
 
-		JAXBContext ctx = JAXBContext.newInstance(T.getPackage().getName());
+		JAXBContext ctx = JAXBContext.newInstance(clazz.getPackage().getName());
 		Unmarshaller unmarshaller = ctx.createUnmarshaller();
 
-		JAXBElement<T> root = unmarshaller.unmarshal(source, T);
+		JAXBElement<T> root = unmarshaller.unmarshal(source, clazz);
 
 		return root.getValue();
 	}
@@ -84,3 +84,5 @@ public class XmlHelper {
 	private XmlHelper() {
 	}
 }
+
+

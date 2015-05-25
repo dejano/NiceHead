@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cb:messageIdData xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb"
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd ">1</cb:messageIdData>

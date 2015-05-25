@@ -7,20 +7,19 @@ import java.net.URL;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-
-import rs.ac.uns.ftn.xws.generated.AccountDetails;
-import rs.ac.uns.ftn.xws.generated.BankDetails;
-import rs.ac.uns.ftn.xws.generated.Mt102;
-import rs.ac.uns.ftn.xws.generated.Mt103;
-import rs.ac.uns.ftn.xws.generated.Payment;
-import rs.ac.uns.ftn.xws.generated.Mt102.Payments;
+import rs.ac.uns.ftn.xws.generated.cmn.AccountDetails;
+import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102.Payments;
+import rs.ac.uns.ftn.xws.generated.mp.Mt103;
+import rs.ac.uns.ftn.xws.generated.mp.Payment;
 
 public final class MpcbDocument_MpcbDocumentPort_Client {
 
 	private MpcbDocument_MpcbDocumentPort_Client() {
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws java.lang.Exception {
 		try {
 			URL wsdl = new URL(
 					"http://localhost:8080/cb/services/MpcbDocument?wsdl");
@@ -41,6 +40,10 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 				Mt103 mt103 = new Mt103();
 				mt103.setAmount(new BigDecimal(22));
 
+				AccountDetails creditorAccountDetails = new AccountDetails();
+				creditorAccountDetails.setAccountNumber("222-2222222222222-22");
+				mt103.setCreditorAccountDetails(creditorAccountDetails);
+
 				BankDetails bdd = new BankDetails();
 				bdd.setSwiftCode("CONARS23");
 				mt103.setDebtorBankDetails(bdd);
@@ -56,7 +59,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			try {
 				// test clearing
 				Mt102 mt102 = new Mt102();
-				mt102.setMessageId("999");
+				mt102.setMessageId("555");
 				mt102.setTotalAmount(new BigDecimal(9.2));
 				mt102.setPayments(new Payments());
 
@@ -69,13 +72,14 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 				mt102.setCreditorBankDetails(bd2);
 
 				AccountDetails ad1 = new AccountDetails();
-				ad1.setAccountNumber("123111111111111111");
+				ad1.setAccountNumber("222-2222222222222-22");
 
 				AccountDetails ad2 = new AccountDetails();
-				ad2.setAccountNumber("123111111111111111");
+				ad2.setAccountNumber("223-2222222222222-22");
 
 				Payment p1 = new Payment();
-				p1.setCreditorAccountDetails(ad1);
+				p1.setDebtorAccountDetails(ad1);
+				p1.setCreditorAccountDetails(ad2);
 				p1.setAmount(new BigDecimal(5.1));
 				mt102.getPayments().getPayments().add(p1);
 

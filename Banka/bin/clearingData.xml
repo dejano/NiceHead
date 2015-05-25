@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mpb:clearingData xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+	xmlns:mpb="http://www.ftn.uns.ac.rs/xws/xsd/mpb" xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/mpb ../../../WEB-INF/xsd/mpb.xsd ">
+	<mp:mt102 messageId="555">
+		<mp:debtorBankDetails>
+			<cmn:swiftCode>CONARS23</cmn:swiftCode>
+			<cmn:bankClearingAccountNumber>222-2222222222222-22</cmn:bankClearingAccountNumber>
+		</mp:debtorBankDetails>
+		<mp:creditorBankDetails>
+			<cmn:swiftCode>CONARS22</cmn:swiftCode>
+			<cmn:bankClearingAccountNumber>223-2222222222222-22</cmn:bankClearingAccountNumber>
+		</mp:creditorBankDetails>
+		<mp:totalAmount>0.0</mp:totalAmount>
+		<mp:currencyDate>2001-01-01</mp:currencyDate>
+		<mp:currencyCode>AAA</mp:currencyCode>
+		<mp:date>2001-01-01</mp:date>
+		<mp:payments>
+			<mp:payments>
+				<mp:paymentOrderId>12312</mp:paymentOrderId>
+				<mp:debtor>mp:debtor</mp:debtor>
+				<mp:paymentPurpose>mp:paymentPurpose</mp:paymentPurpose>
+				<mp:creditor>mp:creditor</mp:creditor>
+				<mp:orderDate>2001-01-01</mp:orderDate>
+				<mp:debtorAccountDetails>
+					<cmn:accountNumber>222-2222222222222-22</cmn:accountNumber>
+					<cmn:model>0</cmn:model>
+					<cmn:referenceNumber>cmn:referenceNumber</cmn:referenceNumber>
+				</mp:debtorAccountDetails>
+				<mp:creditorAccountDetails>
+					<cmn:accountNumber>222-2222222222222-22</cmn:accountNumber>
+					<cmn:model>0</cmn:model>
+					<cmn:referenceNumber>cmn:referenceNumber</cmn:referenceNumber>
+				</mp:creditorAccountDetails>
+				<mp:amount>0.0</mp:amount>
+				<mp:currencyCode>AAA</mp:currencyCode>
+			</mp:payments>
+		</mp:payments>
+	</mp:mt102>
+</mpb:clearingData>

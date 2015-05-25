@@ -14,23 +14,28 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
-import rs.ac.uns.ftn.xws.generated.MpExceptionEnum;
-import rs.ac.uns.ftn.xws.generated.Mt102;
-import rs.ac.uns.ftn.xws.generated.Mt103;
-import rs.ac.uns.ftn.xws.generated.Mt900;
+import rs.ac.uns.ftn.xws.generated.mp.MpExceptionEnum;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt103;
+import rs.ac.uns.ftn.xws.generated.mp.Mt900;
 import rs.ac.uns.ftn.xws.util.CentralBankUtil;
 import rs.ac.uns.ftn.xws.util.ObjectFactory;
 import rs.ac.uns.ftn.xws.util.XmlHelper;
 import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
 @Stateless
-@javax.jws.WebService(serviceName = "MpcbDocumentService", portName = "MpcbDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpcb", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocument")
+@javax.jws.WebService(
+                      serviceName = "MpcbDocumentService",
+                      portName = "MpcbDocumentPort",
+                      targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpcb",
+                      wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
+                      endpointInterface = "rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocument")
+                      
 public class MpcbDocumentImpl implements MpcbDocument {
 
-	private static final Logger LOG = Logger.getLogger(MpcbDocumentImpl.class
-			.getName());
+    private static final Logger LOG = Logger.getLogger(MpcbDocumentImpl.class.getName());
 
 	public Mt900 rtgsRequest(Mt103 rtgsRequestPart) throws MpException {
-		LOG.info("Executing operation clearingRequest");
+		LOG.info("Executing operation rtgsRequest");
 
 		BigDecimal debtorBankBalance;
 		BigDecimal creditorBankBalance;
