@@ -15,6 +15,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import rs.ac.uns.ftn.xws.generated.bs.Statement;
 import rs.ac.uns.ftn.xws.generated.bs.StatementRequest;
 
 /**
@@ -57,7 +58,9 @@ public final class BsDocument_BsDocumentPort_Client {
 		XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 		bsRequest.setDate(date);
 		
-		bsd.getStatement(bsRequest);
+		Statement statement = bsd.getStatement(bsRequest);
+		
+		System.out.println("statment account number : " + statement.getAccountNumber());
 		System.out.println("KRAJ KLIENTA");
     	
     }

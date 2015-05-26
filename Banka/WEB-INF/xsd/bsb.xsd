@@ -2,23 +2,24 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/bsb"
     xmlns:bsb="http://www.ftn.uns.ac.rs/xws/xsd/bsb"
-    xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common">
+    xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    jxb:version="2.0">
+
+    <xs:annotation>
+        <xs:appinfo>
+            <jxb:globalBindings collectionType="java.util.ArrayList"/>
+            <jxb:schemaBindings>
+                <jxb:package name="rs.ac.uns.ftn.xws.domain"/>
+            </jxb:schemaBindings>
+        </xs:appinfo>
+    </xs:annotation>
+
+
     <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
     <xs:complexType name="PaymentsData">
         <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element maxOccurs="unbounded" minOccurs="1" name="payment" type="bsb:PaymentData"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="cmn:paymentData"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="PaymentData">
-        <xs:complexContent>
-            <xs:extension base="cmn:Payment">
-                <xs:sequence>
-                    <xs:element name="previousBalance" type="cmn:Balance"/>
-                    <xs:element name="newBalance" type="cmn:Balance"/>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-    <xs:element name="paymentData" type="bsb:PaymentData"/>
     <xs:element name="paymentsData" type="bsb:PaymentsData"/>
 </xs:schema>

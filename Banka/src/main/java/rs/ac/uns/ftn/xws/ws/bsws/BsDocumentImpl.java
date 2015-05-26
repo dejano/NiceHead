@@ -68,13 +68,16 @@ public class BsDocumentImpl implements BsDocument {
 				.transformStringsIntoJAXB(PaymentDataDao.getPayments(
 						dateString, bsRequestPart.getAccountNumber(),
 						bsRequestPart.getStatementNumber()));
-		// retVal = new SectionalData();
-		// set fields and return retVal
 		
-		if(payments.get(0).getCreditor()!=null) {
-			System.out.println("TO JE TO !");
-			LOG.info("TO JE TO");
-		}
+		
+		retVal = new Statement();
+		retVal.setAccountNumber("111-0000000000000-00");
+		// set fields and return retVal
+//		
+//		if(payments.get(0).getCreditor()!=null) {
+//			System.out.println("TO JE TO !");
+//			LOG.info("TO JE TO");
+//		}
 
 		LOG.info("SHOOOOOW");
 		return retVal;

@@ -4,7 +4,7 @@
  xmlns:bsb="http://www.ftn.uns.ac.rs/xws/xsd/bsb"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/bsb file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/bsb.xsd">
-    <bsb:payment>
+    <cmn:paymentData>
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
         <cmn:creditor>creditor0</cmn:creditor>
@@ -21,10 +21,10 @@
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:value>0.00</cmn:value>
-        <bsb:previousBalance>0.00</bsb:previousBalance>
-        <bsb:newBalance>0.00</bsb:newBalance>
-    </bsb:payment>
-    <bsb:payment>
+        <cmn:previousBalance>0.00</cmn:previousBalance>
+        <cmn:newBalance>0.00</cmn:newBalance>
+    </cmn:paymentData>
+    <cmn:paymentData>
         <cmn:debtor>debtor1</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose1</cmn:paymentPurpose>
         <cmn:creditor>creditor1</cmn:creditor>
@@ -41,7 +41,7 @@
             <cmn:referenceNumber>referenceNumber3</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:value>0.00</cmn:value>
-        <bsb:previousBalance>0.00</bsb:previousBalance>
-        <bsb:newBalance>0.00</bsb:newBalance>
-    </bsb:payment>
+        <cmn:previousBalance>0.00</cmn:previousBalance>
+        <cmn:newBalance>0.00</cmn:newBalance>
+    </cmn:paymentData>
 </bsb:paymentsData>

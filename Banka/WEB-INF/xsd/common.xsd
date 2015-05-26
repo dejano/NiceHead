@@ -96,4 +96,15 @@
 			<xs:element name="value" type="cmn:Balance"/>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="PaymentData">
+		<xs:complexContent>
+			<xs:extension base="cmn:Payment">
+				<xs:sequence>
+					<xs:element name="previousBalance" type="cmn:Balance"/>
+					<xs:element name="newBalance" type="cmn:Balance"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="paymentData" type="cmn:PaymentData"/>
 </xs:schema>

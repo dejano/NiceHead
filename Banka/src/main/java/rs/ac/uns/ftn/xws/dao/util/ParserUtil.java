@@ -56,14 +56,13 @@ public class ParserUtil {
 			FileNotFoundException {
 
 		InputStream is;
-//		is = new FileInputStream(
-//				"C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/src/main/resources/bs.xml");
+		// is = new FileInputStream(
+		// "C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/src/main/resources/bs.xml");
 
 		is = new FileInputStream(
 				"C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/src/main/resources/paymentTest.xml");
-		
+
 		try {
-//			Statement newOrder = Foo.unmarshall(Statement.class, is);
 			Payment newOrder = Foo.unmarshall(Payment.class, is);
 			System.out.println("...");
 		} catch (Exception e) {
@@ -151,19 +150,14 @@ public class ParserUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//
 		InputStream is = new ByteArrayInputStream(outputStream.toByteArray());
-		//
-//		Order newOrder = Foo.unmarshall(Order.class, is);
 
 	}
 
 	public static List<Payment> transformStringsIntoJAXB(String input) {
-//	public static List<rs.ac.uns.ftn.xws.domain.Payment> transformStringsIntoJAXB(String input) {
-//		List<rs.ac.uns.ftn.xws.domain.Payment> retList = new ArrayList<rs.ac.uns.ftn.xws.domain.Payment>();
 		List<Payment> retList = new ArrayList<Payment>();
 		List<String> list = getPayments(input);
-		
+
 		for (String xmlRecord : list) {
 			Document newDocument = StringToXML(xmlRecord);
 
@@ -173,33 +167,23 @@ public class ParserUtil {
 			try {
 				TransformerFactory.newInstance().newTransformer()
 						.transform(xmlSource, outputTarget);
+				
+				InputStream is = new ByteArrayInputStream(
+						outputStream.toByteArray());
+				Payment payment = XmlHelper.unmarshall(is, Payment.class);
+				
+				retList.add(payment);
 			} catch (TransformerConfigurationException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (TransformerFactoryConfigurationError e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-
-			InputStream is = new ByteArrayInputStream(
-					outputStream.toByteArray());
-
-			try {
-				Payment payment = XmlHelper.unmarshall(is,Payment.class);
-				retList.add(payment);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			Order newOrder = Foo.unmarshall(Order.class, is);
-
-//			retList.add(newOrder);
 		}
-
+		
 		return retList;
 	}
-
 }
