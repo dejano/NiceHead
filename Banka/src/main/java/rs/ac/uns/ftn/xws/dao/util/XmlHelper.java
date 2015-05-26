@@ -75,11 +75,10 @@ public class XmlHelper {
 	}
 
 	public static void main(String[] args) {
-//		Mt102 mt102 = new Mt102();
-//
-//		System.out.println(marshall(mt102));
 	}
 
 	private XmlHelper() {
 	}
 }
+
+

@@ -168,4 +168,25 @@
 	<target name="main" depends="deploy">
 	</target>
 
+	<target name="tomcat-stop">
+		<exec executable="${tomee.dir}/bin/shutdown.bat" />
+	</target>
+
+	<!-- Startup -->
+	<target name="tomcat-start">
+		<exec executable="${tomee.dir}/bin/startup.bat" />
+	</target>
+
+	<!-- Rerun -->
+	<target name="tomcat-rerun">
+		<echo message="Redeploying app" />
+		<antcall target="tomcat-stop" />
+		<sleep seconds="3" />
+		<antcall target="clean" />
+		<!--<sleep seconds="1"/>-->
+		<antcall target="deploy" />
+		<!--<sleep seconds="1"/>-->
+		<antcall target="tomcat-start" />
+	</target>
+
 </project>

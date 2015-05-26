@@ -74,7 +74,7 @@ public class ParserUtil {
 		System.out.println("FUCK YEAH");
 	}
 
-	public static List<String> getOrders(String input) {
+	public static List<String> getPayments(String input) {
 		List<String> retList = new ArrayList<String>();
 
 		String[] parts = input.split("</bsb:payment>");
@@ -159,8 +159,10 @@ public class ParserUtil {
 	}
 
 	public static List<Payment> transformStringsIntoJAXB(String input) {
+//	public static List<rs.ac.uns.ftn.xws.domain.Payment> transformStringsIntoJAXB(String input) {
+//		List<rs.ac.uns.ftn.xws.domain.Payment> retList = new ArrayList<rs.ac.uns.ftn.xws.domain.Payment>();
 		List<Payment> retList = new ArrayList<Payment>();
-		List<String> list = getOrders(input);
+		List<String> list = getPayments(input);
 		
 		for (String xmlRecord : list) {
 			Document newDocument = StringToXML(xmlRecord);
@@ -185,6 +187,13 @@ public class ParserUtil {
 			InputStream is = new ByteArrayInputStream(
 					outputStream.toByteArray());
 
+			try {
+				Payment payment = XmlHelper.unmarshall(is,Payment.class);
+				retList.add(payment);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 //			Order newOrder = Foo.unmarshall(Order.class, is);
 
 //			retList.add(newOrder);

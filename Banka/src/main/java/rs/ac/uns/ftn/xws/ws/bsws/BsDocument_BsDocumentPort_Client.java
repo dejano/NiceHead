@@ -49,13 +49,13 @@ public final class BsDocument_BsDocumentPort_Client {
 
 		System.out.println("bs call");
 		StatementRequest bsRequest = new StatementRequest();
-//		bsRequest.setAccountNumber("310-0000000000111-83");
-//		bsRequest.setStatementNumber(1);
-//		
-//		GregorianCalendar c = new GregorianCalendar();
-//		c.setTime(new Date());
-//		XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-//		bsRequest.setDate(date);
+		bsRequest.setAccountNumber("310-0000000000111-83");
+		bsRequest.setStatementNumber(1);
+		
+		GregorianCalendar c = new GregorianCalendar();
+		c.setTime(new Date());
+		XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		bsRequest.setDate(date);
 		
 		bsd.getStatement(bsRequest);
 		System.out.println("KRAJ KLIENTA");
