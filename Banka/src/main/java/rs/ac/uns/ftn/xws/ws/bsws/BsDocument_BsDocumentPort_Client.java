@@ -34,33 +34,17 @@ public final class BsDocument_BsDocumentPort_Client {
 
     public static void main(String args[]) throws java.lang.Exception {
         
-    	URL wsdl = new URL("http://localhost:8080/bs/services/BsDocument?wsdl");
-//		URL wsdl = new URL(null, "http://localhost:8080/cb/services/BsDocument?wsdl", new sun.net.www.protocol.http.Handler());
+//    	URL wsdl = new URL("http://localhost:8080/bs/services/BsDocument?wsdl");
+    	URL wsdl = new URL("http://localhost:8080/banka1/services/BsDocument?wsdl");
 		QName serviceName = new QName(
 				"http://www.ftn.uns.ac.rs/xws/ws/bsws",
 				"BsDocumentService");
 		QName portName = new QName(
 				"http://www.ftn.uns.ac.rs/xws/ws/bsws", "BsDocumentPort");
 		
-//		URL url = new URL("http://localhost:8080/cb/services/BsDocument?wsdl");
-//	    QName qname = new QName("http://localhost:8080/cb/services/BsDocument?wsdl", "BsDocumentService");
-//	    Service service = Service.create(url, qname);
-
 		Service service = Service.create(wsdl, serviceName);
 		BsDocument bsd = service.getPort(portName, BsDocument.class);
 
-		
-//		
-//		StatementRequest statementRequest = new StatementRequest();
-//		
-//		statementRequest.setAccountNumber("111-0000000000000-00");
-//		statementRequest.setStatementNumber(1);
-//		
-//		GregorianCalendar c = DateUtil.convertFromDMY("04-05-2006");
-//		XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-//		System.out.println(date.toString());
-//		statementRequest.setDate(date);
-		
 		System.out.println("bs call");
 		StatementRequest bsRequest = new StatementRequest();
 		bsRequest.setAccountNumber("111-0000000000000-00");

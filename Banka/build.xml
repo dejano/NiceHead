@@ -1,4 +1,4 @@
-<project name="bs" default="main" basedir=".">
+<project name="bank" default="main" basedir=".">
 
 	<property file="ant.properties" />
 	<property file="src/main/resources/bank.properties" />
