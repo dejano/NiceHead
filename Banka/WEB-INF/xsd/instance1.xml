@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bsb:paymentsData xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+<bsb:paymentsData xmlns:bsb="http://www.ftn.uns.ac.rs/xws/xsd/bsb"
+ xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
  xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
- xmlns:bsb="http://www.ftn.uns.ac.rs/xws/xsd/bsb"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/bsb file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/bsb.xsd">
     <cmn:paymentData>

@@ -48,6 +48,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import rs.ac.uns.ftn.xws.generated.bs.Statement;
 import rs.ac.uns.ftn.xws.generated.cmn.Payment;
+import rs.ac.uns.ftn.xws.generated.cmn.PaymentData;
 import rs.ac.uns.ftn.xws.xml2java.Foo;
 
 public class ParserUtil {
@@ -76,11 +77,11 @@ public class ParserUtil {
 	public static List<String> getPayments(String input) {
 		List<String> retList = new ArrayList<String>();
 
-		String[] parts = input.split("</bsb:payment>");
+		String[] parts = input.split("</cmn:paymentData>");
 		for (String string : parts) {
-			retList.add(string + "</bsb:payment>");
+			retList.add(string + "</cmn:paymentData>");
 		}
-
+		
 		// retList = new ArrayList<String>(Arrays.asList(parts));
 		return retList;
 	}
@@ -153,9 +154,9 @@ public class ParserUtil {
 		InputStream is = new ByteArrayInputStream(outputStream.toByteArray());
 
 	}
-
-	public static List<Payment> transformStringsIntoJAXB(String input) {
-		List<Payment> retList = new ArrayList<Payment>();
+	
+	public static List<PaymentData> transformStringsIntoJAXB(String input) {
+		List<PaymentData> retList = new ArrayList<PaymentData>();
 		List<String> list = getPayments(input);
 
 		for (String xmlRecord : list) {
@@ -170,7 +171,7 @@ public class ParserUtil {
 				
 				InputStream is = new ByteArrayInputStream(
 						outputStream.toByteArray());
-				Payment payment = XmlHelper.unmarshall(is, Payment.class);
+				PaymentData payment = XmlHelper.unmarshall(is, PaymentData.class);
 				
 				retList.add(payment);
 			} catch (TransformerConfigurationException e) {
@@ -186,4 +187,37 @@ public class ParserUtil {
 		
 		return retList;
 	}
+
+//	public static List<Payment> transformStringsIntoJAXB(String input) {
+//		List<Payment> retList = new ArrayList<Payment>();
+//		List<String> list = getPayments(input);
+//
+//		for (String xmlRecord : list) {
+//			Document newDocument = StringToXML(xmlRecord);
+//
+//			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//			Source xmlSource = new DOMSource(newDocument);
+//			Result outputTarget = new StreamResult(outputStream);
+//			try {
+//				TransformerFactory.newInstance().newTransformer()
+//						.transform(xmlSource, outputTarget);
+//				
+//				InputStream is = new ByteArrayInputStream(
+//						outputStream.toByteArray());
+//				Payment payment = XmlHelper.unmarshall(is, Payment.class);
+//				
+//				retList.add(payment);
+//			} catch (TransformerConfigurationException e) {
+//				e.printStackTrace();
+//			} catch (TransformerException e) {
+//				e.printStackTrace();
+//			} catch (TransformerFactoryConfigurationError e) {
+//				e.printStackTrace();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		return retList;
+//	}
 }

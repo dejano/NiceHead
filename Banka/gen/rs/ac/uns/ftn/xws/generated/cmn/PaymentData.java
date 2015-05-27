@@ -8,6 +8,7 @@
 
 package rs.ac.uns.ftn.xws.generated.cmn;
 
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -15,19 +16,19 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for BankDetails complex type.
+ * <p>Java class for PaymentData complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="BankDetails">
+ * &lt;complexType name="PaymentData">
  *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     &lt;extension base="{http://www.ftn.uns.ac.rs/xws/xsd/common}Payment">
  *       &lt;sequence>
- *         &lt;element name="swiftCode" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}SwiftCode"/>
- *         &lt;element name="bankClearingAccountNumber" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}AccountNumber"/>
+ *         &lt;element name="previousBalance" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}Balance"/>
+ *         &lt;element name="newBalance" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}Balance"/>
  *       &lt;/sequence>
- *     &lt;/restriction>
+ *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -35,63 +36,65 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BankDetails", propOrder = {
-    "swiftCode",
-    "bankClearingAccountNumber"
+@XmlType(name = "PaymentData", propOrder = {
+    "previousBalance",
+    "newBalance"
 })
-public class BankDetails {
+public class PaymentData
+    extends Payment
+{
 
     @XmlElement(required = true)
-    protected String swiftCode;
+    protected BigDecimal previousBalance;
     @XmlElement(required = true)
-    protected String bankClearingAccountNumber;
+    protected BigDecimal newBalance;
 
     /**
-     * Gets the value of the swiftCode property.
+     * Gets the value of the previousBalance property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigDecimal }
      *     
      */
-    public String getSwiftCode() {
-        return swiftCode;
+    public BigDecimal getPreviousBalance() {
+        return previousBalance;
     }
 
     /**
-     * Sets the value of the swiftCode property.
+     * Sets the value of the previousBalance property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigDecimal }
      *     
      */
-    public void setSwiftCode(String value) {
-        this.swiftCode = value;
+    public void setPreviousBalance(BigDecimal value) {
+        this.previousBalance = value;
     }
 
     /**
-     * Gets the value of the bankClearingAccountNumber property.
+     * Gets the value of the newBalance property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigDecimal }
      *     
      */
-    public String getBankClearingAccountNumber() {
-        return bankClearingAccountNumber;
+    public BigDecimal getNewBalance() {
+        return newBalance;
     }
 
     /**
-     * Sets the value of the bankClearingAccountNumber property.
+     * Sets the value of the newBalance property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigDecimal }
      *     
      */
-    public void setBankClearingAccountNumber(String value) {
-        this.bankClearingAccountNumber = value;
+    public void setNewBalance(BigDecimal value) {
+        this.newBalance = value;
     }
 
 }
