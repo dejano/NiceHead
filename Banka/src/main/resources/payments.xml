@@ -3,9 +3,9 @@
  xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
  xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/bsb file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/bsb.xsd">
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/bsb ../../../WEB-INF/xsd/bsb.xsd">
     
-    <cmn:paymentData>
+    <bsb:paymentData>
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
         <cmn:creditor>creditor0</cmn:creditor>
@@ -22,10 +22,10 @@
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:value>10000.00</cmn:value>
-        <cmn:previousBalance>0.00</cmn:previousBalance>
-        <cmn:newBalance>10000.00</cmn:newBalance>
-    </cmn:paymentData>
-    <cmn:paymentData>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>10000.00</bsb:newBalance>
+    </bsb:paymentData>
+    <bsb:paymentData>
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
         <cmn:creditor>creditor0</cmn:creditor>
@@ -42,10 +42,10 @@
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:value>5000.00</cmn:value>
-        <cmn:previousBalance>10000.00</cmn:previousBalance>
-        <cmn:newBalance>15000.00</cmn:newBalance>
-    </cmn:paymentData>
-    <cmn:paymentData>
+        <bsb:previousBalance>10000.00</bsb:previousBalance>
+        <bsb:newBalance>15000.00</bsb:newBalance>
+    </bsb:paymentData>
+    <bsb:paymentData>
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
         <cmn:creditor>creditor0</cmn:creditor>
@@ -62,10 +62,10 @@
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:value>5000.00</cmn:value>
-        <cmn:previousBalance>800000.00</cmn:previousBalance>
-        <cmn:newBalance>10000.00</cmn:newBalance>
-    </cmn:paymentData>
-    <cmn:paymentData>
+        <bsb:previousBalance>800000.00</bsb:previousBalance>
+        <bsb:newBalance>10000.00</bsb:newBalance>
+    </bsb:paymentData>
+    <bsb:paymentData>
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
         <cmn:creditor>creditor0</cmn:creditor>
@@ -82,10 +82,10 @@
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:value>0.00</cmn:value>
-        <cmn:previousBalance>0.00</cmn:previousBalance>
-        <cmn:newBalance>0.00</cmn:newBalance>
-    </cmn:paymentData>
-    <cmn:paymentData>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:paymentData>
+    <bsb:paymentData>
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
         <cmn:creditor>creditor0</cmn:creditor>
@@ -102,10 +102,10 @@
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:value>0.00</cmn:value>
-        <cmn:previousBalance>0.00</cmn:previousBalance>
-        <cmn:newBalance>0.00</cmn:newBalance>
-    </cmn:paymentData>
-    <cmn:paymentData>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:paymentData>
+    <bsb:paymentData>
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
         <cmn:creditor>creditor0</cmn:creditor>
@@ -122,7 +122,7 @@
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:value>0.00</cmn:value>
-        <cmn:previousBalance>0.00</cmn:previousBalance>
-        <cmn:newBalance>0.00</cmn:newBalance>
-    </cmn:paymentData>
+        <bsb:previousBalance>0.00</bsb:previousBalance>
+        <bsb:newBalance>0.00</bsb:newBalance>
+    </bsb:paymentData>
 </bsb:paymentsData>

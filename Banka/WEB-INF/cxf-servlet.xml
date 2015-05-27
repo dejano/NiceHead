@@ -5,8 +5,8 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-<!-- 	<jaxws:endpoint id="mpbDoc" address="/MpbDocument" -->
-<!-- 		implementor="rs.ac.uns.ftn.xws.ws.mpb.MpbDocumentImpl" wsdlLocation="WEB-INF/wsdl/mpb.wsdl" /> -->
+	<jaxws:endpoint id="mpbDoc" address="/MpbDocument"
+		implementor="rs.ac.uns.ftn.xws.ws.mpb.MpbDocumentImpl" wsdlLocation="WEB-INF/wsdl/mpb.wsdl" />
 	
 	<jaxws:endpoint id="bsDoc" address="/BsDocument"
 		implementor="rs.ac.uns.ftn.xws.ws.bsws.BsDocumentImpl" wsdlLocation="WEB-INF/wsdl/bs.wsdl" />	
