@@ -189,9 +189,9 @@ public class ParserUtil {
 	}
 
 	//<? extends T>
-	public static <T> Object  transformStringIntoJAXBeans(String xmlRecord, Class<T> clazz) {
+	public static <T> T  transformStringIntoJAXBeans(String xmlRecord, Class<T> clazz) {
 		//<T>  retVal = null;
-		Object retVal = null;
+		T retVal = null;
 			Document newDocument = StringToXML(xmlRecord);
 
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

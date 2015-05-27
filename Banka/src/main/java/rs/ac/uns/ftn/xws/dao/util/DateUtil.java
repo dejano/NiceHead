@@ -10,7 +10,7 @@ public class DateUtil {
 
 	public static GregorianCalendar convertFromDMY(String dd_mm_yy)
 			throws ParseException {
-
+		
 		// this actually works, got rid of the original code idea
 		String[] splitDate = dd_mm_yy.split("-");
 		int days = Integer.parseInt(splitDate[0]);

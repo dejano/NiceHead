@@ -144,7 +144,8 @@ public class PaymentDataDao {
 					RequestMethod.GET));
 			for (String xmlRecord : ParserUtil.getPayments(queryResult)) {
 				
-				PaymentData payment = (PaymentData) ParserUtil.transformStringIntoJAXBeans(xmlRecord, PaymentData.class);
+				//PaymentData payment = (PaymentData) ParserUtil.transformStringIntoJAXBeans(xmlRecord, PaymentData.class);
+				PaymentData payment = ParserUtil.transformStringIntoJAXBeans(xmlRecord, PaymentData.class);
 				retList.add(payment);
 			} 
 		} catch (Exception e) {

@@ -15,6 +15,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import rs.ac.uns.ftn.xws.dao.util.DateUtil;
 import rs.ac.uns.ftn.xws.generated.bs.Statement;
 import rs.ac.uns.ftn.xws.generated.bs.StatementRequest;
 
@@ -48,21 +49,32 @@ public final class BsDocument_BsDocumentPort_Client {
 		Service service = Service.create(wsdl, serviceName);
 		BsDocument bsd = service.getPort(portName, BsDocument.class);
 
+		
+//		
+//		StatementRequest statementRequest = new StatementRequest();
+//		
+//		statementRequest.setAccountNumber("111-0000000000000-00");
+//		statementRequest.setStatementNumber(1);
+//		
+//		GregorianCalendar c = DateUtil.convertFromDMY("04-05-2006");
+//		XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+//		System.out.println(date.toString());
+//		statementRequest.setDate(date);
+		
 		System.out.println("bs call");
 		StatementRequest bsRequest = new StatementRequest();
-		bsRequest.setAccountNumber("310-0000000000111-83");
+		bsRequest.setAccountNumber("111-0000000000000-00");
 		bsRequest.setStatementNumber(1);
 		
-		GregorianCalendar c = new GregorianCalendar();
-		c.setTime(new Date());
+		GregorianCalendar c = DateUtil.convertFromDMY("04-05-2006");
 		XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		System.out.println(date.toString());
 		bsRequest.setDate(date);
 		
 		Statement statement = bsd.getStatement(bsRequest);
 		
 		System.out.println("statment account number : " + statement.getAccountNumber());
 		System.out.println("KRAJ KLIENTA");
-    	
     }
 
 }

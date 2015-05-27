@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.xws.dao.util;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -12,6 +13,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import rs.ac.uns.ftn.xws.dao.PaymentDataDao;
+import rs.ac.uns.ftn.xws.generated.bs.ObjectFactory;
 import rs.ac.uns.ftn.xws.generated.bs.Statement;
 import rs.ac.uns.ftn.xws.generated.bs.Statement.Items;
 import rs.ac.uns.ftn.xws.generated.bs.StatementItem;
@@ -40,7 +42,9 @@ public class StatementUtil {
 	}
 
 	public static Statement buildStatement(StatementRequest request) {
-		Statement retVal = new Statement();
+		ObjectFactory of = new ObjectFactory();
+		Statement retVal = of.createStatement();
+		retVal.setItems(of.createStatementItems());
 		List<StatementItem> items = new ArrayList<StatementItem>();
 
 		String accountNumber = request.getAccountNumber();
@@ -55,7 +59,13 @@ public class StatementUtil {
 		// iz paymenta
 //		List<PaymentData> payments = PaymentDataDao.getPayments(orderDate,
 //				accountNumber, statementNumber);
-		List<PaymentData> payments = PaymentDataDao.getPayments("2006-05-04",
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String DateToStr = format.format(request.getDate().toGregorianCalendar().getTime()); 
+		System.out.println(DateToStr);
+//		List<PaymentData> payments = PaymentDataDao.getPayments("2006-05-04",
+//				accountNumber, statementNumber);
+        List<PaymentData> payments = PaymentDataDao.getPayments(DateToStr,
 				accountNumber, statementNumber);
 		int paymentsSize = payments.size();
 		
@@ -76,7 +86,8 @@ public class StatementUtil {
 			
 			for (PaymentData payment : payments) {
 				StatementItem item = buildStatementItem(payment, accountNumber);
-				items.add(item);
+				//items.add(item);
+				retVal.getItems().getItem().add(item);
 				
 				if(item.getDirection().equals("A")) {
 					payoutCount++;
@@ -89,7 +100,7 @@ public class StatementUtil {
 			}
 			
 			// TODO @Nikola42 kako da setujem ovo prokletno govno
-			Items itemsObject = new Statement.Items();
+//			Items itemsObject = new Statement.Items();
 			//retVal.setItems((Items) items);
 			
 			retVal.setPayoutCount(payoutCount);

@@ -5,6 +5,7 @@
 
 package rs.ac.uns.ftn.xws.ws.bsws;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -15,10 +16,15 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import rs.ac.uns.ftn.xws.dao.PaymentDataDao;
+import rs.ac.uns.ftn.xws.dao.util.DateUtil;
 import rs.ac.uns.ftn.xws.dao.util.ParserUtil;
+import rs.ac.uns.ftn.xws.dao.util.StatementUtil;
 import rs.ac.uns.ftn.xws.generated.bs.Statement;
+import rs.ac.uns.ftn.xws.generated.bs.StatementRequest;
 import rs.ac.uns.ftn.xws.generated.cmn.Payment;
 import rs.ac.uns.ftn.xws.generated.cmn.PaymentData;
 
@@ -44,41 +50,15 @@ public class BsDocumentImpl implements BsDocument {
 	public rs.ac.uns.ftn.xws.generated.bs.Statement getStatement(
 			rs.ac.uns.ftn.xws.generated.bs.StatementRequest bsRequestPart) {
 		LOG.info("Executing operation getStatement");
-		LOG.info("Account number iz requesta = "
-				+ bsRequestPart.getAccountNumber());
+		
+		LOG.info("VUKSA TEST!!!");
+		
+		
 		Statement retVal = null;
-
-		// Calendar calendar = bsRequestPart.getDate().toGregorianCalendar();
-		// SimpleDateFormat formatter = new
-		// SimpleDateFormat("MM/dd/yyyy hh:mm");
-		// formatter.setTimeZone(calendar.getTimeZone());
-		// String dateString = formatter.format(calendar.getTime());
-
-		String dateString = "2015-05-21";
-		//
-		// String input = OrdersDataDao.getOrders(dateString,
-		// bsRequestPart.getAccountNumber(),
-		// bsRequestPart.getSectionalNumber());
-		// List<Order> orders = ParserUtil.transformStringsIntoJAXB(input);
 		
-		System.out.println("SHOOOOOW-BRE");
-		LOG.info("SHOOOOOW-BRE");
+		Statement statement = StatementUtil.buildStatement(bsRequestPart);
+		retVal = statement;
 		
-		
-//		List<PaymentData> payments = ParserUtil
-//				.transformStringsIntoJAXB(PaymentDataDao.getPayments(
-//						dateString, bsRequestPart.getAccountNumber(),
-//						bsRequestPart.getStatementNumber()));
-		
-		
-		retVal = new Statement();
-		retVal.setAccountNumber("111-0000000000000-00");
-		// set fields and return retVal
-//		
-//		if(payments.get(0).getCreditor()!=null) {
-//			System.out.println("TO JE TO !");
-//			LOG.info("TO JE TO");
-//		}
 
 		LOG.info("SHOOOOOW");
 		return retVal;

@@ -14,7 +14,8 @@ import org.apache.commons.io.IOUtils;
 
 public class RESTUtil {
 
-	public static final String REST_URL = ResourceBundle.getBundle("basex").getString("rest.url");
+	//public static final String REST_URL = ResourceBundle.getBundle("basex").getString("rest.url");
+	public static final String REST_URL = ResourceBundle.getBundle("main/resources/basex").getString("rest.url");
 
 	public static int createSchema(String schemaName) throws Exception {
 		System.out.println("=== PUT: create a new database: " + schemaName
