@@ -65,10 +65,10 @@ public class BsDocumentImpl implements BsDocument {
 		LOG.info("SHOOOOOW-BRE");
 		
 		
-		List<PaymentData> payments = ParserUtil
-				.transformStringsIntoJAXB(PaymentDataDao.getPayments(
-						dateString, bsRequestPart.getAccountNumber(),
-						bsRequestPart.getStatementNumber()));
+//		List<PaymentData> payments = ParserUtil
+//				.transformStringsIntoJAXB(PaymentDataDao.getPayments(
+//						dateString, bsRequestPart.getAccountNumber(),
+//						bsRequestPart.getStatementNumber()));
 		
 		
 		retVal = new Statement();

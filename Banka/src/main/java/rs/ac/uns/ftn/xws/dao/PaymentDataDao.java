@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.xws.dao;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -82,9 +83,9 @@ public class PaymentDataDao {
 
 			System.out.println(getPayments("2006-05-04",
 					"111-0000000000000-00", 1));
-			List<PaymentData> payments = ParserUtil
-					.transformStringsIntoJAXB(getPayments("2006-05-04",
-							"111-0000000000000-00", 1));
+//			List<PaymentData> payments = ParserUtil
+//					.transformStringsIntoJAXB(getPayments("2006-05-04",
+//							"111-0000000000000-00", 1));
 			System.out.println("najnovi test");
 
 		} catch (Exception e) {
@@ -92,10 +93,39 @@ public class PaymentDataDao {
 		}
 	}
 
-	public static String getPayments(String date, String accountNumber,
+//	public static String getPayments(String date, String accountNumber,
+//			int statementNumber) {
+//		String ret = null;
+//
+//		int maxOffSetValue = statementNumber * SECTIONAL_INCREMENTAL_VALUE;
+//		int minOffSetValue = maxOffSetValue - SECTIONAL_INCREMENTAL_VALUE + 1;
+//
+//		// String q = getOrdersByAccNumberAndOrderDate[0];
+//		String q = getPaymentsByAccNumberAndOrderDate[0] + accountNumber
+//				+ getPaymentsByAccNumberAndOrderDate[1] + accountNumber
+//				+ getPaymentsByAccNumberAndOrderDate[2] + date
+//				+ getPaymentsByAccNumberAndOrderDate[3] + minOffSetValue
+//				+ getPaymentsByAccNumberAndOrderDate[4] + maxOffSetValue
+//				+ getPaymentsByAccNumberAndOrderDate[5];
+//
+//		System.out.println("Query :   " + q + "\n");
+//
+//		try {
+//			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, "payments",
+//					RequestMethod.GET));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		return ret;
+//
+//	}
+	
+	public static List<PaymentData> getPayments(String date, String accountNumber,
 			int statementNumber) {
-		String ret = null;
-
+//		List<PaymentData> retList; //= new ArrayList<PaymentData>();
+		List<PaymentData> retList = new ArrayList<PaymentData>();
+		
 		int maxOffSetValue = statementNumber * SECTIONAL_INCREMENTAL_VALUE;
 		int minOffSetValue = maxOffSetValue - SECTIONAL_INCREMENTAL_VALUE + 1;
 
@@ -110,13 +140,17 @@ public class PaymentDataDao {
 		System.out.println("Query :   " + q + "\n");
 
 		try {
-			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, "payments",
+			String queryResult = RESTUtil.readString(RESTUtil.retrieveResource(q, "payments",
 					RequestMethod.GET));
+			for (String xmlRecord : ParserUtil.getPayments(queryResult)) {
+				
+				PaymentData payment = (PaymentData) ParserUtil.transformStringIntoJAXBeans(xmlRecord, PaymentData.class);
+				retList.add(payment);
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return ret;
-
+		
+		return retList;
 	}
 }

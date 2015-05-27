@@ -188,36 +188,36 @@ public class ParserUtil {
 		return retList;
 	}
 
-//	public static List<Payment> transformStringsIntoJAXB(String input) {
-//		List<Payment> retList = new ArrayList<Payment>();
-//		List<String> list = getPayments(input);
-//
-//		for (String xmlRecord : list) {
-//			Document newDocument = StringToXML(xmlRecord);
-//
-//			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//			Source xmlSource = new DOMSource(newDocument);
-//			Result outputTarget = new StreamResult(outputStream);
-//			try {
-//				TransformerFactory.newInstance().newTransformer()
-//						.transform(xmlSource, outputTarget);
-//				
-//				InputStream is = new ByteArrayInputStream(
-//						outputStream.toByteArray());
-//				Payment payment = XmlHelper.unmarshall(is, Payment.class);
-//				
-//				retList.add(payment);
-//			} catch (TransformerConfigurationException e) {
-//				e.printStackTrace();
-//			} catch (TransformerException e) {
-//				e.printStackTrace();
-//			} catch (TransformerFactoryConfigurationError e) {
-//				e.printStackTrace();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		return retList;
-//	}
+	//<? extends T>
+	public static <T> Object  transformStringIntoJAXBeans(String xmlRecord, Class<T> clazz) {
+		//<T>  retVal = null;
+		Object retVal = null;
+			Document newDocument = StringToXML(xmlRecord);
+
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			Source xmlSource = new DOMSource(newDocument);
+			Result outputTarget = new StreamResult(outputStream);
+			try {
+				TransformerFactory.newInstance().newTransformer()
+						.transform(xmlSource, outputTarget);
+				
+				InputStream is = new ByteArrayInputStream(
+						outputStream.toByteArray());
+				T payment = XmlHelper.unmarshall(is, clazz);
+				// TODO ubaci ovde typecase retVala direktno ... tj dole u returnu
+				retVal = (payment!=null) ? payment : retVal;
+				
+			} catch (TransformerConfigurationException e) {
+				e.printStackTrace();
+			} catch (TransformerException e) {
+				e.printStackTrace();
+			} catch (TransformerFactoryConfigurationError e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		return retVal;
+	}
+	
 }
