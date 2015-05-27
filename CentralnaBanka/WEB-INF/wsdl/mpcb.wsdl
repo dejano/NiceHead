@@ -3,8 +3,7 @@
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/xsd/mt103" xmlns:mt910="http://www.ftn.uns.ac.rs/xws/xsd/mt910"
-	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102"
+	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp" xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/cmn"
 	xmlns:mpcbws="http://www.ftn.uns.ac.rs/xws/ws/mpcb" targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpcb">
 
 	<wsdl:types>
@@ -15,13 +14,15 @@
 	</wsdl:types>
 
 	<wsdl:message name="rtgsRequestMessage">
-		<wsdl:part name="rtgsRequestPart" element="mp:rtgsRequestMessage" />
+		<wsdl:part name="rtgsRequestPart" element="mp:mt103" />
 	</wsdl:message>
 	<wsdl:message name="clearingRequestMessage">
-		<wsdl:part name="clearingRequestPart" element="mp:clearingRequestMessage" />
+		<wsdl:part name="clearingRequestPart" element="mp:mt102" />
 	</wsdl:message>
-	<wsdl:message name="mpcbResponseMessage">
-		<wsdl:part name="mpcbResponsePart" element="mp:mpcbResponseMessage" />
+	<wsdl:message name="rtgsDebitMessage">
+		<wsdl:part name="rtgsDebitPart" element="mp:mt900" />
+	</wsdl:message>
+	<wsdl:message name="clearingResponseMessage">
 	</wsdl:message>
 	<wsdl:message name="mpException">
 		<wsdl:part name="fault" element="mp:mpExceptionEnum" />
@@ -30,12 +31,12 @@
 	<wsdl:portType name="MpcbDocument">
 		<wsdl:operation name="rtgsRequest">
 			<wsdl:input message="mpcbws:rtgsRequestMessage" />
-			<wsdl:output message="mpcbws:mpcbResponseMessage" />
+			<wsdl:output message="mpcbws:rtgsDebitMessage" />
 			<wsdl:fault message="mpcbws:mpException" name="MpException" />
 		</wsdl:operation>
 		<wsdl:operation name="clearingRequest">
 			<wsdl:input message="mpcbws:clearingRequestMessage" />
-			<wsdl:output message="mpcbws:mpcbResponseMessage" />
+			<wsdl:output message="mpcbws:clearingResponseMessage" />
 			<wsdl:fault message="mpcbws:mpException" name="MpException" />
 		</wsdl:operation>
 	</wsdl:portType>
@@ -60,9 +61,7 @@
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output>
-				<soap:body use="literal" />
-			</wsdl:output>
+
 			<wsdl:fault name="MpException">
 				<soap:fault name="MpException" use="literal" />
 			</wsdl:fault>

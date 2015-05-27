@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cb:clearingData xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+	xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd">
+	<mp:mt102 messageId="2">
+		<mp:debtorBankDetails>
+			<cmn:swiftCode>AAAAAA00</cmn:swiftCode>
+			<cmn:bankClearingAccountNumber>111-1111111111111-11</cmn:bankClearingAccountNumber>
+		</mp:debtorBankDetails>
+		<mp:creditorBankDetails>
+			<cmn:swiftCode>AAAAAA00</cmn:swiftCode>
+			<cmn:bankClearingAccountNumber>111-1111111111111-12</cmn:bankClearingAccountNumber>
+		</mp:creditorBankDetails>
+		<mp:totalAmount>0.00</mp:totalAmount>
+		<mp:currencyDate>2006-05-04</mp:currencyDate>
+		<mp:currencyCode>A</mp:currencyCode>
+		<mp:date>2006-05-04</mp:date>
+		<mp:payments>
+			<mp:payments>
+				<mp:paymentOrderId>paymentOrderId0</mp:paymentOrderId>
+				<mp:debtor>debtor0</mp:debtor>
+				<mp:paymentPurpose>paymentPurpose0</mp:paymentPurpose>
+				<mp:creditor>creditor0</mp:creditor>
+				<mp:orderDate>2006-05-04</mp:orderDate>
+				<mp:debtorAccountDetails>
+					<cmn:accountNumber>222-2222222222222-22</cmn:accountNumber>
+					<cmn:model>50</cmn:model>
+					<cmn:referenceNumber>referenceNumber0</cmn:referenceNumber>
+				</mp:debtorAccountDetails>
+				<mp:creditorAccountDetails>
+					<cmn:accountNumber>223-2222222222222-22</cmn:accountNumber>
+					<cmn:model>50</cmn:model>
+					<cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
+				</mp:creditorAccountDetails>
+				<mp:amount>0.00</mp:amount>
+				<mp:currencyCode>cur</mp:currencyCode>
+			</mp:payments>
+			<mp:payments>
+				<mp:paymentOrderId>paymentOrderId1</mp:paymentOrderId>
+				<mp:debtor>debtor1</mp:debtor>
+				<mp:paymentPurpose>paymentPurpose1</mp:paymentPurpose>
+				<mp:creditor>creditor1</mp:creditor>
+				<mp:orderDate>2006-05-04</mp:orderDate>
+				<mp:debtorAccountDetails>
+					<cmn:accountNumber>223-2222222222222-22</cmn:accountNumber>
+					<cmn:model>50</cmn:model>
+					<cmn:referenceNumber>referenceNumber2</cmn:referenceNumber>
+				</mp:debtorAccountDetails>
+				<mp:creditorAccountDetails>
+					<cmn:accountNumber>222-2222222222222-22</cmn:accountNumber>
+					<cmn:model>50</cmn:model>
+					<cmn:referenceNumber>referenceNumber3</cmn:referenceNumber>
+				</mp:creditorAccountDetails>
+				<mp:amount>0.00</mp:amount>
+				<mp:currencyCode>cur</mp:currencyCode>
+			</mp:payments>
+		</mp:payments>
+	</mp:mt102>
+</cb:clearingData>

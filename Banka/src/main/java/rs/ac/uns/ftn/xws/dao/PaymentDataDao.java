@@ -5,13 +5,10 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Document;
-
 import rs.ac.uns.ftn.xws.dao.util.ParserUtil;
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
-import rs.ac.uns.ftn.xws.generated.cmn.Payment;
-import rs.ac.uns.ftn.xws.generated.cmn.PaymentData;
+import rs.ac.uns.ftn.xws.domain.bsb.PaymentData;
 
 public class PaymentDataDao {
 

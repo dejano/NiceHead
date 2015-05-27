@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="HelloDocumentService"
+<wsdl:definitions name="MpbDocumentService"
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-	xmlns:mt103="http://www.ftn.uns.ac.rs/xws/xsd/mt103" xmlns:mt910="http://www.ftn.uns.ac.rs/xws/xsd/mt910"
-	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102"
-	xmlns:mpbws="http://www.ftn.uns.ac.rs/xws/ws/mpb" targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
+	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp" xmlns:mpbws="http://www.ftn.uns.ac.rs/xws/ws/mpb"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
 
 	<wsdl:types>
 		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
@@ -14,36 +13,51 @@
 		</xsd:schema>
 	</wsdl:types>
 
-	<wsdl:message name="rtgsConfirmMessage">
-		<wsdl:part name="rtgsConfirmPart" element="mp:rtgsConfirmMessage" />
+	<wsdl:message name="rtgsApprovalMessage">
+		<wsdl:part name="rtgsApprovalPart" element="mp:rtgsApprovalMessage" />
 	</wsdl:message>
-	<wsdl:message name="clearingConfirmMessage">
-		<wsdl:part name="clearingConfirmPart" element="mp:clearingConfirmMessage" />
+	<wsdl:message name="clearingDebitMessage">
+		<wsdl:part name="clearingDebitPart" element="mp:mt900" />
 	</wsdl:message>
+	<wsdl:message name="clearingApprovalMessage">
+		<wsdl:part name="clearingApprovalPart" element="mp:clearingApprovalMessage" />
+	</wsdl:message>
+
 	<wsdl:portType name="MpbDocument">
-		<wsdl:operation name="rtgsConfirm">
-			<wsdl:input message="mpbws:rtgsConfirmMessage" />
+		<wsdl:operation name="rtgsApproval">
+			<wsdl:input message="mpbws:rtgsApprovalMessage" />
 		</wsdl:operation>
-		<wsdl:operation name="clearingConfirm">
-			<wsdl:input message="mpbws:clearingConfirmMessage" />
+		<wsdl:operation name="clearingDebit">
+			<wsdl:input message="mpbws:clearingDebitMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="clearingApproval">
+			<wsdl:input message="mpbws:clearingApprovalMessage" />
 		</wsdl:operation>
 	</wsdl:portType>
+
 	<wsdl:binding name="MpbServiceSoapBinding" type="mpbws:MpbDocument">
 		<soap:binding style="document"
 			transport="http://schemas.xmlsoap.org/soap/http" />
-		<wsdl:operation name="rtgsConfirm">
+		<wsdl:operation name="rtgsApproval">
 			<soap:operation soapAction="" style="document" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
 		</wsdl:operation>
-		<wsdl:operation name="clearingConfirm">
+		<wsdl:operation name="clearingDebit">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="clearingApproval">
 			<soap:operation soapAction="" style="document" />
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
+
 	<wsdl:service name="MpbDocumentService">
 		<wsdl:port name="MpbDocumentPort" binding="mpbws:MpbServiceSoapBinding">
 			<soap:address location="http://localhost:8080/mpb" />

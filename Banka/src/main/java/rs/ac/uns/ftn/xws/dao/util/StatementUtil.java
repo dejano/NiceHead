@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -13,13 +12,11 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import rs.ac.uns.ftn.xws.dao.PaymentDataDao;
+import rs.ac.uns.ftn.xws.domain.bsb.PaymentData;
 import rs.ac.uns.ftn.xws.generated.bs.ObjectFactory;
 import rs.ac.uns.ftn.xws.generated.bs.Statement;
-import rs.ac.uns.ftn.xws.generated.bs.Statement.Items;
 import rs.ac.uns.ftn.xws.generated.bs.StatementItem;
 import rs.ac.uns.ftn.xws.generated.bs.StatementRequest;
-import rs.ac.uns.ftn.xws.generated.cmn.Payment;
-import rs.ac.uns.ftn.xws.generated.cmn.PaymentData;
 
 public class StatementUtil {
 

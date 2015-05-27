@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * 
  */
 @WebService(targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/swiftCode", name = "SwiftCodeDocument")
-@XmlSeeAlso({rs.ac.uns.ftn.xws.generated.ObjectFactory.class, ObjectFactory.class})
+@XmlSeeAlso({rs.ac.uns.ftn.xws.generated.cmn.ObjectFactory.class, ObjectFactory.class})
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public interface SwiftCodeDocument {
 
