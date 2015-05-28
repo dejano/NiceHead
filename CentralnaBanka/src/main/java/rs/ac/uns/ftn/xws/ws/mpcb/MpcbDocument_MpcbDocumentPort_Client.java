@@ -11,8 +11,8 @@ import rs.ac.uns.ftn.xws.generated.cmn.AccountDetails;
 import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102.Payments;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102Payment;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
-import rs.ac.uns.ftn.xws.generated.mp.Payment;
 
 public final class MpcbDocument_MpcbDocumentPort_Client {
 
@@ -77,16 +77,16 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 				AccountDetails ad2 = new AccountDetails();
 				ad2.setAccountNumber("223-2222222222222-22");
 
-				Payment p1 = new Payment();
+				Mt102Payment p1 = new Mt102Payment();
 				p1.setDebtorAccountDetails(ad1);
 				p1.setCreditorAccountDetails(ad2);
 				p1.setAmount(new BigDecimal(5.1));
-				mt102.getPayments().getPayments().add(p1);
+				mt102.getPayments().getPayment().add(p1);
 
-				Payment p2 = new Payment();
+				Mt102Payment p2 = new Mt102Payment();
 				p2.setCreditorAccountDetails(ad2);
 				p2.setAmount(new BigDecimal(4.1));
-				mt102.getPayments().getPayments().add(p2);
+				mt102.getPayments().getPayment().add(p2);
 
 				mpcbService.clearingRequest(mt102);
 			} catch (MpException e) {

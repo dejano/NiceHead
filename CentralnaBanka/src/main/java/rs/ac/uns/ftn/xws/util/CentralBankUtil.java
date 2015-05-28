@@ -5,9 +5,10 @@ import java.util.List;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.generated.cmn.AccountDetails;
+import rs.ac.uns.ftn.xws.generated.cmn.Payment;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102.Payments;
-import rs.ac.uns.ftn.xws.generated.mp.Payment;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102Payment;
 
 public class CentralBankUtil {
 
@@ -30,7 +31,7 @@ public class CentralBankUtil {
 		BigDecimal diff;
 		BigDecimal totalAmount = BigDecimal.ZERO;
 
-		for (Payment payment : mt102.getPayments().getPayments()) {
+		for (Payment payment : mt102.getPayments().getPayment()) {
 			totalAmount = totalAmount.add(payment.getAmount());
 		}
 
@@ -47,7 +48,7 @@ public class CentralBankUtil {
 		boolean ret = true;
 
 		String creditorBankCode;
-		List<Payment> payments = mt102.getPayments().getPayments();
+		List<Mt102Payment> payments = mt102.getPayments().getPayment();
 
 		creditorBankCode = getBankCode(payments.get(0)
 				.getCreditorAccountDetails());
@@ -83,15 +84,15 @@ public class CentralBankUtil {
 		AccountDetails ad2 = new AccountDetails();
 		ad2.setAccountNumber("122111111111111111");
 
-		Payment p1 = new Payment();
+		Mt102Payment p1 = new Mt102Payment();
 		p1.setCreditorAccountDetails(ad1);
 		p1.setAmount(new BigDecimal(5.1));
-		m.getPayments().getPayments().add(p1);
+		m.getPayments().getPayment().add(p1);
 
-		Payment p2 = new Payment();
+		Mt102Payment p2 = new Mt102Payment();
 		p2.setCreditorAccountDetails(ad2);
 		p2.setAmount(new BigDecimal(4.1));
-		m.getPayments().getPayments().add(p2);
+		m.getPayments().getPayment().add(p2);
 
 		System.out.println(isTotalAmountValid(m));
 		

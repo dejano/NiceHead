@@ -93,6 +93,9 @@ public class BanksDataDao {
 		BigDecimal ret = null;
 
 		String q = getBankBalanceQuery[0] + swiftCode + getBankBalanceQuery[1];
+		
+		System.out.println(swiftCode);
+		
 		try {
 			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(
 					q, CentralBankConstants.SCHEMA_NAME, RequestMethod.GET)));

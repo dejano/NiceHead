@@ -13,6 +13,7 @@
 			</jxb:schemaBindings>
 		</xs:appinfo>
 	</xs:annotation>
+
 	<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common"
 		schemaLocation="../xsd/common.xsd"/>
 
@@ -81,6 +82,16 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType block="" name="Mt102Payment">
+		<xs:complexContent>
+			<xs:extension base="cmn:Payment">
+				<xs:sequence>
+					<xs:element name="paymentOrderId" nillable="false" type="cmn:MessageId"/>
+					<xs:element name="currencyCode" type="cmn:CurrencyCode"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="Mt102">
 		<xs:complexContent>
 			<xs:extension base="cmn:Message">
@@ -102,7 +113,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element form="qualified" maxOccurs="unbounded" minOccurs="1"
-									name="payments" type="mp:Payment"/>
+									name="payment" type="mp:Mt102Payment" nillable="false"/>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -161,50 +172,6 @@
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="Payment">
-		<xs:sequence>
-			<xs:element form="qualified" name="paymentOrderId" type="cmn:MessageId"/>
-			<xs:element name="debtor">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="255"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="paymentPurpose">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="255"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="creditor">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="255"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="orderDate" type="xs:date"/>
-			<xs:element maxOccurs="1" name="debtorAccountDetails" type="cmn:AccountDetails"/>
-			<xs:element maxOccurs="1" name="creditorAccountDetails" type="cmn:AccountDetails"/>
-			<xs:element name="amount">
-				<xs:simpleType>
-					<xs:restriction base="xs:decimal">
-						<xs:totalDigits value="17"/>
-						<xs:fractionDigits value="2"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="currencyCode">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:length value="3"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-		</xs:sequence>
 	</xs:complexType>
 	<xsd:element name="rtgsApprovalMessage" type="mp:RtgsApprovalMessage"/>
 	<xsd:element name="clearingApprovalMessage" type="mp:ClearingApprovalMessage"/>

@@ -13,21 +13,22 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import rs.ac.uns.ftn.xws.generated.cmn.Payment;
+
 
 /**
- * <p>Java class for ClearingApprovalMessage complex type.
+ * <p>Java class for Mt102Payment complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ClearingApprovalMessage">
+ * &lt;complexType name="Mt102Payment">
  *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     &lt;extension base="{http://www.ftn.uns.ac.rs/xws/xsd/common}Payment">
  *       &lt;sequence>
- *         &lt;element name="mt910" type="{http://www.ftn.uns.ac.rs/xws/xsd/mp}Mt910"/>
- *         &lt;element name="mt102" type="{http://www.ftn.uns.ac.rs/xws/xsd/mp}Mt102"/>
+ *         &lt;element name="paymentOrderId" type="{http://www.ftn.uns.ac.rs/xws/xsd/common}MessageId"/>
  *       &lt;/sequence>
- *     &lt;/restriction>
+ *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -35,63 +36,65 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ClearingApprovalMessage", propOrder = {
-    "mt910",
-    "mt102"
+@XmlType(name = "Mt102Payment", propOrder = {
+    "paymentOrderId",
+    "currencyCode"
 })
-public class ClearingApprovalMessage {
+public class Mt102Payment
+    extends Payment
+{
 
     @XmlElement(required = true)
-    protected Mt910 mt910;
+    protected String paymentOrderId;
     @XmlElement(required = true)
-    protected Mt102 mt102;
+    protected String currencyCode;
 
     /**
-     * Gets the value of the mt910 property.
+     * Gets the value of the paymentOrderId property.
      * 
      * @return
      *     possible object is
-     *     {@link Mt910 }
+     *     {@link String }
      *     
      */
-    public Mt910 getMt910() {
-        return mt910;
+    public String getPaymentOrderId() {
+        return paymentOrderId;
     }
 
     /**
-     * Sets the value of the mt910 property.
+     * Sets the value of the paymentOrderId property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Mt910 }
+     *     {@link String }
      *     
      */
-    public void setMt910(Mt910 value) {
-        this.mt910 = value;
+    public void setPaymentOrderId(String value) {
+        this.paymentOrderId = value;
     }
-
+    
     /**
-     * Gets the value of the mt102 property.
+     * Gets the value of the currencyCode property.
      * 
      * @return
      *     possible object is
-     *     {@link Mt102 }
+     *     {@link String }
      *     
      */
-    public Mt102 getMt102() {
-        return mt102;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
     /**
-     * Sets the value of the mt102 property.
+     * Sets the value of the currencyCode property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Mt102 }
+     *     {@link String }
      *     
      */
-    public void setMt102(Mt102 value) {
-        this.mt102 = value;
+    public void setCurrencyCode(String value) {
+        this.currencyCode = value;
     }
 
 }

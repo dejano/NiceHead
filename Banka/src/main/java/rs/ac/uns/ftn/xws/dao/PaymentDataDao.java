@@ -139,9 +139,11 @@ public class PaymentDataDao {
 		try {
 			String queryResult = RESTUtil.readString(RESTUtil.retrieveResource(q, "payments",
 					RequestMethod.GET));
+			
+			System.out.println(queryResult);
+			
 			for (String xmlRecord : ParserUtil.getPayments(queryResult)) {
-				
-				//PaymentData payment = (PaymentData) ParserUtil.transformStringIntoJAXBeans(xmlRecord, PaymentData.class);
+//				PaymentData payment = (PaymentData) ParserUtil.transformStringIntoJAXBeans(xmlRecord, PaymentData.class);
 				PaymentData payment = ParserUtil.transformStringIntoJAXBeans(xmlRecord, PaymentData.class);
 				retList.add(payment);
 			} 
