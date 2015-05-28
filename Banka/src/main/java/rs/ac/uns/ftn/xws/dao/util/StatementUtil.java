@@ -88,11 +88,11 @@ public class StatementUtil {
 				
 				if(item.getDirection().equals("A")) {
 					payoutCount++;
-					payoutAmount = payoutAmount.add(item.getValue());
+					payoutAmount = payoutAmount.add(item.getAmount());
 				}
 				else {
 					paymentCount++;
-					paymentAmount = paymentAmount.add(item.getValue());
+					paymentAmount = paymentAmount.add(item.getAmount());
 				}
 			}
 			
@@ -132,8 +132,8 @@ public class StatementUtil {
 			item.setDirection("B");
 
 		item.setOrderDate(payment.getOrderDate());
-		item.setValueDate(payment.getValueDate());
-		item.setValue(payment.getValue());
+		item.setCurrencyDate(payment.getCurrencyDate());
+		item.setAmount(payment.getAmount());
 
 		return item;
 	}

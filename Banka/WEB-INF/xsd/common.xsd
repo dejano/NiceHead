@@ -90,10 +90,9 @@
 			<xs:element name="paymentPurpose" type="xs:string"/>
 			<xs:element name="creditor" type="xs:string"/>
 			<xs:element name="orderDate" type="xs:date"/>
-			<xs:element name="valueDate" type="xs:date"/>
 			<xs:element name="debtorAccountDetails" type="cmn:AccountDetails"/>
 			<xs:element name="creditorAccountDetails" type="cmn:AccountDetails"/>
-			<xs:element name="value" type="cmn:Balance"/>
+			<xs:element name="amount" type="cmn:Balance"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

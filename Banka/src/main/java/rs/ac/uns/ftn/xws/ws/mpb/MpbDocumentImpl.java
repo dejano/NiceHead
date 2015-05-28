@@ -7,11 +7,11 @@ import javax.ejb.Stateless;
 
 import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
 import rs.ac.uns.ftn.xws.dao.CompanyDataDao;
+import rs.ac.uns.ftn.xws.generated.cmn.Payment;
 import rs.ac.uns.ftn.xws.generated.mp.ClearingApprovalMessage;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.mp.Mt900;
-import rs.ac.uns.ftn.xws.generated.mp.Payment;
 import rs.ac.uns.ftn.xws.generated.mp.RtgsApprovalMessage;
 
 @Stateless
@@ -28,7 +28,7 @@ public class MpbDocumentImpl implements MpbDocument {
 		
 		Mt102 mt102 = ClearingDataDao.getMt102(clearingDebitPart.getPaymentOrderId());
 
-		for (Payment payment : mt102.getPayments().getPayments()) {
+		for (Payment payment : mt102.getPayments().getPayment()) {
 			String accountNumber = payment.getDebtorAccountDetails().getAccountNumber();
 			BigDecimal amount = payment.getAmount();
 
@@ -72,7 +72,7 @@ public class MpbDocumentImpl implements MpbDocument {
 		Mt102 mt102 = clearingApprovalPart.getMt102();
 
 		// iterate through payments and pay in funds to creditor accounts
-		for (Payment payment : mt102.getPayments().getPayments()) {
+		for (Payment payment : mt102.getPayments().getPayment()) {
 			String accountNumber = payment.getCreditorAccountDetails()
 					.getAccountNumber();
 			BigDecimal amount = payment.getAmount();

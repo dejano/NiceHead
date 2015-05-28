@@ -22,12 +22,12 @@ public class ClearingDataDao {
 	private static final String getClearingDataQuery = "//*[local-name()='clearingData']&wrap=no";
 
 	public static void main(String[] args) throws Exception {
-//		File file = new File("src/main/resources/");
-//		RESTUtil.deleteResource(CentralBankConstants.SCHEMA_NAME,
-//				"clearingData.xml");
-//		RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME,
-//				"clearingData.xml", new FileInputStream(new File(file,
-//						"clearingData.xml")));
+		File file = new File("src/main/resources/");
+		RESTUtil.deleteResource(CentralBankConstants.SCHEMA_NAME,
+				"clearingData.xml");
+		RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME,
+				"clearingData.xml", new FileInputStream(new File(file,
+						"clearingData.xml")));
 
 //		System.out.println(getClearingDataAsString());
 
@@ -38,7 +38,7 @@ public class ClearingDataDao {
 //
 //		System.out.println(getClearingDataAsString());
 //
-		deleteMt102("2");
+//		deleteMt102("2");
 
 		System.out.println(getClearingDataAsString());
 	}

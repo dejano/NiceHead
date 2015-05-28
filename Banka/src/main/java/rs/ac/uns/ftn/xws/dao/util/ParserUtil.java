@@ -44,9 +44,9 @@ public class ParserUtil {
 	public static List<String> getPayments(String input) {
 		List<String> retList = new ArrayList<String>();
 
-		String[] parts = input.split("</cmn:paymentData>");
+		String[] parts = input.split("</bsb:paymentData>");
 		for (String string : parts) {
-			retList.add(string + "</cmn:paymentData>");
+			retList.add(string + "</bsb:paymentData>");
 		}
 
 		// retList = new ArrayList<String>(Arrays.asList(parts));
@@ -82,20 +82,20 @@ public class ParserUtil {
 			e.printStackTrace();
 		}
 
-		Transformer transformer;
-		try {
-			transformer = TransformerFactory.newInstance().newTransformer();
-			Result output = new StreamResult(new File(
-					"C:/Users/Bandjur/Desktop/test.xml"));
-			Source input = new DOMSource(doc);
-			transformer.transform(input, output);
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			e.printStackTrace();
-		}
+//		Transformer transformer;
+//		try {
+//			transformer = TransformerFactory.newInstance().newTransformer();
+//			Result output = new StreamResult(new File(
+//					"C:/Users/Bandjur/Desktop/test.xml"));
+//			Source input = new DOMSource(doc);
+//			transformer.transform(input, output);
+//		} catch (TransformerConfigurationException e) {
+//			e.printStackTrace();
+//		} catch (TransformerFactoryConfigurationError e) {
+//			e.printStackTrace();
+//		} catch (TransformerException e) {
+//			e.printStackTrace();
+//		}
 
 		return doc;
 	}

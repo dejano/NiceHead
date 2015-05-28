@@ -27,6 +27,7 @@
         <xs:complexContent>
             <xs:extension base="cmn:Payment">
                 <xs:sequence>
+                    <xs:element name="currencyDate" type="xs:date"/>
                     <xs:element name="previousBalance" type="cmn:Balance"/>
                     <xs:element name="newBalance" type="cmn:Balance"/>
                 </xs:sequence>
