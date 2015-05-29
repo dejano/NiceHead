@@ -7,7 +7,7 @@ import java.math.RoundingMode;
 
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
-import rs.ac.uns.ftn.xws.util.BankConstants;
+import rs.ac.uns.ftn.xws.misc.BankConstants;
 
 public class CompanyDataDao {
 

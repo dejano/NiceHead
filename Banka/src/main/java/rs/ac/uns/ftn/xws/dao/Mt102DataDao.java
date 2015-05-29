@@ -5,39 +5,37 @@ import java.io.FileInputStream;
 
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
-import rs.ac.uns.ftn.xws.generated.mp.Mt102;
-import rs.ac.uns.ftn.xws.util.BankConstants;
-import rs.ac.uns.ftn.xws.util.XmlHelper;
+import rs.ac.uns.ftn.xws.domain.mpb.Mt102Ref;
+import rs.ac.uns.ftn.xws.misc.BankConstants;
+import rs.ac.uns.ftn.xws.misc.XmlHelper;
 
-public class ClearingDataDao {
+public class Mt102DataDao {
 
 	private static final String[] insertMt102Query = { "insert node ",
-			" into //*[local-name()='clearingData']" };
+			" into //*[local-name()='mt102Data']" };
 
 	private static final String[] deleteMt102Query = {
-			"delete node //*[local-name()='mt102'][@messageId='", "']" };
+			"delete node //*[local-name()='mt102Data']/*[local-name()='mt102Ref'][@messageId='", "']" };
 
 	private static final String[] getMt102Query = {
-			"//*[local-name()='mt102'][@messageId='", "']&wrap=no" };
+			"//*[local-name()='mt102Data']/*[local-name()='mt102Ref'][@messageId='", "']&wrap=no" };
 
 	public static void main(String[] args) throws Exception {
-		File file = new File("src/main/resources/");
-		RESTUtil.deleteResource(BankConstants.BANK_NAME, "clearingData.xml");
-		RESTUtil.createResource(BankConstants.BANK_NAME, "clearingData.xml",
-				new FileInputStream(new File(file, "clearingData.xml")));
-//		System.out.println(getClearingDataAsString("123123"));
+//		File file = new File("src/main/resources/");
+//		RESTUtil.deleteResource(BankConstants.BANK_NAME, "mt102Data.xml");
+//		RESTUtil.createResource(BankConstants.BANK_NAME, "mt102Data.xml",
+//				new FileInputStream(new File(file, "mt102Data.xml")));
+//
+//		Mt102Ref mt102Ref = new Mt102Ref();
+//		mt102Ref.setMessageId("999");
+//		insertMt102(XmlHelper.marshall(mt102Ref));
 
-		Mt102 mt102 = new Mt102();
-		mt102.setMessageId("999");
-		insertMt102(XmlHelper.marshall(mt102));
+		System.out.println(getMt102DataAsString("999"));
 
-//		@SuppressWarnings("unused")
-//		Mt102 mt102 = getMt102("555");
-
-		System.out.println(getClearingDataAsString("999"));
+		System.out.println(getMt102Ref("999"));
 	}
 
-	public static String getClearingDataAsString(String messageId) {
+	public static String getMt102DataAsString(String messageId) {
 		String ret = null;
 
 		String query = getMt102Query[0] + messageId + getMt102Query[1];
@@ -52,14 +50,16 @@ public class ClearingDataDao {
 		return ret;
 	}
 
-	public static Mt102 getMt102(String messageId) {
-		Mt102 ret = null;
+	public static Mt102Ref getMt102Ref(String messageId) {
+		Mt102Ref ret = null;
 
 		String query = getMt102Query[0] + messageId + getMt102Query[1];
 
 		try {
-			ret = XmlHelper.unmarshall(RESTUtil.retrieveResource(query,
-					BankConstants.BANK_NAME, RequestMethod.GET), Mt102.class);
+			ret = XmlHelper
+					.unmarshall(RESTUtil.retrieveResource(query,
+							BankConstants.BANK_NAME, RequestMethod.GET),
+							Mt102Ref.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,6 +88,6 @@ public class ClearingDataDao {
 		}
 	}
 
-	private ClearingDataDao() {
+	private Mt102DataDao() {
 	}
 }

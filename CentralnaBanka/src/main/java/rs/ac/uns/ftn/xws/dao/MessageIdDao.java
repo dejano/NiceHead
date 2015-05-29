@@ -6,7 +6,7 @@ import java.math.BigInteger;
 
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
-import rs.ac.uns.ftn.xws.util.CentralBankConstants;
+import rs.ac.uns.ftn.xws.misc.CentralBankConstants;
 
 public class MessageIdDao {
 

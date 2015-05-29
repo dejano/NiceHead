@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 
 import org.apache.commons.io.IOUtils;
 
-import rs.ac.uns.ftn.xws.util.CentralBankConstants;
+import rs.ac.uns.ftn.xws.misc.CentralBankConstants;
 
 public class RESTUtil {
 
