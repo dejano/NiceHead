@@ -27,11 +27,11 @@ public class MpbDocumentService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl");
+            url = new URL("file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(MpbDocumentService.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl");
+                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl");
         }
         WSDL_LOCATION = url;
     }

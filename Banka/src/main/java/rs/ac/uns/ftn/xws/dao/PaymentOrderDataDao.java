@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.xws.dao;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.math.BigDecimal;
 
 import rs.ac.uns.ftn.xws.dao.util.ParserUtil;
@@ -25,13 +26,13 @@ public class PaymentOrderDataDao {
 	
 	public static void main(String[] args) throws Exception{
 		
-//		 RESTUtil.dropSchema("bank");
-//		 RESTUtil.createSchema(BankConstants.BANK_NAME);
+		 RESTUtil.dropSchema("bank");
+		 RESTUtil.createSchema(BankConstants.BANK_NAME);
 		
 		File file = new File("src/main/resources/");
-//		RESTUtil.deleteResource(BankConstants.BANK_NAME, "paymentOrders.xml");
-//		RESTUtil.createResource(BankConstants.BANK_NAME, "paymentOrders.xml",
-//				new FileInputStream(new File(file, "paymentOrders.xml")));
+		RESTUtil.deleteResource(BankConstants.BANK_NAME, "paymentOrders.xml");
+		RESTUtil.createResource(BankConstants.BANK_NAME, "paymentOrders.xml",
+				new FileInputStream(new File(file, "paymentOrders.xml")));
 
 		PaymentOrder po = new PaymentOrder();
 		po.setAmount(BigDecimal.TEN);

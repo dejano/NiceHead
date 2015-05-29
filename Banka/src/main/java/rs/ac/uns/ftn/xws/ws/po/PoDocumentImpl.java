@@ -8,7 +8,7 @@ import javax.jws.WebService;
 import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
 
 @Stateless
-@WebService(serviceName = "PoDocumentService", portName = "PoDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/po", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/po.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.po.PoDocument")
+@WebService(serviceName = "PoDocumentService", portName = "PoDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/po", wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/po.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.po.PoDocument")
 public class PoDocumentImpl implements PoDocument {
 
 	private static final Logger LOG = Logger.getLogger(PoDocumentImpl.class

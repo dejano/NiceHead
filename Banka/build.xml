@@ -95,11 +95,8 @@
 		<xjc schema="${webinf.dir}/xsd/bsb.xsd" destdir="${gen.dir}" />
 		<xjc schema="${webinf.dir}/xsd/paymentOrder.xsd" destdir="${gen.dir}" />
 		-->
-<<<<<<< HEAD
 		<xjc schema="${webinf.dir}/xsd/mpb.xsd" destdir="${gen.dir}" />
-=======
 		<xjc schema="${webinf.dir}/xsd/paymentOrders.xsd" destdir="${gen.dir}" />
->>>>>>> po-domain-dao
 	</target>
 
 	<target name="generate-code-wsdl">
@@ -152,7 +149,6 @@
 			<fileset dir="${dist.dir}" includes="${bank.name}.war" />
 		</copy>
 	</target>
-
 	<target name="clean">
 		<delete file="${dist.dir}/${bank.name}.war" />
 		<delete file="${tomee.dir}/webapps/${bank.name}" />

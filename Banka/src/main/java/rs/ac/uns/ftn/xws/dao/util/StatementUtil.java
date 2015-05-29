@@ -42,7 +42,7 @@ public class StatementUtil {
 		ObjectFactory of = new ObjectFactory();
 		Statement retVal = of.createStatement();
 		retVal.setItems(of.createStatementItems());
-		List<StatementItem> items = new ArrayList<StatementItem>();
+//		List<StatementItem> items = new ArrayList<StatementItem>();
 
 		String accountNumber = request.getAccountNumber();
 		String orderDate = request.getDate().toString();
