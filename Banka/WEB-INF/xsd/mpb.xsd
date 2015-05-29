@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-	xmlns:mpb="http://www.ftn.uns.ac.rs/xws/xsd/mpb" targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/mpb"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns:mpb="http://www.ftn.uns.ac.rs/xws/xsd/mpb"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/mpb"
 	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
-	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:mt102="http://www.ftn.uns.ac.rs/xws/xsd/mt102"
-	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp">
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common">
 
 	<xs:annotation>
 		<xs:appinfo>
-			<jxb:globalBindings collectionType="java.util.ArrayList" />
+			<jxb:globalBindings collectionType="java.util.ArrayList"/>
 			<jxb:schemaBindings>
-				<jxb:package name="rs.ac.uns.ftn.xws.domain.mpb" />
+				<jxb:package name="rs.ac.uns.ftn.xws.domain.mpb"/>
 			</jxb:schemaBindings>
 		</xs:appinfo>
 	</xs:annotation>
 
 	<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common"
-		schemaLocation="../xsd/common.xsd" />
-	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
-		schemaLocation="mp.xsd" />
+		schemaLocation="../xsd/common.xsd"/>
 
 	<xs:complexType name="Company">
 		<xs:sequence>
-			<xs:element name="accountNumber" type="cmn:AccountNumber" />
-			<xs:element name="balance" type="xs:decimal" />
-			<xs:element name="reservedAmount" type="xs:decimal" />
-			<xs:element name="wsUrl" type="xs:string" />
+			<xs:element name="accountNumber" type="cmn:AccountNumber"/>
+			<xs:element name="balance" type="xs:decimal"/>
+			<xs:element name="reservedAmount" type="xs:decimal"/>
+			<xs:element name="wsUrl" type="xs:string"/>
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="CompanyData">
 		<xs:sequence>
-			<xs:element maxOccurs="unbounded" name="company" type="mpb:Company" />
+			<xs:element maxOccurs="unbounded" name="company" type="mpb:Company"/>
 		</xs:sequence>
 	</xs:complexType>
-
-	<xs:complexType name="ClearingData">
+	<xs:complexType name="Mt102Ref">
+		<xs:sequence minOccurs="0">
+			<xs:element maxOccurs="unbounded" name="paymentOrderId" type="cmn:MessageId"/>
+		</xs:sequence>
+		<xs:attribute name="messageId" type="cmn:MessageId"/>
+	</xs:complexType>
+	<xs:complexType name="Mt102Data">
 		<xs:sequence>
-			<xs:element maxOccurs="unbounded" minOccurs="0" ref="mp:mt102" />
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="mt102Ref" type="mpb:Mt102Ref"/>
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:element abstract="false" name="companyData" type="mpb:CompanyData" />
-	<xs:element name="clearingData" type="mpb:ClearingData" />
+	<xs:element abstract="false" name="companyData" type="mpb:CompanyData"/>
+	<xs:element name="mt102Data" type="mpb:Mt102Data"/>
+	<xs:element name="mt102Ref" type="mpb:Mt102Ref"/>
 </xs:schema>

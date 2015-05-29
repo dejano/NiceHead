@@ -8,8 +8,8 @@ import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
 import rs.ac.uns.ftn.xws.domain.ClearingData;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
-import rs.ac.uns.ftn.xws.util.CentralBankConstants;
-import rs.ac.uns.ftn.xws.util.XmlHelper;
+import rs.ac.uns.ftn.xws.misc.CentralBankConstants;
+import rs.ac.uns.ftn.xws.misc.XmlHelper;
 
 public class ClearingDataDao {
 

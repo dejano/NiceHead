@@ -9,7 +9,7 @@ import javax.xml.ws.Service;
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
-import rs.ac.uns.ftn.xws.util.ObjectFactory;
+import rs.ac.uns.ftn.xws.misc.ObjectMapper;
 
 public class MpbDocumentClient {
 
@@ -41,14 +41,14 @@ public class MpbDocumentClient {
 		MpbDocument mpbService = getService(mt102.getCreditorBankDetails()
 				.getSwiftCode());
 
-		mpbService.clearingDebit(ObjectFactory.getMt900(mt102));
+		mpbService.clearingDebit(ObjectMapper.getMt900(mt102));
 	}
 
 	public static void invokeRtgsApproval(Mt103 mt103) {
 		MpbDocument mpbService = getService(mt103.getCreditorBankDetails()
 				.getSwiftCode());
 
-		mpbService.rtgsApproval(ObjectFactory
+		mpbService.rtgsApproval(ObjectMapper
 				.getRtgsApprovalMessageMessage(mt103));
 	}
 
@@ -56,7 +56,7 @@ public class MpbDocumentClient {
 		MpbDocument mpbService = getService(mt102.getCreditorBankDetails()
 				.getSwiftCode());
 
-		mpbService.clearingApproval(ObjectFactory
+		mpbService.clearingApproval(ObjectMapper
 				.getClearingApprovalMessage(mt102));
 	}
 }

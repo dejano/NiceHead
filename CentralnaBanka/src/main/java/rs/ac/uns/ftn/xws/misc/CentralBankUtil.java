@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.util;
+package rs.ac.uns.ftn.xws.misc;
 
 import java.math.BigDecimal;
 import java.util.List;
