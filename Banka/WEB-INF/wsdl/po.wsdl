@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PoDocumentService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/po" xmlns:pows="http://www.ftn.uns.ac.rs/xws/ws/po"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/po">
+
+	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/po"
+		location="../xsd/paymentOrder.xsd" />
+
+	<wsdl:message name="paymentOrderMessage">
+		<wsdl:part name="paymentOrderPart" element="po:paymentOrder" />
+	</wsdl:message>
+	<wsdl:message name="paymentOrderResponseMessage">
+	</wsdl:message>
+	<wsdl:message name="poException">
+		<wsdl:part name="fault" element="po:poExceptionEnum" />
+	</wsdl:message>
+
+	<wsdl:portType name="PoDocument">
+		<wsdl:operation name="paymentOrderHandle">
+			<wsdl:input message="pows:paymentOrderMessage" />
+			<wsdl:output message="pows:paymentOrderResponseMessage" />
+			<wsdl:fault message="pows:poException" name="PoException" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="PoServiceSoapBinding" type="pows:PoDocument">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="paymentOrderHandle">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:fault name="PoException">
+				<soap:fault name="PoException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="PoDocumentService">
+		<wsdl:port name="PoDocumentPort" binding="pows:PoServiceSoapBinding">
+			<soap:address location="http://localhost:8080/po" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

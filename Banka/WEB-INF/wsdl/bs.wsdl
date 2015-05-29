@@ -7,7 +7,7 @@
 	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/bsws">
 
 	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bs"
-		schemaLocation="../xsd/bs.xsd" />
+		location="../xsd/bs.xsd" />
 
 	<wsdl:message name="bsRequestMessage">
 		<wsdl:part name="bsRequestPart" element="bs:statementRequest" />
