@@ -29,16 +29,16 @@ public class ClearingDataDao {
 				"clearingData.xml", new FileInputStream(new File(file,
 						"clearingData.xml")));
 
-//		System.out.println(getClearingDataAsString());
+		// System.out.println(getClearingDataAsString());
 
-//		Mt102 mt102 = new Mt102();
-//		mt102.setMessageId("123123");
-//		mt102.setTotalAmount(new BigDecimal(12));
-//		insertMt102(XmlHelper.marshall(mt102));
-//
-//		System.out.println(getClearingDataAsString());
-//
-//		deleteMt102("2");
+		// Mt102 mt102 = new Mt102();
+		// mt102.setMessageId("123123");
+		// mt102.setTotalAmount(new BigDecimal(12));
+		// insertMt102(XmlHelper.marshall(mt102));
+		//
+		// System.out.println(getClearingDataAsString());
+		//
+		// deleteMt102("2");
 
 		System.out.println(getClearingDataAsString());
 	}
