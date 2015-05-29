@@ -153,4 +153,9 @@ public class PaymentDataDao {
 		
 		return retList;
 	}
+	
+	public void addPayment() 
+	{
+		
+	}
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/pos"
+    xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
+    xmlns:pos="http://www.ftn.uns.ac.rs/xws/xsd/pos" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    jxb:version="2.0">
+
+    <xs:annotation>
+        <xs:appinfo>
+                <jxb:globalBindings collectionType="java.util.ArrayList"/>
+                <jxb:schemaBindings>
+                    <jxb:package name="rs.ac.uns.ftn.xws.domain.pos"/>
+                </jxb:schemaBindings>
+            </xs:appinfo>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
+        schemaLocation="paymentOrder.xsd"/>
+    <xs:complexType name="PaymentOrders">
+        <xs:sequence>
+            <xs:element ref="po:paymentOrder"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
