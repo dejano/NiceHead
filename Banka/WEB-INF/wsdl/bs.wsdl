@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions name="BsDocumentService"
-	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
-	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-	xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bs"
-	xmlns:bsws="http://www.ftn.uns.ac.rs/xws/ws/bsws" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bs" xmlns:bsws="http://www.ftn.uns.ac.rs/xws/ws/bsws"
 	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/bsws">
-	
-	<wsdl:types>
-		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
-			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bs"
-				schemaLocation="../xsd/bs.xsd" />
-		</xsd:schema>
-	</wsdl:types>
+
+	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bs"
+		schemaLocation="../xsd/bs.xsd" />
 
 	<wsdl:message name="bsRequestMessage">
 		<wsdl:part name="bsRequestPart" element="bs:statementRequest" />
@@ -50,5 +42,5 @@
 			<soap:address location="http://localhost:8080/bs" />
 		</wsdl:port>
 	</wsdl:service>
-	
+
 </wsdl:definitions>
