@@ -5,5 +5,5 @@
 // Generated on: 2015.05.29 at 01:35:39 PM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package rs.ac.uns.ftn.xws.generated.po;
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/pos", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package rs.ac.uns.ftn.xws.domain.pos;
