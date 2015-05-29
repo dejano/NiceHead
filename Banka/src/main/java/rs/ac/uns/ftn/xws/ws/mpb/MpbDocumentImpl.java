@@ -5,14 +5,16 @@ import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 
-import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
 import rs.ac.uns.ftn.xws.dao.CompanyDataDao;
+import rs.ac.uns.ftn.xws.dao.Mt102DataDao;
+import rs.ac.uns.ftn.xws.domain.mpb.Mt102Ref;
 import rs.ac.uns.ftn.xws.generated.cmn.Payment;
 import rs.ac.uns.ftn.xws.generated.mp.ClearingApprovalMessage;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.mp.Mt900;
 import rs.ac.uns.ftn.xws.generated.mp.RtgsApprovalMessage;
+import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
 
 @Stateless
 @javax.jws.WebService(serviceName = "MpbDocumentService", portName = "MpbDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpb", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.mpb.MpbDocument")
@@ -26,11 +28,12 @@ public class MpbDocumentImpl implements MpbDocument {
 
 		LOG.info("Clearing message mt102 : " + clearingDebitPart.getPaymentOrderId());
 		
-		Mt102 mt102 = ClearingDataDao.getMt102(clearingDebitPart.getPaymentOrderId());
+		Mt102Ref mt102Ref = Mt102DataDao.getMt102Ref(clearingDebitPart.getPaymentOrderId());
 
-		for (Payment payment : mt102.getPayments().getPayment()) {
-			String accountNumber = payment.getDebtorAccountDetails().getAccountNumber();
-			BigDecimal amount = payment.getAmount();
+		for (String paymentOrderId : mt102Ref.getPaymentOrderId()) {
+			PaymentOrder paymentOrder = null; // TODO baki
+			String accountNumber = paymentOrder.getDebtorAccountDetails().getAccountNumber();
+			BigDecimal amount = paymentOrder.getAmount();
 
 			BigDecimal balance = CompanyDataDao
 					.getCompanyBalance(accountNumber);

@@ -12,15 +12,16 @@ import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 
+
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
 import rs.ac.uns.ftn.xws.generated.mp.MpExceptionEnum;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.mp.Mt900;
-import rs.ac.uns.ftn.xws.util.CentralBankUtil;
-import rs.ac.uns.ftn.xws.util.ObjectFactory;
-import rs.ac.uns.ftn.xws.util.XmlHelper;
+import rs.ac.uns.ftn.xws.misc.CentralBankUtil;
+import rs.ac.uns.ftn.xws.misc.ObjectMapper;
+import rs.ac.uns.ftn.xws.misc.XmlHelper;
 import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
 @Stateless
 @javax.jws.WebService(
@@ -77,7 +78,7 @@ public class MpcbDocumentImpl implements MpcbDocument {
 		// send rtgs confirm message to creditor's bank
 		MpbDocumentClient.invokeRtgsApproval(rtgsRequestPart);
 
-		return ObjectFactory.getMt900(rtgsRequestPart);
+		return ObjectMapper.getMt900(rtgsRequestPart);
 	}
 
 	public void clearingRequest(Mt102 clearingRequestPart) throws MpException {

@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.util;
+package rs.ac.uns.ftn.xws.misc;
 
 import java.io.InputStream;
 import java.io.StringWriter;

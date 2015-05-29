@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.util;
+package rs.ac.uns.ftn.xws.misc;
 
 import rs.ac.uns.ftn.xws.dao.MessageIdDao;
 import rs.ac.uns.ftn.xws.generated.mp.ClearingApprovalMessage;
@@ -8,7 +8,7 @@ import rs.ac.uns.ftn.xws.generated.mp.Mt900;
 import rs.ac.uns.ftn.xws.generated.mp.Mt910;
 import rs.ac.uns.ftn.xws.generated.mp.RtgsApprovalMessage;
 
-public class ObjectFactory {
+public class ObjectMapper {
 
 	public static Mt900 getMt900(Mt103 mt103) {
 		Mt900 ret = new Mt900();
@@ -70,6 +70,6 @@ public class ObjectFactory {
 		return ret;
 	}
 
-	private ObjectFactory() {
+	private ObjectMapper() {
 	}
 }

@@ -9,6 +9,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
 //import javax.swing.text.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,7 +36,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import rs.ac.uns.ftn.xws.domain.bsb.PaymentData;
-import rs.ac.uns.ftn.xws.util.XmlHelper;
+import rs.ac.uns.ftn.xws.misc.XmlHelper;
 
 public class ParserUtil {
 
