@@ -172,9 +172,9 @@ public class ParserUtil {
 
 			InputStream is = new ByteArrayInputStream(
 					outputStream.toByteArray());
-			T payment = XmlHelper.unmarshall(is, clazz);
+			T retObject = XmlHelper.unmarshall(is, clazz);
 			// TODO ubaci ovde typecase retVala direktno ... tj dole u returnu
-			retVal = (payment != null) ? payment : retVal;
+			retVal = (retObject != null) ? retObject : retVal;
 
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();

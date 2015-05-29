@@ -5,5 +5,11 @@
 // Generated on: 2015.05.29 at 01:35:39 PM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@XmlSchema(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder",
+			elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED,
+			xmlns = { @javax.xml.bind.annotation.XmlNs(prefix = "cmn", namespaceURI = "http://www.ftn.uns.ac.rs/xws/xsd/common"),
+		@javax.xml.bind.annotation.XmlNs(prefix = "po", namespaceURI = "http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"),
+			@javax.xml.bind.annotation.XmlNs(prefix = "pos", namespaceURI = "http://www.ftn.uns.ac.rs/xws/xsd/pos")})
 package rs.ac.uns.ftn.xws.generated.po;
+import javax.xml.bind.annotation.XmlSchema;
+

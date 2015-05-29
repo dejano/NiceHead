@@ -21,34 +21,11 @@ public class PaymentDataDao {
 
 	private static final String getPaymentsByAccNumberAndOrderDateString = "/*[local-name()='paymentsData']/*[local-name()='payment'][*[local-name()='debtorAccountDetails']/*[local-name()='accountNumber']='111-0000000000000-00' or *[local-name()='creditorAccountDetails']/*[local-name()='accountNumber']='111-0000000000000-00'][*[local-name()='orderDate']='2006-05-04'][position()= 1 to 3]&wrap=no";
 
-	// private static final String getPaymentsByAccNumberAndOrderDateString =
-	// "/*[local-name()='paymentsData']/*[local-name()='payment'][*[local-name()='debtorAccountDetails']/*[local-name()='accountNumber']='111-0000000000000-00'][*[local-name()='orderDate']='2006-05-04'][position()= 1 to 3]&wrap=no";
-
-	// private static final String[] getPaymentsByAccNumberAndOrderDate = {
-	// "/*[local-name()='paymentsData']/*[local-name()='payment'][*[local-name()='debtorAccountDetails']/*[local-name()='accountNumber']='",
-	// "'][*[local-name()='orderDate']='","'][position()= ", " to ", "]&wrap=no"
-	// };
-
-	// private static final String[] getPaymentsByAccNumberAndOrderDate = {
-	// "/*[local-name()='paymentsData']/*[local-name()='payment'][*[local-name()='debtorAccountDetails']/*[local-name()='accountNumber']='",
-	// "'][*[local-name()='orderDate']='","'][position()= ", " to ", "]&wrap=no"
-	// };
-
-//	private static final String[] getPaymentsByAccNumberAndOrderDate = {
-//			"/*[local-name()='paymentsData']/*[local-name()='payment'][*[local-name()='debtorAccountDetails']/*[local-name()='accountNumber']='",
-//			"' or *[local-name()='creditorAccountDetails']/*[local-name()='accountNumber']='",
-//			"'][*[local-name()='orderDate']='", "'][position()= ", " to ",
-//			"]&wrap=no" };
-	
 	private static final String[] getPaymentsByAccNumberAndOrderDate = {
 		"/*[local-name()='paymentsData']/*[local-name()='paymentData'][*[local-name()='debtorAccountDetails']/*[local-name()='accountNumber']='",
 		"' or *[local-name()='creditorAccountDetails']/*[local-name()='accountNumber']='",
 		"'][*[local-name()='orderDate']='", "'][position()= ", " to ",
 		"]&wrap=no" };
-
-	// private static final String getMjauData =
-	// "/*[local-name()='paymentData']";
-	// /*[local-name()='workbook']/*[local-name()='sheets']/*[local-name()='sheet'][1]
 
 	private static final String[] getCompanyBalanceQuery = {
 			"//*[local-name()='company'][*[local-name()='accountNumber']='",
@@ -57,7 +34,6 @@ public class PaymentDataDao {
 	public static void main(String[] args) {
 
 		File file = new File("src/main/resources/");
-		//
 		try {
 			RESTUtil.dropSchema("payments");
 			RESTUtil.createSchema("payments");
@@ -69,20 +45,8 @@ public class PaymentDataDao {
 			RESTUtil.createResource("payments", "payments.xml",
 					new FileInputStream(new File(file, "payments.xml")));
 
-//			System.out
-//					.println("test--------------------------------------------------");
-//			String ret = RESTUtil.readString(RESTUtil.retrieveResource(
-//					getPaymentsByAccNumberAndOrderDateString, "payments",
-//					RequestMethod.GET));
-//			System.out.println(ret);
-//			System.out
-//					.println("test--------------------------------------------------");
-
 			System.out.println(getPayments("2006-05-04",
 					"111-0000000000000-00", 1));
-//			List<PaymentData> payments = ParserUtil
-//					.transformStringsIntoJAXB(getPayments("2006-05-04",
-//							"111-0000000000000-00", 1));
 			System.out.println("najnovi test");
 
 		} catch (Exception e) {
