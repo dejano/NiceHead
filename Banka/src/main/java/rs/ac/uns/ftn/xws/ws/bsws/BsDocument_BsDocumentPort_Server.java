@@ -15,7 +15,8 @@ public class BsDocument_BsDocumentPort_Server{
     protected BsDocument_BsDocumentPort_Server() throws java.lang.Exception {
         System.out.println("Starting Server");
         Object implementor = new BsDocumentImpl();
-        String address = "http://localhost:8080/bs";
+        String address = "http://localhost:8080/banka1";
+//        String address = "http://localhost:8080/bs";
         Endpoint.publish(address, implementor);
     }
     

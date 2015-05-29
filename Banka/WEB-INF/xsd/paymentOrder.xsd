@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	elementFormDefault="qualified" xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
-	targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/po" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
-	jxb:version="2.0" xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/po" xmlns="http://www.ftn.uns.ac.rs/xws/xsd/po">
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
+	xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder" xmlns="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder">
 
 	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common"
 		schemaLocation="common.xsd" />
@@ -33,7 +34,7 @@
 			<xs:enumeration value="foo" />
 		</xs:restriction>
 	</xs:simpleType>
-	
+
 	<xs:element name="paymentOrder" type="po:PaymentOrder" />
 	<xs:element name="poExceptionEnum" type="po:PoExceptionEnum" />
 

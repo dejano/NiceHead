@@ -28,7 +28,7 @@ import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
                       serviceName = "MpcbDocumentService",
                       portName = "MpcbDocumentPort",
                       targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpcb",
-                      wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
+                      wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
                       endpointInterface = "rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocument")
                       
 public class MpcbDocumentImpl implements MpcbDocument {

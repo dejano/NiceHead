@@ -9,4 +9,5 @@ public class BankConstants {
 
 	public static final String BANK_NAME = ResourceBundle.getBundle(
 			PROP_FILE_PATH).getString("bank.name");
+	
 }

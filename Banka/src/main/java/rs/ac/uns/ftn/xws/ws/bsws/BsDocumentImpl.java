@@ -18,7 +18,8 @@ import rs.ac.uns.ftn.xws.generated.bs.Statement;
  * 
  */
 @Stateless
-@javax.jws.WebService(serviceName = "BsDocumentService", portName = "BsDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bsws", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/bs.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.bsws.BsDocument")
+@javax.jws.WebService(serviceName = "BsDocumentService", portName = "BsDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bsws", wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/bs.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.bsws.BsDocument")
+
 public class BsDocumentImpl implements BsDocument {
 
 	private static final Logger LOG = Logger.getLogger(BsDocumentImpl.class
