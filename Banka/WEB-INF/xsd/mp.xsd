@@ -180,4 +180,10 @@
 	<xs:element abstract="false" name="mt103" type="mp:Mt103"/>
 	<xs:element name="mt900" type="mp:Mt900"/>
 	<xs:element name="mt910" nillable="false" type="mp:Mt910"/>
+	<xs:simpleType name="BankCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="bankCode" type="mp:BankCode"/>
 </xs:schema>

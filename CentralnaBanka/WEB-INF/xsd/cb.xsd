@@ -17,10 +17,10 @@
 
 	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
 	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp" schemaLocation="mp.xsd"/>
-	<xs:complexType name="Bank">
+	<xs:complexType name="BankData">
 		<xs:sequence>
-			<xs:element name="swiftCode" type="cmn:SwiftCode"/>
-			<xs:element name="bankClearingAccountNumber" type="cmn:AccountNumber"/>
+			<xs:element name="bankCode" type="mp:BankCode"/>
+			<xs:element name="bankDetails" type="cmn:BankDetails"/>
 			<xs:element name="wsUrl" type="xs:string"/>
 			<xs:element name="balance">
 				<xs:simpleType>
@@ -33,7 +33,7 @@
 	</xs:complexType>
 	<xs:complexType name="BanksData">
 		<xs:sequence>
-			<xs:element maxOccurs="unbounded" minOccurs="0" name="bank" type="cb:Bank">
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="bank" type="cb:BankData">
 				<xs:unique name="unique-bank">
 					<xs:selector xpath="bank"/>
 					<xs:field xpath="swiftCode"/>
@@ -57,7 +57,7 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:element name="bank" type="cb:Bank"/>
+	<xs:element name="bankData" type="cb:BankData"/>
 	<xs:element name="banksData" type="cb:BanksData"> </xs:element>
 	<xs:element name="messageIdData" type="cb:MessageIdData"/>
 	<xs:element name="clearingData" type="cb:ClearingData"/>

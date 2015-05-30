@@ -35,27 +35,27 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			MpcbDocument mpcbService = service.getPort(portName,
 					MpcbDocument.class);
 
-			try {
-				// test rtgs
-				Mt103 mt103 = new Mt103();
-				mt103.setAmount(new BigDecimal(22));
-
-				AccountDetails creditorAccountDetails = new AccountDetails();
-				creditorAccountDetails.setAccountNumber("222-2222222222222-22");
-				mt103.setCreditorAccountDetails(creditorAccountDetails);
-
-				BankDetails bdd = new BankDetails();
-				bdd.setSwiftCode("CONARS23");
-				mt103.setDebtorBankDetails(bdd);
-
-				BankDetails bdc = new BankDetails();
-				bdc.setSwiftCode("CONARS22");
-				mt103.setCreditorBankDetails(bdc);
-
-				mpcbService.rtgsRequest(mt103);
-			} catch (MpException e) {
-				System.out.println("exception " + e.getFaultInfo().name());
-			}
+//			try {
+//				// test rtgs
+//				Mt103 mt103 = new Mt103();
+//				mt103.setAmount(new BigDecimal(22));
+//
+//				AccountDetails creditorAccountDetails = new AccountDetails();
+//				creditorAccountDetails.setAccountNumber("222-2222222222222-22");
+//				mt103.setCreditorAccountDetails(creditorAccountDetails);
+//
+//				BankDetails bdd = new BankDetails();
+//				bdd.setSwiftCode("CONARS23");
+//				mt103.setDebtorBankDetails(bdd);
+//
+//				BankDetails bdc = new BankDetails();
+//				bdc.setSwiftCode("CONARS22");
+//				mt103.setCreditorBankDetails(bdc);
+//
+//				mpcbService.rtgsRequest(mt103);
+//			} catch (MpException e) {
+//				System.out.println("exception " + e.getFaultInfo().name());
+//			}
 			try {
 				// test clearing
 				Mt102 mt102 = new Mt102();
