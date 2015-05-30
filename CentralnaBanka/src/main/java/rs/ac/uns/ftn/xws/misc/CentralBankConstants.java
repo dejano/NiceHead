@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 public class CentralBankConstants {
 
-	public static final String PROP_FILE_PATH =// "main/resources/"+
+	public static final String PROP_FILE_PATH = //"main/resources/"+
 			 "centralBank";
 
 	public static final String SCHEMA_NAME = ResourceBundle.getBundle(

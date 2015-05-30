@@ -28,7 +28,7 @@ public final class BdDocument_BdDocumentPort_Client {
 
 			bdService = service.getPort(portName, BdDocument.class);
 			try {
-				BankDetails bd = bdService.getBankDetails("88");
+				BankDetails bd = bdService.getBankDetails("888");
 
 				System.out.println(bd.getSwiftCode() + "   "
 						+ bd.getBankClearingAccountNumber());
