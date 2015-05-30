@@ -1,8 +1,5 @@
 package rs.ac.uns.ftn.xws.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
 import rs.ac.uns.ftn.xws.domain.mpb.Mt102Ref;
