@@ -4,14 +4,13 @@ import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Item;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDao;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDaoLocal;
+import rs.ac.uns.ftn.xmlbsep.xmldb.GenericResultHandler;
 
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,34 +20,24 @@ import java.util.List;
 @Remote(InvoiceDao.class)
 public class InvoiceDaoImpl extends GenericDao<Invoice, Long> implements InvoiceDaoLocal {
 
-    public static final String contextPath = "rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice";
-
-    public static final String schemaName = "invoice";
-
+    private static final String CONTEXT_PATH = "rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice";
+    private static final String SCHEMA_NAME = "invoice";
     private static final String XBASE_NAMESPACE_QUERY = "declare default element namespace \"http://www.ftn.uns.ac.rs/xmlbsep/company/invoice\";";
 
-    private static final String queryFindPib = "//invoice [//supplier/pib = '%s']";
+    private static final String QUERY_FIND_PIB = "//invoice [//supplier/pib = '%s']";
     private static final String QUERY_FIND_INVOICE_BY_SUPPLIER_PIB_AND_ID = "//invoice [//supplier/pib = '%s' and //invoice/@id = '%s']";
 
     public InvoiceDaoImpl() {
-        super(contextPath, schemaName);
+        super(CONTEXT_PATH, SCHEMA_NAME);
     }
 
     public List<Invoice> findAllWherePartnersId(String partnerId) throws IOException, JAXBException {
-        InputStream isPartner = findBy(String.format(XBASE_NAMESPACE_QUERY + queryFindPib, partnerId), true);
-        List<Invoice> invoices = new ArrayList<Invoice>();
-        parseMultipleResults(invoices, isPartner);
-        return invoices;
+        return findBy(String.format(XBASE_NAMESPACE_QUERY + QUERY_FIND_PIB, partnerId), new GenericResultHandler<Invoice>());
     }
 
     public Invoice findInvoiceBy(String partnerId, String invoiceId) throws IOException, JAXBException {
-        InputStream inputStream = findBy(String.format(XBASE_NAMESPACE_QUERY + QUERY_FIND_INVOICE_BY_SUPPLIER_PIB_AND_ID, partnerId, invoiceId), true);
-        return parseResult(inputStream);
-//        try {
-//            return JAXB.unmarshal(inputStream, Invoice.class);
-//        } catch(Exception e) {
-//            return null;
-//        }
+        List<Invoice> invoices = findBy(String.format(XBASE_NAMESPACE_QUERY + QUERY_FIND_INVOICE_BY_SUPPLIER_PIB_AND_ID, partnerId, invoiceId), new GenericResultHandler<Invoice>());
+        return invoices.size() > 0 ? invoices.get(0) : null;
     }
 
     public List<Item> getItems(String partnerId, String invoiceId) throws IOException, JAXBException {

@@ -3,7 +3,7 @@ package rs.ac.uns.ftn.xmlbsep.xmldb;
 import org.basex.rest.Result;
 import org.basex.rest.Results;
 import org.w3c.dom.Node;
-import rs.ac.uns.ftn.xmlbsep.util.XMLUtil;
+import org.w3c.dom.NodeList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by dejan on 27.5.2015..
  */
@@ -51,6 +52,35 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
 
         basex_context = JAXBContext.newInstance(BASEX_CONTEXT_PATH);
         basex_unmarshaller = basex_context.createUnmarshaller();
+    }
+
+    private static void printNote(NodeList nodeList) {
+
+        for (int count = 0; count < nodeList.getLength(); count++) {
+
+            Node tempNode = nodeList.item(count);
+
+            // make sure it's element node.
+            if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                // get node name and value
+                System.out.println("\nNode Name =" + tempNode.getNamespaceURI() + " [OPEN]");
+                System.out.println("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
+                System.out.println("Node Value =" + tempNode.getTextContent());
+
+
+                if (tempNode.hasChildNodes()) {
+
+                    // loop again if has child nodes
+                    printNote(tempNode.getChildNodes());
+
+                }
+
+                System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
+
+            }
+
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -112,7 +142,7 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
         Results wrappedResults;
         wrappedResults = (Results) basex_unmarshaller.unmarshal(input);
         for (Result result : wrappedResults.getResult()) {
-            results.add((T) unmarshaller.unmarshal((Node)result.getAny()));
+            results.add((T) unmarshaller.unmarshal((Node) result.getAny()));
         }
     }
 
@@ -141,44 +171,8 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
         wrappedQuery = String.format(wrappedQuery, xQuery);
 
         url = new URL(REST_URL + schemaName);
-        System.out.println(url);
-        System.out.println(wrappedQuery);
-        conn = (HttpURLConnection) url.openConnection();
-        conn.setDoOutput(true);
-        conn.setRequestMethod(RequestMethod.POST);
-        conn.setRequestProperty("Content-Type", "application/query+xml");
-
-		/*
-		 * Generate HTTP POST body.
-		 */
-        OutputStream out = conn.getOutputStream();
-        out.write(wrappedQuery.getBytes("UTF-8"));
-        out.close();
-
-        int responseCode = conn.getResponseCode();
-        String message = conn.getResponseMessage();
-
-        System.out.println("\n* HTTP response: " + responseCode + " (" + message + ')');
-
-        if (responseCode == HttpURLConnection.HTTP_OK)
-            result = conn.getInputStream();
-
-        return result;
-    }
-
-    /*
-     * Takes both, XQuery and XUpdate statements.
-     */
-    public <G> List<G> executeQuery(String xQuery, RowMapper rowMapper) throws IOException, JAXBException {
-        String wrappedQuery = "<query xmlns='http://basex.org/rest'>" +
-                "<text><![CDATA[%s]]></text>" +
-                "<parameter name='wrap' value='yes'/>" +
-                "</query>";
-        wrappedQuery = String.format(wrappedQuery, xQuery);
-
-        url = new URL(REST_URL + schemaName);
-        System.out.println(url);
-        System.out.println(wrappedQuery);
+//        System.out.println(url);
+//        System.out.println(wrappedQuery);
         conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
         conn.setRequestMethod(RequestMethod.POST);
@@ -194,7 +188,42 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
         int responseCode = conn.getResponseCode();
         String message = conn.getResponseMessage();
 
-        System.out.println("\n* HTTP response: " + responseCode + " (" + message + ')');
+        System.out.println("\nEntityManagerBaseX.executeQuery* HTTP response: " + responseCode + " (" + message + ')');
+
+        if (responseCode == HttpURLConnection.HTTP_OK)
+            result = conn.getInputStream();
+
+        return result;
+    }
+
+    /*
+     * Takes both, XQuery and XUpdate statements.
+     */
+    public <G> List<G> executeQuery(String xQuery, CustomResultHandler<G> rowMapper) throws IOException, JAXBException {
+        String wrappedQuery = "<query xmlns='http://basex.org/rest'>" +
+                "<text><![CDATA[%s]]></text>" +
+                "<parameter name='wrap' value='yes'/>" +
+                "</query>";
+        wrappedQuery = String.format(wrappedQuery, xQuery);
+
+        url = new URL(REST_URL + schemaName);
+//        System.out.println(url);
+//        System.out.println(wrappedQuery);
+        conn = (HttpURLConnection) url.openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod(RequestMethod.POST);
+        conn.setRequestProperty("Content-Type", "application/query+xml");
+
+		/*
+         * Generate HTTP POST body.
+		 */
+        OutputStream out = conn.getOutputStream();
+        out.write(wrappedQuery.getBytes("UTF-8"));
+        out.close();
+
+        int responseCode = conn.getResponseCode();
+
+//        System.out.println("\n* HTTP response: " + responseCode + " (" + message + ')');
         List<G> list = new ArrayList<G>();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -219,7 +248,7 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
         int responseCode = conn.getResponseCode();
         String message = conn.getResponseMessage();
 
-        System.out.println("\n* HTTP response: " + responseCode + " (" + message + ')');
+        System.out.println("\nEntityManagerBaseX.persist * HTTP response: " + responseCode + " (" + message + ')');
 
         conn.disconnect();
     }
@@ -255,32 +284,19 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
 
     /**
      * Implements some sort of identity strategy, since it isn't natively supported by XMLDB.
+     *
      * @return the next id value.
      * @throws IOException
      */
     public Long getIdentity() throws IOException, JAXBException {
+//        Annotation annotation = entity.getClass().getAnnotation(null);
+
         String identifier = "//@id";
         String xQuery = "max(%s)";
 
-        List<Long> list = executeQuery(String.format(xQuery, identifier), new IdentityRowMapper());
-        for (Long aLong : list) {
-            System.out.println(aLong);
-        }
-
         InputStream input = executeQuery(String.format(xQuery, identifier), true);
 
-        list = new ArrayList<Long>();
-        test(list, input);
-
-        for (Long aLong : list) {
-            System.out.println(aLong);
-        }
-
         BufferedReader br = new BufferedReader(new InputStreamReader(input));
-        for (String line; (line = br.readLine()) != null;) {
-            System.out.println(line);
-        }
-        br = new BufferedReader(new InputStreamReader(input));
 
         String line = br.readLine();
         if (line != null)
@@ -288,25 +304,16 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
         return 1L;
     }
 
-    public void test(List<Long> results, InputStream input) throws JAXBException, IOException {
-        Results wrappedResults;
-        wrappedResults = (Results) basex_unmarshaller.unmarshal(input);
-        for (Result result : wrappedResults.getResult()) {
-            System.out.println(((Node)result.getAny()).toString());
-            results.add((Long) unmarshaller.unmarshal((Node)result.getAny()));
-        }
-    }
-
 	/*
 	 * Get/set methods
 	 */
 
-    public void setSchemaName(String schemaName) {
-        this.schemaName = schemaName;
-    }
-
     public String getSchemaName() {
         return schemaName;
+    }
+
+    public void setSchemaName(String schemaName) {
+        this.schemaName = schemaName;
     }
 
     public String getContextPath() {

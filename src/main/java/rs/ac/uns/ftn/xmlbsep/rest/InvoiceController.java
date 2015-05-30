@@ -10,7 +10,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
-import org.apache.log4j.Logger;
 import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
 import rs.ac.uns.ftn.xmlbsep.validation.ValidXMLSchema;
 
@@ -18,8 +17,6 @@ import rs.ac.uns.ftn.xmlbsep.validation.ValidXMLSchema;
 @Produces({ "application/xml" })
 @Path("/partneri/{partnerId}/fakture")
 public class InvoiceController {
-
-    private static Logger log = Logger.getLogger(Invoice.class);
 
     @EJB
     private InvoiceDaoLocal invoiceDao;
@@ -39,7 +36,6 @@ public class InvoiceController {
             System.out.println("entity: "+invoice);
             retVal = invoiceDao.persist(invoice);
         } catch (Throwable e) {
-            log.error(e.getMessage(), e);
             e.printStackTrace();
             throw e;
         }
@@ -62,7 +58,6 @@ public class InvoiceController {
             }
             wrapper.setResult(invoices);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
             e.printStackTrace();
             throw e;
         }
@@ -80,7 +75,6 @@ public class InvoiceController {
             retVal = invoiceDao.findInvoiceBy(partnerId, String.valueOf(invoiceId));
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.getMessage(), e);
             throw e;
         }
         return retVal == null ? Response.status(Response.Status.NOT_FOUND).build() : Response.status(Response.Status.OK).entity(retVal).build();

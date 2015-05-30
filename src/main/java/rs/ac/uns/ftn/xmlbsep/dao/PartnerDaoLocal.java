@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.xmlbsep.dao;
 
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.partner.Partner;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
 /**
@@ -9,5 +10,5 @@ import java.io.IOException;
  */
 
 public interface PartnerDaoLocal extends GenericDaoLocal<Partner, Long> {
-    boolean isPartner(String partnerId) throws IOException;
+    boolean isPartner(String partnerId) throws IOException, JAXBException;
 }

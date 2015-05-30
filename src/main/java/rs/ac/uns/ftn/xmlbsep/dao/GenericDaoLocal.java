@@ -1,8 +1,9 @@
 package rs.ac.uns.ftn.xmlbsep.dao;
 
+import rs.ac.uns.ftn.xmlbsep.xmldb.CustomResultHandler;
+
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  */
 public interface GenericDaoLocal<T, ID extends Serializable> {
 
+    <G> List<G> findBy(String xQuery, CustomResultHandler<G> rowMapper) throws IOException, JAXBException;
     /**
      * Find and return entity with passed id.
      *
@@ -50,9 +52,4 @@ public interface GenericDaoLocal<T, ID extends Serializable> {
      */
     void remove(ID id) throws IllegalArgumentException, IOException;
 
-    InputStream findBy(String xQuery, boolean wrap) throws IOException;
-
-    void parseMultipleResults(List<T> results, InputStream input) throws JAXBException, IOException;
-
-    T parseResult(InputStream input) throws JAXBException, IOException;
 }

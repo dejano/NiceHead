@@ -1,6 +1,5 @@
 package rs.ac.uns.ftn.xmlbsep.rest;
 
-import org.apache.log4j.Logger;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ContainerWrapper;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Item;
@@ -20,8 +19,6 @@ import java.util.List;
  */
 @Path("/partneri/{partnerId}/fakture/{invoiceId}/stavke")
 public class InvoiceItemController {
-
-    private static Logger log = Logger.getLogger(Item.class);
 
     @EJB
     private InvoiceDaoLocal invoiceDao;
@@ -45,7 +42,6 @@ public class InvoiceItemController {
             wrapper.setResult(invoices);
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.getMessage(), e);
             throw e;
         }
         return notFound ? Response.status(Response.Status.NOT_FOUND).build() : Response.status(Response.Status.OK).entity(wrapper).build();
@@ -68,7 +64,6 @@ public class InvoiceItemController {
         try {
             itemId = invoiceDao.createItem(partnerId, (long) invoiceId, item);
         } catch (Throwable e) {
-            log.error(e.getMessage(), e);
             e.printStackTrace();
             throw e;
         }
@@ -86,7 +81,6 @@ public class InvoiceItemController {
             retVal = invoiceDao.getItem(partnerId, (long) invoiceId, (long) itemId);
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.getMessage(), e);
             throw e;
         }
         return retVal == null ? Response.status(Response.Status.NOT_FOUND).build() : Response.status(Response.Status.OK).entity(retVal).build();
@@ -109,7 +103,6 @@ public class InvoiceItemController {
             item.setId(itemId);
             invoiceDao.updateItem(partnerId, (long) invoiceId, item);
         } catch (Throwable e) {
-            log.error(e.getMessage(), e);
             e.printStackTrace();
             throw e;
         }
@@ -129,7 +122,6 @@ public class InvoiceItemController {
             return Response.status(Response.Status.NOT_FOUND).build();
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.getMessage(), e);
             throw e;
         }
         return Response.status(Response.Status.NO_CONTENT).build();
