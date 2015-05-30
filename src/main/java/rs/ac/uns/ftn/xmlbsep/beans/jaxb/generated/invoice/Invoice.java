@@ -2,6 +2,7 @@
 package rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice;
 
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.AbstractBaseEntity;
+import rs.ac.uns.ftn.xmlbsep.xmldb.IdentityXQuery;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -137,6 +138,7 @@ import javax.xml.bind.annotation.XmlType;
     "item"
 })
 @XmlRootElement(name = "invoice", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice")
+@IdentityXQuery("declare default element namespace \"http://www.ftn.uns.ac.rs/xmlbsep/company/invoice\"; max(//invoice/@id)")
 public class Invoice extends AbstractBaseEntity<String> {
 
     @XmlElement(name = "invoice_header", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)

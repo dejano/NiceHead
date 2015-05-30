@@ -199,10 +199,11 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
     /*
      * Takes both, XQuery and XUpdate statements.
      */
-    public <G> List<G> executeQuery(String xQuery, CustomResultHandler<G> rowMapper) throws IOException, JAXBException {
+    public <G> List<G> executeQuery(String xQuery, CustomResultHandler<G> rowMapper, boolean wrap) throws IOException, JAXBException {
+        String wrapString = wrap ? "yes" : "no";
         String wrappedQuery = "<query xmlns='http://basex.org/rest'>" +
                 "<text><![CDATA[%s]]></text>" +
-                "<parameter name='wrap' value='yes'/>" +
+                "<parameter name='wrap' value='" + wrapString + "'/>" +
                 "</query>";
         wrappedQuery = String.format(wrappedQuery, xQuery);
 
@@ -288,20 +289,13 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
      * @return the next id value.
      * @throws IOException
      */
-    public Long getIdentity() throws IOException, JAXBException {
-//        Annotation annotation = entity.getClass().getAnnotation(null);
+    public<G> Long getIdentity(G entity) throws IOException, JAXBException {
+        IdentityXQuery annotation = entity.getClass().getAnnotation(IdentityXQuery.class);
+        String xQuery = annotation.value();
 
-        String identifier = "//@id";
-        String xQuery = "max(%s)";
+        List<Long> id = executeQuery(xQuery, new IdentityRowMapper(), false);
 
-        InputStream input = executeQuery(String.format(xQuery, identifier), true);
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(input));
-
-        String line = br.readLine();
-        if (line != null)
-            return Long.valueOf(line) + 1L;
-        return 1L;
+        return id.get(0);
     }
 
 	/*

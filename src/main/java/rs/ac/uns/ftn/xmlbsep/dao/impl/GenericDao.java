@@ -34,7 +34,7 @@ public abstract class GenericDao<T extends AbstractBaseEntity, ID extends Serial
     }
 
     public T persist(T entity) throws JAXBException, IOException {
-        Long id = em.getIdentity();
+        Long id = em.getIdentity(entity);
         entity.setId(String.valueOf(id));
         em.persist(entity, id);
         return entity;
@@ -47,7 +47,7 @@ public abstract class GenericDao<T extends AbstractBaseEntity, ID extends Serial
     }
 
     public <G> List<G> findBy(String xQuery,  CustomResultHandler<G> rowMapper) throws IOException, JAXBException {
-        return em.executeQuery(xQuery, rowMapper);
+        return em.executeQuery(xQuery, rowMapper, true);
     }
 
     public List<T> findAll() throws IOException, JAXBException {

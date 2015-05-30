@@ -1,6 +1,8 @@
 
 package rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice;
 
+import rs.ac.uns.ftn.xmlbsep.xmldb.IdentityXQuery;
+
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -140,6 +142,7 @@ import javax.xml.bind.annotation.XmlType;
     "priceWithDiscount"
 })
 @XmlRootElement(name = "item", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice")
+@IdentityXQuery("declare default element namespace \"http://www.ftn.uns.ac.rs/xmlbsep/company/invoice\"; max(//item/@id)")
 public class Item {
 
     @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)

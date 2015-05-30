@@ -52,7 +52,7 @@ public class InvoiceDaoImpl extends GenericDao<Invoice, Long> implements Invoice
             throw new IllegalArgumentException("Invoice with provided id does not exist.");
         }
 
-        int itemId = Integer.parseInt(String.valueOf(em.getIdentity()));
+        int itemId = Integer.parseInt(String.valueOf(em.getIdentity(item)));
         item.setId(itemId);
         invoice.getItem().add(item);
 
