@@ -8,9 +8,9 @@
 	<jaxws:endpoint id="mpcbDoc" address="/MpcbDocument"
 		implementor="rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocumentImpl" wsdlLocation="WEB-INF/wsdl/mpcb.wsdl" />
 
-	<jaxws:endpoint id="swiftCodeDoc" address="/SwiftCodeDocument"
-		implementor="rs.ac.uns.ftn.xws.ws.swiftcode.SwiftCodeDocumentImpl"
-		wsdlLocation="WEB-INF/wsdl/swiftCode.wsdl" />
+	<jaxws:endpoint id="bdDoc" address="/BdDocument"
+		implementor="rs.ac.uns.ftn.xws.ws.bankdetails.BdDocumentImpl"
+		wsdlLocation="WEB-INF/wsdl/bankDetails.wsdl" />
 
 	<jaxws:endpoint id="messageIdDoc" address="/MessageIdDocument"
 		implementor="rs.ac.uns.ftn.xws.ws.messageid.MessageIdDocumentImpl"
