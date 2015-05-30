@@ -1,6 +1,6 @@
 package rs.ac.uns.ftn.xmlbsep.rest;
 
-import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ContainerWrapper;
+import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ResultWrapper;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Item;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDaoLocal;
@@ -33,7 +33,7 @@ public class InvoiceItemController {
         System.out.println("InvoiceItemController.getItems");
         List<Item> invoices = null;
         boolean notFound = false;
-        ContainerWrapper wrapper = new ContainerWrapper();
+        ResultWrapper wrapper = new ResultWrapper();
         try {
             invoices = invoiceDao.getItems(partnerId, String.valueOf(invoiceId));
             if (invoices == null || invoices.size() == 0) {

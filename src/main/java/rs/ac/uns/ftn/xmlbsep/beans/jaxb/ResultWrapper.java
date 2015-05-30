@@ -16,9 +16,9 @@ import java.util.List;
 })
 @XmlRootElement( namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice")
 @XmlSeeAlso({Invoice.class, Item.class})
-public class ContainerWrapper {
+public class ResultWrapper {
 
-    public ContainerWrapper() {
+    public ResultWrapper() {
     }
 
     @XmlAnyElement(lax = true)

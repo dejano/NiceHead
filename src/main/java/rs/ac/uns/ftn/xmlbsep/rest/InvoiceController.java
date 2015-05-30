@@ -1,6 +1,6 @@
 package rs.ac.uns.ftn.xmlbsep.rest;
 
-import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ContainerWrapper;
+import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ResultWrapper;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDaoLocal;
 
@@ -50,7 +50,7 @@ public class InvoiceController {
         }
         List<Invoice> invoices = null;
         boolean notFound = false;
-        ContainerWrapper wrapper = new ContainerWrapper();
+        ResultWrapper wrapper = new ResultWrapper();
         try {
             invoices = invoiceDao.findAllWherePartnersId(partnerId);
             if (invoices.size() == 0) {

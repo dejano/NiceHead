@@ -1,0 +1,63 @@
+{
+  "id": "b09b4a6e-3fda-2026-45e5-af3e53deed9a",
+  "name": "company_xml_db",
+  "timestamp": 1432822203806,
+  "requests": [
+    {
+      "collectionId": "b09b4a6e-3fda-2026-45e5-af3e53deed9a",
+      "id": "2451e777-091f-a500-e882-a1400977c77f",
+      "name": "create schema",
+      "description": "",
+      "url": "http://localhost:8984/rest/partners",
+      "method": "PUT",
+      "headers": "Cookie: _cs2_session=BAh7CjoJbGFuZyIHc3I6D3Nlc3Npb25faWQiJThkZjA5MGJjZjU5MzZmMTQyYmZjY2FhODM1NjIzOWM1IgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOhNjYW1wYWlnbl9scF9pZGkCcBU6DmFmZmlsaWF0ZSJXLS0tIAotIDg2Ci0gMTYwNDAxNzExMF9lYzc5ZTVfNzc4XzI0MV81NTFjMWNjOV9iMjk1YmIzZF8wXzBfMF82NF82NF8yXzIKLSAzNjVkMjUzCg%3D%3D--4fcf72adf1a61fc2b15f750309b6e1eb8500a1e1\nContent-Type: application/xml\n",
+      "data": "",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "b09b4a6e-3fda-2026-45e5-af3e53deed9a",
+      "id": "463b94d3-b7fc-1f39-331c-a69f20619d85",
+      "name": "create resource",
+      "description": "",
+      "url": "http://localhost:8984/rest/partners/partners",
+      "method": "PUT",
+      "headers": "Cookie: _cs2_session=BAh7CjoJbGFuZyIHc3I6D3Nlc3Npb25faWQiJThkZjA5MGJjZjU5MzZmMTQyYmZjY2FhODM1NjIzOWM1IgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOhNjYW1wYWlnbl9scF9pZGkCcBU6DmFmZmlsaWF0ZSJXLS0tIAotIDg2Ci0gMTYwNDAxNzExMF9lYzc5ZTVfNzc4XzI0MV81NTFjMWNjOV9iMjk1YmIzZF8wXzBfMF82NF82NF8yXzIKLSAzNjVkMjUzCg%3D%3D--4fcf72adf1a61fc2b15f750309b6e1eb8500a1e1\nContent-Type: application/xml\n",
+      "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<partner xmlns=\"http://www.ftn.uns.ac.rs/xmlbsep/company\"\n xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/xmlbsep/company file:/C:/Users/dejan/Documents/School/8%20semestar/company/src/main/resources/xsd/partners.xsd\">\n    <company>\n        <address>address0</address>\n        <name>name0</name>\n        <pib>pib0</pib>\n        <base_rest_url>http://localhost:8080/partneri/</base_rest_url>\n        <account>\n            <account_number>000-0000000000000-00</account_number>\n        </account>\n        <account>\n            <account_number>000-0000000000000-01</account_number>\n        </account>\n    </company>\n    <company>\n        <address>address1</address>\n        <name>name1</name>\n        <pib>pib1</pib>\n        <base_rest_url>http://localhost:8080/partneri1/</base_rest_url>\n        <account>\n            <account_number>000-0000000000000-02</account_number>\n        </account>\n        <account>\n            <account_number>000-0000000000000-03</account_number>\n        </account>\n    </company>\n</partner>\n",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "b09b4a6e-3fda-2026-45e5-af3e53deed9a",
+      "id": "4b3e8a02-ed8f-5369-ce79-e4f037ed14d2",
+      "name": "delete resource",
+      "description": "",
+      "url": "http://localhost:8984/rest/invoice/504",
+      "method": "DELETE",
+      "headers": "Cookie: _cs2_session=BAh7CjoJbGFuZyIHc3I6D3Nlc3Npb25faWQiJThkZjA5MGJjZjU5MzZmMTQyYmZjY2FhODM1NjIzOWM1IgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOhNjYW1wYWlnbl9scF9pZGkCcBU6DmFmZmlsaWF0ZSJXLS0tIAotIDg2Ci0gMTYwNDAxNzExMF9lYzc5ZTVfNzc4XzI0MV81NTFjMWNjOV9iMjk1YmIzZF8wXzBfMF82NF82NF8yXzIKLSAzNjVkMjUzCg%3D%3D--4fcf72adf1a61fc2b15f750309b6e1eb8500a1e1\nContent-Type: application/xml\n",
+      "data": "",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "b09b4a6e-3fda-2026-45e5-af3e53deed9a",
+      "id": "6d9f9a0c-9750-0ec1-468f-6f8142d7a10f",
+      "name": "query request",
+      "description": "",
+      "url": "http://localhost:8984/rest/invoice",
+      "method": "POST",
+      "headers": "Cookie: _cs2_session=BAh7CjoJbGFuZyIHc3I6D3Nlc3Npb25faWQiJThkZjA5MGJjZjU5MzZmMTQyYmZjY2FhODM1NjIzOWM1IgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOhNjYW1wYWlnbl9scF9pZGkCcBU6DmFmZmlsaWF0ZSJXLS0tIAotIDg2Ci0gMTYwNDAxNzExMF9lYzc5ZTVfNzc4XzI0MV81NTFjMWNjOV9iMjk1YmIzZF8wXzBfMF82NF82NF8yXzIKLSAzNjVkMjUzCg%3D%3D--4fcf72adf1a61fc2b15f750309b6e1eb8500a1e1\nContent-Type: application/xml\n",
+      "data": "<query xmlns='http://basex.org/rest'><text><![CDATA[\ndeclare default element namespace \"http://www.ftn.uns.ac.rs/xmlbsep/company/invoice\";\n/invoice/@id]]></text><parameter name='wrap' value='yes'/></query>",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    }
+  ]
+}
