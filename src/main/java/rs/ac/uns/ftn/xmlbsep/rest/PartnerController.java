@@ -1,14 +1,7 @@
 package rs.ac.uns.ftn.xmlbsep.rest;
 
 
-import rs.ac.uns.ftn.xmlbsep.service.InvoiceServiceLocal;
-
-import javax.ejb.EJB;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.ws.rs.*;
-import java.util.Properties;
 
 /**
  * Created by dejan on 14.5.2015..
@@ -31,9 +24,4 @@ public class PartnerController {
         return "Return partner with " + partnerId + " ID.";
     }
 
-    // unable to resolve dependency injection!
-//    @Path("/{partnerId}/fakture")
-//    public InvoiceController getInvoiceResource() {
-//        return new InvoiceController();
-//    }
 }

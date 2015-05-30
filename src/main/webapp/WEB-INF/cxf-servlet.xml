@@ -23,5 +23,10 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        ">
+
+    <aop:aspectj-autoproxy />
+
+    <!-- Aspect -->
+    <bean id="xmlValidatorAspect" class="rs.ac.uns.ftn.xmlbsep.validation.XMLSchemaValidator" />
 </beans>
 

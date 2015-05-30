@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<partner xmlns="http://www.ftn.uns.ac.rs/xmlbsep/partner"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/xmlbsep/partner file:/C:/Users/dejan/Documents/School/8%20semestar/company/src/main/resources/xsd/partner.xsd">
+    <address>address0</address>
+    <name>name0</name>
+    <pib>pib0</pib>
+    <base_rest_url>base_rest_url0</base_rest_url>
+    <account>
+        <account_number>000-0000000000000-00</account_number>
+    </account>
+    <account>
+        <account_number>000-0000000000000-00</account_number>
+    </account>
+</partner>

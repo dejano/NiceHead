@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           targetNamespace="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice"
-           xmlns:inv="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice">
+    targetNamespace="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice"
+    xmlns:inv="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice">
 
     <xs:element name="item">
         <xs:complexType>
@@ -117,40 +117,40 @@
                                         <xs:element name="services">
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:decimal">
-                                                    <xs:totalDigits value="15"/>
-                                                    <xs:fractionDigits value="2"/>
+                                                  <xs:totalDigits value="15"/>
+                                                  <xs:fractionDigits value="2"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
                                         <xs:element name="goods">
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:decimal">
-                                                    <xs:fractionDigits value="2"/>
-                                                    <xs:totalDigits value="15"/>
+                                                  <xs:fractionDigits value="2"/>
+                                                  <xs:totalDigits value="15"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
                                         <xs:element name="total_taxes">
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:decimal">
-                                                    <xs:totalDigits value="15"/>
-                                                    <xs:fractionDigits value="2"/>
+                                                  <xs:totalDigits value="15"/>
+                                                  <xs:fractionDigits value="2"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
                                         <xs:element name="total_discount">
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:decimal">
-                                                    <xs:totalDigits value="15"/>
-                                                    <xs:fractionDigits value="2"/>
+                                                  <xs:totalDigits value="15"/>
+                                                  <xs:fractionDigits value="2"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
                                         <xs:element name="total">
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:decimal">
-                                                    <xs:totalDigits value="15"/>
-                                                    <xs:fractionDigits value="2"/>
+                                                  <xs:totalDigits value="15"/>
+                                                  <xs:fractionDigits value="2"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
@@ -164,16 +164,16 @@
                                         <xs:element name="amount">
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:decimal">
-                                                    <xs:totalDigits value="15"/>
-                                                    <xs:fractionDigits value="2"/>
+                                                  <xs:totalDigits value="15"/>
+                                                  <xs:fractionDigits value="2"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
                                         <xs:element name="account_number">
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:string">
-                                                    <xs:pattern value="\d{3}-\d{13}-\d{2}"/>
-                                                    <xs:length value="20"/>
+                                                  <xs:pattern value="\d{3}-\d{13}-\d{2}"/>
+                                                  <xs:length value="20"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
@@ -181,18 +181,18 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="id" use="required">
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:minLength value="1"/>
-                                    <xs:maxLength value="50"/>
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:attribute>
                     </xs:complexType>
                 </xs:element>
                 <xs:element maxOccurs="unbounded" minOccurs="1" ref="inv:item"/>
             </xs:sequence>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:complexType name="Tsupplier_buyer">

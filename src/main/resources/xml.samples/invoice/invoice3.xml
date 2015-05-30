@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice xmlns="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice file:/C:/Users/dejan/Documents/School/8%20semestar/company/src/main/resources/xsd/invoice.xsd"  id="123">
+    <invoice_header>
+        <supplier>
+            <name>name0</name>
+            <address>address0</address>
+            <pib>pib0</pib>
+        </supplier>
+        <buyer>
+            <name>name1</name>
+            <address>address1</address>
+            <pib>pib1</pib>
+        </buyer>
+        <bill date="2006-05-04">500000</bill>
+        <price>
+            <services>0.00</services>
+            <goods>0.00</goods>
+            <total_taxes>0.00</total_taxes>
+            <total_discount>0.00</total_discount>
+            <total>0.00</total>
+        </price>
+        <payment>
+            <currency date="2006-05-04">cur</currency>
+            <amount>0.00</amount>
+            <account_number>000-0000000000000-00</account_number>
+        </payment>
+    </invoice_header>
+    <item id="500">
+        <name>name2</name>
+        <discount>
+            <percentage>0.00</percentage>
+            <value>0.00</value>
+        </discount>
+        <unit>
+            <name>name3</name>
+            <price>0.00</price>
+        </unit>
+        <quantity>0.00</quantity>
+        <taxes>0.00</taxes>
+        <total_price>0.00</total_price>
+        <price_with_discount>0.00</price_with_discount>
+    </item>
+    <item id="500">
+        <name>name4</name>
+        <discount>
+            <percentage>0.00</percentage>
+            <value>0.00</value>
+        </discount>
+        <unit>
+            <name>name5</name>
+            <price>0.00</price>
+        </unit>
+        <quantity>0.00</quantity>
+        <taxes>0.00</taxes>
+        <total_price>0.00</total_price>
+        <price_with_discount>0.00</price_with_discount>
+    </item>
+</invoice>

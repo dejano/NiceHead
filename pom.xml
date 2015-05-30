@@ -5,11 +5,13 @@
     <artifactId>firma</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>firma Maven Webapp</name>
+    <name>Company</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <cxf.version>2.2.3</cxf.version>
+        <basex.version>7.5</basex.version>
+        <spring.version>3.0.5.RELEASE</spring.version>
     </properties>
 
     <repositories>
@@ -29,50 +31,58 @@
     </pluginRepositories>
 
     <dependencies>
+
+    <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+     <!-- BaseX -->
         <dependency>
             <groupId>org.basex</groupId>
             <artifactId>basex</artifactId>
-            <version>7.6</version>
+            <version>${basex.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.basex</groupId>
             <artifactId>basex-api</artifactId>
-            <version>7.6</version>
+            <version>${basex.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>2.0.1</version>
-        </dependency>
-
+    <!-- AspectJ -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.6.11</version>
+            <version>1.8.5</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.6.11</version>
+            <version>1.8.5</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-
+    <!-- CXF -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
             <version>${cxf.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
             <version>${cxf.version}</version>
+        </dependency>
+
+
+    <!-- Java -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0.1</version>
         </dependency>
 
         <dependency>
@@ -82,24 +92,12 @@
             <scope>provided</scope>
         </dependency>
 
+    <!-- General -->
         <dependency>
-            <groupId>org.apache.openejb</groupId>
-            <artifactId>openejb-core</artifactId>
-            <version>4.7.1</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.openejb</groupId>
-            <artifactId>tomee</artifactId>
-            <version>1.7.1</version>
-        </dependency>
-
-        <!-- Jetty is needed if you're are not using the CXFServlet -->
-        <!--<dependency>-->
-        <!--<groupId>org.apache.cxf</groupId>-->
-        <!--<artifactId>cxf-rt-transports-http-jetty</artifactId>-->
-        <!--<version>${cxf.version}</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>junit</groupId>
@@ -107,11 +105,16 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
 
     </dependencies>
 
     <build>
-        <finalName>firma</finalName>
+        <finalName>Company</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -145,12 +148,13 @@
                     </licence>
 
                     <output>
-                        <location>/target/firma/miredot</location> <!-- for html and docx output unless overridden -->
+                        <location>/target/firma/miredot</location>
+                        <!-- for html and docx output unless overridden -->
                         <!--<html>-->
-                            <!--<location>/my/specific/html/outputdir</location>-->
+                        <!--<location>/my/specific/html/outputdir</location>-->
                         <!--</html>-->
                         <!--<docx>-->
-                            <!--<location>/my/specific/msword/outputdir</location>-->
+                        <!--<location>/my/specific/msword/outputdir</location>-->
                         <!--</docx>-->
                     </output>
                     <!-- apply for spring mvc support
