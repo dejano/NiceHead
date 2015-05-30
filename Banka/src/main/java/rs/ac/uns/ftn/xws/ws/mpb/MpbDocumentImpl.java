@@ -45,6 +45,7 @@ public class MpbDocumentImpl implements MpbDocument {
 			CompanyDataDao.updateCompanyReservedAmount(accountNumber,
 					reservedAmount.subtract(amount));
 
+			// TODO delete paymentOrder
 			// TODO save payment
 		}
 	}
