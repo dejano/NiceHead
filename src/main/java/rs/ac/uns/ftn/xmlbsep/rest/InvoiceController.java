@@ -3,6 +3,8 @@ package rs.ac.uns.ftn.xmlbsep.rest;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ResultWrapper;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDaoLocal;
+import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
+import rs.ac.uns.ftn.xmlbsep.validation.ValidXMLSchema;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -10,11 +12,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
-import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
-import rs.ac.uns.ftn.xmlbsep.validation.ValidXMLSchema;
 
 @Consumes({"application/xml", "application/json"})
-@Produces({ "application/xml" })
+@Produces({"application/xml"})
 @Path("/partneri/{partnerId}/fakture")
 public class InvoiceController {
 
@@ -26,14 +26,14 @@ public class InvoiceController {
 
     @POST
     @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
-    public Response store( Invoice invoice, @PathParam("partnerId") String partnerId, @Context UriInfo uriInfo) throws Throwable {
+    public Response store(Invoice invoice, @PathParam("partnerId") String partnerId, @Context UriInfo uriInfo) throws Throwable {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
 
         Invoice retVal = null;
         try {
-            System.out.println("entity: "+invoice);
+            System.out.println("entity: " + invoice);
             retVal = invoiceDao.persist(invoice);
         } catch (Throwable e) {
             e.printStackTrace();
