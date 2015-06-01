@@ -3,6 +3,8 @@ package rs.ac.uns.ftn.xws.dao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import rs.ac.uns.ftn.xws.dao.util.ParserUtil;
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
@@ -26,8 +28,8 @@ public class PaymentOrderDataDao {
 	
 	public static void main(String[] args) throws Exception{
 		
-		 RESTUtil.dropSchema("bank");
-		 RESTUtil.createSchema(BankConstants.BANK_NAME);
+//		 RESTUtil.dropSchema("bank");
+//		 RESTUtil.createSchema(BankConstants.BANK_NAME);
 		
 		File file = new File("src/main/resources/");
 		RESTUtil.deleteResource(BankConstants.BANK_NAME, "paymentOrders.xml");
@@ -82,6 +84,23 @@ public class PaymentOrderDataDao {
 		
 		
 		return retVal;
+	}
+
+	public static List<String> getPaymentOrdersStrings(String input) {
+		List<String> retList = new ArrayList<String>();
+
+		String[] parts = input.split("</po:paymentOrder>");
+		for (String string : parts) {
+			retList.add(string + "</po:paymentOrder>");
+		}
+		
+//		String[] parts = input.split("</bsb:paymentOrder>");
+//		for (String string : parts) {
+//			retList.add(string + "</bsb:paymentOrder>");
+//		}
+
+		// retList = new ArrayList<String>(Arrays.asList(parts));
+		return retList;
 	}
 }
 	
