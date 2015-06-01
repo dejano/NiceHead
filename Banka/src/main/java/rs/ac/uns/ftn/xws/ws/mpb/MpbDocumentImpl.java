@@ -4,17 +4,24 @@ import java.math.BigDecimal;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import rs.ac.uns.ftn.xws.dao.CompanyDataDao;
 import rs.ac.uns.ftn.xws.dao.Mt102DataDao;
+import rs.ac.uns.ftn.xws.dao.PaymentDataDao;
+import rs.ac.uns.ftn.xws.dao.PaymentOrderDataDao;
+import rs.ac.uns.ftn.xws.domain.bsb.PaymentData;
+import rs.ac.uns.ftn.xws.domain.bsb.PaymentsData;
 import rs.ac.uns.ftn.xws.domain.mpb.Mt102Ref;
 import rs.ac.uns.ftn.xws.generated.cmn.Payment;
 import rs.ac.uns.ftn.xws.generated.mp.ClearingApprovalMessage;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102Payment;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.mp.Mt900;
 import rs.ac.uns.ftn.xws.generated.mp.RtgsApprovalMessage;
 import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
+import rs.ac.uns.ftn.xws.misc.ObjectMapper;
 
 @Stateless
 @javax.jws.WebService(serviceName = "MpbDocumentService", portName = "MpbDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpb", wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.mpb.MpbDocument")
@@ -31,21 +38,26 @@ public class MpbDocumentImpl implements MpbDocument {
 		Mt102Ref mt102Ref = Mt102DataDao.getMt102Ref(clearingDebitPart.getPaymentOrderId());
 
 		for (String paymentOrderId : mt102Ref.getPaymentOrderId()) {
-			PaymentOrder paymentOrder = null; // TODO baki
+			//PaymentOrder paymentOrder = null; // TODO baki
+			PaymentOrder paymentOrder = PaymentOrderDataDao.getPaymentOrder(paymentOrderId);
 			String accountNumber = paymentOrder.getDebtorAccountDetails().getAccountNumber();
 			BigDecimal amount = paymentOrder.getAmount();
 
+			//previousBalance
 			BigDecimal balance = CompanyDataDao
 					.getCompanyBalance(accountNumber);
 			BigDecimal reservedAmount = CompanyDataDao
 					.getCompanyReservedAmount(accountNumber);
+			
+			BigDecimal newBalance = balance.subtract(amount);
 
-			CompanyDataDao.updateCompanyBalance(accountNumber,
-					balance.subtract(amount));
+			CompanyDataDao.updateCompanyBalance(accountNumber,newBalance);
 			CompanyDataDao.updateCompanyReservedAmount(accountNumber,
 					reservedAmount.subtract(amount));
 
 			// TODO save payment
+			PaymentData newPayment = ObjectMapper.PaymentOrderToPaymentData(paymentOrder, balance, newBalance);
+			PaymentDataDao.addPayment(newPayment);
 		}
 	}
 
@@ -63,10 +75,13 @@ public class MpbDocumentImpl implements MpbDocument {
 		LOG.info("Updating balance of client with account number : "
 				+ accountNumber);
 
+		BigDecimal newBalance = balance.add(amount);
 		// pay-in funds to creditor account
-		CompanyDataDao.updateCompanyBalance(accountNumber, balance.add(amount));
+		CompanyDataDao.updateCompanyBalance(accountNumber, newBalance);
 
 		// TODO save payment
+		PaymentData newPayment = ObjectMapper.Mt103ToPaymentData(mt103, balance, newBalance);
+		PaymentDataDao.addPayment(newPayment);
 	}
 
 	public void clearingApproval(ClearingApprovalMessage clearingApprovalPart) {
@@ -75,7 +90,7 @@ public class MpbDocumentImpl implements MpbDocument {
 		Mt102 mt102 = clearingApprovalPart.getMt102();
 
 		// iterate through payments and pay in funds to creditor accounts
-		for (Payment payment : mt102.getPayments().getPayment()) {
+		for (Mt102Payment payment : mt102.getPayments().getPayment()) {
 			String accountNumber = payment.getCreditorAccountDetails()
 					.getAccountNumber();
 			BigDecimal amount = payment.getAmount();
@@ -86,11 +101,15 @@ public class MpbDocumentImpl implements MpbDocument {
 			LOG.info("Updating balance of client with account number : "
 					+ accountNumber);
 
+			BigDecimal newBalance = balance.add(amount);
+			
 			// pay-in funds
-			CompanyDataDao.updateCompanyBalance(accountNumber,
-					balance.add(amount));
+			CompanyDataDao.updateCompanyBalance(accountNumber, newBalance);
 
 			// TODO save payment
+			XMLGregorianCalendar currencyDate = mt102.getCurrencyDate();
+			PaymentData newPayment = ObjectMapper.PaymentToPaymentData(payment, balance, newBalance, currencyDate);
+			PaymentDataDao.addPayment(newPayment);
 		}
 	}
 

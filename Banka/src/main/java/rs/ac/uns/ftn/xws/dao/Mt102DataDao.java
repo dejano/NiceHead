@@ -2,11 +2,22 @@ package rs.ac.uns.ftn.xws.dao;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import rs.ac.uns.ftn.xws.dao.util.ParserUtil;
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
+import rs.ac.uns.ftn.xws.domain.mpb.Mt102Data;
 import rs.ac.uns.ftn.xws.domain.mpb.Mt102Ref;
+import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102.Payments;
+import rs.ac.uns.ftn.xws.generated.mp.Mt102Payment;
+import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
 import rs.ac.uns.ftn.xws.misc.BankConstants;
+import rs.ac.uns.ftn.xws.misc.ObjectMapper;
 import rs.ac.uns.ftn.xws.misc.XmlHelper;
 
 public class Mt102DataDao {
@@ -86,6 +97,15 @@ public class Mt102DataDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Mt102Data createMt102Data(List<Mt102Ref> refList) {
+		Mt102Data mt102data = new Mt102Data();
+		
+		// TODO prethodno konstruisi listu(klasu) preko Object Factory-a
+		mt102data.getMt102Ref().addAll(refList);
+		
+		return mt102data;
 	}
 
 	private Mt102DataDao() {

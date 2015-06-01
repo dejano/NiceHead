@@ -5,5 +5,10 @@
 // Generated on: 2015.05.28 at 06:13:57 PM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/bsb", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@XmlSchema(namespace = "http://www.ftn.uns.ac.rs/xws/xsd/bsb", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED, xmlns = {
+		@javax.xml.bind.annotation.XmlNs(prefix = "cmn", namespaceURI = "http://www.ftn.uns.ac.rs/xws/xsd/common"),
+		@javax.xml.bind.annotation.XmlNs(prefix = "bsb", namespaceURI = "http://www.ftn.uns.ac.rs/xws/xsd/bsb") })
 package rs.ac.uns.ftn.xws.domain.bsb;
+
+import javax.xml.bind.annotation.XmlSchema;
+
