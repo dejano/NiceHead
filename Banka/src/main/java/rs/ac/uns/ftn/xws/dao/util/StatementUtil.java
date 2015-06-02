@@ -96,10 +96,6 @@ public class StatementUtil {
 				}
 			}
 			
-			// TODO @Nikola42 kako da setujem ovo prokletno govno
-//			Items itemsObject = new Statement.Items();
-			//retVal.setItems((Items) items);
-			
 			retVal.setPayoutCount(payoutCount);
 			retVal.setPaymentCount(paymentCount);
 			retVal.setPayoutAmount(payoutAmount);
