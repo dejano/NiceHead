@@ -18,7 +18,7 @@
         schemaLocation="paymentOrder.xsd"/>
     <xs:complexType name="PaymentOrders">
         <xs:sequence>
-            <xs:element ref="po:paymentOrder"/>
+            <xs:element ref="po:paymentOrder" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <xs:element name="paymentOrders" type="pos:PaymentOrders"/>

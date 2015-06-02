@@ -191,7 +191,6 @@ public class ParserUtil {
 			InputStream is = new ByteArrayInputStream(
 					outputStream.toByteArray());
 			T retObject = XmlHelper.unmarshall(is, clazz);
-			// TODO ubaci ovde typecase retVala direktno ... tj dole u returnu
 			retVal = (retObject != null) ? retObject : retVal;
 
 		} catch (TransformerConfigurationException e) {

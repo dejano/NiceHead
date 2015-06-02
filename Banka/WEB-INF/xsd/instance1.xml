@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bsb:paymentsData xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+<pos:paymentOrders xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
  xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
- xmlns:bsb="http://www.ftn.uns.ac.rs/xws/xsd/bsb"
+ xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
+ xmlns:pos="http://www.ftn.uns.ac.rs/xws/xsd/pos"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/bsb file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/bsb.xsd">
-    <bsb:paymentData>
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/pos file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/paymentOrders.xsd">
+    <po:paymentOrder messageId="messageId0">
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>
         <cmn:creditor>creditor0</cmn:creditor>
@@ -20,11 +21,11 @@
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:amount>0.00</cmn:amount>
-        <bsb:currencyDate>2006-05-04</bsb:currencyDate>
-        <bsb:previousBalance>0.00</bsb:previousBalance>
-        <bsb:newBalance>0.00</bsb:newBalance>
-    </bsb:paymentData>
-    <bsb:paymentData>
+        <po:currencyDate>2006-05-04</po:currencyDate>
+        <po:currencyCode>A</po:currencyCode>
+        <po:urgent>false</po:urgent>
+    </po:paymentOrder>
+    <po:paymentOrder messageId="messageId1">
         <cmn:debtor>debtor1</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose1</cmn:paymentPurpose>
         <cmn:creditor>creditor1</cmn:creditor>
@@ -40,8 +41,8 @@
             <cmn:referenceNumber>referenceNumber3</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:amount>0.00</cmn:amount>
-        <bsb:currencyDate>2006-05-04</bsb:currencyDate>
-        <bsb:previousBalance>0.00</bsb:previousBalance>
-        <bsb:newBalance>0.00</bsb:newBalance>
-    </bsb:paymentData>
-</bsb:paymentsData>
+        <po:currencyDate>2006-05-04</po:currencyDate>
+        <po:currencyCode>A</po:currencyCode>
+        <po:urgent>false</po:urgent>
+    </po:paymentOrder>
+</pos:paymentOrders>

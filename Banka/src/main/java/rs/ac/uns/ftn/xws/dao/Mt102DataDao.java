@@ -32,18 +32,18 @@ public class Mt102DataDao {
 			"//*[local-name()='mt102Data']/*[local-name()='mt102Ref'][@messageId='", "']&wrap=no" };
 
 	public static void main(String[] args) throws Exception {
-//		File file = new File("src/main/resources/");
-//		RESTUtil.deleteResource(BankConstants.BANK_NAME, "mt102Data.xml");
-//		RESTUtil.createResource(BankConstants.BANK_NAME, "mt102Data.xml",
-//				new FileInputStream(new File(file, "mt102Data.xml")));
+		File file = new File("src/main/resources/");
+		RESTUtil.deleteResource(BankConstants.BANK_NAME, "mt102Data.xml");
+		RESTUtil.createResource(BankConstants.BANK_NAME, "mt102Data.xml",
+				new FileInputStream(new File(file, "mt102Data.xml")));
 //
 //		Mt102Ref mt102Ref = new Mt102Ref();
 //		mt102Ref.setMessageId("999");
 //		insertMt102(XmlHelper.marshall(mt102Ref));
 
-		System.out.println(getMt102DataAsString("999"));
-
-		System.out.println(getMt102Ref("999"));
+//		System.out.println(getMt102DataAsString("999"));
+//
+//		System.out.println(getMt102Ref("555").getMessageId());
 	}
 
 	public static String getMt102DataAsString(String messageId) {
