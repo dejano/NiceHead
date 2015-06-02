@@ -94,15 +94,17 @@
 		<xjc schema="${webinf.dir}/xsd/common.xsd" destdir="${gen.dir}" />
 		<xjc schema="${webinf.dir}/xsd/bsb.xsd" destdir="${gen.dir}" />
 		<xjc schema="${webinf.dir}/xsd/paymentOrder.xsd" destdir="${gen.dir}" />
-		-->
 		<xjc schema="${webinf.dir}/xsd/mpb.xsd" destdir="${gen.dir}" />
 		<xjc schema="${webinf.dir}/xsd/paymentOrders.xsd" destdir="${gen.dir}" />
+		-->
+		
 	</target>
 
 	<target name="generate-code-wsdl">
 		<echo level="info" message="Generating code using wsdl2java..." />
 
-		<wsdl2java file="${wsdl.dir}/po.wsdl" />
+		<!-- <wsdl2java file="${wsdl.dir}/po.wsdl" /> -->
+		<wsdl2java file="${wsdl.dir}/bs.wsdl" />
 	</target>
 
 	<target name="compile" depends="init">
