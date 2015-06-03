@@ -6,12 +6,8 @@
 	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp" xmlns:mpbws="http://www.ftn.uns.ac.rs/xws/ws/mpb"
 	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpb">
 
-	<wsdl:types>
-		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
-			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
-				schemaLocation="../xsd/mp.xsd" />
-		</xsd:schema>
-	</wsdl:types>
+	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+		location="../xsd/mp.xsd" />
 
 	<wsdl:message name="rtgsApprovalMessage">
 		<wsdl:part name="rtgsApprovalPart" element="mp:rtgsApprovalMessage" />

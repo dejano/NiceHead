@@ -4,7 +4,7 @@
  xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
  xmlns:pos="http://www.ftn.uns.ac.rs/xws/xsd/pos"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/pos file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/xsd/paymentOrders.xsd">
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/pos file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/xsd/paymentOrders.xsd">
     <po:paymentOrder messageId="messageId0">
         <cmn:debtor>debtor0</cmn:debtor>
         <cmn:paymentPurpose>paymentPurpose0</cmn:paymentPurpose>

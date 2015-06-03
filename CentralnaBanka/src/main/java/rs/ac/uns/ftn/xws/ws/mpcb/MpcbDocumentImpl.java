@@ -4,14 +4,6 @@ import java.math.BigDecimal;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-import javax.jws.WebResult;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.xml.bind.annotation.XmlSeeAlso;
-
-
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
@@ -28,7 +20,7 @@ import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
                       serviceName = "MpcbDocumentService",
                       portName = "MpcbDocumentPort",
                       targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpcb",
-                      wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
+                      wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
                       endpointInterface = "rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocument")
                       
 public class MpcbDocumentImpl implements MpcbDocument {

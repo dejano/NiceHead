@@ -2,12 +2,10 @@ package rs.ac.uns.ftn.xws.dao;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.math.BigDecimal;
 
 import rs.ac.uns.ftn.xws.dao.util.RESTUtil;
 import rs.ac.uns.ftn.xws.dao.util.RequestMethod;
 import rs.ac.uns.ftn.xws.domain.ClearingData;
-import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.misc.CentralBankConstants;
 import rs.ac.uns.ftn.xws.misc.XmlHelper;
 

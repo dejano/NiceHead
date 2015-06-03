@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BdDocumentService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	xmlns:bd="http://www.ftn.uns.ac.rs/xws/ws/bankDetails" targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/bankDetails">
+
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bd="http://www.ftn.uns.ac.rs/xws/ws/bankDetails"
+			targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/bankDetails">
+			<element name="noBankCodeMessage" type="xsd:string" />
+		</schema>
+	</wsdl:types>
+
+	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+		location="../xsd/mp.xsd" />
+
+	<wsdl:message name="bankCodeMessage">
+		<wsdl:part name="bankCodePart" element="mp:bankCode" />
+	</wsdl:message>
+	<wsdl:message name="bankDetailsMessage">
+		<wsdl:part name="bankDetailsPart" element="cmn:bankDetails" />
+	</wsdl:message>
+	<wsdl:message name="noBankCodeException">
+		<wsdl:part name="fault" element="bd:noBankCodeMessage" />
+	</wsdl:message>
+
+	<wsdl:portType name="BdDocument">
+		<wsdl:operation name="getBankDetails">
+			<wsdl:input message="bd:bankCodeMessage" />
+			<wsdl:output message="bd:bankDetailsMessage" />
+			<wsdl:fault message="bd:noBankCodeException" name="NoBankCodeException" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="BdServiceSoapBinding" type="bd:BdDocument">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getBankDetails">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="NoBankCodeException">
+				<soap:fault name="NoBankCodeException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="BdDocumentService">
+		<wsdl:port name="BdDocumentPort" binding="bd:BdServiceSoapBinding">
+			<soap:address location="http://localhost:8080/bankDetails" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

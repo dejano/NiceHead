@@ -6,12 +6,8 @@
 	xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp" xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/cmn"
 	xmlns:mpcbws="http://www.ftn.uns.ac.rs/xws/ws/mpcb" targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/mpcb">
 
-	<wsdl:types>
-		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
-			<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
-				schemaLocation="../xsd/mp.xsd" />
-		</xsd:schema>
-	</wsdl:types>
+	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+		location="../xsd/mp.xsd" />
 
 	<wsdl:message name="rtgsRequestMessage">
 		<wsdl:part name="rtgsRequestPart" element="mp:mt103" />

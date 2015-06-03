@@ -19,7 +19,6 @@ import rs.ac.uns.ftn.xws.generated.bs.Statement;
  * Generated source version: 2.6.5
  * 
  */
-
 @Stateless
 @javax.jws.WebService(
                       serviceName = "BsDocumentService",

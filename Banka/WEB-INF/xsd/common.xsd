@@ -95,4 +95,5 @@
 			<xs:element name="amount" type="cmn:Balance"/>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:element name="bankDetails" type="cmn:BankDetails" />
 </xs:schema>
