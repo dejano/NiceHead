@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 
+import rs.ac.uns.ftn.xws.dao.CompanyDataDao;
 import rs.ac.uns.ftn.xws.dao.util.StatementUtil;
 import rs.ac.uns.ftn.xws.generated.bs.Statement;
 
@@ -35,11 +36,16 @@ public class BsDocumentImpl implements BsDocument {
      * @see rs.ac.uns.ftn.xws.ws.bsws.BsDocument#getStatement(rs.ac.uns.ftn.xws.generated.bs.StatementRequest  bsRequestPart )*
      */
     public rs.ac.uns.ftn.xws.generated.bs.Statement getStatement(
-			rs.ac.uns.ftn.xws.generated.bs.StatementRequest bsRequestPart) {
+			rs.ac.uns.ftn.xws.generated.bs.StatementRequest bsRequestPart) throws BsException{
 		LOG.info("Executing operation getStatement");
 		
 		LOG.info("VUKSA TEST!!!");
 		
+		
+		String accountNumber = bsRequestPart.getAccountNumber();
+		if(!CompanyDataDao.companyExists(accountNumber)) {
+			throw new BsException("This account number ["+accountNumber+"] hasn't been registered as our client");
+		}
 		
 		Statement retVal = null;
 		

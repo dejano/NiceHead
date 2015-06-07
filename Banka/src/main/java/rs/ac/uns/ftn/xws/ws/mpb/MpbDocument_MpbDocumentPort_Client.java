@@ -25,6 +25,7 @@ public final class MpbDocument_MpbDocumentPort_Client {
 
 			Service service = Service.create(wsdl, serviceName);
 
+			
 			MpbDocument mpbService = service.getPort(portName,
 					MpbDocument.class);
 		} catch (MalformedURLException e) {

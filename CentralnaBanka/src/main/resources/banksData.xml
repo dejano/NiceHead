@@ -9,7 +9,7 @@
 			<cmn:swiftCode>CONARS22</cmn:swiftCode>
 			<cmn:bankClearingAccountNumber>111-1111111111111-11</cmn:bankClearingAccountNumber>
 		</cb:bankDetails>
-		<cb:wsUrl>http://localhost:8081/banka1</cb:wsUrl>
+		<cb:wsUrl>http://localhost:8080/banka1</cb:wsUrl>
 		<cb:balance>10000.0</cb:balance>
 	</cb:bank>
 	<cb:bank>
@@ -18,7 +18,7 @@
 			<cmn:swiftCode>CONARS23</cmn:swiftCode>
 			<cmn:bankClearingAccountNumber>111-1111111111111-12</cmn:bankClearingAccountNumber>
 		</cb:bankDetails>
-		<cb:wsUrl>http://localhost:8080/banka2</cb:wsUrl>
+		<cb:wsUrl>http://localhost:8081/banka2</cb:wsUrl>
 		<cb:balance>5000.0</cb:balance>
 	</cb:bank>
 </cb:banksData>

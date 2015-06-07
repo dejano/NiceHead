@@ -24,6 +24,11 @@ public class CompanyDataDao {
 	private static final String[] getCompanyWsUrl = {
 			"//*[local-name()='company'][*[local-name()='accountNumber']='",
 			"']/*[local-name()='wsUrl']/text()&wrap=no" };
+	
+	private static final String[] getCompanyByAccNumber = {
+		"//*[local-name()='company'][*[local-name()='accountNumber']='",
+			"']&wrap=no"
+	};
 
 	private static final String[] updateCompanyBalanceQuery = {
 			"replace value of node //*[local-name()='company'][*[local-name()='accountNumber']='",
@@ -48,6 +53,20 @@ public class CompanyDataDao {
 		//
 		// balance = getCompanyBalance("222-2222222222222-22");
 		// System.out.println(balance);
+		
+		if(companyExists("222-2222222222222-22")) {
+			System.out.println("Kompanija sa acc numberom (222-2222222222222-22) postoji");
+		} else {
+			System.out.println("Kompanija sa acc numberom (222-2222222222222-22) NE postoji");
+		}
+		
+		if(companyExists("222-2222222221112-22")) {
+			System.out.println("Kompanija sa acc numberom (222-2222222221112-22) postoji");
+		}
+		else {
+			System.out.println("Kompanija sa acc numberom (222-2222222221112-22) NE postoji");
+		}
+		
 
 		System.out.println(getCompanyWsUrl("223-2222222222222-22"));
 		System.out.println(getCompanyWsUrl("222-2222222222222-22"));
@@ -126,6 +145,26 @@ public class CompanyDataDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static boolean companyExists(String accountNumber) {
+		boolean retVal = false;
+		String companyXml = "";
+		
+		String q = getCompanyByAccNumber[0] + accountNumber + getCompanyByAccNumber[1];
+		try {
+			companyXml = RESTUtil.readString(RESTUtil.retrieveResource(q,
+					BankConstants.BANK_NAME, RequestMethod.GET));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// TODO @bandjur promeni ovo (hardcoded case)
+		if(companyXml.contains("</mpb:company>")) {
+			retVal=true;
+		}
+		
+		return retVal;
 	}
 
 	private CompanyDataDao() {

@@ -32,7 +32,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 	public static void main(String args[]) throws java.lang.Exception {
 		try {
 			URL wsdl = new URL(
-					"http://localhost:8080/cb/services/MpcbDocument?wsdl");
+					"http://localhost:8081/cb/services/MpcbDocument?wsdl");
 
 			QName serviceName = new QName(
 					"http://www.ftn.uns.ac.rs/xws/ws/mpcb",
@@ -55,7 +55,6 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			BankDetails debtorBankDetails = new BankDetails();
 			debtorBankDetails.setBankClearingAccountNumber(myBankAccountNumber);
 			debtorBankDetails.setSwiftCode(SwiftCodeDocument_SwiftCodeDocumentPort_Client.getSwiftCode(myBankAccountNumber));
-			
 			
 			for (String creditorBankCode : mt102Map.keySet()) {
 				BankDetails creditorBankDetails = new BankDetails();

@@ -19,7 +19,7 @@ public class MessageIdDocument_MessageIdDocumentPort_Server{
     protected MessageIdDocument_MessageIdDocumentPort_Server() throws java.lang.Exception {
         System.out.println("Starting Server");
         Object implementor = new MessageIdDocumentImpl();
-        String address = "http://localhost:8080/messageId";
+        String address = "http://localhost:8081/messageId";
         Endpoint.publish(address, implementor);
     }
     

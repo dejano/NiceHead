@@ -24,7 +24,7 @@ public final class SwiftCodeDocument_SwiftCodeDocumentPort_Client {
 	public static void main(String args[]) {
 		try {
 			URL wsdl = new URL(
-					"http://localhost:8080/cb/services/SwiftCodeDocument?wsdl");
+					"http://localhost:8081/cb/services/SwiftCodeDocument?wsdl");
 
 			QName serviceName = new QName(
 					"http://www.ftn.uns.ac.rs/xws/ws/swiftCode",
@@ -54,7 +54,7 @@ public final class SwiftCodeDocument_SwiftCodeDocumentPort_Client {
 		String swiftCode = "";
 		
 		URL wsdl = new URL(
-				"http://localhost:8080/cb/services/SwiftCodeDocument?wsdl");
+				"http://localhost:8081/cb/services/SwiftCodeDocument?wsdl");
 
 		QName serviceName = new QName(
 				"http://www.ftn.uns.ac.rs/xws/ws/swiftCode",

@@ -15,7 +15,7 @@ public class MpcbDocument_MpcbDocumentPort_Server{
     protected MpcbDocument_MpcbDocumentPort_Server() throws java.lang.Exception {
         System.out.println("Starting Server");
         Object implementor = new MpcbDocumentImpl();
-        String address = "http://localhost:8080/mpcb";
+        String address = "http://localhost:8081/mpcb";
         Endpoint.publish(address, implementor);
     }
     

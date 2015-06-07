@@ -47,6 +47,7 @@ public static void main(String args[]) throws java.lang.Exception {
 		System.out.println("bs call");
 		StatementRequest bsRequest = new StatementRequest();
 		bsRequest.setAccountNumber("111-0000000000000-00");
+//		bsRequest.setAccountNumber("222-2222222222222-22");
 		bsRequest.setStatementNumber(1);
 		
 		GregorianCalendar c = DateUtil.convertFromDMY("04-05-2006");
