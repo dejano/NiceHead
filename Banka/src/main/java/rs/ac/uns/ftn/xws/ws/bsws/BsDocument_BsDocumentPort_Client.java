@@ -33,8 +33,8 @@ public final class BsDocument_BsDocumentPort_Client {
 
 public static void main(String args[]) throws java.lang.Exception {
         
-//    	URL wsdl = new URL("http://localhost:8080/bs/services/BsDocument?wsdl");
-    	URL wsdl = new URL("http://localhost:8080/banka1/services/BsDocument?wsdl");
+//    	URL wsdl = new URL("http://localhost:8081/bs/services/BsDocument?wsdl");
+    	URL wsdl = new URL("http://localhost:8081/banka1/services/BsDocument?wsdl");
 		QName serviceName = new QName(
 				"http://www.ftn.uns.ac.rs/xws/ws/bsws",
 				"BsDocumentService");

@@ -14,7 +14,7 @@ public class MpbDocument_MpbDocumentPort_Server{
     protected MpbDocument_MpbDocumentPort_Server() throws java.lang.Exception {
         System.out.println("Starting Server");
         Object implementor = new MpbDocumentImpl();
-        String address = "http://localhost:8080/mpb";
+        String address = "http://localhost:8081/mpb";
         Endpoint.publish(address, implementor);
     }
     

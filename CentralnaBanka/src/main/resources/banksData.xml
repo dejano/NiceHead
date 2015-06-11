@@ -11,7 +11,7 @@
 	<cb:bank>
 		<cb:swiftCode>CONARS23</cb:swiftCode>
 		<cb:bankClearingAccountNumber>111-1111111111111-12</cb:bankClearingAccountNumber>
-		<cb:wsUrl>http://localhost:8080/banka2</cb:wsUrl>
+		<cb:wsUrl>http://localhost:8082/banka2</cb:wsUrl>
 		<cb:balance>10000</cb:balance>
 	</cb:bank>
 </cb:banksData>

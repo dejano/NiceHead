@@ -43,7 +43,6 @@
 			<fileset dir="${lib.dir}" includes="*.jar" />
 		</classpath>
 	</taskdef>
-
 	<macrodef name="wsdl2java">
 		<attribute name="src.dest.dir" default="${gen.dir}" />
 		<attribute name="file" />
@@ -137,6 +136,11 @@
 				<include name="spring-*.jar" />
 				<include name="basex-*.jar" />
 				<include name="commons-io-1.3.2.jar" />
+				<!-- handler chains - lib include test? -->
+				<include name="bcprov-jdk15on-152.jar" />
+				<include name="serializer.jar" />
+				<include name="xalan.jar" />
+				<include name="xmlsec-1.4.2.jar" />
 			</lib>
 			<webinf dir="${webinf.dir}">
 				<include name="xsd/**" />

@@ -19,7 +19,7 @@ import rs.ac.uns.ftn.xws.misc.CentralBankUtil;
  */
 
 @Stateless
-@javax.jws.WebService(serviceName = "SwiftCodeDocumentService", portName = "SwiftCodeDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/swiftCode", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/swiftCode.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.swiftcode.SwiftCodeDocument")
+@javax.jws.WebService(serviceName = "SwiftCodeDocumentService", portName = "SwiftCodeDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/swiftCode", wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHeadCentralnaBanka/WEB-INF/wsdl/swiftCode.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.swiftcode.SwiftCodeDocument")
 public class SwiftCodeDocumentImpl implements SwiftCodeDocument {
 
 	private static final Logger LOG = Logger

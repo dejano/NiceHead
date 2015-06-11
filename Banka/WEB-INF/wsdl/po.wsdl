@@ -42,7 +42,7 @@
 
 	<wsdl:service name="PoDocumentService">
 		<wsdl:port name="PoDocumentPort" binding="pows:PoServiceSoapBinding">
-			<soap:address location="http://localhost:8080/po" />
+			<soap:address location="http://localhost:8081/po" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>

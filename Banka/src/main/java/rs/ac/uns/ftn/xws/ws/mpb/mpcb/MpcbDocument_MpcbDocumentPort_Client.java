@@ -21,6 +21,7 @@ import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
 import rs.ac.uns.ftn.xws.misc.BankConstants;
 import rs.ac.uns.ftn.xws.misc.Mt102Util;
+import rs.ac.uns.ftn.xws.ws.mpb.bankdetails.BdDocument_BdDocumentPort_Client;
 import rs.ac.uns.ftn.xws.ws.mpb.messageid.MessageIdDocument_MessageIdDocumentPort_Client;
 import rs.ac.uns.ftn.xws.ws.mpb.swiftcode.SwiftCodeDocument_SwiftCodeDocumentPort_Client;
 
@@ -32,7 +33,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 	public static void main(String args[]) throws java.lang.Exception {
 		try {
 			URL wsdl = new URL(
-					"http://localhost:8080/cb/services/MpcbDocument?wsdl");
+					"http://localhost:8081/cb/services/MpcbDocument?wsdl");
 
 			QName serviceName = new QName(
 					"http://www.ftn.uns.ac.rs/xws/ws/mpcb",
@@ -53,17 +54,19 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 			String myBankAccountNumber = BankConstants.BANK_ACCOUNT_NUMBER;
 			
 			BankDetails debtorBankDetails = new BankDetails();
-			debtorBankDetails.setBankClearingAccountNumber(myBankAccountNumber);
-			debtorBankDetails.setSwiftCode(SwiftCodeDocument_SwiftCodeDocumentPort_Client.getSwiftCode(myBankAccountNumber));
+			debtorBankDetails = BdDocument_BdDocumentPort_Client.getBankDetails(myBankAccountNumber.substring(0,3));
+//			debtorBankDetails.setBankClearingAccountNumber(myBankAccountNumber);
+//			debtorBankDetails.setSwiftCode(SwiftCodeDocument_SwiftCodeDocumentPort_Client.getSwiftCode(myBankAccountNumber));
 			
 			
 			for (String creditorBankCode : mt102Map.keySet()) {
 				BankDetails creditorBankDetails = new BankDetails();
+				creditorBankDetails = BdDocument_BdDocumentPort_Client.getBankDetails(creditorBankCode);
+				
 				// TODO @Nikola42 getSwiftCode treba da se radi na osnovu bankCode a ne na osnovu clearingAccountNumbera?
 				//acceptorBankDetails.setSwiftCode(SwiftCodeDocument_SwiftCodeDocumentPort_Client.getSwiftCode(acceptorBankCode));
 				//acceptorBankDetails.setBankClearingAccountNumber(value);
 				messageId = MessageIdDocument_MessageIdDocumentPort_Client.getMessageId();
-				
 				Mt102 newMt102 = Mt102Util.createMt102(creditorBankDetails, debtorBankDetails, messageId);
 				
 				//slanje mt102 poruke centralnoj banci

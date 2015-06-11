@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crl:certificateRevocationList xmlns:crl="http://www.ftn.uns.ac.rs/xws/xsd/crl"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/crl.xsd ">
+	<crl:serialNumber>1</crl:serialNumber>
+	<crl:serialNumber>2</crl:serialNumber>
+</crl:certificateRevocationList>

@@ -14,7 +14,7 @@ public final class MpbDocument_MpbDocumentPort_Client {
     public static void main(String args[]) throws java.lang.Exception {
     	try {
 			URL wsdl = new URL(
-					"http://localhost:8080/banka1/services/MpbDocument?wsdl");
+					"http://localhost:8081/banka1/services/MpbDocument?wsdl");
 
 			QName serviceName = new QName(
 					"http://www.ftn.uns.ac.rs/xws/ws/mpb",

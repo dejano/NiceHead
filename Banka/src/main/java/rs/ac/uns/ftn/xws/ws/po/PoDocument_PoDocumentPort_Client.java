@@ -15,7 +15,7 @@ public final class PoDocument_PoDocumentPort_Client {
     public static void main(String args[]) throws java.lang.Exception {
     	try {
 			URL wsdl = new URL(
-					"http://localhost:8080/banka2/services/PoDocument?wsdl");
+					"http://localhost:8081/banka2/services/PoDocument?wsdl");
 
 			QName serviceName = new QName(
 					"http://www.ftn.uns.ac.rs/xws/ws/po",
