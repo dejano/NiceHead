@@ -6,8 +6,15 @@
 	xmlns:bs="http://www.ftn.uns.ac.rs/xws/xsd/bs" xmlns:bsws="http://www.ftn.uns.ac.rs/xws/ws/bsws"
 	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/bsws">
 
-	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bs"
-		location="../xsd/bs.xsd" />
+<!-- 	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bs" -->
+<!-- 		location="../xsd/bs.xsd" /> -->
+
+		<wsdl:types>
+			<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
+				<import namespace="http://www.ftn.uns.ac.rs/xws/xsd/bs"
+					schemaLocation="../xsd/bs.xsd" />
+			</xsd:schema>
+		</wsdl:types>
 
 	<wsdl:message name="bsRequestMessage">
 		<wsdl:part name="bsRequestPart" element="bs:statementRequest" />
@@ -15,11 +22,15 @@
 	<wsdl:message name="bsResponseMessage">
 		<wsdl:part name="bsResponsePart" element="bs:statement" />
 	</wsdl:message>
+	<wsdl:message name="bsException">
+		<wsdl:part name="fault" element="bs:bsExceptionEnum" />
+	</wsdl:message>
 
 	<wsdl:portType name="BsDocument">
 		<wsdl:operation name="getStatement">
 			<wsdl:input message="bsws:bsRequestMessage" />
 			<wsdl:output message="bsws:bsResponseMessage" />
+			<wsdl:fault message="bsws:bsException" name="BsException" />
 		</wsdl:operation>
 	</wsdl:portType>
 
@@ -34,12 +45,15 @@
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
+			<wsdl:fault name="BsException">
+				<soap:fault name="BsException" use="literal" />
+			</wsdl:fault>
 		</wsdl:operation>
 	</wsdl:binding>
 
 	<wsdl:service name="BsDocumentService">
 		<wsdl:port name="BsDocumentPort" binding="bsws:BsServiceSoapBinding">
-			<soap:address location="http://localhost:8080/bs" />
+			<soap:address location="http://localhost:8081/bs" />
 		</wsdl:port>
 	</wsdl:service>
 

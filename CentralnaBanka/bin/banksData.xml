@@ -13,6 +13,7 @@
 		<cb:balance>10000.0</cb:balance>
 	</cb:bank>
 	<cb:bank>
+<<<<<<< HEAD
 		<cb:bankCode>777</cb:bankCode>
 		<cb:bankDetails>
 			<cmn:swiftCode>CONARS23</cmn:swiftCode>
@@ -20,5 +21,11 @@
 		</cb:bankDetails>
 		<cb:wsUrl>http://localhost:8080/banka2</cb:wsUrl>
 		<cb:balance>5000.0</cb:balance>
+=======
+		<cb:swiftCode>CONARS23</cb:swiftCode>
+		<cb:bankClearingAccountNumber>111-1111111111111-12</cb:bankClearingAccountNumber>
+		<cb:wsUrl>http://localhost:8082/banka2</cb:wsUrl>
+		<cb:balance>10000</cb:balance>
+>>>>>>> mpb-bs-fill-test
 	</cb:bank>
 </cb:banksData>

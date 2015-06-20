@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import rs.ac.uns.ftn.xws.generated.mp.MpExceptionEnum;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.mp.Mt900;
 import rs.ac.uns.ftn.xws.misc.BankConstants;

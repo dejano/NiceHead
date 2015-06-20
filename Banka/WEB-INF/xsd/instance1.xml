@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pos:paymentOrders xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
- xmlns:pos="http://www.ftn.uns.ac.rs/xws/xsd/pos"
+<pos:paymentOrders xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
  xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
- xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+ xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
+ xmlns:pos="http://www.ftn.uns.ac.rs/xws/xsd/pos"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/pos file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/xsd/paymentOrders.xsd">
     <po:paymentOrder messageId="messageId0">
@@ -19,6 +19,26 @@
             <cmn:accountNumber>000-0000000000000-00</cmn:accountNumber>
             <cmn:model>50</cmn:model>
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
+        </cmn:creditorAccountDetails>
+        <cmn:amount>0.00</cmn:amount>
+        <po:currencyDate>2006-05-04</po:currencyDate>
+        <po:currencyCode>A</po:currencyCode>
+        <po:urgent>false</po:urgent>
+    </po:paymentOrder>
+    <po:paymentOrder messageId="messageId1">
+        <cmn:debtor>debtor1</cmn:debtor>
+        <cmn:paymentPurpose>paymentPurpose1</cmn:paymentPurpose>
+        <cmn:creditor>creditor1</cmn:creditor>
+        <cmn:orderDate>2006-05-04</cmn:orderDate>
+        <cmn:debtorAccountDetails>
+            <cmn:accountNumber>000-0000000000000-00</cmn:accountNumber>
+            <cmn:model>50</cmn:model>
+            <cmn:referenceNumber>referenceNumber2</cmn:referenceNumber>
+        </cmn:debtorAccountDetails>
+        <cmn:creditorAccountDetails>
+            <cmn:accountNumber>000-0000000000000-00</cmn:accountNumber>
+            <cmn:model>50</cmn:model>
+            <cmn:referenceNumber>referenceNumber3</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
         <cmn:amount>0.00</cmn:amount>
         <po:currencyDate>2006-05-04</po:currencyDate>

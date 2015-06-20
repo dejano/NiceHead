@@ -14,6 +14,11 @@
     </xs:annotation>
 
     <xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common" schemaLocation="common.xsd"/>
+    <xs:simpleType name="BsExceptionEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="invalidAccountNumber"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="StatementRequest">
         <xs:sequence>
             <xs:element name="accountNumber" type="cmn:AccountNumber"/>
@@ -78,4 +83,5 @@
             </xs:simpleType>
         </xs:restriction>
     </xs:simpleType>
+    <xs:element name="bsExceptionEnum" nillable="false" type="bs:BsExceptionEnum"/>
 </xs:schema>

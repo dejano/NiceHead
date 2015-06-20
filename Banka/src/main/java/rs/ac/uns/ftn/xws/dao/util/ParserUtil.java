@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
+
 //import javax.swing.text.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,34 +38,27 @@ import org.xml.sax.InputSource;
 //import org.xml.sax.SAXException;
 import org.xml.sax.SAXException;
 
+import rs.ac.uns.ftn.xws.dao.PaymentDataDao;
+import rs.ac.uns.ftn.xws.dao.PaymentOrderDataDao;
 import rs.ac.uns.ftn.xws.domain.bsb.PaymentData;
+import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
 import rs.ac.uns.ftn.xws.misc.XmlHelper;
 
 public class ParserUtil {
 
 	
 
-	public static List<String> getPayments(String input) {
-		List<String> retList = new ArrayList<String>();
-
-		String[] parts = input.split("</bsb:paymentData>");
-		for (String string : parts) {
-			retList.add(string + "</bsb:paymentData>");
-		}
-
-		// retList = new ArrayList<String>(Arrays.asList(parts));
-		return retList;
-	}
-
-	// public static Document StringToXML(String xmlRecord)
-	// throws ParserConfigurationException, SAXException, IOException {
-	// DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	// DocumentBuilder builder = factory.newDocumentBuilder();
-	// Document d1 = (Document) builder
-	// .parse(new InputSource(new StringReader(xmlRecord)));
-	//
-	// return d1;
-	// }
+//	public static List<String> getPayments(String input) {
+//		List<String> retList = new ArrayList<String>();
+//
+//		String[] parts = input.split("</bsb:paymentData>");
+//		for (String string : parts) {
+//			retList.add(string + "</bsb:paymentData>");
+//		}
+//
+//		// retList = new ArrayList<String>(Arrays.asList(parts));
+//		return retList;
+//	}
 
 	public static Document StringToXML(String xmlRecord) {
 		Document doc = null;
@@ -82,21 +78,6 @@ public class ParserUtil {
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
-
-//		Transformer transformer;
-//		try {
-//			transformer = TransformerFactory.newInstance().newTransformer();
-//			Result output = new StreamResult(new File(
-//					"C:/Users/Bandjur/Desktop/test.xml"));
-//			Source input = new DOMSource(doc);
-//			transformer.transform(input, output);
-//		} catch (TransformerConfigurationException e) {
-//			e.printStackTrace();
-//		} catch (TransformerFactoryConfigurationError e) {
-//			e.printStackTrace();
-//		} catch (TransformerException e) {
-//			e.printStackTrace();
-//		}
 
 		return doc;
 	}
@@ -123,9 +104,10 @@ public class ParserUtil {
 
 	}
 
-	public static List<PaymentData> transformStringsIntoJAXB(String input) {
+	// TODO @bandjur izbaci PaymentDataDao.getPayments() odnosno napravi generic parsiranje 
+	public static List<PaymentData> transformXmlListIntoPaymentDataList(String input) {
 		List<PaymentData> retList = new ArrayList<PaymentData>();
-		List<String> list = getPayments(input);
+		List<String> list = PaymentDataDao.getPayments(input);
 
 		for (String xmlRecord : list) {
 			Document newDocument = StringToXML(xmlRecord);
@@ -156,6 +138,41 @@ public class ParserUtil {
 
 		return retList;
 	}
+	
+	// TODO @bandjur izbaci PaymentDataDao.getPayments() odnosno napravi generic parsiranje 
+		public static List<PaymentOrder> transformXmlListIntoPaymentOrderList(String input) {
+			List<PaymentOrder> retList = new ArrayList<PaymentOrder>();
+			List<String> list = PaymentOrderDataDao.getPaymentOrdersStrings(input);
+
+			for (String xmlRecord : list) {
+				Document newDocument = StringToXML(xmlRecord);
+
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				Source xmlSource = new DOMSource(newDocument);
+				Result outputTarget = new StreamResult(outputStream);
+				try {
+					TransformerFactory.newInstance().newTransformer()
+							.transform(xmlSource, outputTarget);
+
+					InputStream is = new ByteArrayInputStream(
+							outputStream.toByteArray());
+					PaymentOrder paymentOrder = XmlHelper.unmarshall(is,
+							PaymentOrder.class);
+
+					retList.add(paymentOrder);
+				} catch (TransformerConfigurationException e) {
+					e.printStackTrace();
+				} catch (TransformerException e) {
+					e.printStackTrace();
+				} catch (TransformerFactoryConfigurationError e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			return retList;
+		}
 
 	// <? extends T>
 	public static <T> T transformStringIntoJAXBeans(String xmlRecord,
@@ -174,7 +191,6 @@ public class ParserUtil {
 			InputStream is = new ByteArrayInputStream(
 					outputStream.toByteArray());
 			T retObject = XmlHelper.unmarshall(is, clazz);
-			// TODO ubaci ovde typecase retVala direktno ... tj dole u returnu
 			retVal = (retObject != null) ? retObject : retVal;
 
 		} catch (TransformerConfigurationException e) {

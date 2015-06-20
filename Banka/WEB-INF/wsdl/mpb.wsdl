@@ -56,7 +56,7 @@
 
 	<wsdl:service name="MpbDocumentService">
 		<wsdl:port name="MpbDocumentPort" binding="mpbws:MpbServiceSoapBinding">
-			<soap:address location="http://localhost:8080/mpb" />
+			<soap:address location="http://localhost:8081/mpb" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>

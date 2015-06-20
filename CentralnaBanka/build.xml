@@ -1,4 +1,4 @@
-<project name="Vezbe WSDL WS" default="main" basedir=".">
+<project name="cb" default="main" basedir=".">
 
 	<property file="ant.properties" />
 

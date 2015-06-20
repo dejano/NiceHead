@@ -88,7 +88,10 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 				p2.setAmount(new BigDecimal(4.1));
 				mt102.getPayments().getPayment().add(p2);
 
+				//create mt102 by paymentOrders
 				mpcbService.clearingRequest(mt102);
+				//store Mt102Ref in DB
+				
 			} catch (MpException e) {
 				System.out.println("exception " + e.getFaultInfo().name());
 			}

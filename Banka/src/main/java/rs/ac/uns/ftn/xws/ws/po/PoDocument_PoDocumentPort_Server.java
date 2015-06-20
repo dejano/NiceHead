@@ -15,7 +15,7 @@ public class PoDocument_PoDocumentPort_Server{
     protected PoDocument_PoDocumentPort_Server() throws java.lang.Exception {
         System.out.println("Starting Server");
         Object implementor = new PoDocumentImpl();
-        String address = "http://localhost:8080/po";
+        String address = "http://localhost:8081/po";
         Endpoint.publish(address, implementor);
     }
     
