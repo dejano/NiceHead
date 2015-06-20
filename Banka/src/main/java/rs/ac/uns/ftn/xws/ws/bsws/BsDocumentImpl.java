@@ -25,7 +25,7 @@ import rs.ac.uns.ftn.xws.generated.bs.Statement;
 						targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bsws", 
 						wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/bs.wsdl", 
 						endpointInterface = "rs.ac.uns.ftn.xws.ws.bsws.BsDocument")
-@HandlerChain(file = "handler-chain-document.xml")
+//@HandlerChain(file = "../../../../../../../handler-chain-document.xml")
 // @HandlerChain(file = "../../misc/handler-chain-document.xml")
 // @HandlerChain(file =
 // "C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/src/main/java/rs/ac/uns/ftn/xws/misc/handler-chain-document.xml"
@@ -45,8 +45,6 @@ public class BsDocumentImpl implements BsDocument {
 	public rs.ac.uns.ftn.xws.generated.bs.Statement getStatement(
 			rs.ac.uns.ftn.xws.generated.bs.StatementRequest bsRequestPart) {
 		LOG.info("Executing operation getStatement");
-
-		LOG.info("VUKSA TEST!!!");
 
 		Statement retVal = null;
 

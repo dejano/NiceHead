@@ -11,6 +11,7 @@ import java.security.NoSuchProviderException;
 import java.security.Security;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.util.ResourceBundle;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -58,10 +59,17 @@ public class EncryptKEK {
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			//ucitavamo podatke
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			ks.load(in, "primer".toCharArray());
 			
-			if(ks.isKeyEntry("primer")) {
-				Certificate cert = ks.getCertificate("primer");
+			String bankAlias = ResourceBundle.getBundle(
+					BankConstants.PROP_FILE_PATH).getString("bank.alias");
+			String keyStorePassword = ResourceBundle.getBundle(
+					BankConstants.PROP_FILE_PATH).getString("bank.password");
+			
+			
+			ks.load(in, keyStorePassword.toCharArray());
+			
+			if(ks.isKeyEntry(bankAlias)) {
+				Certificate cert = ks.getCertificate(bankAlias);
 				return cert;
 				
 			}

@@ -131,6 +131,7 @@
 			</classes>
 			<classes dir="${src.dir}">
 				<include name="**/*.properties" />
+				<include name="**/*.xml" />
 			</classes>
 			<lib dir="${lib.dir}">
 				<include name="spring-*.jar" />
