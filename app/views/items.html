@@ -1,0 +1,127 @@
+<h2 class="page-header panel-primary">Items
+
+    <button class="btn btn-primary pull-right mg-l-10" ng-click="openCreate()">Create Item</button>
+    <a href="#/invoice/{{routeId}}">
+        <button class="btn btn-primary pull-right">Go to Invoice</button>
+    </a>
+</h2>
+<form>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search" ng-model="search.$">
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    <a href="" ng-click="predicate = '_id';reverse=!reverse">ID
+                        <span ng-show="predicate == '_id' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == '_id' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'name';reverse=!reverse">Name
+                        <span ng-show="predicate == 'name' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'name' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'discount.percentage';reverse=!reverse">Discount percentage
+                        <span ng-show="predicate == 'discount.percentage' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'discount.percentage' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'discount.value';reverse=!reverse">Discount amount
+                        <span ng-show="predicate == 'discount.value' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'discount.value' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'price_with_discount';reverse=!reverse">Price with discount
+                        <span ng-show="predicate == 'price_with_discount' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'price_with_discount' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'unit.name';reverse=!reverse">Unit name
+                        <span ng-show="predicate == 'unit.name' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'unit.name' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'unit.price';reverse=!reverse">Price per unit
+                        <span ng-show="predicate == 'unit.price' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'unit.price' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'quantity';reverse=!reverse">Quantity
+                        <span ng-show="predicate == 'quantity' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'quantity' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'taxes';reverse=!reverse">Taxes
+                        <span ng-show="predicate == 'taxes' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'taxes' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="" ng-click="predicate = 'total_price';reverse=!reverse">Total price
+                        <span ng-show="predicate == 'total_price' && !reverse" class="fa fa-caret-down"></span>
+                        <span ng-show="predicate == 'total_price' && reverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>{{predicate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items | orderBy:predicate:reverse | filter:search track by $index">
+                <td>{{item._id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.discount.percentage}}%</td>
+                <td>{{item.discount.value}}</td>
+                <td>{{item.price_with_discount}}</td>
+                <td>{{item.unit.name}}</td>
+                <td>{{item.unit.price}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.taxes}}</td>
+                <td>{{item.total_price}}</td>
+                <td>
+                    <button class="btn btn-primary btn-xs" ng-click="openUpdate(item)"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-danger btn-xs" id="btn-remove" ng-click="open(item)"><i class="fa fa-trash-o "></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <form>
+        <div class="form-group  col-md-4">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search da Name" ng-model="search.name">
+            </div>
+        </div>
+        <div class="form-group  col-md-4">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search da Unit Name" ng-model="search.unit">
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="input-group ">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search da Quantity" ng-model="search.quantity">
+            </div>
+        </div>
+    </form>
+</div>

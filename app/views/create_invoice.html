@@ -1,0 +1,259 @@
+<h2 class="page-header panel-primary">Create Invoice</h2>
+
+<div class="container-fluid">
+    <form ng-submit="submit()" class="form-horizontal">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="page-header">Supplier info</h3>
+
+                <div class="form-group">
+                    <label for="supplierName" class="col-sm-2 control-label">Name:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="supplierName" placeholder="Supplier name" ng-model="invoice.invoice_header.supplier.name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="supplierAddress" class="col-sm-2 control-label">Address</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="supplierAddress" placeholder="Supplier address" ng-model="invoice.invoice_header.supplier.address">
+                    </div>
+                </div>
+                <!--<div class="form-group">-->
+                <!--<label for="supplierPib" class="col-sm-2 control-label">PIB</label>-->
+
+                <!--<div class="col-sm-10">-->
+                <!--<input type="text" class="form-control" id="supplierPib" placeholder="Supplier PIB" ng-model="invoice.invoice_header.supplier.pib">-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="col-md-6">
+                <h3 class="page-header">Buyer info</h3>
+
+                <div class="form-group">
+                    <label for="buyerName" class="col-sm-2 control-label">Name:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="buyerName" placeholder="Buyer name" ng-model="invoice.invoice_header.buyer.name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="buyerAddress" class="col-sm-2 control-label">Address</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="buyerAddress" placeholder="Buyer address" ng-model="invoice.invoice_header.buyer.address">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="billNumber" class="col-sm-2 control-label">Bill number</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="billNumber" ng-model="invoice.invoice_header.bill.__text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="billDate" class="col-sm-2 control-label">Date</label>
+
+                    <div class="col-sm-10">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" id="billDate" datepicker-popup="{{dateFormat}}" ng-model="invoice.invoice_header.bill._date" is-open="opened2"
+                                   close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="openDatepicker($event, 'opened2')"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+
+                <div class="form-group">
+                    <label for="goodsValue" class="col-sm-1 control-label">Total goods value:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="goodsValue" ng-model="invoice.invoice_header.price.goods">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="servicesValue" class="col-sm-1 control-label">Total services value</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="servicesValue" ng-model="invoice.invoice_header.price.services">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="totalValue" class="col-sm-1 control-label">Total value</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="totalValue" ng-model="invoice.invoice_header.price.total">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="totalDiscount" class="col-sm-1 control-label">Total discout</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="totalDiscount" ng-model="invoice.invoice_header.price.total_discount">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="totalTaxes" class="col-sm-1 control-label">Total taxes</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="totalTaxes" ng-model="invoice.invoice_header.price.total_taxes">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="currency" class="col-sm-1 control-label">Currency</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="currency" ng-model="invoice.invoice_header.payment.currency.__text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="currencyDate" class="col-sm-1 control-label">Currency Date</label>
+
+                    <div class="col-sm-10">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" id="currencyDate" datepicker-popup="{{dateFormat}}" is-open="opened1"
+                                   close-text="Close" ng-model="invoice.invoice_header.payment.currency._date"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="openDatepicker($event, 'opened1')"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                        <!-- ng-required="true"-->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ammountToPay" class="col-sm-1 control-label">Amount to pay</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ammountToPay" ng-model="invoice.invoice_header.payment.amount">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="accountNumber" class="col-sm-1 control-label">Account number</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="accountNumber" ng-model="invoice.invoice_header.payment.account_number">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" ng-repeat="item in items  track by $index">
+                <h3 class="page-header">Item #{{item._id}}</h3>
+
+                <div class="form-group">
+                    <label for="itemName" class="col-sm-1 control-label">Name:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemName" ng-model="item.name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemDiscountPercentage" class="col-sm-1 control-label">Discount percentage:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemDiscountPercentage" ng-model="item.discount.percentage">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemDiscountValue" class="col-sm-1 control-label">Discount value:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemDiscountValue" ng-model="item.discount.value">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemUnitName" class="col-sm-1 control-label">Unit name:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemUnitName" ng-model="item.unit.name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemUnitPrice" class="col-sm-1 control-label">Price per unit:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemUnitPrice" ng-model="item.unit.price">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemQuantity" class="col-sm-1 control-label">Quantity:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemQuantity" ng-model="item.quantity">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemTaxes" class="col-sm-1 control-label">Taxes:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemTaxes" ng-model="item.texes">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemTotalPrice" class="col-sm-1 control-label">Total price:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemTotalPrice" ng-model="item.total_price">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemDiscountPrice" class="col-sm-1 control-label">Price with discount:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="itemDiscountPrice" ng-model="item.price_with_discount">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--<name>name2</name>
+                <discount>
+                    <percentage>0.00</percentage>
+                    <value>0.00</value>
+                </discount>
+                <unit>
+                    <name>name3</name>
+                    <price>0.00</price>
+                </unit>
+                <quantity>0.00</quantity>
+                <taxes>0.00</taxes>
+                <total_price>0.00</total_price>
+                <price_with_discount>0.00</price_with_discount>-->
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-10">
+                <button type="button" class="btn btn-default" ng-click="addItem()">Add Item</button>
+            </div>
+        </div>
+
+        <div class="col-sm-offset-1 col-sm-10 alert alert-danger" role="alert" ng-show="errorMessage">
+            <p>
+                Error {{errorMessage}}
+            </p>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-10">
+                <button type="submit" class="btn btn-default">Create</button>
+            </div>
+        </div>
+    </form>
+</div>

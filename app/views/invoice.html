@@ -1,0 +1,113 @@
+<h2 class="page-header panel-primary">Invoice
+    <a href="#/invoices"><button class="btn btn-primary pull-right">Go to Invoices</button></a>
+</h2>
+<div class="row center-block">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Supplier Details</div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td class='tright'><strong>Name</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.supplier.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Address</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.supplier.address}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Pib</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.supplier.pib}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Buyer Details</div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td class='tright'><strong>Name</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.buyer.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Address</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.buyer.address}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Pib</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.buyer.pib}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row center-block">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Summary
+                <i class="pull-right small">Billing No. #{{invoice.invoice_header.bill.__text}}</i>
+                {{Array.isArray(invoice.item)}}
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td class='tright'><strong>Number of items</strong></td>
+                        <td class='tcenter'>{{(invoice.item.length > 0 ? invoice.item.length : (invoice.item ? 1 : 0))}} <a href="#/invoice/{{invoice._id}}/items">
+                            <button class="btn btn-primary pull-right btn-sm">Details</button>
+                        </a></td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Goods</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.price.goods}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Services</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.price.services}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Total discount</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.price.total_discount}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Total Taxes</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.price.total_taxes}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Total</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.price.total}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class='tright'><strong>Currency</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.payment.currency.__text}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Currency date</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.payment.currency._date}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Account number</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.payment.account_number}}</td>
+                    </tr>
+                    <tr>
+                        <td class='tright'><strong>Amount to pay</strong></td>
+                        <td class='tcenter'>{{invoice.invoice_header.payment.amount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer text-right">
+                <i class="small">{{invoice.invoice_header.bill._date}}</i>
+            </div>
+        </div>
+    </div>
+</div>
