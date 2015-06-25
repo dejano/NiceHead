@@ -120,6 +120,7 @@
 	<target name="copy-non-java" depends="compile" description="Copies non java files to bin directory">
 		<copy todir="${bin.dir}">
 			<fileset dir="${src.dir}" excludes="**/*.java" />
+			<fileset dir="${src.dir}" includes="**/*.xml" />
 		</copy>
 	</target>
 
@@ -128,6 +129,7 @@
 		<war warfile="${dist.dir}/${bank.name}.war" webxml="${webinf.dir}/web.xml">
 			<classes dir="${bin.dir}">
 				<include name="**/*.class" />
+				<include name="**/*.xml" />
 			</classes>
 			<classes dir="${src.dir}">
 				<include name="**/*.properties" />
@@ -137,11 +139,12 @@
 				<include name="spring-*.jar" />
 				<include name="basex-*.jar" />
 				<include name="commons-io-1.3.2.jar" />
-				<!-- handler chains - lib include test? -->
+				<!-- handler chains - lib include test?
 				<include name="bcprov-jdk15on-152.jar" />
 				<include name="serializer.jar" />
 				<include name="xalan.jar" />
 				<include name="xmlsec-1.4.2.jar" />
+				 -->
 			</lib>
 			<webinf dir="${webinf.dir}">
 				<include name="xsd/**" />

@@ -114,7 +114,7 @@ public class SignEnveloped {
 			ks.load(in, keyStorePassword.toCharArray());
 			
 			if(ks.isKeyEntry(bankAlias)) {
-				PrivateKey pk = (PrivateKey) ks.getKey(bankAlias, bankAlias.toCharArray());
+				PrivateKey pk = (PrivateKey) ks.getKey(bankAlias, keyStorePassword.toCharArray());
 				return pk;
 			}
 			else

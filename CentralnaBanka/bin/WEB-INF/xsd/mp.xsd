@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns:mp="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common">
+
+	<xs:annotation>
+		<xs:appinfo>
+			<jxb:globalBindings collectionType="java.util.ArrayList"/>
+			<jxb:schemaBindings>
+				<jxb:package name="rs.ac.uns.ftn.xws.generated.mp"/>
+			</jxb:schemaBindings>
+		</xs:appinfo>
+	</xs:annotation>
+
+	<xsd:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common"
+		schemaLocation="../xsd/common.xsd"/>
+
+	<xs:simpleType name="MpExceptionEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="debtorBankHasInsufficientFunds"/>
+			<xs:enumeration value="invalidSwiftCode"/>
+			<xs:enumeration value="invalidAmount"/>
+			<xs:enumeration value="multipleBanks"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xsd:complexType name="RtgsApprovalMessage">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" name="mt910" type="mp:Mt910"/>
+			<xsd:element maxOccurs="1" name="mt103" type="mp:Mt103"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ClearingApprovalMessage">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" name="mt910" type="mp:Mt910"/>
+			<xsd:element maxOccurs="1" name="mt102" type="mp:Mt102"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xs:complexType name="Mt103">
+		<xs:complexContent>
+			<xs:extension base="cmn:Message">
+				<xs:sequence>
+					<xs:element form="qualified" name="debtorBankDetails" type="cmn:BankDetails"/>
+					<xs:element form="qualified" name="creditorBankDetails" type="cmn:BankDetails"/>
+					<xs:element name="debtor">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="paymentPurpose">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="creditor">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="orderDate" type="xs:date"/>
+					<xs:element maxOccurs="1" name="debtorAccountDetails" type="cmn:AccountDetails"/>
+					<xs:element maxOccurs="1" name="creditorAccountDetails"
+						type="cmn:AccountDetails"/>
+					<xs:element name="amount">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="17"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="currencyDate" type="xs:date"/>
+					<xs:element name="currencyCode" type="cmn:CurrencyCode"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType block="" name="Mt102Payment">
+		<xs:complexContent>
+			<xs:extension base="cmn:Payment">
+				<xs:sequence>
+					<xs:element name="paymentOrderId" nillable="false" type="cmn:MessageId"/>
+					<xs:element name="currencyCode" type="cmn:CurrencyCode"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Mt102">
+		<xs:complexContent>
+			<xs:extension base="cmn:Message">
+				<xs:sequence>
+					<xs:element name="debtorBankDetails" type="cmn:BankDetails"/>
+					<xs:element form="qualified" name="creditorBankDetails" type="cmn:BankDetails"/>
+					<xs:element name="totalAmount">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="17"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="currencyDate" type="xs:date"/>
+					<xs:element name="currencyCode" type="cmn:CurrencyCode"/>
+					<xs:element name="date" type="xs:date"/>
+					<xs:element name="payments">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element form="qualified" maxOccurs="unbounded" minOccurs="1"
+									name="payment" type="mp:Mt102Payment" nillable="false"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Mt900">
+		<xs:complexContent>
+			<xs:extension base="cmn:Message">
+				<xs:sequence>
+					<xs:element name="debtorBankDetails" type="cmn:BankDetails"/>
+					<xs:element name="paymentOrderId">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:length value="50"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="amount">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="15"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="currencyDate" type="xs:date"/>
+					<xs:element name="currencyCode" type="cmn:CurrencyCode"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Mt910">
+		<xs:complexContent>
+			<xs:extension base="cmn:Message">
+				<xs:sequence>
+					<xs:element name="creditorBankDetails" type="cmn:BankDetails"/>
+					<xs:element name="paymentOrderId">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:length value="50"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="amount">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="15"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="currencyDate" type="xs:date"/>
+					<xs:element name="currencyCode" type="cmn:CurrencyCode"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xsd:element name="rtgsApprovalMessage" type="mp:RtgsApprovalMessage"/>
+	<xsd:element name="clearingApprovalMessage" type="mp:ClearingApprovalMessage"/>
+	<xs:element name="mpExceptionEnum" type="mp:MpExceptionEnum"/>
+	<xs:element block="" name="mt102" type="mp:Mt102"/>
+	<xs:element abstract="false" name="mt103" type="mp:Mt103"/>
+	<xs:element name="mt900" type="mp:Mt900"/>
+	<xs:element name="mt910" nillable="false" type="mp:Mt910"/>
+	<xs:simpleType name="BankCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="bankCode" type="mp:BankCode"/>
+</xs:schema>

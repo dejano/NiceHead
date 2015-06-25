@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<jaxws:endpoint id="mpcbDoc" address="/MpcbDocument"
+		implementor="rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocumentImpl" wsdlLocation="WEB-INF/wsdl/mpcb.wsdl" />
+
+	<jaxws:endpoint id="bdDoc" address="/BdDocument"
+		implementor="rs.ac.uns.ftn.xws.ws.bankdetails.BdDocumentImpl"
+		wsdlLocation="WEB-INF/wsdl/bankDetails.wsdl" />
+
+	<jaxws:endpoint id="messageIdDoc" address="/MessageIdDocument"
+		implementor="rs.ac.uns.ftn.xws.ws.messageid.MessageIdDocumentImpl"
+		wsdlLocation="WEB-INF/wsdl/messageId.wsdl" />
+
+</beans>
+  
+

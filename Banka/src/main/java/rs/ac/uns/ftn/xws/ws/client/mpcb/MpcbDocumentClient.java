@@ -17,6 +17,7 @@ public class MpcbDocumentClient {
 			BankConstants.PROP_FILE_PATH).getString("centralBank.url");
 
 	public static final String MPCB_WS_URL = "/services/MpcbDocument?wsdl";
+	
 
 	public static Mt900 sendRtgsRequest(Mt103 mt103) throws MpException {
 		MpcbDocument mpcbService = getService();

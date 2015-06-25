@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
+import javax.jws.HandlerChain;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
@@ -22,7 +23,7 @@ import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
                       targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpcb",
                       wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
                       endpointInterface = "rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocument")
-                      
+@HandlerChain(file = "../handler-chain-document.xml")                      
 public class MpcbDocumentImpl implements MpcbDocument {
 
     private static final Logger LOG = Logger.getLogger(MpcbDocumentImpl.class.getName());

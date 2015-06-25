@@ -8,12 +8,14 @@
 		<hc:handler>
 			<hc:handler-class>rs.ac.uns.ftn.xws.handler.WSCryptoHandler</hc:handler-class>
 		</hc:handler>
+		<!-- 
 		<hc:handler>
 			<hc:handler-class>rs.ac.uns.ftn.xws.handler.ClientCryptoHandler</hc:handler-class>
 		</hc:handler>
 		<hc:handler>
 			<hc:handler-class>rs.ac.uns.ftn.xws.handler.ClientSignatureHandler</hc:handler-class>
 		</hc:handler>
+		 -->
 	</hc:handler-chain>
 </hc:handler-chains>
 
