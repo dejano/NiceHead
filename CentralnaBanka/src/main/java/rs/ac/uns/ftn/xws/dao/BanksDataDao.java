@@ -57,7 +57,8 @@ public class BanksDataDao {
 		// balance = getBankBalance("CONARS22");
 		// System.out.println(balance);
 		//
-		 System.out.println(getBankWsUrl("CONARS22"));
+		 System.out.println(getBankDetails("222").getSwiftCode());
+		 System.out.println(getBankDetails("223").getSwiftCode());
 		System.out.println(isSwiftCodeValid("CONARS24"));
 	}
 

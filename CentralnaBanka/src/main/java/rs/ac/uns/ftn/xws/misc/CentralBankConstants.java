@@ -3,11 +3,11 @@ package rs.ac.uns.ftn.xws.misc;
 import java.util.ResourceBundle;
 
 public class CentralBankConstants {
-
-	public static final String XSD_PATH = "../webapps/cb/WEB-INF/xsd/"; 
 	
 	public static final String PROP_FILE_PATH = //"main/resources/"+
 			 "centralBank";
+	
+	public static final String XSD_PATH = "../webapps/cb/WEB-INF/xsd/"; 
 
 	public static final String KEYSTORE_FILE_PATH = "src/main/resources/myKeyStore.jks";
 	

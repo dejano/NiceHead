@@ -54,7 +54,7 @@ public class MpbDocumentImpl implements MpbDocument {
 			CompanyDataDao.updateCompanyReservedAmount(accountNumber,
 					reservedAmount.subtract(amount));
 
-			// TODO delete paymentOrder
+			PaymentOrderDataDao.deletePaymentOrder(paymentOrderId);
 			PaymentData newPayment = ObjectMapper.paymentOrderToPaymentData(paymentOrder, balance, newBalance);
 			PaymentDataDao.addPayment(newPayment);
 		}

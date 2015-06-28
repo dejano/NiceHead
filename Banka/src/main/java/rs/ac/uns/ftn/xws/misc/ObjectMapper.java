@@ -26,8 +26,8 @@ public class ObjectMapper {
 		return ret;
 	}
 
-	public static Mt103 getMt103(PaymentOrder paymentOrder,
-			BankDetails debtorBankDetails, BankDetails creditorBankDetails) {
+	public static Mt103 getMt103(PaymentOrder paymentOrder, BankDetails debtorBankDetails,
+			BankDetails creditorBankDetails) {
 		Mt103 ret = new Mt103();
 
 		ret.setDebtorBankDetails(debtorBankDetails);
@@ -44,10 +44,11 @@ public class ObjectMapper {
 
 		return ret;
 	}
-	
-	public static PaymentData paymentOrderToPaymentData(PaymentOrder po, BigDecimal previousBalance, BigDecimal newBalance) {
+
+	public static PaymentData paymentOrderToPaymentData(PaymentOrder po,
+			BigDecimal previousBalance, BigDecimal newBalance) {
 		PaymentData retVal = new PaymentData();
-		
+
 		retVal.setAmount(po.getAmount());
 		retVal.setCreditor(po.getCreditor());
 		retVal.setCreditorAccountDetails(po.getCreditorAccountDetails());
@@ -58,13 +59,14 @@ public class ObjectMapper {
 		retVal.setPaymentPurpose(po.getPaymentPurpose());
 		retVal.setPreviousBalance(previousBalance);
 		retVal.setNewBalance(newBalance);
-		
+
 		return retVal;
 	}
-	
-	public static PaymentData Mt103ToPaymentData(Mt103 mt103, BigDecimal previousBalance, BigDecimal newBalance) {
+
+	public static PaymentData Mt103ToPaymentData(Mt103 mt103, BigDecimal previousBalance,
+			BigDecimal newBalance) {
 		PaymentData retVal = new PaymentData();
-		
+
 		retVal.setAmount(mt103.getAmount());
 		retVal.setCreditor(mt103.getCreditor());
 		retVal.setCreditorAccountDetails(mt103.getCreditorAccountDetails());
@@ -75,14 +77,13 @@ public class ObjectMapper {
 		retVal.setPaymentPurpose(mt103.getPaymentPurpose());
 		retVal.setPreviousBalance(previousBalance);
 		retVal.setNewBalance(newBalance);
-		
+
 		return retVal;
 	}
 
-	public static Mt102Payment PaymentOrderToMt102Payment(
-			PaymentOrder paymentOrder) {
+	public static Mt102Payment PaymentOrderToMt102Payment(PaymentOrder paymentOrder) {
 		Mt102Payment mt102Payment = new Mt102Payment();
-		
+
 		mt102Payment.setAmount(paymentOrder.getAmount());
 		mt102Payment.setCreditor(paymentOrder.getCreditor());
 		mt102Payment.setCreditorAccountDetails(paymentOrder.getCreditorAccountDetails());
@@ -92,13 +93,14 @@ public class ObjectMapper {
 		mt102Payment.setPaymentPurpose(paymentOrder.getPaymentPurpose());
 		mt102Payment.setCurrencyCode(paymentOrder.getCurrencyCode());
 		mt102Payment.setPaymentOrderId(paymentOrder.getMessageId());
-		
+
 		return mt102Payment;
 	}
-	
-	public static PaymentData PaymentToPaymentData (Mt102Payment payment, BigDecimal previousBalance, BigDecimal newBalance, XMLGregorianCalendar currencyDate ) {
+
+	public static PaymentData PaymentToPaymentData(Mt102Payment payment,
+			BigDecimal previousBalance, BigDecimal newBalance, XMLGregorianCalendar currencyDate) {
 		PaymentData paymentData = new PaymentData();
-		
+
 		paymentData.setAmount(payment.getAmount());
 		paymentData.setCreditor(payment.getCreditor());
 		paymentData.setCreditorAccountDetails(payment.getCreditorAccountDetails());
@@ -109,7 +111,25 @@ public class ObjectMapper {
 		paymentData.setPreviousBalance(previousBalance);
 		paymentData.setNewBalance(newBalance);
 		paymentData.setCurrencyDate(currencyDate);
-		
+
+		return paymentData;
+	}
+
+	public static PaymentData getPaymentData(PaymentOrder paymentOrder, BigDecimal previousBalance,
+			BigDecimal newBalance) {
+		PaymentData paymentData = new PaymentData();
+
+		paymentData.setAmount(paymentOrder.getAmount());
+		paymentData.setCreditor(paymentOrder.getCreditor());
+		paymentData.setCreditorAccountDetails(paymentOrder.getCreditorAccountDetails());
+		paymentData.setDebtor(paymentOrder.getDebtor());
+		paymentData.setDebtorAccountDetails(paymentOrder.getDebtorAccountDetails());
+		paymentData.setOrderDate(paymentOrder.getOrderDate());
+		paymentData.setPaymentPurpose(paymentOrder.getPaymentPurpose());
+		paymentData.setPreviousBalance(previousBalance);
+		paymentData.setNewBalance(newBalance);
+		paymentData.setCurrencyDate(paymentOrder.getCurrencyDate());
+
 		return paymentData;
 	}
 }

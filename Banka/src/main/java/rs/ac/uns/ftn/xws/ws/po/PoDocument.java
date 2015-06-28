@@ -19,7 +19,7 @@ public interface PoDocument {
 
     @WebMethod
     public void paymentOrderHandle(
-        @WebParam(partName = "paymentOrderPart", name = "paymentOrder", targetNamespace = "http://www.ftn.uns.ac.rs/xws/xsd/po")
+        @WebParam(partName = "paymentOrderPart", name = "paymentOrder", targetNamespace = "http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder")
         rs.ac.uns.ftn.xws.generated.po.PaymentOrder paymentOrderPart
     ) throws PoException;
 }

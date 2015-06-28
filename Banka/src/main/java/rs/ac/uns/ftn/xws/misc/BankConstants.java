@@ -16,5 +16,7 @@ public class BankConstants {
 	
 	public static final String BANK_CODE = ResourceBundle.getBundle(
 			PROP_FILE_PATH).getString("bank.code");
+
+	public static final String XSD_PATH = "../webapps/" + BANK_NAME + "/WEB-INF/xsd/";
 	
 }

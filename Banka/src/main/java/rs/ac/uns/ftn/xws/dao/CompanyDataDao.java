@@ -35,18 +35,18 @@ public class CompanyDataDao {
 
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
-		RESTUtil.dropSchema(BankConstants.BANK_NAME);
-		RESTUtil.createSchema(BankConstants.BANK_NAME);
+//		RESTUtil.dropSchema(BankConstants.BANK_NAME);
+//		RESTUtil.createSchema(BankConstants.BANK_NAME);
 		RESTUtil.createResource(BankConstants.BANK_NAME, "companyData.xml", new FileInputStream(
 				new File(file, "companyData.xml")));
 
-		BigDecimal balance = getCompanyBalance("222-2222222222222-22");
-		System.out.println(balance);
+//		BigDecimal balance = getCompanyBalance("222-2222222222222-22");
+//		System.out.println(balance);
 
-		updateCompanyBalance("222-2222222222222-22", balance.add(new BigDecimal(10)));
+//		updateCompanyBalance("222-2222222222222-22", balance.add(new BigDecimal(10)));
 
-		balance = getCompanyBalance("222-2222222222222-22");
-		System.out.println(balance);
+//		balance = getCompanyBalance("222-2222222222222-22");
+//		System.out.println(balance);
 
 		System.out.println(getCompanyWsUrl("223-2222222222222-22"));
 		System.out.println(getCompanyWsUrl("222-2222222222222-22"));
@@ -93,6 +93,20 @@ public class CompanyDataDao {
 		}
 
 		return ret;
+	}
+	
+	public static boolean accountNumberExists(String accountNumber) {
+		String ret = null;
+
+		String q = getCompanyWsUrl[0] + accountNumber + getCompanyWsUrl[1];
+		try {
+			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, BankConstants.BANK_NAME,
+					RequestMethod.GET));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ret != null && !ret.equals("");
 	}
 
 	public static void updateCompanyBalance(String accountNumber, BigDecimal newBalance) {
