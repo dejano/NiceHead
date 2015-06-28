@@ -4,6 +4,8 @@ import java.util.ResourceBundle;
 
 public class CentralBankConstants {
 
+	public static final String XSD_PATH = "../webapps/cb/WEB-INF/xsd/"; 
+	
 	public static final String PROP_FILE_PATH = //"main/resources/"+
 			 "centralBank";
 

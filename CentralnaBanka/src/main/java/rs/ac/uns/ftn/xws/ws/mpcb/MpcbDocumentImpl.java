@@ -11,6 +11,7 @@ import rs.ac.uns.ftn.xws.generated.mp.MpExceptionEnum;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.mp.Mt900;
+import rs.ac.uns.ftn.xws.misc.CentralBankConstants;
 import rs.ac.uns.ftn.xws.misc.CentralBankUtil;
 import rs.ac.uns.ftn.xws.misc.ObjectMapper;
 import rs.ac.uns.ftn.xws.misc.XmlHelper;
@@ -30,7 +31,7 @@ public class MpcbDocumentImpl implements MpcbDocument {
 	public Mt900 rtgsRequest(Mt103 rtgsRequestPart) throws MpException {
 		LOG.info("Executing operation rtgsRequest");
 
-		if(XmlHelper.validate(rtgsRequestPart, "WEB-INF/xsd/mp.xsd"))
+		if(!XmlHelper.validate(rtgsRequestPart, CentralBankConstants.XSD_PATH + "mp.xsd"))
 			throw new MpException("Invalid xml.", MpExceptionEnum.INVALID_XML);
 			
 		
@@ -82,7 +83,7 @@ public class MpcbDocumentImpl implements MpcbDocument {
 
 		System.out.println("Clearing request ws called, mt102 : " + clearingRequestPart.getMessageId());
 
-		if(XmlHelper.validate(clearingRequestPart, "WEB-INF/xsd/mp.xsd"))
+		if(!XmlHelper.validate(clearingRequestPart, CentralBankConstants.XSD_PATH + "mp.xsd"))
 			throw new MpException("Invalid xml.", MpExceptionEnum.INVALID_XML);
 		
 		String debtorBankSwiftCode = clearingRequestPart.getDebtorBankDetails()
