@@ -18,4 +18,6 @@
         </xs:sequence>
     </xs:complexType>
     <xs:element name="certificateRevocationList" type="crl:CertificateRevocationList"/>
+    <xs:element name="certSerial" type="xs:string"/>
+    <xs:element name="isRevoked" type="xs:boolean"/>
 </xs:schema>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CrlDocumentService"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:crl="http://www.ftn.uns.ac.rs/xws/xsd/crl" xmlns:crlws="http://www.ftn.uns.ac.rs/xws/ws/crl"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/ws/crl">
+
+	<wsdl:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/mp"
+		location="../xsd/crl.xsd" />
+
+	<wsdl:message name="certSerialMessage">
+		<wsdl:part name="certSerial" element="crl:certSerial" />
+	</wsdl:message>
+	<wsdl:message name="isRevokedMessage">
+		<wsdl:part name="isRevoked" element="crl:isRevoked" />
+	</wsdl:message>
+
+	<wsdl:portType name="CrlDocument">
+		<wsdl:operation name="isInCrl">
+			<wsdl:input message="crlws:certSerialMessage" />
+			<wsdl:output message="crlws:isRevokedMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="CrlServiceSoapBinding" type="crlws:CrlDocument">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="isInCrl">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="CrlDocumentService">
+		<wsdl:port name="CrlDocumentPort" binding="crlws:CrlServiceSoapBinding">
+			<soap:address location="http://localhost:8080/crl" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>
