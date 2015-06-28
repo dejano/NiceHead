@@ -84,19 +84,7 @@
 	</macrodef>
 
 	<target name="generate-code-xsd" depends="init">
-		<!-- <xjc schema="${webinf.dir}/xsd/cb.xsd" destdir="${gen.dir}" /> -->
-		<!--
-		<xjc schema="${webinf.dir}/xsd/bstatementRequest.xsd" destdir="${gen.dir}" />
-		<xjc schema="${webinf.dir}/xsd/bstatement.xsd" destdir="${gen.dir}" />
-		<xjc schema="${webinf.dir}/xsd/orders.xsd" destdir="${gen.dir}" />
-		<xjc schema="${webinf.dir}/xsd/bs.xsd" destdir="${gen.dir}" />
-		<xjc schema="${webinf.dir}/xsd/common.xsd" destdir="${gen.dir}" />
-		--><xjc schema="${webinf.dir}/xsd/bsb.xsd" destdir="${gen.dir}" /><!--
-		<xjc schema="${webinf.dir}/xsd/paymentOrder.xsd" destdir="${gen.dir}" />
-		<xjc schema="${webinf.dir}/xsd/mpb.xsd" destdir="${gen.dir}" />
-		<xjc schema="${webinf.dir}/xsd/paymentOrders.xsd" destdir="${gen.dir}" />
-		-->
-		<xjc schema="${webinf.dir}/xsd/paymentOrder.xsd" destdir="${gen.dir}" />
+		<xjc schema="${webinf.dir}/xsd/tokens.xsd" destdir="${gen.dir}" />
 	</target>
 
 	<target name="generate-code-wsdl">

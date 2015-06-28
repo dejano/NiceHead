@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/tokens"
+    xmlns:tkns="http://www.ftn.uns.ac.rs/xws/xsd/tokens" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    jxb:version="2.0">
+
+    <xs:annotation>
+        <xs:appinfo>
+            <jxb:globalBindings collectionType="java.util.ArrayList"/>
+            <jxb:schemaBindings>
+                <jxb:package name="rs.ac.uns.ftn.xws.domain.tokens"/>
+            </jxb:schemaBindings>
+        </xs:appinfo>
+    </xs:annotation>
+    
+    <xs:simpleType name="Token">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+    <xs:complexType name="TokenList">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="token" type="tkns:Token"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="tokenList" type="tkns:TokenList"/>
+    <xs:element name="token" type="tkns:Token"/>
+</xs:schema>

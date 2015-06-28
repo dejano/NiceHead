@@ -75,7 +75,7 @@ public class SecWrapper {
 		return ret;
 	}
 
-	public static String getFoo(Document secDocument) {
+	public static String getToken(Document secDocument) {
 		return secDocument.getElementsByTagName("token").item(0).getTextContent();
 	}
 
@@ -95,7 +95,7 @@ public class SecWrapper {
 			System.out.println("!!!");
 
 		System.out.println(((Element) unwrap(secDoc).getFirstChild()).getAttribute("messageId"));
-		System.out.println(getFoo(secDoc));
+		System.out.println(getToken(secDoc));
 		System.out.println(getTimestamp(secDoc));
 
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
