@@ -2,12 +2,18 @@ package rs.ac.uns.ftn.xws.ws.client.bankDetails;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.xml.namespace.QName;
+import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Service;
+import javax.xml.ws.handler.Handler;
 
 import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
+import rs.ac.uns.ftn.xws.handler.client.mpcb.ClientCryptoHandler;
+import rs.ac.uns.ftn.xws.handler.client.mpcb.ClientSignatureHandler;
 import rs.ac.uns.ftn.xws.misc.BankConstants;
 
 public class BdDocumentClient {
@@ -19,6 +25,17 @@ public class BdDocumentClient {
 	public static BankDetails getBankDetails(String bankCode)
 			throws NoBankCodeException {
 		BdDocument bankDetailsService = getService();
+		
+		ClientCryptoHandler crypto = new ClientCryptoHandler();
+		ClientSignatureHandler sing = new ClientSignatureHandler();
+		
+		@SuppressWarnings("rawtypes")
+		List<Handler> handlerChain = new ArrayList<Handler>();
+		//handlerChain.add(attack);
+		handlerChain.add(sing);
+		handlerChain.add(crypto);
+		
+		((BindingProvider) bankDetailsService).getBinding().setHandlerChain(handlerChain);
 
 		return bankDetailsService.getBankDetails(bankCode);
 	}

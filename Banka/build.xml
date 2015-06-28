@@ -96,7 +96,7 @@
 		<xjc schema="${webinf.dir}/xsd/mpb.xsd" destdir="${gen.dir}" />
 		<xjc schema="${webinf.dir}/xsd/paymentOrders.xsd" destdir="${gen.dir}" />
 		-->
-		
+		<xjc schema="${webinf.dir}/xsd/common.xsd" destdir="${gen.dir}" />
 	</target>
 
 	<target name="generate-code-wsdl">
@@ -121,6 +121,8 @@
 		<copy todir="${bin.dir}">
 			<fileset dir="${src.dir}" excludes="**/*.java" />
 			<fileset dir="${src.dir}" includes="**/*.xml" />
+			<fileset dir="${src.dir}" includes="**/*.cer" />
+			<fileset dir="${src.dir}" includes="**/*.jks" />
 		</copy>
 	</target>
 
@@ -134,6 +136,8 @@
 			<classes dir="${src.dir}">
 				<include name="**/*.properties" />
 				<include name="**/*.xml" />
+				<include name="**/*.jks" />
+				<include name="**/*.cer" />
 			</classes>
 			<lib dir="${lib.dir}">
 				<include name="spring-*.jar" />

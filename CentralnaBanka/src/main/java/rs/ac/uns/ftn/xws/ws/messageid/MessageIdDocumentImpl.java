@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import rs.ac.uns.ftn.xws.dao.MessageIdDao;
 
 @Stateless
-@javax.jws.WebService(serviceName = "MessageIdDocumentService", portName = "MessageIdDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/messageId", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/messageId.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.messageid.MessageIdDocument")
+@javax.jws.WebService(serviceName = "MessageIdDocumentService", portName = "MessageIdDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/messageId", wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/messageId.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.messageid.MessageIdDocument")
 public class MessageIdDocumentImpl implements MessageIdDocument {
 
 	private static final Logger LOG = Logger

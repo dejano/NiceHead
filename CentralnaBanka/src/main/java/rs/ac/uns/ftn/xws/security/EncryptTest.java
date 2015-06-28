@@ -1,11 +1,17 @@
 package rs.ac.uns.ftn.xws.security;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.Security;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -20,16 +26,14 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import rs.ac.uns.ftn.xws.misc.BankConstants;
-//import java.security.cert.X509Certificate;
+import rs.ac.uns.ftn.xws.misc.CentralBankConstants;
 
 //Generise tajni kljuc
 //Kriptije sadrzaj dokumenta tajnim kljucem
 //Kriptuje tajni kljuc javnim kljucem
 //Kriptovani tajni kljuc se stavlja kao KeyInfo kriptovanog elementa
-public class EncryptKEK {
-	private static final String KEY_STORE_FILE = BankConstants.KEYSTORE_FILE_PATH;
-	private static final String CB_CER_FILEPATH = BankConstants.CB_CERT_FILEPATH;
+public class EncryptTest {
+	private static final String KEY_STORE_FILE = CentralBankConstants.KEYSTORE_FILE_PATH;
 
 	static {
 		Security.addProvider(new BouncyCastleProvider());
@@ -41,62 +45,26 @@ public class EncryptKEK {
 		SecretKey secretKey = generateDataEncryptionKey();
 		// ucitava sertifikat za kriptovanje tajnog kljuca (svojim javnim
 		// kljucem)
-		X509Certificate cert = readCBCertificate(); //hardcoded
-		// TODO @nikolina major 
-		// document getElementByName ("certificateRef") => prosledi path kao argument u metodi getCertificate(path) 
-		// opciono removeElement
-
-		// X509Certificate cert = readCBCertificate();
+		// Certificate cert = readCertificate();
+		// X509Certificate cert = readBankaOneCertificate();
+		X509Certificate cert = readMyCertificate();
 		// kriptuje se dokument
 		return encrypt(doc, secretKey, cert);
 	}
 
-	/**
-	 * Ucitava sertifikat is KS fajla alias primer
-	 */
-	// private static X509Certificate readCBCertificate() {
-	//
-	// X509Certificate cert;
-	// InputStream inStream;
-	// try {
-	// String path = BankConstants.CB_CERT_FILEPATH;
-	// // inStream = new FileInputStream("KEY_STORE_FILE");
-	// inStream = new FileInputStream(path);
-	// cert = X509Certificate.getInstance(inStream);
-	// inStream.close();
-	// if (cert!=null) {
-	// return cert;
-	// }
-	// else {
-	// return null;
-	// }
-	// } catch (FileNotFoundException e) {
-	// return null;
-	// } catch (javax.security.cert.CertificateException e) {
-	// return null;
-	// } catch (IOException e) {
-	// return null;
-	// }
-	// }
-
-	// /**
-	// * Ucitava sertifikat is KS fajla
-	// * alias primer
-	// */
-	private static X509Certificate readCBCertificate() {
+	private static X509Certificate readBankaOneCertificate() {
 
 		X509Certificate cert;
 		InputStream inStream;
 		try {
-			String path  = CB_CER_FILEPATH;
-//			inStream = new FileInputStream("KEY_STORE_FILE");
+			String path = CentralBankConstants.BANKA1_CERT_FILEPATH;
+			// inStream = new FileInputStream("KEY_STORE_FILE");
 			inStream = new FileInputStream(path);
 			cert = X509Certificate.getInstance(inStream);
 			inStream.close();
-			if (cert!=null) {
+			if (cert != null) {
 				return cert;
-			}
-			else {
+			} else {
 				return null;
 			}
 		} catch (FileNotFoundException e) {
@@ -107,6 +75,72 @@ public class EncryptKEK {
 			return null;
 		}
 	}
+
+	private static X509Certificate readMyCertificate() {
+		X509Certificate cert;
+		InputStream inStream;
+
+		try {
+			String path = CentralBankConstants.CB_CERT_FILEPATH;
+			// inStream = new FileInputStream("KEY_STORE_FILE");
+			inStream = new FileInputStream(path);
+			cert = X509Certificate.getInstance(inStream);
+			inStream.close();
+			if (cert != null) {
+				return cert;
+			} else {
+				return null;
+			}
+		} catch (FileNotFoundException e) {
+			return null;
+		} catch (javax.security.cert.CertificateException e) {
+			return null;
+		} catch (IOException e) {
+			return null;
+		}
+	}
+
+	// /**
+	// * Ucitava sertifikat is KS fajla
+	// * alias primer
+	// */
+	// private static Certificate readCertificate() {
+	// try {
+	// //kreiramo instancu KeyStore
+	// KeyStore ks = KeyStore.getInstance("JKS", "SUN");
+	// //ucitavamo podatke
+	// BufferedInputStream in = new BufferedInputStream(new
+	// FileInputStream(KEY_STORE_FILE));
+	// ks.load(in, "primer".toCharArray());
+	//
+	// if(ks.isKeyEntry("primer")) {
+	// Certificate cert = ks.getCertificate("primer");
+	// return cert;
+	//
+	// }
+	// else
+	// return null;
+	//
+	// } catch (KeyStoreException e) {
+	// e.printStackTrace();
+	// return null;
+	// } catch (NoSuchProviderException e) {
+	// e.printStackTrace();
+	// return null;
+	// } catch (FileNotFoundException e) {
+	// e.printStackTrace();
+	// return null;
+	// } catch (NoSuchAlgorithmException e) {
+	// e.printStackTrace();
+	// return null;
+	// } catch (CertificateException e) {
+	// e.printStackTrace();
+	// return null;
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// return null;
+	// }
+	// }
 
 	/**
 	 * Generise tajni kljuc
@@ -130,9 +164,10 @@ public class EncryptKEK {
 	/**
 	 * Kriptuje sadrzaj prvog elementa odsek
 	 */
-//	 private static Document encrypt(Document doc, SecretKey key,
-//	 Certificate certificate) {
-		 private static Document encrypt(Document doc, SecretKey key, X509Certificate certificate) {
+	// private static Document encrypt(Document doc, SecretKey key, Certificate
+	// certificate) {
+	private static Document encrypt(Document doc, SecretKey key,
+			X509Certificate certificate) {
 
 		try {
 			// cipher za kriptovanje tajnog kljuca,

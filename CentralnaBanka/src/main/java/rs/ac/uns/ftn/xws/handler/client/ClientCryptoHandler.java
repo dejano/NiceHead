@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.handler;
+package rs.ac.uns.ftn.xws.handler.client;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
@@ -12,32 +12,36 @@ import rs.ac.uns.ftn.xws.misc.DocumentUtil;
 import rs.ac.uns.ftn.xws.security.DecryptKEK;
 import rs.ac.uns.ftn.xws.security.EncryptKEK;
 
-
-public class WSCryptoHandler implements LogicalHandler<LogicalMessageContext> {
+public class ClientCryptoHandler implements
+		LogicalHandler<LogicalMessageContext> {
 
 	@Override
 	public boolean handleMessage(LogicalMessageContext context) {
 
-		System.out.println("\n*** Handler za kriptovanje kod Web Servisa ***");
+		System.out.println("\n*** Handler za kriptovanje kod Klijenta ***");
 
-		Boolean isResponse = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
+		Boolean outbound = (Boolean) context
+				.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		Source source = context.getMessage().getPayload();
 		Document document = DocumentUtil.convertToDocument(source);
-		if (isResponse) {
+
+		if (!outbound) {
 			System.err.println("\n-- Kriptovanje --");
-			Document encryptedDoc = EncryptKEK.encryptDocument(document);
 			try {
+				Document encryptedDoc = EncryptKEK.encryptDocument(document);
 				DocumentUtil.printDocument(encryptedDoc);
-			} catch (Exception e) {}
-			context.getMessage().setPayload(new DOMSource(encryptedDoc));
+				context.getMessage().setPayload(new DOMSource(encryptedDoc));
+			} catch (Exception e) {
+			}
 		} else {
-			System.err.println("\n-- Dekriptovanje --");	
-			
-			Document decryptedDoc = DecryptKEK.decryptDocument(document);
+			System.err.println("\n-- Dekriptovanje --");
+
 			try {
+				Document decryptedDoc = DecryptKEK.decryptDocument(document);
 				DocumentUtil.printDocument(decryptedDoc);
-			} catch (Exception e) {}
-			context.getMessage().setPayload(new DOMSource(decryptedDoc));
+				context.getMessage().setPayload(new DOMSource(decryptedDoc));
+			} catch (Exception e) {
+			}
 		}
 		return true;
 	}

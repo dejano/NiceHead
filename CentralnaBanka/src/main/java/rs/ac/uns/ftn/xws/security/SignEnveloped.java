@@ -39,7 +39,7 @@ public class SignEnveloped {
         org.apache.xml.security.Init.init();
     }
 	
-	public static Document signDocument(Document doc) {
+	public static Document signDocument(Document doc) throws XMLSecurityException, NoSuchAlgorithmException, CertificateException, KeyStoreException, NoSuchProviderException, IOException, UnrecoverableKeyException {
 		//ucitava privatni kljuc
 		PrivateKey pk = readPrivateKey();
 		//ucitava sertifikat
@@ -51,9 +51,13 @@ public class SignEnveloped {
 	/**
 	 * Ucitava sertifikat is KS fajla
 	 * alias primer
+	 * @throws IOException 
+	 * @throws CertificateException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws NoSuchProviderException 
+	 * @throws KeyStoreException 
 	 */
-	private static Certificate readCertificate() {
-		try {
+	private static Certificate readCertificate() throws NoSuchAlgorithmException, CertificateException, IOException, KeyStoreException, NoSuchProviderException {
 			//kreiramo instancu KeyStore
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			//ucitavamo podatke
@@ -74,33 +78,19 @@ public class SignEnveloped {
 			else
 				return null;
 			
-		} catch (KeyStoreException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NoSuchProviderException e) {
-			e.printStackTrace();
-			return null;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return null;
-		} catch (CertificateException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		} 
 	}
 	
 	/**
 	 * Ucitava privatni kljuc is KS fajla
 	 * alias primer
+	 * @throws IOException 
+	 * @throws CertificateException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws NoSuchProviderException 
+	 * @throws KeyStoreException 
+	 * @throws UnrecoverableKeyException 
 	 */
-	private static PrivateKey readPrivateKey() {
-		try {
+	private static PrivateKey readPrivateKey() throws NoSuchAlgorithmException, CertificateException, IOException, KeyStoreException, NoSuchProviderException, UnrecoverableKeyException {
 			//kreiramo instancu KeyStore
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			//ucitavamo podatke
@@ -121,33 +111,10 @@ public class SignEnveloped {
 			else
 				return null;
 			
-		} catch (KeyStoreException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NoSuchProviderException e) {
-			e.printStackTrace();
-			return null;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return null;
-		} catch (CertificateException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		} catch (UnrecoverableKeyException e) {
-			e.printStackTrace();
-			return null;
-		} 
 	}
 	
-	private static Document signDocument(Document doc, PrivateKey privateKey, Certificate cert) {
+	private static Document signDocument(Document doc, PrivateKey privateKey, Certificate cert) throws XMLSecurityException {
         
-        try {
 			Element rootEl = doc.getDocumentElement();
 			
 			//kreira se signature objekat
@@ -175,19 +142,5 @@ public class SignEnveloped {
 			sig.sign(privateKey);
 			
 			return doc;
-			
-		} catch (TransformationException e) {
-			e.printStackTrace();
-			return null;
-		} catch (XMLSignatureException e) {
-			e.printStackTrace();
-			return null;
-		} catch (DOMException e) {
-			e.printStackTrace();
-			return null;
-		} catch (XMLSecurityException e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 }

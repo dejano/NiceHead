@@ -12,6 +12,7 @@ import rs.ac.uns.ftn.xws.dao.util.ParserUtil;
 import rs.ac.uns.ftn.xws.domain.mpb.Mt102Ref;
 import rs.ac.uns.ftn.xws.generated.bs.Statement;
 import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
+import rs.ac.uns.ftn.xws.generated.cmn.Message;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102Payment;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102.Payments;
@@ -49,7 +50,7 @@ public class Mt102Util {
 	 * This method creates MT102 based on 
 	 * unprocessed payment orders stored in XML DB.
 	 */
-	public static Mt102 createMt102(BankDetails creditorBankDetails, BankDetails debtorBankDetails, String messageId) {
+	public static Mt102 createMt102(BankDetails creditorBankDetails, BankDetails debtorBankDetails, Message message) {
 		Mt102 mt102 = null;
 		BigDecimal totalAmount = BigDecimal.ZERO;
 		
@@ -64,7 +65,9 @@ public class Mt102Util {
 			
 			mt102.setCreditorBankDetails(creditorBankDetails);
 			mt102.setDebtorBankDetails(debtorBankDetails);
-			mt102.setMessageId(messageId);
+			mt102.setMessageId(message.getMessageId());
+			mt102.setCertificateRef(message.getCertificateRef());
+			mt102.setTimestamp(message.getTimestamp());
 			// hardcodovano settovanje mt102 header atributa iz paymentOrders[0]
 			mt102.setCurrencyCode(paymentOrders.get(0).getCurrencyCode());
 			mt102.setCurrencyDate(paymentOrders.get(0).getCurrencyDate());
@@ -80,9 +83,9 @@ public class Mt102Util {
 			mt102.setTotalAmount(totalAmount);
 
 			//mt102ref messageId isti kao mt102 messageId?
-			Mt102Ref mt102Ref = Mt102RefUtil.createMt102Ref(mt102.getPayments().getPayment(), messageId);
+			Mt102Ref mt102Ref = Mt102RefUtil.createMt102Ref(mt102.getPayments().getPayment(), message.getMessageId());
 			Mt102DataDao.insertMt102(XmlHelper.marshall(mt102Ref));
-			System.out.println(Mt102DataDao.getMt102Ref(messageId).getMessageId());
+			System.out.println(Mt102DataDao.getMt102Ref(message.getMessageId()).getMessageId());
 		}
 		
 		return mt102;
@@ -100,10 +103,10 @@ public class Mt102Util {
 		bd2.setSwiftCode("CONARS22");
 		bd2.setBankClearingAccountNumber("223-2222333222222-33");
 		
-		Mt102 mt102 =  createMt102(bd1, bd2, "12321");
+		//Mt102 mt102 =  createMt102(bd1, bd2, "12321");
 		//Mt102Ref mt102ref = Mt102RefUtil.createMt102Ref(mt102.getPayments().getPayment(), "19191");
 		
-		System.out.println(mt102.getCurrencyDate());
+		//System.out.println(mt102.getCurrencyDate());
 	}
 
 }

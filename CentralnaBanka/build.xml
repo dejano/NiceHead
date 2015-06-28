@@ -97,7 +97,9 @@
 	</macrodef>
 
 	<target name="generate-code-xsd" depends="init">
-		<xjc schema="${webinf.dir}/xsd/crl.xsd" destdir="${gen.dir}" />
+		<!-- <xjc schema="${webinf.dir}/xsd/crl.xsd" destdir="${gen.dir}" /> 
+		-->
+		<xjc schema="${webinf.dir}/xsd/common.xsd" destdir="${gen.dir}" />
 	</target>
 
 	<target name="generate-code-wsdl">
@@ -116,13 +118,15 @@
 			<src path="${src.dir}" />
 		</javac>
 	</target>
-	
-	
+
+
 	<target name="copy-non-java" depends="compile" description="Copies non java files to bin directory">
-			<copy todir="${bin.dir}">
-				<fileset dir="${src.dir}" excludes="**/*.java" />
-				<fileset dir="${src.dir}" includes="**/*.xml" />
-			</copy>
+		<copy todir="${bin.dir}">
+			<fileset dir="${src.dir}" excludes="**/*.java" />
+			<fileset dir="${src.dir}" includes="**/*.xml" />
+			<fileset dir="${src.dir}" includes="**/*.cer" />
+			<fileset dir="${src.dir}" includes="**/*.jks" />
+		</copy>
 	</target>
 
 	<target name="war" depends="compile">
@@ -135,12 +139,19 @@
 			<classes dir="${src.dir}">
 				<include name="**/*.properties" />
 				<include name="**/*.xml" />
+				<include name="**/*.jks" />
+				<include name="**/*.cer" />
 			</classes>
 			<lib dir="${lib.dir}">
 				<include name="spring-*.jar" />
 				<include name="basex-*.jar" />
 				<include name="commons-io-1.3.2.jar" />
+				<include name="bcprov-jdk15on-152.jar" />
+				<include name="serializer.jar" />
+				<include name="xalan.jar" />
+				<include name="xmlsec-1.4.2.jar" />
 			</lib>
+
 			<webinf dir="${webinf.dir}">
 				<include name="xsd/**" />
 				<include name="wsdl/**" />

@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.xws.ws.mpb.mpcb;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -16,6 +17,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @WebService(targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpcb", name = "MpcbDocument")
 @XmlSeeAlso({rs.ac.uns.ftn.xws.generated.mp.ObjectFactory.class, rs.ac.uns.ftn.xws.generated.cmn.ObjectFactory.class})
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
+//@HandlerChain(file = "../../mpcb-handler-chain-document.xml")
 public interface MpcbDocument {
 
     @WebMethod

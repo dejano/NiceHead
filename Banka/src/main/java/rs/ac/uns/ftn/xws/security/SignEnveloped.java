@@ -68,7 +68,6 @@ public class SignEnveloped {
 			if(ks.isKeyEntry(bankAlias)) {
 				Certificate cert = ks.getCertificate(bankAlias);
 				return cert;
-				
 			}
 			else
 				return null;

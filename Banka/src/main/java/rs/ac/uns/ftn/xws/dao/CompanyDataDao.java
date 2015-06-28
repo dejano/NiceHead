@@ -35,8 +35,8 @@ public class CompanyDataDao {
 
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
-		// RESTUtil.dropSchema("bank");
-		// RESTUtil.createSchema(BankConstants.BANK_NAME);
+//		 RESTUtil.dropSchema("bank");
+//		 RESTUtil.createSchema(BankConstants.BANK_NAME);
 		RESTUtil.createResource(BankConstants.BANK_NAME, "companyData.xml",
 				new FileInputStream(new File(file, "companyData.xml")));
 

@@ -61,9 +61,23 @@
 			<xs:pattern value="[a-zA-Z0-9]{1,50}"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:complexType abstract="true" name="Message">
+	
+	<!-- 
+	<xs:simpleType name="CertificateRef">	
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	 -->
+	 
+	<xs:complexType name="Message">
+		<xs:sequence>
+			<xs:element name ="certificateRef" type="xs:string"/>
+			<xs:element name="timestamp" type="xs:dateTime"/>
+		</xs:sequence>
 		<xs:attribute name="messageId" type="cmn:MessageId"> </xs:attribute>
 	</xs:complexType>
+	
 	<xs:simpleType name="Balance">
 		<xs:restriction>
 			<xs:simpleType>

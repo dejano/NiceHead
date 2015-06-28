@@ -24,7 +24,7 @@ public class ClientSignatureHandler implements LogicalHandler<LogicalMessageCont
 		Source source = context.getMessage().getPayload();
 		Document document = DocumentUtil.convertToDocument(source);
 
-		if (!isResponse) {
+		if (isResponse) {
 			System.err.println("\nDokument koji je stigao");
 			try {
 				DocumentUtil.printDocument(document);

@@ -38,7 +38,7 @@ public class ClearingDataDao {
 		//
 		// deleteMt102("2");
 
-		System.out.println(getClearingDataAsString());
+//		System.out.println(getClearingDataAsString());
 	}
 
 	public static String getClearingDataAsString() {

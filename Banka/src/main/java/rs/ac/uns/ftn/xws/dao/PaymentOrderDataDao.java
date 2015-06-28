@@ -29,8 +29,8 @@ public class PaymentOrderDataDao {
 	
 	public static void main(String[] args) throws Exception{
 		
-		 RESTUtil.dropSchema("bank");
-		 RESTUtil.createSchema(BankConstants.BANK_NAME);
+//		 RESTUtil.dropSchema("bank");
+//		 RESTUtil.createSchema(BankConstants.BANK_NAME);
 		
 		File file = new File("src/main/resources/");
 		RESTUtil.deleteResource(BankConstants.BANK_NAME, "paymentOrders.xml");

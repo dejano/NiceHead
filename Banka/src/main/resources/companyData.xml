@@ -3,7 +3,7 @@
 	xmlns:mpb="http://www.ftn.uns.ac.rs/xws/xsd/mpb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/mpb ../../../WEB-INF/xsd/mpb.xsd ">
 	<mpb:company>
-		<mpb:accountNumber>222-2222222222222-22</mpb:accountNumber>
+		<mpb:accountNumber>111-2222222222222-22</mpb:accountNumber>
 		<mpb:balance>1000.0</mpb:balance>
 		<mpb:reservedAmount>1000.0</mpb:reservedAmount>
 		<mpb:wsUrl>foo</mpb:wsUrl>
@@ -13,5 +13,11 @@
 		<mpb:balance>1000.0</mpb:balance>
 		<mpb:reservedAmount>1000.0</mpb:reservedAmount>
 		<mpb:wsUrl>bar</mpb:wsUrl>
+	</mpb:company>
+	<mpb:company>
+		<mpb:accountNumber>000-2222222222222-22</mpb:accountNumber>
+		<mpb:balance>1000.0</mpb:balance>
+		<mpb:reservedAmount>1000.0</mpb:reservedAmount>
+		<mpb:wsUrl>foos</mpb:wsUrl>
 	</mpb:company>
 </mpb:companyData>

@@ -53,30 +53,32 @@ public class TestUtil {
 		System.out.println("****** ISPISUJEM ENCRIPTOVANI DOCUMENT **** ");
 		DocumentUtil.printDocument(encryptedDoc);
 		
-		System.out.println("*****DEKTRIPUTJEM BANK STATEMENT REQUEST******");
-		Document decryptedDocument = DecryptKEK.decryptDocument(encryptedDoc);
 		
-		System.out.println("*****ISPISUJEM BANK STATEMENT REQUEST NAKON DECRYPTA******");
-		DocumentUtil.printDocument(decryptedDocument);
 		
-		System.out.println("***** PROVERAM POTPIS I KIDAM signature xml element ako ga ima******");
-		
-		boolean signatureValid = VerifyClientSignatureEnveloped.verifySignature(decryptedDocument);
-		
-		if(!signatureValid) {
-			System.out.println("POTPIS NIJE VALIDAN ...");
-			return ;
-		}
-		System.out.println("POTPIS JE VALIDAN ... SKIDAM ODGOVARAJUCI TAG");
-		// uklanjanje potpisa
-		Element element =  (Element) decryptedDocument.getElementsByTagNameNS("http://www.w3.org/2000/09/xmldsig#", "Signature").item(0);  
-		element.getParentNode().removeChild(element);
-		
-		System.out.println("ISPISUJEM DEKRIPOTVANI ELEMENT SA SKINUTIM POTPISOM");
-		DocumentUtil.printDocument(decryptedDocument);
-		
-//		Statement statement= new Statement();
-//		statement.set
+//		System.out.println("*****DEKTRIPUTJEM BANK STATEMENT REQUEST******");
+//		Document decryptedDocument = DecryptKEK.decryptDocument(encryptedDoc);
+//		
+//		System.out.println("*****ISPISUJEM BANK STATEMENT REQUEST NAKON DECRYPTA******");
+//		DocumentUtil.printDocument(decryptedDocument);
+//		
+//		System.out.println("***** PROVERAM POTPIS I KIDAM signature xml element ako ga ima******");
+//		
+//		boolean signatureValid = VerifyClientSignatureEnveloped.verifySignature(decryptedDocument);
+//		
+//		if(!signatureValid) {
+//			System.out.println("POTPIS NIJE VALIDAN ...");
+//			return ;
+//		}
+//		System.out.println("POTPIS JE VALIDAN ... SKIDAM ODGOVARAJUCI TAG");
+//		// uklanjanje potpisa
+//		Element element =  (Element) decryptedDocument.getElementsByTagNameNS("http://www.w3.org/2000/09/xmldsig#", "Signature").item(0);  
+//		element.getParentNode().removeChild(element);
+//		
+//		System.out.println("ISPISUJEM DEKRIPOTVANI ELEMENT SA SKINUTIM POTPISOM");
+//		DocumentUtil.printDocument(decryptedDocument);
+//		
+////		Statement statement= new Statement();
+////		statement.set
 		
 	}
 	

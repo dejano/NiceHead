@@ -24,7 +24,7 @@ public class ClientCryptoHandler implements LogicalHandler<LogicalMessageContext
 		Source source = context.getMessage().getPayload();
 		Document document = DocumentUtil.convertToDocument(source);
 		
-		if (!isResponse) {
+		if (isResponse) {
 			System.err.println("\n-- Kriptovanje --");
 			Document encryptedDoc = EncryptKEK.encryptDocument(document);
 			try {
@@ -34,8 +34,10 @@ public class ClientCryptoHandler implements LogicalHandler<LogicalMessageContext
 		} else {
 			System.err.println("\n-- Dekriptovanje --");	
 			
-			Document decryptedDoc = DecryptKEK.decryptDocument(document);
+			Document decryptedDoc=null;
 			try {
+				DocumentUtil.printDocument(document);
+				decryptedDoc = DecryptKEK.decryptDocument(document);
 				DocumentUtil.printDocument(decryptedDoc);
 			} catch (Exception e) {}
 			context.getMessage().setPayload(new DOMSource(decryptedDoc));

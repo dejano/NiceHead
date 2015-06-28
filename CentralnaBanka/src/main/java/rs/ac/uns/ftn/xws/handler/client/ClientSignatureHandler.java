@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.handler;
+package rs.ac.uns.ftn.xws.handler.client;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
@@ -6,6 +6,8 @@ import javax.xml.ws.handler.LogicalHandler;
 import javax.xml.ws.handler.LogicalMessageContext;
 import javax.xml.ws.handler.MessageContext;
 
+import org.apache.xml.security.exceptions.XMLSecurityException;
+import org.apache.xml.security.signature.XMLSignatureException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -14,33 +16,36 @@ import rs.ac.uns.ftn.xws.security.SignEnveloped;
 import rs.ac.uns.ftn.xws.security.VerifyClientSignatureEnveloped;
 
 
-public class WSSignatureHandler implements LogicalHandler<LogicalMessageContext> {
+public class ClientSignatureHandler implements LogicalHandler<LogicalMessageContext> {
 
 	@Override
 	public boolean handleMessage(LogicalMessageContext context) {
-		System.out.println("\n*** Handler za digitalno potpisivanje kod Web Servisa ***");
+		System.out.println("\n*** Handler za digitalno potpisivanje kod Klijenta ***");
 
 		Boolean isResponse = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		Source source = context.getMessage().getPayload();
 		Document document = DocumentUtil.convertToDocument(source);
 
-		if (isResponse) {
+		if (!isResponse) {
 			System.err.println("\nDokument koji je stigao");
 			try {
 				DocumentUtil.printDocument(document);
 			} catch (Exception e) {}
-			System.err.println("\n-- Potpisivanje --");			
 			
+			System.err.println("\n-- Potpisivanje --");			
+
+			try {
 			Document signedDocument = SignEnveloped.signDocument(document);		
 			Source signedSource = new DOMSource(signedDocument);
-			try {
+			context.getMessage().setPayload(signedSource);	
 				DocumentUtil.printDocument(signedDocument);
-			} catch (Exception e) {}
-			context.getMessage().setPayload(signedSource);			
+			} catch (Exception e) {}		
 		} else {
 			System.err.println("\nValidacija i skidanje potpisa...");
 
-			boolean signatureValid = VerifyClientSignatureEnveloped.verifySignature(document);
+			boolean signatureValid;
+			
+			signatureValid = VerifyClientSignatureEnveloped.verifySignature(document);
 			
 			if(!signatureValid) {
 				return false; // potpis nije validan

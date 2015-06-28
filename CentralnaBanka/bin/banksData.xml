@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd ">
 	<cb:bank>
-		<cb:bankCode>888</cb:bankCode>
+		<cb:bankCode>111</cb:bankCode>
 		<cb:bankDetails>
 			<cmn:swiftCode>CONARS22</cmn:swiftCode>
 			<cmn:bankClearingAccountNumber>111-1111111111111-11</cmn:bankClearingAccountNumber>
@@ -13,10 +13,19 @@
 		<cb:balance>10000.0</cb:balance>
 	</cb:bank>
 	<cb:bank>
-		<cb:bankCode>777</cb:bankCode>
+		<cb:bankCode>223</cb:bankCode>
 		<cb:bankDetails>
 			<cmn:swiftCode>CONARS23</cmn:swiftCode>
-			<cmn:bankClearingAccountNumber>111-1111111111111-12</cmn:bankClearingAccountNumber>
+			<cmn:bankClearingAccountNumber>223-1111111111111-12</cmn:bankClearingAccountNumber>
+		</cb:bankDetails>
+		<cb:wsUrl>http://localhost:8080/banka2</cb:wsUrl>
+		<cb:balance>5000.0</cb:balance>
+	</cb:bank>
+	<cb:bank>
+		<cb:bankCode>000</cb:bankCode>
+		<cb:bankDetails>
+			<cmn:swiftCode>CONARS23</cmn:swiftCode>
+			<cmn:bankClearingAccountNumber>000-1111111111111-12</cmn:bankClearingAccountNumber>
 		</cb:bankDetails>
 		<cb:wsUrl>http://localhost:8080/banka2</cb:wsUrl>
 		<cb:balance>5000.0</cb:balance>

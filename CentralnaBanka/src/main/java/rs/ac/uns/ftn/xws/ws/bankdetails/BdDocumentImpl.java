@@ -3,13 +3,15 @@ package rs.ac.uns.ftn.xws.ws.bankdetails;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
+import javax.jws.HandlerChain;
 import javax.jws.WebService;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
 
 @Stateless
-@WebService(serviceName = "BdDocumentService", portName = "BdDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bankDetails", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.bankdetails.BdDocument")
+@WebService(serviceName = "BdDocumentService", portName = "BdDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bankDetails", wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.bankdetails.BdDocument")
+@HandlerChain (file= "../handler-chain-document.xml")
 public class BdDocumentImpl implements BdDocument {
 
 	private static final Logger LOG = Logger.getLogger(BdDocumentImpl.class

@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.xws.ws.mpb.bankdetails;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -17,8 +18,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 		rs.ac.uns.ftn.xws.generated.mp.ObjectFactory.class,
 		rs.ac.uns.ftn.xws.generated.cmn.ObjectFactory.class })
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
+//@HandlerChain(file = "../../mpcb-handler-chain-document.xml")
 public interface BdDocument {
-
 	@WebMethod
 	@WebResult(name = "bankDetails", targetNamespace = "http://www.ftn.uns.ac.rs/xws/xsd/common", partName = "bankDetailsPart")
 	public rs.ac.uns.ftn.xws.generated.cmn.BankDetails getBankDetails(

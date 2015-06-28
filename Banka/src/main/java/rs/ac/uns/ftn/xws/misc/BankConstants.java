@@ -6,9 +6,11 @@ public class BankConstants {
 
 	public static final String PROP_FILE_PATH = //"main/resources/" + 
 			"bank";
-	
-	public static final String KEYSTORE_FILE_PATH = "src/main/resources/banka1.jks";
-//	public static final String KEYSTORE_FILE_PATH = "src/main/resources/myKeyStore.jks";
+	public static final String KEYSTORE_FILE_PATH ="src/main/resources/"+
+			 "banka1.jks";
+//	public static final String CB_CERT_FILEPATH = "src/main/resources/cb.cer";
+	public static final String CB_CERT_FILEPATH = "src/main/resources/cb.cer";
+	//public static final String KEYSTORE_FILE_PATH = "src/main/resources/myKeyStore.jks";
 //	public static final String KEYSTORE_FILE_PATH = //"main/resources/" +
 //			"myKeyStore.jks";
 
