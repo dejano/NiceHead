@@ -49,12 +49,14 @@ public class Mt102Util {
 	 * This method creates MT102 based on 
 	 * unprocessed payment orders stored in XML DB.
 	 */
-	public static Mt102 createMt102(BankDetails creditorBankDetails, BankDetails debtorBankDetails, String messageId) {
+	public static Mt102 createMt102(String creditorBankCode, BankDetails creditorBankDetails, 
+			BankDetails debtorBankDetails, String messageId) {
 		Mt102 mt102 = null;
 		BigDecimal totalAmount = BigDecimal.ZERO;
 		
 		String debtorBankCode = debtorBankDetails.getBankClearingAccountNumber().substring(0,3);
-		List<PaymentOrder> paymentOrders = getPaymentOrders().get(debtorBankCode);
+		// TODO @baandjo iskoristi mapu - redundantno je - izvuci kod poziva funkcije
+		List<PaymentOrder> paymentOrders = getPaymentOrders().get(creditorBankCode);
 		
 		if(paymentOrders.size()>0) {
 			// kreiraj payments preko object factory-a i setuj ga u mt102
@@ -91,7 +93,6 @@ public class Mt102Util {
 	
 	
 	public static void main(String[] args) {
-		
 		BankDetails bd1 = new BankDetails();
 		bd1.setSwiftCode("CONARS23");
 		bd1.setBankClearingAccountNumber("223-2222222222222-22");
@@ -100,7 +101,7 @@ public class Mt102Util {
 		bd2.setSwiftCode("CONARS22");
 		bd2.setBankClearingAccountNumber("223-2222333222222-33");
 		
-		Mt102 mt102 =  createMt102(bd1, bd2, "12321");
+		Mt102 mt102 =  createMt102("", bd1, bd2, "12321");
 		//Mt102Ref mt102ref = Mt102RefUtil.createMt102Ref(mt102.getPayments().getPayment(), "19191");
 		
 		System.out.println(mt102.getCurrencyDate());

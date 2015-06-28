@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.ws.mpb.bankdetails;
+package rs.ac.uns.ftn.xws.ws.client.bankDetails;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,7 +15,7 @@ public final class BdDocument_BdDocumentPort_Client {
 		BdDocument bdService = null;
 		
 		URL wsdl = new URL(
-				"http://localhost:8081/cb/services/BdDocument?wsdl");
+				"http://localhost:8080/cb/services/BdDocument?wsdl");
 
 		QName serviceName = new QName(
 				"http://www.ftn.uns.ac.rs/xws/ws/bankDetails",

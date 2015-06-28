@@ -14,13 +14,13 @@ import rs.ac.uns.ftn.xws.generated.mp.Mt900;
 import rs.ac.uns.ftn.xws.misc.CentralBankUtil;
 import rs.ac.uns.ftn.xws.misc.ObjectMapper;
 import rs.ac.uns.ftn.xws.misc.XmlHelper;
-import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
+import rs.ac.uns.ftn.xws.ws.client.mpb.MpbDocumentClient;
 @Stateless
 @javax.jws.WebService(
                       serviceName = "MpcbDocumentService",
                       portName = "MpcbDocumentPort",
                       targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpcb",
-                      wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
+                      wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
                       endpointInterface = "rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocument")
                       
 public class MpcbDocumentImpl implements MpcbDocument {
@@ -30,6 +30,10 @@ public class MpcbDocumentImpl implements MpcbDocument {
 	public Mt900 rtgsRequest(Mt103 rtgsRequestPart) throws MpException {
 		LOG.info("Executing operation rtgsRequest");
 
+		if(XmlHelper.validate(rtgsRequestPart, "WEB-INF/xsd/mp.xsd"))
+			throw new MpException("Invalid xml.", MpExceptionEnum.INVALID_XML);
+			
+		
 		BigDecimal debtorBankBalance;
 		BigDecimal creditorBankBalance;
 		BigDecimal amount = rtgsRequestPart.getAmount();
@@ -76,6 +80,11 @@ public class MpcbDocumentImpl implements MpcbDocument {
 	public void clearingRequest(Mt102 clearingRequestPart) throws MpException {
 		LOG.info("Executing operation clearingRequest");
 
+		System.out.println("Clearing request ws called, mt102 : " + clearingRequestPart.getMessageId());
+
+		if(XmlHelper.validate(clearingRequestPart, "WEB-INF/xsd/mp.xsd"))
+			throw new MpException("Invalid xml.", MpExceptionEnum.INVALID_XML);
+		
 		String debtorBankSwiftCode = clearingRequestPart.getDebtorBankDetails()
 				.getSwiftCode();
 		String creditorBankSwiftCode = clearingRequestPart

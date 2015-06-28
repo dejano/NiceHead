@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.ws.mpcb.mpb;
+package rs.ac.uns.ftn.xws.ws.client.mpb;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,7 +38,7 @@ public class MpbDocumentClient {
 	}
 
 	public static void invokeClearingDebit(Mt102 mt102) {
-		MpbDocument mpbService = getService(mt102.getCreditorBankDetails()
+		MpbDocument mpbService = getService(mt102.getDebtorBankDetails()
 				.getSwiftCode());
 
 		mpbService.clearingDebit(ObjectMapper.getMt900(mt102));

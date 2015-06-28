@@ -10,7 +10,7 @@ import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
 import rs.ac.uns.ftn.xws.domain.ClearingData;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
-import rs.ac.uns.ftn.xws.ws.mpcb.mpb.MpbDocumentClient;
+import rs.ac.uns.ftn.xws.ws.client.mpb.MpbDocumentClient;
 
 public class Clearing {
 

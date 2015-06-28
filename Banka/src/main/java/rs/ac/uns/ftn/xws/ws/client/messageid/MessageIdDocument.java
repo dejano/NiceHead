@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.ws.mpb.messageid;
+package rs.ac.uns.ftn.xws.ws.client.messageid;
 
 import javax.jws.WebMethod;
 import javax.jws.WebResult;

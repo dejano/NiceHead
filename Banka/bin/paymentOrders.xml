@@ -5,18 +5,19 @@
  xmlns:pos="http://www.ftn.uns.ac.rs/xws/xsd/pos"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/pos ../../../WEB-INF/xsd/paymentOrders.xsd">
+ 
     <po:paymentOrder messageId="159">
         <cmn:debtor>bakisha</cmn:debtor>
         <cmn:paymentPurpose>placanje</cmn:paymentPurpose>
         <cmn:creditor>bankaB</cmn:creditor>
         <cmn:orderDate>2006-05-04</cmn:orderDate>
         <cmn:debtorAccountDetails>
-            <cmn:accountNumber>111-0001234000000-00</cmn:accountNumber>
+            <cmn:accountNumber>223-2222222222222-22</cmn:accountNumber>
             <cmn:model>50</cmn:model>
             <cmn:referenceNumber>referenceNumber0</cmn:referenceNumber>
         </cmn:debtorAccountDetails>
         <cmn:creditorAccountDetails>
-            <cmn:accountNumber>223-0000000174100-00</cmn:accountNumber>
+            <cmn:accountNumber>222-2222222222222-22</cmn:accountNumber>
             <cmn:model>50</cmn:model>
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
@@ -25,18 +26,19 @@
         <po:currencyCode>A</po:currencyCode>
         <po:urgent>false</po:urgent>
     </po:paymentOrder>
+
     <po:paymentOrder messageId="951">
         <cmn:debtor>bakisha</cmn:debtor>
         <cmn:paymentPurpose>placanje</cmn:paymentPurpose>
         <cmn:creditor>bankaB</cmn:creditor>
         <cmn:orderDate>2006-05-04</cmn:orderDate>
         <cmn:debtorAccountDetails>
-            <cmn:accountNumber>111-0001234000000-00</cmn:accountNumber>
+            <cmn:accountNumber>223-2222222222222-22</cmn:accountNumber>
             <cmn:model>50</cmn:model>
             <cmn:referenceNumber>referenceNumber0</cmn:referenceNumber>
         </cmn:debtorAccountDetails>
         <cmn:creditorAccountDetails>
-            <cmn:accountNumber>223-0001000174100-00</cmn:accountNumber>
+            <cmn:accountNumber>222-2222222222222-22</cmn:accountNumber>
             <cmn:model>50</cmn:model>
             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
         </cmn:creditorAccountDetails>
@@ -45,46 +47,28 @@
         <po:currencyCode>A</po:currencyCode>
         <po:urgent>false</po:urgent>
     </po:paymentOrder>
-    <po:paymentOrder messageId="753">
-        <cmn:debtor>bakisha</cmn:debtor>
-        <cmn:paymentPurpose>placanje</cmn:paymentPurpose>
-        <cmn:creditor>bankaB</cmn:creditor>
-        <cmn:orderDate>2006-05-04</cmn:orderDate>
-        <cmn:debtorAccountDetails>
-            <cmn:accountNumber>111-0001234000110-00</cmn:accountNumber>
-            <cmn:model>50</cmn:model>
-            <cmn:referenceNumber>referenceNumber0</cmn:referenceNumber>
-        </cmn:debtorAccountDetails>
-        <cmn:creditorAccountDetails>
-            <cmn:accountNumber>224-0000000174100-00</cmn:accountNumber>
-            <cmn:model>50</cmn:model>
-            <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
-        </cmn:creditorAccountDetails>
-        <cmn:amount>0.00</cmn:amount>
-        <po:currencyDate>2006-05-04</po:currencyDate>
-        <po:currencyCode>A</po:currencyCode>
-        <po:urgent>false</po:urgent>
-    </po:paymentOrder>
-    <po:paymentOrder messageId="357">
-        <cmn:debtor>bakisha</cmn:debtor>
-        <cmn:paymentPurpose>placanje</cmn:paymentPurpose>
-        <cmn:creditor>bankaB</cmn:creditor>
-        <cmn:orderDate>2006-05-04</cmn:orderDate>
-        <cmn:debtorAccountDetails>
-            <cmn:accountNumber>111-0001234000110-00</cmn:accountNumber>
-            <cmn:model>50</cmn:model>
-            <cmn:referenceNumber>referenceNumber0</cmn:referenceNumber>
-        </cmn:debtorAccountDetails>
-        <cmn:creditorAccountDetails>
-            <cmn:accountNumber>224-0011000174100-00</cmn:accountNumber>
-            <cmn:model>50</cmn:model>
-            <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
-        </cmn:creditorAccountDetails>
-        <cmn:amount>0.00</cmn:amount>
-        <po:currencyDate>2006-05-04</po:currencyDate>
-        <po:currencyCode>A</po:currencyCode>
-        <po:urgent>false</po:urgent>
-    </po:paymentOrder>
+
+<!--     <po:paymentOrder messageId="753"> -->
+<!--         <cmn:debtor>bakisha</cmn:debtor> -->
+<!--         <cmn:paymentPurpose>placanje</cmn:paymentPurpose> -->
+<!--         <cmn:creditor>bankaB</cmn:creditor> -->
+<!--         <cmn:orderDate>2006-05-04</cmn:orderDate> -->
+<!--         <cmn:debtorAccountDetails> -->
+<!--             <cmn:accountNumber>222-2222222222222-22</cmn:accountNumber> -->
+<!--             <cmn:model>50</cmn:model> -->
+<!--             <cmn:referenceNumber>referenceNumber0</cmn:referenceNumber> -->
+<!--         </cmn:debtorAccountDetails> -->
+<!--         <cmn:creditorAccountDetails> -->
+<!--             <cmn:accountNumber>223-2222222222222-22</cmn:accountNumber> -->
+<!--             <cmn:model>50</cmn:model> -->
+<!--             <cmn:referenceNumber>referenceNumber1</cmn:referenceNumber> -->
+<!--         </cmn:creditorAccountDetails> -->
+<!--         <cmn:amount>0.00</cmn:amount> -->
+<!--         <po:currencyDate>2006-05-04</po:currencyDate> -->
+<!--         <po:currencyCode>A</po:currencyCode> -->
+<!--         <po:urgent>false</po:urgent> -->
+<!--     </po:paymentOrder> -->
+
 </pos:paymentOrders>
 
 

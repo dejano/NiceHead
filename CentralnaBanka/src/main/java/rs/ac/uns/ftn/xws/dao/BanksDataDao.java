@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.xws.dao;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -38,13 +39,13 @@ public class BanksDataDao {
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
 
-		// RESTUtil.dropSchema(CentralBankConstants.SCHEMA_NAME);
-		// RESTUtil.createSchema(CentralBankConstants.SCHEMA_NAME);
-		// RESTUtil.deleteResource(CentralBankConstants.SCHEMA_NAME,
-		// "banksData.xml");
-		// RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME,
-		// "banksData.xml", new FileInputStream(new File(file,
-		// "banksData.xml")));
+//		 RESTUtil.dropSchema(CentralBankConstants.SCHEMA_NAME);
+//		 RESTUtil.createSchema(CentralBankConstants.SCHEMA_NAME);
+		 RESTUtil.deleteResource(CentralBankConstants.SCHEMA_NAME,
+		 "banksData.xml");
+		 RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME,
+		 "banksData.xml", new FileInputStream(new File(file,
+		 "banksData.xml")));
 		//
 		// System.out.println(getBankDetails("888"));
 		//
@@ -56,7 +57,7 @@ public class BanksDataDao {
 		// balance = getBankBalance("CONARS22");
 		// System.out.println(balance);
 		//
-		// System.out.println(getBankWsUrl("CONARS22"));
+		 System.out.println(getBankWsUrl("CONARS22"));
 		System.out.println(isSwiftCodeValid("CONARS24"));
 	}
 

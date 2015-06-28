@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="invalidSwiftCode"/>
  *     &lt;enumeration value="invalidAmount"/>
  *     &lt;enumeration value="multipleBanks"/>
+ *     &lt;enumeration value="invalidXml"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -41,7 +42,9 @@ public enum MpExceptionEnum {
     @XmlEnumValue("invalidAmount")
     INVALID_AMOUNT("invalidAmount"),
     @XmlEnumValue("multipleBanks")
-    MULTIPLE_BANKS("multipleBanks");
+    MULTIPLE_BANKS("multipleBanks"),
+    @XmlEnumValue("invalidXml")
+    INVALID_XML("invalidXml");
     private final String value;
 
     MpExceptionEnum(String v) {

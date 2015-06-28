@@ -42,10 +42,6 @@ public class PaymentDataDao {
 
 //		File file = new File("src/main/resources/");
 		try {
-			
-//			RESTUtil.dropSchema("bank");
-//			 RESTUtil.createSchema(BankConstants.BANK_NAME);
-			
 			File file = new File("src/main/resources/");
 			RESTUtil.deleteResource(BankConstants.BANK_NAME, "payments.xml");
 			RESTUtil.createResource(BankConstants.BANK_NAME, "payments.xml",

@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.xws.ws.mpb.messageid;
+package rs.ac.uns.ftn.xws.ws.client.messageid;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,7 +14,7 @@ public final class MessageIdDocument_MessageIdDocumentPort_Client {
 	public static void main(String args[]) throws java.lang.Exception {
 		try {
 			URL wsdl = new URL(
-					"http://localhost:8081/cb/services/MessageIdDocument?wsdl");
+					"http://localhost:8080/cb/services/MessageIdDocument?wsdl");
 
 			QName serviceName = new QName(
 					"http://www.ftn.uns.ac.rs/xws/ws/messageId",
@@ -38,7 +38,7 @@ public final class MessageIdDocument_MessageIdDocumentPort_Client {
 		String messageId = "";
 		
 		URL wsdl = new URL(
-				"http://localhost:8081/cb/services/MessageIdDocument?wsdl");
+				"http://localhost:8080/cb/services/MessageIdDocument?wsdl");
 
 		QName serviceName = new QName(
 				"http://www.ftn.uns.ac.rs/xws/ws/messageId",

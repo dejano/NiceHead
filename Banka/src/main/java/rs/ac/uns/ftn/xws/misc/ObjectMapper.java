@@ -45,7 +45,7 @@ public class ObjectMapper {
 		return ret;
 	}
 	
-	public static PaymentData PaymentOrderToPaymentData(PaymentOrder po, BigDecimal previousBalance, BigDecimal newBalance) {
+	public static PaymentData paymentOrderToPaymentData(PaymentOrder po, BigDecimal previousBalance, BigDecimal newBalance) {
 		PaymentData retVal = new PaymentData();
 		
 		retVal.setAmount(po.getAmount());

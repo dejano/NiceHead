@@ -24,7 +24,7 @@ import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
 import rs.ac.uns.ftn.xws.misc.ObjectMapper;
 
 @Stateless
-@javax.jws.WebService(serviceName = "MpbDocumentService", portName = "MpbDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpb", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.mpb.MpbDocument")
+@javax.jws.WebService(serviceName = "MpbDocumentService", portName = "MpbDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpb", wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/mpb.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.mpb.MpbDocument")
 public class MpbDocumentImpl implements MpbDocument {
 
 	private static final Logger LOG = Logger.getLogger(MpbDocumentImpl.class
@@ -38,7 +38,6 @@ public class MpbDocumentImpl implements MpbDocument {
 		Mt102Ref mt102Ref = Mt102DataDao.getMt102Ref(clearingDebitPart.getPaymentOrderId());
 
 		for (String paymentOrderId : mt102Ref.getPaymentOrderId()) {
-			//PaymentOrder paymentOrder = null; // TODO baki
 			PaymentOrder paymentOrder = PaymentOrderDataDao.getPaymentOrder(paymentOrderId);
 			String accountNumber = paymentOrder.getDebtorAccountDetails().getAccountNumber();
 			BigDecimal amount = paymentOrder.getAmount();
@@ -56,8 +55,7 @@ public class MpbDocumentImpl implements MpbDocument {
 					reservedAmount.subtract(amount));
 
 			// TODO delete paymentOrder
-			// TODO save payment
-			PaymentData newPayment = ObjectMapper.PaymentOrderToPaymentData(paymentOrder, balance, newBalance);
+			PaymentData newPayment = ObjectMapper.paymentOrderToPaymentData(paymentOrder, balance, newBalance);
 			PaymentDataDao.addPayment(newPayment);
 		}
 	}
@@ -80,7 +78,6 @@ public class MpbDocumentImpl implements MpbDocument {
 		// pay-in funds to creditor account
 		CompanyDataDao.updateCompanyBalance(accountNumber, newBalance);
 
-		// TODO save payment
 		PaymentData newPayment = ObjectMapper.Mt103ToPaymentData(mt103, balance, newBalance);
 		PaymentDataDao.addPayment(newPayment);
 	}
@@ -89,6 +86,8 @@ public class MpbDocumentImpl implements MpbDocument {
 		LOG.info("Executing operation clearingApproval");
 
 		Mt102 mt102 = clearingApprovalPart.getMt102();
+
+		LOG.info("Clearing approval, mt102 : " + clearingApprovalPart.getMt102().getMessageId());
 
 		// iterate through payments and pay in funds to creditor accounts
 		for (Mt102Payment payment : mt102.getPayments().getPayment()) {
@@ -107,7 +106,6 @@ public class MpbDocumentImpl implements MpbDocument {
 			// pay-in funds
 			CompanyDataDao.updateCompanyBalance(accountNumber, newBalance);
 
-			// TODO save payment
 			XMLGregorianCalendar currencyDate = mt102.getCurrencyDate();
 			PaymentData newPayment = ObjectMapper.PaymentToPaymentData(payment, balance, newBalance, currencyDate);
 			PaymentDataDao.addPayment(newPayment);

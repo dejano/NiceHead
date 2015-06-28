@@ -14,14 +14,15 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.util.ResourceBundle;
 
-import org.apache.xml.security.encryption.XMLCipher;
-import org.apache.xml.security.encryption.XMLEncryptionException;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import rs.ac.uns.ftn.xws.misc.CentralBankConstants;
+
+import com.sun.org.apache.xml.internal.security.encryption.XMLCipher;
+import com.sun.org.apache.xml.internal.security.encryption.XMLEncryptionException;
 
 
 //Dekriptuje tajni kljuc privatnim kljucem

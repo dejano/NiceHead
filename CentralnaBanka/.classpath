@@ -2,21 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="lib/javaee-api-6.0-4-tomcat.jar"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/basex-7.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/basex-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/commons-io-1.3.2.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/lib/basex-7.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/lib/basex-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/lib/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="lib/bcprov-jdk15on-152.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/serializer.jar"/>
-	<classpathentry kind="lib" path="lib/xalan.jar"/>
-	<classpathentry kind="lib" path="lib/xmlsec-1.4.2.jar"/>
->>>>>>> mpb-bs-fill-test
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/commons-io-1.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/javaee-api-6.0-4-tomcat.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/bcprov-jdk15on-152.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/serializer.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/xalan.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/lib/xmlsec-1.4.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

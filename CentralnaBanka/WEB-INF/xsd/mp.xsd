@@ -23,6 +23,7 @@
 			<xs:enumeration value="invalidSwiftCode"/>
 			<xs:enumeration value="invalidAmount"/>
 			<xs:enumeration value="multipleBanks"/>
+			<xs:enumeration value="invalidXml"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xsd:complexType name="RtgsApprovalMessage">

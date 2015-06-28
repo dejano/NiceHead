@@ -9,7 +9,7 @@ import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
 
 @Stateless
-@WebService(serviceName = "BdDocumentService", portName = "BdDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bankDetails", wsdlLocation = "file:/C:/Users/nikola42/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.bankdetails.BdDocument")
+@WebService(serviceName = "BdDocumentService", portName = "BdDocumentPort", targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bankDetails", wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl", endpointInterface = "rs.ac.uns.ftn.xws.ws.bankdetails.BdDocument")
 public class BdDocumentImpl implements BdDocument {
 
 	private static final Logger LOG = Logger.getLogger(BdDocumentImpl.class
@@ -18,8 +18,11 @@ public class BdDocumentImpl implements BdDocument {
 	public BankDetails getBankDetails(String bankCodePart)
 			throws NoBankCodeException {
 		LOG.info("Executing operation getBankDetails");
+		
 		BankDetails ret = BanksDataDao.getBankDetails(bankCodePart);
 
+		System.out.println("Bank details ws called : " + bankCodePart + ", ret : " + ret);
+		
 		if (ret == null)
 			throw new NoBankCodeException("Error",
 					"No bank details for bank code : " + bankCodePart);

@@ -103,7 +103,7 @@
 	<target name="generate-code-wsdl">
 		<echo level="info" message="Generating code using wsdl2java..." />
 
-		<wsdl2java file="${wsdl.dir}/bankDetails.wsdl" />
+		<wsdl2java file="${wsdl.dir}/swiftCode.wsdl" />
 	</target>
 
 	<target name="compile" depends="init">

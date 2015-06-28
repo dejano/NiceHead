@@ -3,7 +3,7 @@
 	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
 	xmlns:cb="http://www.ftn.uns.ac.rs/xws/xsd/cb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd">
-	<mp:mt102 messageId="2">
+	<mp:mt102 messageId="555">
 		<mp:debtorBankDetails>
 			<cmn:swiftCode>CONARS22</cmn:swiftCode>
 			<cmn:bankClearingAccountNumber>111-1111111111111-11</cmn:bankClearingAccountNumber>
