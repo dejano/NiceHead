@@ -104,6 +104,8 @@
 		<echo level="info" message="Generating code using wsdl2java..." />
 
 		<wsdl2java file="${wsdl.dir}/crl.wsdl" />
+		<wsdl2java file="${wsdl.dir}/messageId.wsdl" />
+		<wsdl2java file="${wsdl.dir}/bankDetails.wsdl" />
 	</target>
 
 	<target name="compile" depends="init">

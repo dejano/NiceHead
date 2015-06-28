@@ -84,7 +84,7 @@ public class XmlHelper {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T> JAXBElement<T> getJaxbElement(T obj, Class<?> objClazz)
+	public static <T> JAXBElement<T> getJaxbElement(T obj, Class<?> objClazz)
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			NoSuchMethodException, SecurityException, IllegalArgumentException,
 			InvocationTargetException {
