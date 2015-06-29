@@ -4,8 +4,8 @@
     angular.module('app.invoices')
         .controller('invoiceController', invoiceController)
 
-    invoiceController.$inject = ['$scope', 'invoiceService', 'dataService', '$log', '$modal', '$route', 'toastr'];
-    function invoiceController($scope, invoiceService, dataService, $log, $modal, $route, toastr) {
+    invoiceController.$inject = ['$scope', 'invoiceService', 'dataService', '$log', '$modal', '$route', 'toastr', 'location'];
+    function invoiceController($scope, invoiceService, dataService, $log, $modal, $route, toastr, $location) {
         $scope.invoice = invoiceService.data;
 
         $scope.approve = approve;
@@ -19,7 +19,7 @@
 
         function successCallback(title, message) {
             toastr.success(message, title);
-            $route.location('/dashboard');
+            $location.path( "/dashboard" );
         }
 
         function reject() {

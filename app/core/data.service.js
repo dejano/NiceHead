@@ -8,10 +8,10 @@
     function dataService($http, $rootScope, $log, toastr) {
         var X2js = new X2JS();
         var dateFormat = 'yyyy-MM-dd';
-        var partnersUrl = 'http://localhost:8080/partneri/';
-        var invoicesUrl = 'http://localhost:8080/partneri/' + $rootScope.setupData.pib + '/fakture';
-        var invoiceUrl = 'http://localhost:8080/partneri/' + $rootScope.setupData.pib + '/fakture/';
-        var itemsUrl = 'http://localhost:8080/partneri/' + $rootScope.setupData.pib + '/fakture/{0}/stavke';
+        var partnersUrl = $rootScope.setupData.url + 'partneri/';
+        var invoicesUrl = $rootScope.setupData.url + 'partneri/' + $rootScope.setupData.pib + '/fakture';
+        var invoiceUrl = $rootScope.setupData.url + 'partneri/' + $rootScope.setupData.pib + '/fakture/';
+        var itemsUrl = $rootScope.setupData.url + 'partneri/' + $rootScope.setupData.pib + '/fakture/{0}/stavke';
 
         var Invoice = {
             getAll: getInvoices,
@@ -66,7 +66,18 @@
         }
 
         function getPartner(pib) {
-
+            return $http.get(
+                partnersUrl + pib, {
+                    withCredentials: true,
+                    transformResponse: function (data) {
+                        if (data == null || data == "") {
+                            return data;
+                        }
+                        data = X2js.xml_str2json(data);
+                        console.log(data);
+                        return data.partner;
+                    }
+                });
         }
 
         function getInvoices(httpUrl) {
@@ -129,11 +140,13 @@
 
         function createInvoice(invoice, httpUrl) {
             var url = httpUrl || invoicesUrl;
-            return $http.post(url, invoice, {
+            return $http.post(url + '/create', invoice, {
                 withCredentials: true,
                 transformRequest: function (obj) {
+                    obj.invoice._id = "id";
+                    obj.invoice._state = "boss";
                     obj.invoice.invoice_header.supplier.pib = $rootScope.setupData.pib;
-                    obj.invoice.invoice_header.buyer.pib = 'pib0';
+                    //obj.invoice.invoice_header.buyer.pib = 'pib0';
                     obj.invoice.invoice_header.payment.currency._date = obj.invoice.invoice_header.payment.currency._date.format(dateFormat.toLowerCase());
                     obj.invoice.invoice_header.bill._date = obj.invoice.invoice_header.bill._date.format(dateFormat.toLowerCase());
                     obj.invoice.invoice_header.bill.toString = function () {
@@ -151,21 +164,52 @@
                 }
             });
         }
+
         function approveInvoice(invoice) {
             console.log(invoice);
-            return $http.put(invoiceUrl + "approve" + '/' + invoice._id, invoice, {
+            //return $http.put(invoiceUrl + "approve" + '/' + invoice._id, invoice, {
+            //    withCredentials: true,
+            //    transformRequest: function (obj) {
+            //        obj = {invoice: obj};
+            //        obj.invoice.invoice_header.supplier.pib = $rootScope.setupData.pib;
+            //        obj.invoice.invoice_header.buyer.pib = 'pib2';
+            //        obj.invoice.invoice_header.payment.currency._date = obj.invoice.invoice_header.payment.currency._date.format(dateFormat.toLowerCase());
+            //        obj.invoice.invoice_header.bill._date = obj.invoice.invoice_header.bill._date.format(dateFormat.toLowerCase());
+            //        obj.invoice.invoice_header.bill.toString = function () {
+            //            return obj.invoice.invoice_header.bill.__text;
+            //        };
+            //
+            //        return X2js.json2xml_str(obj);
+            //    },
+            //    headers: {
+            //        'Content-Type': 'application/xml',
+            //        'Accept': "application/xml, text/plain, */*"
+            //    }
+            //}).success(function () {
+            //
+            //});
+            console.log(invoice.invoice_header.buyer.pib);
+            //return getPartner(invoice.invoice_header.buyer.pib).success(function (data) {
+            return getPartner('pib2').success(function (data) {
+                var partnerUrl = data.base_rest_url;
+                sendInvoiceToPartner(partnerUrl + '/' + invoice.invoice_header.supplier.pib + '/fakture', invoice)
+                    .success(function (data) {
+                        toastr.success("Invoice sent", "Invoice has been sent to partner " + invoice.invoice_header.buyer.name + "(" + invoice.invoice_header.buyer.pib + ")")
+                    });
+            })
+        }
+
+        function sendInvoiceToPartner(url, invoice) {
+            console.log(url);
+            url = 'http://localhost:8081/partneri/pib2/fakture';
+            return $http.post(url, invoice, {
                 withCredentials: true,
                 transformRequest: function (obj) {
                     obj = {invoice: obj};
-                    obj.invoice.invoice_header.supplier.pib = $rootScope.setupData.pib;
-                    obj.invoice.invoice_header.buyer.pib = 'pib0';
-                    obj.invoice.invoice_header.payment.currency._date = obj.invoice.invoice_header.payment.currency._date.format(dateFormat.toLowerCase());
-                    obj.invoice.invoice_header.bill._date = obj.invoice.invoice_header.bill._date.format(dateFormat.toLowerCase());
-                    obj.invoice.invoice_header.bill.toString = function () {
-                        return obj.invoice.invoice_header.bill.__text;
-                    };
-
-                    return X2js.json2xml_str(obj);
+                    var invoiceXmlString = X2js.json2xml_str(obj);
+                    //var txt2 = invoiceXmlString.slice(0, 8) + ' xmlns="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice"' + invoiceXmlString.slice(8);
+                    //txt2 = txt2.split("'").join('"');
+                    return invoiceXmlString;
                 },
                 headers: {
                     'Content-Type': 'application/xml',

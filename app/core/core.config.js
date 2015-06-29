@@ -9,12 +9,12 @@
 
         //$cookiesProvider.
         // Configure auth provider
-        authProvider.setLoginUrl("http://localhost:8080/auth");
-        authProvider.setLogoutUrl("http://localhost:8080/logout");
+        authProvider.setLoginUrl("http://localhost:8081/auth");
+        authProvider.setLogoutUrl("http://localhost:8081/logout");
         authProvider.setAfterLogoutUrl("/");
 
         // Configure the common route provider
         routeHelperConfigProvider.config.$routeProvider = $routeProvider;
-        routeHelperConfigProvider.config.docTitle = 'Test title';
+        routeHelperConfigProvider.config.docTitle = 'YoLo Company - ';
     }
 })();

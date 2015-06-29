@@ -8,7 +8,7 @@
         $rootScope.setupData = {
             "name": "YoLo Company",
             "address": "1",
-            "url": "1",
+            "url": "http://localhost:8081/",
             "pib": "pib1",
             "accounts": [
                 "1",
