@@ -3,7 +3,9 @@ package rs.ac.uns.ftn.xmlbsep.dao.impl;
 import com.mongodb.MongoClient;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import rs.ac.uns.ftn.xmlbsep.beans.jaxb.Config;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.User;
+import rs.ac.uns.ftn.xmlbsep.dao.ConfigDao;
 import rs.ac.uns.ftn.xmlbsep.dao.UserDaoLocal;
 
 import javax.ejb.Local;
@@ -14,13 +16,14 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 @Stateless
-@Local(UserDaoLocal.class)
-public class UserDaoImpl implements UserDaoLocal {
+@Local(ConfigDao.class)
+public class ConfigDaoImpl implements ConfigDao {
 
     @Context
     HttpServletRequest request;
 
-    public User login(String username, String password) {
+    @Override
+    public Config get() {
         final Morphia morphia = new Morphia();
 // tell Morphia where to find your classes
 // can be called multiple times with different packages or classes
@@ -32,10 +35,9 @@ public class UserDaoImpl implements UserDaoLocal {
             final Datastore datastore = morphia.createDatastore(mongoClient, "company");
             datastore.ensureIndexes();
 
-            List<User> user = datastore.createQuery(User.class).field("username").equal(username).field("password").equal(password).asList();
-            if (user.size() > 0) {
-                request.getSession().setAttribute("user", user.get(0));
-                return user.get(0);
+            List<Config> configs = datastore.find(Config.class).asList();
+            if (configs.size() > 0) {
+                return configs.get(0);
             }
             mongoClient.close();
         } catch (UnknownHostException e) {
@@ -48,7 +50,4 @@ public class UserDaoImpl implements UserDaoLocal {
         return null;
     }
 
-    public void logout() {
-        request.getSession().invalidate();
-    }
 }

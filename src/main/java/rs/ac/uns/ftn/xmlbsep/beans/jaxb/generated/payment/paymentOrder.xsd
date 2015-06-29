@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common"
+	targetNamespace="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
+	xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder" xmlns="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder">
+
+	<xs:import namespace="http://www.ftn.uns.ac.rs/xws/xsd/common"
+		schemaLocation="common.xsd" />
+
+	<xs:annotation>
+		<xs:appinfo>
+			<jxb:globalBindings collectionType="java.util.ArrayList" />
+			<jxb:schemaBindings>
+				<jxb:package name="rs.ac.uns.ftn.xws.generated.po" />
+			</jxb:schemaBindings>
+		</xs:appinfo>
+	</xs:annotation>
+
+	<xs:complexType block="" name="PaymentOrder">
+		<xs:complexContent>
+			<xs:extension base="cmn:Payment">
+				<xs:sequence>
+					<xs:element name="currencyDate" type="xs:date" />
+					<xs:element name="currencyCode" type="cmn:CurrencyCode" />
+					<xs:element name="urgent" type="xs:boolean" />
+				</xs:sequence>
+				<xs:attribute name="messageId" type="cmn:MessageId" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PoExceptionEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="invalidXml" />
+			<xs:enumeration value="debtorAccountDoesNotExist" />
+			<xs:enumeration value="creditorAccountDoesNotExist" />
+			<xs:enumeration value="debtorInsufficientFunds" />
+			<xs:enumeration value="invalidBankCode" />
+			<xs:enumeration value="invalidSwiftCode" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="paymentOrder" type="po:PaymentOrder" />
+	<xs:element name="poExceptionEnum" type="po:PoExceptionEnum" />
+
+</xs:schema>

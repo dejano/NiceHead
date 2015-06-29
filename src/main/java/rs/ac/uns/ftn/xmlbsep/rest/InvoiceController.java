@@ -3,6 +3,9 @@ package rs.ac.uns.ftn.xmlbsep.rest;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ResultWrapper;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.User;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
+import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.payment.AccountDetails;
+import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.payment.PaymentOrder;
+import rs.ac.uns.ftn.xmlbsep.dao.ConfigDao;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDaoLocal;
 import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
 import rs.ac.uns.ftn.xmlbsep.security.HasPermission;
@@ -29,6 +32,8 @@ public class InvoiceController {
     private PartnerDaoLocal partnerDao;
     @EJB
     private InvoiceFactory invoiceFactory;
+    @EJB
+    private ConfigDao configDao;
 
     @Context
     private HttpServletRequest request;
@@ -82,6 +87,7 @@ public class InvoiceController {
             invoice.setState(InvoiceState.DIRECTOR.toString());
         } else {
             invoice.setState(InvoiceState.PARTNER.toString());
+            // send invoice to partner's rest (create endpoint for this)
         }
 
         try {
@@ -92,6 +98,33 @@ public class InvoiceController {
         }
 
         return Response.status(Response.Status.OK).contentLocation(uriInfo.getAbsolutePathBuilder().path(String.valueOf(retVal.getId())).build()).build();
+    }
+
+    private void createPayment(Invoice invoice) {
+        PaymentOrder paymentOrder = new PaymentOrder();
+        paymentOrder.setCurrencyCode(invoice.getInvoiceHeader().getPayment().getCurrency().getValue());
+        paymentOrder.setCurrencyDate(invoice.getInvoiceHeader().getPayment().getCurrency().getDate());
+        paymentOrder.setOrderDate(invoice.getInvoiceHeader().getBill().getDate());
+        paymentOrder.setPaymentPurpose("Placanje usluga");
+        paymentOrder.setDebtor(invoice.getInvoiceHeader().getBuyer().getName());
+        paymentOrder.setCreditor(invoice.getInvoiceHeader().getSupplier().getName());
+        paymentOrder.setAmount(invoice.getInvoiceHeader().getPrice().getTotal());
+
+        AccountDetails creditorAccountDetails = new AccountDetails();
+        creditorAccountDetails.setModel(50);
+        creditorAccountDetails.setAccountNumber(invoice.getInvoiceHeader().getPayment().getAccountNumber());
+        creditorAccountDetails.setReferenceNumber("referenceNumber0");
+
+        AccountDetails debtorAccountDetails = new AccountDetails();
+        debtorAccountDetails.setModel(50);
+        debtorAccountDetails.setAccountNumber(configDao.get().getAccounts().get(0));
+        debtorAccountDetails.setReferenceNumber("referenceNumber0");
+
+
+        paymentOrder.setCreditorAccountDetails(creditorAccountDetails);
+        paymentOrder.setDebtorAccountDetails(debtorAccountDetails);
+
+        paymentOrder.setUrgent(false);
     }
 
     @DELETE
