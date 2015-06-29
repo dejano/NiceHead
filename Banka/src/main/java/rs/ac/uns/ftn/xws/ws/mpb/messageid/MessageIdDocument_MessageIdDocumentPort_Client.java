@@ -88,9 +88,6 @@ public final class MessageIdDocument_MessageIdDocumentPort_Client {
 		c.setTime(new Date());
 		XMLGregorianCalendar currentTimestamp = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 		
-		message.setTimestamp(currentTimestamp);
-		message.setCertificateRef(BankConstants.BANK_NAME);
-		
 		return message;
 	}
 

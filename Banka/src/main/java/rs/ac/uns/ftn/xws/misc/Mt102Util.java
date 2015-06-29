@@ -66,8 +66,6 @@ public class Mt102Util {
 			mt102.setCreditorBankDetails(creditorBankDetails);
 			mt102.setDebtorBankDetails(debtorBankDetails);
 			mt102.setMessageId(message.getMessageId());
-			mt102.setCertificateRef(message.getCertificateRef());
-			mt102.setTimestamp(message.getTimestamp());
 			// hardcodovano settovanje mt102 header atributa iz paymentOrders[0]
 			mt102.setCurrencyCode(paymentOrders.get(0).getCurrencyCode());
 			mt102.setCurrencyDate(paymentOrders.get(0).getCurrencyDate());
