@@ -30,12 +30,12 @@
     http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
         ">
 
-    <aop:aspectj-autoproxy/>
+    <!--<aop:aspectj-autoproxy/>-->
 
     <!--<context:component-scan base-package="rs.ac.uns.ftn.xmlbsep"/>-->
 
     <!-- Aspect -->
-    <bean id="xmlValidatorAspect" class="rs.ac.uns.ftn.xmlbsep.validation.XMLSchemaValidator"/>
+    <!--<bean id="xmlValidatorAspect" class="rs.ac.uns.ftn.xmlbsep.validation.XMLSchemaValidator"/>-->
 
     <!--<mongo:repositories base-package="rs.ac.uns.ftn.xmlbsep.beans.jaxb" />-->
 

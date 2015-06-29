@@ -179,8 +179,8 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
         wrappedQuery = String.format(wrappedQuery, xQuery);
 
         url = new URL(REST_URL + schemaName);
-//        System.out.println(url);
-//        System.out.println(wrappedQuery);
+        System.out.println(url);
+        System.out.println(wrappedQuery);
         conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
         conn.setRequestMethod(RequestMethod.POST);

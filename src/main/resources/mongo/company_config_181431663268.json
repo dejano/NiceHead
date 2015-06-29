@@ -1,0 +1,1 @@
+{ "_id" : { "$oid" : "558243bcd193ff56e4a950c9" }, "className" : "rs.ac.uns.ftn.xmlbsep.beans.jaxb.Config", "name" : "11", "address" : "1", "url" : "1", "pib" : "pib0", "accounts" : [ "1", "2", "3" ] }

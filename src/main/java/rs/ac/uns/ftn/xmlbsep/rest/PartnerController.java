@@ -4,20 +4,17 @@ package rs.ac.uns.ftn.xmlbsep.rest;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ResultWrapper;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.partner.Partner;
 import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
-import rs.ac.uns.ftn.xmlbsep.security.Authenticate;
-import rs.ac.uns.ftn.xmlbsep.security.HasPermission;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.List;
 
 @Path("/partneri")
-@Consumes({ "application/xml" })
-@Produces({ "application/xml" })
+@Consumes({"application/xml"})
+@Produces({"application/xml"})
 public class PartnerController {
 
     @EJB
@@ -41,8 +38,14 @@ public class PartnerController {
 
     @GET
     @Path("/{partnerId}")
-    public String get(@PathParam("partnerId") long partnerId) {
-        return "Return partner with " + partnerId + " ID.";
+    public Response get(@PathParam("partnerId") String partnerId) throws IOException, JAXBException {
+        Partner partner = partnerDao.getPartner(partnerId);
+
+        if (partner == null) {
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
+        
+        return Response.status(Response.Status.OK).entity(partner).build();
     }
 
 }

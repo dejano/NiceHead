@@ -1,0 +1,43 @@
+<inv:invoice id="string" sent_to="string" xmlns:inv="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice">
+  <inv:invoice_header>
+    <inv:supplier>
+      <inv:name>string</inv:name>
+      <inv:address>string</inv:address>
+      <inv:pib>string</inv:pib>
+    </inv:supplier>
+    <inv:buyer>
+      <inv:name>string</inv:name>
+      <inv:address>string</inv:address>
+      <inv:pib>string</inv:pib>
+    </inv:buyer>
+    <inv:bill date="2008-09-29">3</inv:bill>
+    <inv:price>
+      <inv:services>1000.00</inv:services>
+      <inv:goods>1000.00</inv:goods>
+      <inv:total_taxes>1000.00</inv:total_taxes>
+      <inv:total_discount>1000.00</inv:total_discount>
+      <inv:total>1000.00</inv:total>
+    </inv:price>
+    <inv:payment>
+      <inv:currency date="2014-09-19">str</inv:currency>
+      <inv:amount>1000.00</inv:amount>
+      <inv:account_number>stringstringstringst</inv:account_number>
+    </inv:payment>
+  </inv:invoice_header>
+  <!--1 or more repetitions:-->
+  <inv:item id="3">
+    <inv:name>string</inv:name>
+    <inv:discount>
+      <inv:percentage>1000.00</inv:percentage>
+      <inv:value>1000.00</inv:value>
+    </inv:discount>
+    <inv:unit>
+      <inv:name>string</inv:name>
+      <inv:price>1000.00</inv:price>
+    </inv:unit>
+    <inv:quantity>1000.00</inv:quantity>
+    <inv:taxes>1000.00</inv:taxes>
+    <inv:total_price>1000.00</inv:total_price>
+    <inv:price_with_discount>1000.00</inv:price_with_discount>
+  </inv:item>
+</inv:invoice>

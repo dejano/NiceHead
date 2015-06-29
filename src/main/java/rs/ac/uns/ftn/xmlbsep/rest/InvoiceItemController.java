@@ -14,9 +14,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-/**
- * Created by dejan on 14.5.2015..
- */
 @Consumes({"application/xml"})
 @Produces({"application/xml"})
 @Path("/partneri/{partnerId}/fakture/{invoiceId}/stavke")
@@ -50,7 +47,7 @@ public class InvoiceItemController {
     }
 
     @POST
-    @ValidXMLSchema(value = "/xsd/item.xsd", clazz = Item.class)
+//    @ValidXMLSchema(value = "/xsd/item.xsd", clazz = Item.class)
     public Response saveItem(Item item, @PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId, @Context UriInfo uriInfo) throws Throwable {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();

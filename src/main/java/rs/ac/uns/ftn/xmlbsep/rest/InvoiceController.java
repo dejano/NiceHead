@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.xmlbsep.rest;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ResultWrapper;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.User;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
+import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.partner.Partner;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.payment.AccountDetails;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.payment.PaymentOrder;
 import rs.ac.uns.ftn.xmlbsep.dao.ConfigDao;
@@ -12,6 +13,8 @@ import rs.ac.uns.ftn.xmlbsep.security.HasPermission;
 import rs.ac.uns.ftn.xmlbsep.security.InvoiceFactory;
 import rs.ac.uns.ftn.xmlbsep.security.InvoiceState;
 import rs.ac.uns.ftn.xmlbsep.validation.ValidXMLSchema;
+import rs.ac.uns.ftn.xmlbsep.ws.PoDocument;
+import rs.ac.uns.ftn.xmlbsep.ws.PoException;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +22,11 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 @Consumes({"application/xml", "application/json"})
@@ -39,8 +47,28 @@ public class InvoiceController {
     private HttpServletRequest request;
 
     @POST
-    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
-    @HasPermission("createInvoice")
+//    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
+    public Response create(Invoice invoice, @PathParam("partnerId") String partnerId, @Context UriInfo uriInfo) throws Throwable {
+        if (!partnerDao.isPartner(partnerId)) {
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
+        Invoice retVal = null;
+
+        try {
+            invoice.setState("partner");
+            retVal = invoiceDao.persist(invoice);
+        } catch (Throwable e) {
+            e.printStackTrace();
+            throw e;
+        }
+        createPayment(invoice);
+        return Response.status(Response.Status.CREATED).contentLocation(uriInfo.getAbsolutePathBuilder().path(String.valueOf(retVal.getId())).build()).build();
+    }
+
+    @POST
+//    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
+    @HasPermission("create.invoice")
+    @Path("/create")
     public Response store(Invoice invoice, @PathParam("partnerId") String partnerId, @Context UriInfo uriInfo) throws Throwable {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();
@@ -55,7 +83,6 @@ public class InvoiceController {
         }
 
         try {
-            System.out.println("entity: " + invoice);
             retVal = invoiceDao.persist(invoice);
         } catch (Throwable e) {
             e.printStackTrace();
@@ -66,8 +93,8 @@ public class InvoiceController {
     }
 
     @PUT
-    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
-//    @HasPermission("approveInvoice")
+//    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
+    @HasPermission("approve.invoice")
     @Path("/approve/{invoiceId}")
     public Response approve(@PathParam("invoiceId") String invoiceId, @PathParam("partnerId") String partnerId, @Context UriInfo uriInfo) throws Throwable {
         if (!partnerDao.isPartner(partnerId)) {
@@ -100,36 +127,10 @@ public class InvoiceController {
         return Response.status(Response.Status.OK).contentLocation(uriInfo.getAbsolutePathBuilder().path(String.valueOf(retVal.getId())).build()).build();
     }
 
-    private void createPayment(Invoice invoice) {
-        PaymentOrder paymentOrder = new PaymentOrder();
-        paymentOrder.setCurrencyCode(invoice.getInvoiceHeader().getPayment().getCurrency().getValue());
-        paymentOrder.setCurrencyDate(invoice.getInvoiceHeader().getPayment().getCurrency().getDate());
-        paymentOrder.setOrderDate(invoice.getInvoiceHeader().getBill().getDate());
-        paymentOrder.setPaymentPurpose("Placanje usluga");
-        paymentOrder.setDebtor(invoice.getInvoiceHeader().getBuyer().getName());
-        paymentOrder.setCreditor(invoice.getInvoiceHeader().getSupplier().getName());
-        paymentOrder.setAmount(invoice.getInvoiceHeader().getPrice().getTotal());
-
-        AccountDetails creditorAccountDetails = new AccountDetails();
-        creditorAccountDetails.setModel(50);
-        creditorAccountDetails.setAccountNumber(invoice.getInvoiceHeader().getPayment().getAccountNumber());
-        creditorAccountDetails.setReferenceNumber("referenceNumber0");
-
-        AccountDetails debtorAccountDetails = new AccountDetails();
-        debtorAccountDetails.setModel(50);
-        debtorAccountDetails.setAccountNumber(configDao.get().getAccounts().get(0));
-        debtorAccountDetails.setReferenceNumber("referenceNumber0");
-
-
-        paymentOrder.setCreditorAccountDetails(creditorAccountDetails);
-        paymentOrder.setDebtorAccountDetails(debtorAccountDetails);
-
-        paymentOrder.setUrgent(false);
-    }
-
     @DELETE
+    @HasPermission("reject.invoice")
     @Path("/{invoiceId}")
-    public Response delete(@PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId) throws Exception {
+    public Response reject(@PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
@@ -146,7 +147,7 @@ public class InvoiceController {
     }
 
     @GET
-    @HasPermission("readInvoice")
+    @HasPermission("read.invoice")
     @Path("/pending")
     public Response getPendingInvoices(@PathParam("partnerId") String partnerId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
@@ -170,7 +171,7 @@ public class InvoiceController {
     }
 
     @GET
-    @HasPermission("readInvoice")
+    @HasPermission("read.invoice")
     @Path("/sent")
     public Response getSentInvoices(@PathParam("partnerId") String partnerId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
@@ -194,7 +195,7 @@ public class InvoiceController {
     }
 
     @GET
-    @HasPermission("readInvoice")
+    @HasPermission("read.invoice")
     public Response getReceivedInvoices(@PathParam("partnerId") String partnerId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -217,9 +218,9 @@ public class InvoiceController {
     }
 
     @GET
-    @HasPermission("readInvoice")
+    @HasPermission("read.invoice")
     @Path("/pending/{state}")
-    public Response getInvoices(@PathParam("partnerId") String partnerId, @PathParam("state") String state) throws Exception {
+    public Response getInvoicesByState(@PathParam("partnerId") String partnerId, @PathParam("state") String state) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -249,7 +250,7 @@ public class InvoiceController {
 
     @GET
     @Path("/{invoiceId}")
-    @HasPermission("readInvoice")
+    @HasPermission("read.invoice")
     public Response getInvoice(@PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -266,6 +267,7 @@ public class InvoiceController {
 
     @PUT
     @Path("/{invoiceId}")
+    @HasPermission("update.invoice")
     public Response update(Invoice invoice, @PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId) throws Throwable {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();
@@ -287,4 +289,54 @@ public class InvoiceController {
         return Response.status(Response.Status.OK).build();
     }
 
+    private void createPayment(Invoice invoice) {
+        PaymentOrder paymentOrder = new PaymentOrder();
+        paymentOrder.setCurrencyCode(invoice.getInvoiceHeader().getPayment().getCurrency().getValue());
+        paymentOrder.setCurrencyDate(invoice.getInvoiceHeader().getPayment().getCurrency().getDate());
+        paymentOrder.setOrderDate(invoice.getInvoiceHeader().getBill().getDate());
+        paymentOrder.setPaymentPurpose("Placanje usluga");
+        paymentOrder.setDebtor(invoice.getInvoiceHeader().getBuyer().getName());
+        paymentOrder.setCreditor(invoice.getInvoiceHeader().getSupplier().getName());
+        paymentOrder.setAmount(invoice.getInvoiceHeader().getPrice().getTotal());
+
+        AccountDetails creditorAccountDetails = new AccountDetails();
+        creditorAccountDetails.setModel(97);
+        creditorAccountDetails.setAccountNumber(invoice.getInvoiceHeader().getPayment().getAccountNumber());
+        creditorAccountDetails.setReferenceNumber("referenceNumber0");
+
+        AccountDetails debtorAccountDetails = new AccountDetails();
+        debtorAccountDetails.setModel(97);
+        debtorAccountDetails.setAccountNumber(configDao.get().getAccounts().get(0));
+        debtorAccountDetails.setReferenceNumber("referenceNumber0");
+
+
+        paymentOrder.setCreditorAccountDetails(creditorAccountDetails);
+        paymentOrder.setDebtorAccountDetails(debtorAccountDetails);
+
+        paymentOrder.setUrgent(false);
+        System.out.println("InvoiceController.createPayment");
+//        sendPaymentOrder(paymentOrder);
+    }
+
+    private void sendPaymentOrder(PaymentOrder paymentOrder) {
+        try {
+            URL wsdl = new URL("http://localhost:8080/banka2/webservices/PoDocumentImpl?wsdl");
+
+            QName serviceName = new QName("http://www.ftn.uns.ac.rs/xws/ws/po", "PoDocumentService");
+            QName portName = new QName("http://www.ftn.uns.ac.rs/xws/ws/po", "PoDocumentPort");
+
+            Service service = Service.create(wsdl, serviceName);
+
+            PoDocument poService = service.getPort(portName, PoDocument.class);
+
+            File file = new File("src/main/resources/");
+            try {
+                poService.paymentOrderHandle(paymentOrder);
+            } catch (PoException e) {
+                System.out.println(e.getFaultInfo());
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 }

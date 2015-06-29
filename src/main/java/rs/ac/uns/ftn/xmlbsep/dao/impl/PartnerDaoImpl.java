@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.xmlbsep.dao.impl;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.partner.Partner;
 import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
 import rs.ac.uns.ftn.xmlbsep.xmldb.CustomResultHandler;
+import rs.ac.uns.ftn.xmlbsep.xmldb.GenericResultHandler;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -25,7 +26,8 @@ public class PartnerDaoImpl extends GenericDao<Partner, Long> implements Partner
 
     private static final String XBASE_NAMESPACE_QUERY = "declare default element namespace \"http://www.ftn.uns.ac.rs/xmlbsep/company/invoice\";";
 
-    private static final String queryFindPib = "//company [pib = '%s']";
+    private static final String queryFindPib = "//partner [pib = '%s']";
+
 
     public PartnerDaoImpl() {
         super(contextPath, schemaName);
@@ -38,6 +40,12 @@ public class PartnerDaoImpl extends GenericDao<Partner, Long> implements Partner
 
     public List<Partner> getPartners() throws IOException, JAXBException {
         return findAll("partner");
+    }
+
+    @Override
+    public Partner getPartner(String pib) throws IOException, JAXBException {
+        List<Partner> partners = findBy(String.format(XBASE_NAMESPACE_QUERY + queryFindPib, pib), new GenericResultHandler<Partner>());
+        return partners.size() > 0 ? partners.get(0) : null;
     }
 
     private static class PartnerResultHandler implements CustomResultHandler<Boolean> {

@@ -1,0 +1,2 @@
+{ "_id" : { "$oid" : "5580e1bddb4b341f70a8f1dd" }, "name" : "price" }
+{ "_id" : { "$oid" : "5580efb77337727003c1d3e9" }, "name" : "invoice" }

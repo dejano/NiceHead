@@ -18,6 +18,7 @@ public class AuthController {
     @Path("/auth")
     public Response login(@FormParam("username") String username, @FormParam("password") String password) {
         User user = userDao.login(username, password);
+        System.out.println(user);
         if (user != null) {
             user.setPassword("");
             return Response.status(Response.Status.OK).entity(user).build();

@@ -11,6 +11,9 @@
         <class>
             rs.ac.uns.ftn.xmlbsep.security.HasPermissionInterceptor
         </class>
+        <class>
+            rs.ac.uns.ftn.xmlbsep.validation.XMLSchemaValidatorInterceptor
+        </class>
     </interceptors>
 
 </beans>
