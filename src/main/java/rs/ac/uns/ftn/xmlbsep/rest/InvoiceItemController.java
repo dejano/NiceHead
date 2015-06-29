@@ -17,6 +17,8 @@ import java.util.List;
 /**
  * Created by dejan on 14.5.2015..
  */
+@Consumes({"application/xml"})
+@Produces({"application/xml"})
 @Path("/partneri/{partnerId}/fakture/{invoiceId}/stavke")
 public class InvoiceItemController {
 

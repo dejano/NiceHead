@@ -3,14 +3,14 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd"
              version="6">
-    <display-name>firma</display-name>
-    <module id="Firma-Web">
+    <display-name>company</display-name>
+    <module id="Company-Web">
         <web>
-            <web-uri>firma.war</web-uri>
-            <context-root>/firma</context-root>
+            <web-uri>Company.war</web-uri>
+            <context-root>/company</context-root>
         </web>
     </module>
-    <module id="Firma-EJB">
-        <ejb>firma.jar</ejb>
+    <module id="Company-EJB">
+        <ejb>Company.jar</ejb>
     </module>
 </application>

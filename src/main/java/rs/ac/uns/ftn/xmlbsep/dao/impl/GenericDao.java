@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by dejan on 27.5.2015..
- */
 public abstract class GenericDao<T extends AbstractBaseEntity, ID extends Serializable> implements GenericDaoLocal<T, ID> {
 
     protected String contextPath;
@@ -50,9 +47,9 @@ public abstract class GenericDao<T extends AbstractBaseEntity, ID extends Serial
         return em.executeQuery(xQuery, rowMapper, true);
     }
 
-    public List<T> findAll() throws IOException, JAXBException {
+    public List<T> findAll(String collection) throws IOException, JAXBException {
         List<T> result;
-        result = em.findAll();
+        result = em.findAll(collection);
         return result;
     }
 

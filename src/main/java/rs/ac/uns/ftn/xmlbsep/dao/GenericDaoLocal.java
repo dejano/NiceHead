@@ -26,7 +26,7 @@ public interface GenericDaoLocal<T, ID extends Serializable> {
      *
      * @return list of existing entities, empty list if there are no entities
      */
-    List<T> findAll() throws IOException, JAXBException;
+    List<T> findAll(String collection) throws IOException, JAXBException;
 
     /**
      * Save entity and return saved instance (with id set).

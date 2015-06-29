@@ -87,18 +87,18 @@ import javax.xml.bind.annotation.XmlType;
     "baseRestUrl",
     "account"
 })
-@XmlRootElement(name = "partner", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/partner")
+@XmlRootElement(name = "partner", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice")
 public class Partner extends AbstractBaseEntity<String> {
 
-    @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/partner", required = true)
+    @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)
     protected String address;
-    @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/partner", required = true)
+    @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)
     protected String name;
-    @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/partner", required = true)
+    @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)
     protected String pib;
-    @XmlElement(name = "base_rest_url", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/partner", required = true)
+    @XmlElement(name = "base_rest_url", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)
     protected String baseRestUrl;
-    @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/partner", required = true)
+    @XmlElement(namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)
     protected List<Partner.Account> account;
 
     /**
@@ -269,7 +269,7 @@ public class Partner extends AbstractBaseEntity<String> {
     })
     public static class Account {
 
-        @XmlElement(name = "account_number", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/partner", required = true)
+        @XmlElement(name = "account_number", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)
         protected String accountNumber;
 
         /**

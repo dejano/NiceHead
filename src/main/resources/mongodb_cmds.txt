@@ -1,0 +1,20 @@
+start mongo db with custom storage path
+    - mongod.exe --dbpath "path to mongodb storage"
+
+start mongodb with custom config file
+    - mongod.exe -f "path to config file"
+
+start mongodb client
+    -mongo.exe
+
+
+------------------------------------------
+setup mongodb as service on windows
+
+    sc.exe create mongodb binPath= "\"C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe\" --service --config=\"C:\mongodb\mongod.cfg\"" DisplayName= "MongoDB" start= "auto"
+
+    - start service
+    net start mongodb
+
+    -stop service
+    net stop mongodb

@@ -34,7 +34,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class Tbill {
 
     @XmlValue
-    protected int value;
+    protected Integer value;
     @XmlAttribute(name = "date", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar date;
@@ -43,7 +43,7 @@ public class Tbill {
      * Gets the value of the value property.
      * 
      */
-    public int getValue() {
+    public Integer getValue() {
         return value;
     }
 
@@ -51,7 +51,7 @@ public class Tbill {
      * Sets the value of the value property.
      * 
      */
-    public void setValue(int value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 

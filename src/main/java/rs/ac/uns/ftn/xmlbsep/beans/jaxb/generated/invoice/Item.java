@@ -160,7 +160,7 @@ public class Item {
     @XmlElement(name = "price_with_discount", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)
     protected BigDecimal priceWithDiscount;
     @XmlAttribute(name = "id", required = true)
-    protected int id;
+    protected Integer id;
 
     /**
      * Gets the value of the name property.
@@ -334,7 +334,7 @@ public class Item {
      * Gets the value of the id property.
      * 
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -342,7 +342,7 @@ public class Item {
      * Sets the value of the id property.
      * 
      */
-    public void setId(int value) {
+    public void setId(Integer value) {
         this.id = value;
     }
 

@@ -1,0 +1,10 @@
+<inv:partner xmlns:inv="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice">
+  <inv:address>string</inv:address>
+  <inv:name>string</inv:name>
+  <inv:pib>string</inv:pib>
+  <inv:base_rest_url>string</inv:base_rest_url>
+  <!--1 or more repetitions:-->
+  <inv:account>
+    <inv:account_number>stringstringstringst</inv:account_number>
+  </inv:account>
+</inv:partner>

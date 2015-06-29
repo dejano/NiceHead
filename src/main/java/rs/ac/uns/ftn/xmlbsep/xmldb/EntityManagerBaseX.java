@@ -3,7 +3,7 @@ package rs.ac.uns.ftn.xmlbsep.xmldb;
 import org.basex.rest.Result;
 import org.basex.rest.Results;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.partner.Partner;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -54,35 +54,6 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
         basex_unmarshaller = basex_context.createUnmarshaller();
     }
 
-    private static void printNote(NodeList nodeList) {
-
-        for (int count = 0; count < nodeList.getLength(); count++) {
-
-            Node tempNode = nodeList.item(count);
-
-            // make sure it's element node.
-            if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                // get node name and value
-                System.out.println("\nNode Name =" + tempNode.getNamespaceURI() + " [OPEN]");
-                System.out.println("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
-                System.out.println("Node Value =" + tempNode.getTextContent());
-
-
-                if (tempNode.hasChildNodes()) {
-
-                    // loop again if has child nodes
-                    printNote(tempNode.getChildNodes());
-
-                }
-
-                System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
-
-            }
-
-        }
-    }
-
     @SuppressWarnings("unchecked")
     public T find(ID resourceId) throws IOException, JAXBException {
         T entity = null;
@@ -108,13 +79,13 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<T> findAll() throws IOException, JAXBException {
+    public List<T> findAll(String collection) throws IOException, JAXBException {
         Results wrappedResults = null;
         List<T> results = new ArrayList<T>();
 
         StringBuilder builder = new StringBuilder(REST_URL);
         builder.append(schemaName);
-        builder.append("?query=collection('invoice')");
+        builder.append("?query=collection('" + collection + "')");
         builder.append("&wrap=yes");
 
         url = new URL(builder.substring(0));
@@ -139,23 +110,23 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
 
     @SuppressWarnings("unchecked")
     public void parseMultipleResults(List<T> results, InputStream input) throws JAXBException, IOException {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(input));
+//        try {
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                System.out.println(line);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         Results wrappedResults;
         wrappedResults = (Results) basex_unmarshaller.unmarshal(input);
         for (Result result : wrappedResults.getResult()) {
             results.add((T) unmarshaller.unmarshal((Node) result.getAny()));
         }
-    }
 
-    @SuppressWarnings("unchecked")
-    public T parseResult(InputStream input) throws JAXBException, IOException {
-        Results wrappedResults;
-        wrappedResults = (Results) basex_unmarshaller.unmarshal(input);
-        List<Result> results = wrappedResults.getResult();
-        if (results.size() > 0) {
-            Result result = results.get(0);
-            return ((T) unmarshaller.unmarshal((Node) result.getAny()));
-        }
-        return null;
+
     }
 
     /*
@@ -289,7 +260,7 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
      * @return the next id value.
      * @throws IOException
      */
-    public<G> Long getIdentity(G entity) throws IOException, JAXBException {
+    public <G> Long getIdentity(G entity) throws IOException, JAXBException {
         IdentityXQuery annotation = entity.getClass().getAnnotation(IdentityXQuery.class);
         String xQuery = annotation.value();
 
@@ -299,7 +270,7 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
     }
 
 	/*
-	 * Get/set methods
+     * Get/set methods
 	 */
 
     public String getSchemaName() {

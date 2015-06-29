@@ -1,7 +1,9 @@
 
 package rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice;
 
+import org.mongodb.morphia.annotations.Entity;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.AbstractBaseEntity;
+import rs.ac.uns.ftn.xmlbsep.security.HasPermission;
 import rs.ac.uns.ftn.xmlbsep.xmldb.IdentityXQuery;
 
 import java.math.BigDecimal;
@@ -139,6 +141,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 @XmlRootElement(name = "invoice", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice")
 @IdentityXQuery("declare default element namespace \"http://www.ftn.uns.ac.rs/xmlbsep/company/invoice\"; max(//invoice/@id)")
+@Entity("invoice")
 public class Invoice extends AbstractBaseEntity<String> {
 
     @XmlElement(name = "invoice_header", namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice", required = true)
@@ -147,6 +150,9 @@ public class Invoice extends AbstractBaseEntity<String> {
     protected List<Item> item;
     @XmlAttribute(name = "id", required = true)
     protected String id;
+
+    @XmlAttribute(name = "state", required = true)
+    protected String state;
 
     /**
      * Gets the value of the invoiceHeader property.
@@ -201,6 +207,10 @@ public class Invoice extends AbstractBaseEntity<String> {
         return this.item;
     }
 
+    public void setItem(ArrayList<Item> items) {
+        this.item = items;
+    }
+
     /**
      * Gets the value of the id property.
      * 
@@ -225,6 +235,14 @@ public class Invoice extends AbstractBaseEntity<String> {
         this.id = value;
     }
 
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     /**
      * <p>Java class for anonymous complex type.
@@ -786,6 +804,8 @@ public class Invoice extends AbstractBaseEntity<String> {
              *     {@link BigDecimal }
              *     
              */
+
+            @HasPermission("updatePrice")
             public void setTotal(BigDecimal value) {
                 this.total = value;
             }

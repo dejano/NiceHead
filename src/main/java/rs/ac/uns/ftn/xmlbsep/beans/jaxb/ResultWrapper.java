@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.xmlbsep.beans.jaxb;
 
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Item;
+import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.partner.Partner;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
         "result"
 })
 @XmlRootElement( namespace = "http://www.ftn.uns.ac.rs/xmlbsep/company/invoice")
-@XmlSeeAlso({Invoice.class, Item.class})
+@XmlSeeAlso({Invoice.class, Item.class, Partner.class})
 public class ResultWrapper {
 
     public ResultWrapper() {

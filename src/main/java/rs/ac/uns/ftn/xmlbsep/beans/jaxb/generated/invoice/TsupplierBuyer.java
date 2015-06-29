@@ -1,6 +1,8 @@
 
 package rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice;
 
+import rs.ac.uns.ftn.xmlbsep.security.HasPermission;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -84,6 +86,7 @@ public class TsupplierBuyer {
      *     {@link String }
      *     
      */
+    @HasPermission("test")
     public void setName(String value) {
         this.name = value;
     }

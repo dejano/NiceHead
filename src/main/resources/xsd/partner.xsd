@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.ftn.uns.ac.rs/xmlbsep/partner"
-    xmlns:prt="http://www.ftn.uns.ac.rs/xmlbsep/partner">
+    targetNamespace="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice"
+    xmlns:prt="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice">
 
     <xs:element name="partner">
         <xs:complexType>
