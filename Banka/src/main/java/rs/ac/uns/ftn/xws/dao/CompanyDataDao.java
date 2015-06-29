@@ -56,11 +56,10 @@ public class CompanyDataDao {
 	public static BigDecimal getCompanyBalance(String accountNumber) {
 		BigDecimal ret = null;
 
-		String q = getCompanyBalanceQuery[0] + accountNumber
-				+ getCompanyBalanceQuery[1];
+		String q = getCompanyBalanceQuery[0] + accountNumber + getCompanyBalanceQuery[1];
 		try {
-			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(
-					q, BankConstants.BANK_NAME, RequestMethod.GET)));
+			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(q,
+					BankConstants.BANK_NAME, RequestMethod.GET)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,8 +73,8 @@ public class CompanyDataDao {
 		String q = getCompanyReservedAmountQuery[0] + accountNumber
 				+ getCompanyReservedAmountQuery[1];
 		try {
-			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(
-					q, BankConstants.BANK_NAME, RequestMethod.GET)));
+			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(q,
+					BankConstants.BANK_NAME, RequestMethod.GET)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,25 +87,35 @@ public class CompanyDataDao {
 
 		String q = getCompanyWsUrl[0] + accountNumber + getCompanyWsUrl[1];
 		try {
-			ret = RESTUtil.readString(RESTUtil.retrieveResource(q,
-					BankConstants.BANK_NAME, RequestMethod.GET));
+			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, BankConstants.BANK_NAME,
+					RequestMethod.GET));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return ret;
 	}
+	
+	public static boolean accountNumberExists(String accountNumber) {
+		String ret = null;
 
-	public static void updateCompanyBalance(String accountNumber,
-			BigDecimal newBalance) {
-		String q = updateCompanyBalanceQuery[0]
-				+ accountNumber
-				+ updateCompanyBalanceQuery[1]
-				+ newBalance.setScale(ROUNDING_SCALE, RoundingMode.CEILING)
-						.toPlainString() + updateCompanyBalanceQuery[2];
+		String q = getCompanyWsUrl[0] + accountNumber + getCompanyWsUrl[1];
 		try {
-			RESTUtil.retrieveResource(q, BankConstants.BANK_NAME,
-					RequestMethod.POST);
+			ret = RESTUtil.readString(RESTUtil.retrieveResource(q, BankConstants.BANK_NAME,
+					RequestMethod.GET));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ret != null && !ret.equals("");
+	}
+
+	public static void updateCompanyBalance(String accountNumber, BigDecimal newBalance) {
+		String q = updateCompanyBalanceQuery[0] + accountNumber + updateCompanyBalanceQuery[1]
+				+ newBalance.setScale(ROUNDING_SCALE, RoundingMode.CEILING).toPlainString()
+				+ updateCompanyBalanceQuery[2];
+		try {
+			RESTUtil.retrieveResource(q, BankConstants.BANK_NAME, RequestMethod.POST);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -114,15 +123,12 @@ public class CompanyDataDao {
 
 	public static void updateCompanyReservedAmount(String accountNumber,
 			BigDecimal newReservedAmount) {
-		String q = updateCompanyReservedAmountQuery[0]
-				+ accountNumber
+		String q = updateCompanyReservedAmountQuery[0] + accountNumber
 				+ updateCompanyReservedAmountQuery[1]
-				+ newReservedAmount.setScale(ROUNDING_SCALE,
-						RoundingMode.CEILING).toPlainString()
+				+ newReservedAmount.setScale(ROUNDING_SCALE, RoundingMode.CEILING).toPlainString()
 				+ updateCompanyReservedAmountQuery[2];
 		try {
-			RESTUtil.retrieveResource(q, BankConstants.BANK_NAME,
-					RequestMethod.POST);
+			RESTUtil.retrieveResource(q, BankConstants.BANK_NAME, RequestMethod.POST);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

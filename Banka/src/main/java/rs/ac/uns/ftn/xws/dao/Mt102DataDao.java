@@ -44,6 +44,7 @@ public class Mt102DataDao {
 //		System.out.println(getMt102DataAsString("999"));
 //
 //		System.out.println(getMt102Ref("555").getMessageId());
+		System.out.println(getMt102Ref("555"));
 	}
 
 	public static String getMt102DataAsString(String messageId) {

@@ -84,7 +84,11 @@
 	</macrodef>
 
 	<target name="generate-code-xsd" depends="init">
+<<<<<<< HEAD
 		<xjc schema="${webinf.dir}/xsd/common.xsd" destdir="${gen.dir}" />
+=======
+		<xjc schema="${webinf.dir}/xsd/tokens.xsd" destdir="${gen.dir}" />
+>>>>>>> origin/master
 	</target>
 
 	<target name="generate-code-wsdl">

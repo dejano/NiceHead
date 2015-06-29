@@ -42,29 +42,10 @@ public class PaymentDataDao {
 
 //		File file = new File("src/main/resources/");
 		try {
-			
-//			RESTUtil.dropSchema("bank");
-//			 RESTUtil.createSchema(BankConstants.BANK_NAME);
-			
 			File file = new File("src/main/resources/");
 			RESTUtil.deleteResource(BankConstants.BANK_NAME, "payments.xml");
 			RESTUtil.createResource(BankConstants.BANK_NAME, "payments.xml",
 					new FileInputStream(new File(file, "payments.xml")));
-			
-//			RESTUtil.dropSchema("payments");
-//			RESTUtil.createSchema("payments");
-//
-//			if (new File(file, "payments.xml").exists()) {
-//				System.out.println("fajl payments.xml postoji");
-//			}
-//
-//			RESTUtil.createResource("payments", "payments.xml",
-//					new FileInputStream(new File(file, "payments.xml")));
-
-			System.out.println(getPayments("2006-05-04",
-					"111-0000000000000-00", 1));
-			System.out.println("najnovi test");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

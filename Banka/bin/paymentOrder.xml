@@ -1,0 +1,23 @@
+<po:paymentOrder messageId="788"
+	xmlns:cmn="http://www.ftn.uns.ac.rs/xws/xsd/common" xmlns:po="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/paymentOrder paymentOrder.xsd ">
+	<cmn:debtor>bakisha</cmn:debtor>
+	<cmn:paymentPurpose>placanje</cmn:paymentPurpose>
+	<cmn:creditor>bankaB</cmn:creditor>
+	<cmn:orderDate>2006-05-04</cmn:orderDate>
+	<cmn:debtorAccountDetails>
+		<cmn:accountNumber>223-2222222222222-22</cmn:accountNumber>
+		<cmn:model>50</cmn:model>
+		<cmn:referenceNumber>referenceNumber0</cmn:referenceNumber>
+	</cmn:debtorAccountDetails>
+	<cmn:creditorAccountDetails>
+		<cmn:accountNumber>222-2222222222222-22</cmn:accountNumber>
+		<cmn:model>50</cmn:model>
+		<cmn:referenceNumber>referenceNumber1</cmn:referenceNumber>
+	</cmn:creditorAccountDetails>
+	<cmn:amount>100.00</cmn:amount>
+	<po:currencyDate>2006-05-04</po:currencyDate>
+	<po:currencyCode>A</po:currencyCode>
+	<po:urgent>false</po:urgent>
+</po:paymentOrder>

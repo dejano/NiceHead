@@ -31,7 +31,12 @@
 	</xs:complexType>
 	<xs:simpleType name="PoExceptionEnum">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="foo" />
+			<xs:enumeration value="invalidXml" />
+			<xs:enumeration value="debtorAccountDoesNotExist" />
+			<xs:enumeration value="creditorAccountDoesNotExist" />
+			<xs:enumeration value="debtorInsufficientFunds" />
+			<xs:enumeration value="invalidBankCode" />
+			<xs:enumeration value="invalidSwiftCode" />
 		</xs:restriction>
 	</xs:simpleType>
 

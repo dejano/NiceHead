@@ -22,6 +22,7 @@
                 type="bsb:PaymentData"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:element name="paymentData" type="bsb:PaymentData"/>
     <xs:element name="paymentsData" type="bsb:PaymentsData"/>
     <xs:complexType name="PaymentData">
         <xs:complexContent>

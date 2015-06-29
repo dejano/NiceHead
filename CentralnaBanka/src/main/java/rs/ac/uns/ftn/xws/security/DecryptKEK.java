@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.xws.security;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.KeyStore;

@@ -15,10 +15,10 @@ import javax.xml.ws.Service;
  * 
  */
 @WebServiceClient(name = "PoDocumentService", 
-                  wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/po.wsdl",
+                  wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/po.wsdl",
                   targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/po") 
 public class PoDocumentService extends Service {
-//	file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/bs.wsdl
+//	file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/bs.wsdl
     public final static URL WSDL_LOCATION;
 
     public final static QName SERVICE = new QName("http://www.ftn.uns.ac.rs/xws/ws/po", "PoDocumentService");
@@ -26,11 +26,11 @@ public class PoDocumentService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/po.wsdl");
+            url = new URL("file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/po.wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(PoDocumentService.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/po.wsdl");
+                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/po.wsdl");
         }
         WSDL_LOCATION = url;
     }

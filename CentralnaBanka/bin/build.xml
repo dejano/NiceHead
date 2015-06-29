@@ -97,14 +97,20 @@
 	</macrodef>
 
 	<target name="generate-code-xsd" depends="init">
+<<<<<<< HEAD
 		<!-- <xjc schema="${webinf.dir}/xsd/crl.xsd" destdir="${gen.dir}" /> 
 		-->
 		<xjc schema="${webinf.dir}/xsd/common.xsd" destdir="${gen.dir}" />
+=======
+		<xjc schema="${webinf.dir}/xsd/tokens.xsd" destdir="${gen.dir}" />
+>>>>>>> origin/master
 	</target>
 
 	<target name="generate-code-wsdl">
 		<echo level="info" message="Generating code using wsdl2java..." />
 
+		<wsdl2java file="${wsdl.dir}/crl.wsdl" />
+		<wsdl2java file="${wsdl.dir}/messageId.wsdl" />
 		<wsdl2java file="${wsdl.dir}/bankDetails.wsdl" />
 	</target>
 

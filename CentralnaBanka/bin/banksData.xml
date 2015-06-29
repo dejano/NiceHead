@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.ftn.uns.ac.rs/xws/xsd/cb ../../../WEB-INF/xsd/cb.xsd ">
 	<cb:bank>
-		<cb:bankCode>111</cb:bankCode>
+		<cb:bankCode>222</cb:bankCode>
 		<cb:bankDetails>
 			<cmn:swiftCode>CONARS22</cmn:swiftCode>
 			<cmn:bankClearingAccountNumber>111-1111111111111-11</cmn:bankClearingAccountNumber>

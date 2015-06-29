@@ -16,6 +16,10 @@
 		implementor="rs.ac.uns.ftn.xws.ws.messageid.MessageIdDocumentImpl"
 		wsdlLocation="WEB-INF/wsdl/messageId.wsdl" />
 
+	<jaxws:endpoint id="crlDoc" address="/CrlDocument"
+		implementor="rs.ac.uns.ftn.xws.ws.crl.CrlDocumentImpl"
+		wsdlLocation="WEB-INF/wsdl/crl.wsdl" />
+
 </beans>
   
 

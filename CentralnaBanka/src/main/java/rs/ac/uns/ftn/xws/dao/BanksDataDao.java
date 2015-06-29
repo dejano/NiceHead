@@ -39,25 +39,14 @@ public class BanksDataDao {
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
 
-		 RESTUtil.dropSchema(CentralBankConstants.SCHEMA_NAME);
-		 RESTUtil.createSchema(CentralBankConstants.SCHEMA_NAME);
-		 RESTUtil.deleteResource(CentralBankConstants.SCHEMA_NAME,
-		 "banksData.xml");
-		 RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME,
-		 "banksData.xml", new FileInputStream(new File(file,
-		 "banksData.xml")));
-		// System.out.println(getBankDetails("888"));
-		//
-		// BigDecimal balance = getBankBalance("CONARS22");
-		// System.out.println(balance);
-		//
-		// updateBankBalance("CONARS22", balance.add(new BigDecimal(10)));
-		//
-		// balance = getBankBalance("CONARS22");
-		// System.out.println(balance);
-		//
-		// System.out.println(getBankWsUrl("CONARS22"));
-//		System.out.println(isSwiftCodeValid("CONARS24"));
+		// RESTUtil.dropSchema(CentralBankConstants.SCHEMA_NAME);
+		// RESTUtil.createSchema(CentralBankConstants.SCHEMA_NAME);
+		RESTUtil.deleteResource(CentralBankConstants.SCHEMA_NAME, "banksData.xml");
+		RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME, "banksData.xml",
+				new FileInputStream(new File(file, "banksData.xml")));
+		System.out.println(getBankDetails("222").getSwiftCode());
+		System.out.println(getBankDetails("223").getSwiftCode());
+		System.out.println(isSwiftCodeValid("CONARS24"));
 	}
 
 	public static BankDetails getBankDetails(String bankCode) {
@@ -65,8 +54,8 @@ public class BanksDataDao {
 
 		String q = getBankDetailsQuery[0] + bankCode + getBankDetailsQuery[1];
 		try {
-			InputStream is = RESTUtil.retrieveResource(q,
-					CentralBankConstants.SCHEMA_NAME, RequestMethod.GET);
+			InputStream is = RESTUtil.retrieveResource(q, CentralBankConstants.SCHEMA_NAME,
+					RequestMethod.GET);
 
 			if (is != null && is.available() > 0)
 				ret = XmlHelper.unmarshall(is, BankDetails.class);
@@ -85,8 +74,8 @@ public class BanksDataDao {
 		System.out.println(swiftCode);
 
 		try {
-			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(
-					q, CentralBankConstants.SCHEMA_NAME, RequestMethod.GET)));
+			ret = new BigDecimal(RESTUtil.readString(RESTUtil.retrieveResource(q,
+					CentralBankConstants.SCHEMA_NAME, RequestMethod.GET)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -109,14 +98,11 @@ public class BanksDataDao {
 	}
 
 	public static void updateBankBalance(String swiftCode, BigDecimal newBalance) {
-		String q = updateBankBalanceQuery[0]
-				+ swiftCode
-				+ updateBankBalanceQuery[1]
-				+ newBalance.setScale(ROUNDING_SCALE, RoundingMode.CEILING)
-						.toPlainString() + updateBankBalanceQuery[2];
+		String q = updateBankBalanceQuery[0] + swiftCode + updateBankBalanceQuery[1]
+				+ newBalance.setScale(ROUNDING_SCALE, RoundingMode.CEILING).toPlainString()
+				+ updateBankBalanceQuery[2];
 		try {
-			RESTUtil.retrieveResource(q, CentralBankConstants.SCHEMA_NAME,
-					RequestMethod.POST);
+			RESTUtil.retrieveResource(q, CentralBankConstants.SCHEMA_NAME, RequestMethod.POST);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
