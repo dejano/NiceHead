@@ -1,5 +1,5 @@
 <h2 class="page-header panel-primary">Items {{name}}
-    <button class="btn btn-primary pull-right mg-l-10" ng-click="openCreateModal()">Create Item</button>
+    <button smurf-allow="permission.create.item" class="btn btn-primary pull-right mg-l-10" ng-click="openCreateModal()">Create Item</button>
     <a href="#/invoices/{{routeId}}">
         <button class="btn btn-primary pull-right">Go to Invoice</button>
     </a>
@@ -94,8 +94,9 @@
                 <td>{{item.taxes}}</td>
                 <td>{{item.total_price}}</td>
                 <td>
-                    <button class="btn btn-primary btn-xs" ng-click="openUpdateModal(item)"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-danger btn-xs" id="btn-remove" ng-click="openDeleteModal(item)"><i class="fa fa-trash-o "></i></button>
+                    <button smurf-allow="permission.update.item" class="btn btn-primary btn-xs" ng-click="openUpdateModal(item)"><i class="fa fa-pencil"></i></button>
+                    <button smurf-allow="permission.delete.item" class="btn btn-danger btn-xs" id="btn-remove"
+                            ng-click="openDeleteModal(item)"><i class="fa fa-trash-o "></i></button>
                 </td>
             </tr>
             </tbody>

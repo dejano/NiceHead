@@ -4,33 +4,51 @@
     angular.module('app.invoices')
         .controller('createInvoiceController', createInvoiceController)
 
-    createInvoiceController.$inject = ['$scope', '$log', 'dataService', '$location', 'toastr'];
-    function createInvoiceController($scope, $log, dataService, $location, toastr) {
-        $scope.items = [];
-        $scope.dateFormat = 'yyyy-MM-dd';
+    createInvoiceController.$inject = ['$scope', '$log', 'dataService', '$location', 'toastr', 'partners'];
+    function createInvoiceController($scope, $log, dataService, $location, toastr, partners) {
 
         //Date picker config
-        $scope.today = function() {
+        $scope.today = today;
+
+        $scope.clear = clear;
+
+        $scope.openDatepicker = openDatepicker;
+
+        $scope.addItem = addItem;
+
+        $scope.submit = submit;
+
+        activate();
+        ////////////////
+
+        function activate() {
+            $scope.items = [];
+            $scope.dateFormat = 'yyyy-MM-dd';
+            $scope.partners = partners.data;
+            $scope.invoice = {invoice_header: {buyer: $scope.partners[0], supplier: {pib: $scope.setupData.pib, name: $scope.setupData.name, address: $scope.setupData.address}}};
+            $scope.today();
+        }
+
+        function today() {
             $scope.dt = new Date();
-        };
-        $scope.today();
+        }
 
-        $scope.clear = function () {
+        function clear() {
             $scope.dt = null;
-        };
+        }
 
-        $scope.openDatepicker = function($event, opened) {
+        function openDatepicker($event, opened) {
             $event.preventDefault();
             $event.stopPropagation();
             $scope[opened] = true;
-        };
+        }
 
-        $scope.addItem = function () {
-            var newItemId = $scope.items.length+1;
+        function addItem() {
+            var newItemId = $scope.items.length + 1;
             $scope.items.push({_id: newItemId});
-        };
+        }
 
-        $scope.submit = function() {
+        function submit() {
             $scope.errorMessage = null;
 
             if (!$scope.items.length) {
@@ -38,14 +56,14 @@
                 return;
             }
             $scope.invoice.item = $scope.items;
-            $scope.invoice = {invoice : $scope.invoice};
-            dataService.Invoice.create($scope.invoice).success(function() {
+            $scope.invoice = {invoice: $scope.invoice};
+            dataService.Invoice.create($scope.invoice).success(function () {
                 $location.path('/invoices');
-            }).error(function() {
+            }).error(function () {
                 toastr.error('Something went wrong. Provided data might not be valid. Is it?', 'Ops!');
             });
 
-        };
+        }
     }
 
 })();

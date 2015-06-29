@@ -1,5 +1,7 @@
 <h2 class="page-header panel-primary">Invoice
-    <a href="#/invoices"><button class="btn btn-primary pull-right">Go to Invoices</button></a>
+    <a href="#/invoices">
+        <button class="btn btn-primary pull-right">Go to Invoices</button>
+    </a>
 </h2>
 
 <div class="row center-block">
@@ -110,5 +112,12 @@
                 <i class="small">{{invoice.invoice_header.bill._date}}</i>
             </div>
         </div>
+    </div>
+</div>
+<div class="row"  ng-show="invoice._state != 'partner'" smurf-allow="role.boss || director">
+    <div class="col-md-offset-10">
+        <button class="btn btn-default" ng-click="openUpdateModal(invoice)">Edit</button>
+        <button class="btn btn-primary" ng-click="approve()">Approve</button>
+        <button class="btn btn-danger" ng-click="reject()">Reject</button>
     </div>
 </div>

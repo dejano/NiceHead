@@ -16,14 +16,20 @@
                 <li>
                     <a href="#/dashboard">Dashboard</a>
                 </li>
-                <li>
+                <li smurf-allow="permission.read.invoice">
                     <a href="#/invoices">Invoices</a>
                 </li>
-                <li>
-                    <a href="#/invoices/create">Create Invoice</a>
+                <li smurf-allow="permission.read.invoice">
+                    <a href="#/invoices/sent">Sent Invoices</a>
                 </li>
-                <li>
-                    <a href="#/support">Support</a>
+                <li smurf-allow="permission.read.invoice">
+                    <a href="#/invoices/pending">Pending Invoices</a>
+                </li>
+                <!--<li smurf-allow="permission.update.invoice">-->
+                    <!--<a href="#/invoices">Pending Invoices</a>-->
+                <!--</li>-->
+                <li smurf-allow="permission.create.invoice">
+                    <a href="#/invoices/create">Create Invoice</a>
                 </li>
                 <li ng-if="!user">
                     <a href="#/login">Login</a>

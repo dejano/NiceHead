@@ -10,39 +10,53 @@
                     <label for="supplierName" class="col-sm-2 control-label">Name:</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="supplierName" placeholder="Supplier name" ng-model="invoice.invoice_header.supplier.name">
+                        <input type="text" class="form-control" id="supplierName" placeholder="Supplier name" ng-model="invoice.invoice_header.supplier.name" disabled="disabled">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="supplierAddress" class="col-sm-2 control-label">Address</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="supplierAddress" placeholder="Supplier address" ng-model="invoice.invoice_header.supplier.address">
+                        <input type="text" class="form-control" id="supplierAddress" placeholder="Supplier address" ng-model="invoice.invoice_header.supplier.address" disabled="disabled">
                     </div>
                 </div>
-                <!--<div class="form-group">-->
-                <!--<label for="supplierPib" class="col-sm-2 control-label">PIB</label>-->
+                <div class="form-group">
+                    <label for="supplierPib" class="col-sm-2 control-label">Pib:</label>
 
-                <!--<div class="col-sm-10">-->
-                <!--<input type="text" class="form-control" id="supplierPib" placeholder="Supplier PIB" ng-model="invoice.invoice_header.supplier.pib">-->
-                <!--</div>-->
-                <!--</div>-->
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="supplierPib" placeholder="supplier Pib" ng-model="invoice.invoice_header.supplier.pib" disabled="disabled">
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <h3 class="page-header">Buyer info</h3>
+
+                <div class="form-group col-lg-12 col-sm-10">
+                    <div class="input-group">
+                        <select class="btn btn-default dropdown-toggle" type="button" ng-model="invoice.invoice_header.buyer" ng-options="partner.name for partner in partners"></select>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="buyerName" class="col-sm-2 control-label">Name:</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="buyerName" placeholder="Buyer name" ng-model="invoice.invoice_header.buyer.name">
+                        <input type="text" class="form-control" id="buyerName" placeholder="Buyer name" ng-model="invoice.invoice_header.buyer.name" disabled="disabled">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="buyerAddress" class="col-sm-2 control-label">Address</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="buyerAddress" placeholder="Buyer address" ng-model="invoice.invoice_header.buyer.address">
+                        <input type="text" class="form-control" id="buyerAddress" placeholder="Buyer address" ng-model="invoice.invoice_header.buyer.address" disabled="disabled">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="buyerPib" class="col-sm-2 control-label">Pib:</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="buyerPib" placeholder="supplier Pib" ng-model="invoice.invoice_header.buyer.pib" disabled="disabled">
                     </div>
                 </div>
 
@@ -139,10 +153,15 @@
 
                 <div class="form-group">
                     <label for="accountNumber" class="col-sm-1 control-label">Account number</label>
-
+                    <!---->
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="accountNumber" ng-model="invoice.invoice_header.payment.account_number">
+                        <select class="btn btn-default dropdown-toggle"  id="accountNumber" type="button" ng-model="invoice.invoice_header.payment.account_number"
+                                ng-options="account.account_number for account in invoice.invoice_header.buyer.account"></select>
                     </div>
+
+                    <!--<div class="col-sm-10">-->
+                        <!--<input type="text" class="form-control" id="accountNumber" ng-model="invoice.invoice_header.payment.account_number">-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -203,7 +222,7 @@
                     <label for="itemTaxes" class="col-sm-1 control-label">Taxes:</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="itemTaxes" ng-model="item.texes">
+                        <input type="text" class="form-control" id="itemTaxes" ng-model="item.taxes">
                     </div>
                 </div>
 

@@ -1,11 +1,11 @@
-(function() {
+(function () {
     'use strict';
 
     var core = angular.module('app.core');
 
     core.config(configure);
 
-    function configure ($routeProvider, routeHelperConfigProvider, authProvider) {
+    function configure($routeProvider, routeHelperConfigProvider, authProvider) {
 
         //$cookiesProvider.
         // Configure auth provider
@@ -16,7 +16,5 @@
         // Configure the common route provider
         routeHelperConfigProvider.config.$routeProvider = $routeProvider;
         routeHelperConfigProvider.config.docTitle = 'Test title';
-
-
     }
 })();
