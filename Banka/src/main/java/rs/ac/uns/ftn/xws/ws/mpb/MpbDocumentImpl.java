@@ -22,6 +22,7 @@ import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.mp.Mt900;
 import rs.ac.uns.ftn.xws.generated.mp.RtgsApprovalMessage;
 import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
+import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.misc.ObjectMapper;
 
 @Stateless
@@ -33,6 +34,8 @@ public class MpbDocumentImpl implements MpbDocument {
 			.getName());
 
 	public void clearingDebit(Mt900 clearingDebitPart) {
+		CertMap.getCert(clearingDebitPart);
+		
 		LOG.info("Executing operation clearingDebit");
 
 		LOG.info("Clearing message mt102 : " + clearingDebitPart.getPaymentOrderId());
@@ -63,6 +66,8 @@ public class MpbDocumentImpl implements MpbDocument {
 	}
 
 	public void rtgsApproval(RtgsApprovalMessage rtgsApprovalPart) {
+		CertMap.getCert(rtgsApprovalPart);
+		
 		LOG.info("Executing operation rtgsApproval");
 
 		Mt103 mt103 = rtgsApprovalPart.getMt103();
@@ -85,6 +90,8 @@ public class MpbDocumentImpl implements MpbDocument {
 	}
 
 	public void clearingApproval(ClearingApprovalMessage clearingApprovalPart) {
+		CertMap.getCert(clearingApprovalPart);
+		
 		LOG.info("Executing operation clearingApproval");
 
 		Mt102 mt102 = clearingApprovalPart.getMt102();

@@ -14,6 +14,7 @@ import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
 import rs.ac.uns.ftn.xws.misc.BankConstants;
+import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.misc.Mt102Util;
 import rs.ac.uns.ftn.xws.ws.client.bankDetails.BdDocument_BdDocumentPort_Client;
 import rs.ac.uns.ftn.xws.ws.client.messageid.MessageIdDocument_MessageIdDocumentPort_Client;
@@ -55,6 +56,7 @@ public final class MpcbDocument_MpcbDocumentPort_Client {
 						debtorBankDetails, messageId);
 
 				// slanje mt102 poruke centralnoj banci
+				CertMap.add(newMt102, "cb");
 				mpcbService.clearingRequest(newMt102);
 			}
 		} catch (MalformedURLException e) {

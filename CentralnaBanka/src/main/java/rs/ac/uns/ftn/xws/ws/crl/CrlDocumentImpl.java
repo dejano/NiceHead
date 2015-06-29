@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 
 import rs.ac.uns.ftn.xws.dao.CrlDao;
+import rs.ac.uns.ftn.xws.generated.crl.ObjectFactory;
+import rs.ac.uns.ftn.xws.misc.CertMap;
 
 @Stateless
 @javax.jws.WebService(
@@ -19,8 +21,16 @@ public class CrlDocumentImpl implements CrlDocument {
     private static final Logger LOG = Logger.getLogger(CrlDocumentImpl.class.getName());
 
     public boolean isInCrl(String certSerial) { 
+    	boolean ret;
+    	
+    	String cert = CertMap.getCert(certSerial, ObjectFactory.class, "CertSerial");
+    	
         LOG.info("Executing operation isInCrl");
-        return CrlDao.isInCrl(certSerial);
+        
+        ret = CrlDao.isInCrl(certSerial);
+        
+        CertMap.add(ret, ObjectFactory.class, "IsRevoked", cert);
+        		
+        return ret ;
     }
-
 }

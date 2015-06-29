@@ -19,6 +19,7 @@ import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
 import rs.ac.uns.ftn.xws.generated.po.PoExceptionEnum;
 import rs.ac.uns.ftn.xws.misc.BankConstants;
 import rs.ac.uns.ftn.xws.misc.BankUtil;
+import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.misc.ObjectMapper;
 import rs.ac.uns.ftn.xws.misc.XmlHelper;
 import rs.ac.uns.ftn.xws.ws.client.bankDetails.BdDocumentClient;
@@ -27,13 +28,13 @@ import rs.ac.uns.ftn.xws.ws.client.mpcb.MpException;
 import rs.ac.uns.ftn.xws.ws.client.mpcb.MpcbDocumentClient;
 
 @Stateless
-@HandlerChain (file= "../handler-chain-document.xml")
 @WebService(
 		serviceName = "PoDocumentService",
 		portName = "PoDocumentPort",
 		targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/po",
 		wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/po.wsdl",
 		endpointInterface = "rs.ac.uns.ftn.xws.ws.po.PoDocument")
+@HandlerChain (file= "../handler-chain-document.xml")
 public class PoDocumentImpl implements PoDocument {
 
 	private static final Logger LOG = Logger.getLogger(PoDocumentImpl.class.getName());
@@ -111,6 +112,7 @@ public class PoDocumentImpl implements PoDocument {
 			Mt103 mt103 = ObjectMapper.getMt103(paymentOrder, debtorBankDetails,
 					creditorBankDetails);
 
+			CertMap.add(mt103, "cb");
 			Mt900 rtgsResponse = MpcbDocumentClient.sendRtgsRequest(mt103);
 
 			BigDecimal amount = paymentOrder.getAmount();

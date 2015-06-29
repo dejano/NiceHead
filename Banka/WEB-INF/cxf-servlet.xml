@@ -14,7 +14,7 @@
 	<jaxws:endpoint id="poDoc" address="/PoDocument"
 		implementor="rs.ac.uns.ftn.xws.ws.po.PoDocumentImpl" wsdlLocation="WEB-INF/wsdl/po.wsdl" />
 
-	<jaxws:endpoint id="crlDoc" address="/CrlDocument"
+	<jaxws:endpoint id="crlDocBank" address="/CrlDocument"
 		implementor="rs.ac.uns.ftn.xws.ws.crl.CrlDocumentImpl" wsdlLocation="WEB-INF/wsdl/crl.wsdl" />
 
 </beans>

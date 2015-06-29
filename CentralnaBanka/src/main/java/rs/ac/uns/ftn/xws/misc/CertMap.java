@@ -26,14 +26,12 @@ public class CertMap {
 	public static <T> void add(T obj, Class<?> objFactoryClazz, String elementName, String cert) {
 		int hash = DocumentUtil.getHashCode(DocumentUtil.toDocument(obj, objFactoryClazz,
 				elementName));
-		System.out.println(hash);
 		LOG.info("certmap put : " + hash + " - " + cert);
 		certMap.put(hash, cert);
 	}
 
 	public static String getCert(Document doc) {
 		int hash = DocumentUtil.getHashCode(doc);
-		System.out.println(hash);
 		LOG.info("certmap removed : " + hash);
 		return certMap.remove(hash);
 	}

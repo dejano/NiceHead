@@ -20,6 +20,7 @@
 	<xs:complexType name="BankData">
 		<xs:sequence>
 			<xs:element name="bankCode" type="mp:BankCode"/>
+			<xs:element name="certificate" type="xs:string"/>
 			<xs:element name="bankDetails" type="cmn:BankDetails"/>
 			<xs:element name="wsUrl" type="xs:string"/>
 			<xs:element name="balance">

@@ -8,8 +8,10 @@ import java.util.Map;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.dao.ClearingDataDao;
+import rs.ac.uns.ftn.xws.domain.BanksData;
 import rs.ac.uns.ftn.xws.domain.ClearingData;
 import rs.ac.uns.ftn.xws.generated.mp.Mt102;
+import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.ws.client.mpb.MpbDocumentClient;
 
 public class Clearing {
@@ -32,25 +34,19 @@ public class Clearing {
 		for (int i = 0; i < clearingData.getMt102().size(); i++) {
 			Mt102 mt102 = clearingData.getMt102().get(i);
 
-			String debtorBankSwiftCode = mt102.getDebtorBankDetails()
-					.getSwiftCode();
-			String creditorBankSwiftCode = mt102.getCreditorBankDetails()
-					.getSwiftCode();
+			String debtorBankSwiftCode = mt102.getDebtorBankDetails().getSwiftCode();
+			String creditorBankSwiftCode = mt102.getCreditorBankDetails().getSwiftCode();
 
 			if (!bankClearingDetails.containsKey(debtorBankSwiftCode)) {
-				BigDecimal balance = BanksDataDao
-						.getBankBalance(debtorBankSwiftCode);
+				BigDecimal balance = BanksDataDao.getBankBalance(debtorBankSwiftCode);
 
-				bankClearingDetails.put(debtorBankSwiftCode,
-						new BankClearingDetails(balance));
+				bankClearingDetails.put(debtorBankSwiftCode, new BankClearingDetails(balance));
 			}
 
 			if (!bankClearingDetails.containsKey(creditorBankSwiftCode)) {
-				BigDecimal balance = BanksDataDao
-						.getBankBalance(creditorBankSwiftCode);
+				BigDecimal balance = BanksDataDao.getBankBalance(creditorBankSwiftCode);
 
-				bankClearingDetails.put(creditorBankSwiftCode,
-						new BankClearingDetails(balance));
+				bankClearingDetails.put(creditorBankSwiftCode, new BankClearingDetails(balance));
 			}
 
 			bankClearingDetails.get(debtorBankSwiftCode).addPayment(mt102);
@@ -66,8 +62,7 @@ public class Clearing {
 			for (BankClearingDetails cd : bankClearingDetails.values()) {
 				while (!cd.isPayable()) {
 					Mt102 mt102 = cd.removeLastPayment();
-					bankClearingDetails.get(
-							mt102.getCreditorBankDetails().getSwiftCode())
+					bankClearingDetails.get(mt102.getCreditorBankDetails().getSwiftCode())
 							.removePayout(mt102);
 
 					removedMt102 = true;
@@ -83,14 +78,14 @@ public class Clearing {
 		for (String swiftCode : bankClearingDetails.keySet()) {
 			BankClearingDetails cd = bankClearingDetails.get(swiftCode);
 
-			BanksDataDao.updateBankBalance(swiftCode,
-					cd.getBalance().subtract(cd.getAmount()));
+			BanksDataDao.updateBankBalance(swiftCode, cd.getBalance().subtract(cd.getAmount()));
 
 			for (Mt102 mt102 : cd.getPayments()) {
 				ClearingDataDao.deleteMt102(mt102.getMessageId());
-				
+
 				// send clearing debit and approval messages
 				MpbDocumentClient.invokeClearingDebit(mt102);
+
 				MpbDocumentClient.invokeClearingApproval(mt102);
 			}
 		}

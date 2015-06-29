@@ -8,6 +8,7 @@ import javax.jws.WebService;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
+import rs.ac.uns.ftn.xws.misc.CertMap;
 
 @Stateless
 @HandlerChain (file= "../handler-chain-document.xml")
@@ -19,6 +20,9 @@ public class BdDocumentImpl implements BdDocument {
 
 	public BankDetails getBankDetails(String bankCodePart)
 			throws NoBankCodeException {
+		String cert = CertMap.getCert(bankCodePart, rs.ac.uns.ftn.xws.generated.mp.ObjectFactory.class, "BankCode");
+		LOG.info("read cert : "+ cert);
+		
 		LOG.info("Executing operation getBankDetails");
 		
 		BankDetails ret = BanksDataDao.getBankDetails(bankCodePart);
@@ -29,6 +33,8 @@ public class BdDocumentImpl implements BdDocument {
 			throw new NoBankCodeException("Error",
 					"No bank details for bank code : " + bankCodePart);
 
+		CertMap.add(ret, cert);
+		
 		return ret;
 	}
 

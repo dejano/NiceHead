@@ -8,9 +8,11 @@ import javax.xml.ws.handler.MessageContext;
 
 import org.w3c.dom.Document;
 
+import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.misc.DocumentUtil;
 import rs.ac.uns.ftn.xws.security.DecryptKEK;
 import rs.ac.uns.ftn.xws.security.EncryptKEK;
+import rs.ac.uns.ftn.xws.security.VerifyClientSignatureEnveloped;
 
 public class ClientCryptoHandler implements
 		LogicalHandler<LogicalMessageContext> {
@@ -28,7 +30,10 @@ public class ClientCryptoHandler implements
 		if (!outbound) {
 			System.err.println("\n-- Kriptovanje --");
 			try {
-				Document encryptedDoc = EncryptKEK.encryptDocument(document);
+				// TODO extract doc from wrap when secwrapper is applied
+				String cert = CertMap.getCert(VerifyClientSignatureEnveloped.getUnsigned(document));
+				
+				Document encryptedDoc = EncryptKEK.encryptDocument(document, cert);
 				DocumentUtil.printDocument(encryptedDoc);
 				context.getMessage().setPayload(new DOMSource(encryptedDoc));
 			} catch (Exception e) {

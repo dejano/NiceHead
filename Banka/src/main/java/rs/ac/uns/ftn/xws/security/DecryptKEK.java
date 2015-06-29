@@ -26,98 +26,69 @@ import rs.ac.uns.ftn.xws.misc.BankConstants;
 //Dekriptuje tajni kljuc privatnim kljucem
 //Tajnim kljucem dekriptuje podatke
 public class DecryptKEK {
-//	private static final String KEY_STORE_FILE = "./data/primer.jks";
+	// private static final String KEY_STORE_FILE = "./data/primer.jks";
 	private static final String KEY_STORE_FILE = BankConstants.KEYSTORE_FILE_PATH;
-	
-    static {
-        Security.addProvider(new BouncyCastleProvider());
-        org.apache.xml.security.Init.init();
-    }
-    
-	public static Document decryptDocument(Document doc) {
-		//ucitava se privatni kljuc
+
+	static {
+		Security.addProvider(new BouncyCastleProvider());
+		org.apache.xml.security.Init.init();
+	}
+
+	public static Document decryptDocument(Document doc) throws Exception {
+		// ucitava se privatni kljuc
 		PrivateKey pk = readPrivateKey();
-		//dekriptuje se dokument
+		// dekriptuje se dokument
 		return decrypt(doc, pk);
 	}
-	
+
 	/**
-	 * Ucitava privatni kljuc is KS fajla
-	 * alias primer
+	 * Ucitava privatni kljuc is KS fajla alias primer
+	 * 
+	 * @throws IOException
+	 * @throws CertificateException
+	 * @throws Exception
 	 */
-	private static PrivateKey readPrivateKey() {
-		try {
-			//kreiramo instancu KeyStore
-			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
-			//ucitavamo podatke
-			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			
-			String bankAlias = ResourceBundle.getBundle(
-					BankConstants.PROP_FILE_PATH).getString("bank.alias");
-			String keyStorePassword = ResourceBundle.getBundle(
-					BankConstants.PROP_FILE_PATH).getString("bank.password");
-			
-			ks.load(in, keyStorePassword.toCharArray());
-			
-			if(ks.isKeyEntry(bankAlias)) {
-				PrivateKey pk = (PrivateKey) ks.getKey(bankAlias, keyStorePassword.toCharArray());
-				return pk;
-			}
-			else
-				return null;
-			
-		} catch (KeyStoreException e) {
-			e.printStackTrace();
+	private static PrivateKey readPrivateKey() throws Exception {
+		// kreiramo instancu KeyStore
+		KeyStore ks = KeyStore.getInstance("JKS", "SUN");
+		// ucitavamo podatke
+		BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
+
+		String bankAlias = ResourceBundle.getBundle(BankConstants.PROP_FILE_PATH).getString(
+				"bank.alias");
+		String keyStorePassword = ResourceBundle.getBundle(BankConstants.PROP_FILE_PATH).getString(
+				"bank.password");
+
+		ks.load(in, keyStorePassword.toCharArray());
+
+		if (ks.isKeyEntry(bankAlias)) {
+			PrivateKey pk = (PrivateKey) ks.getKey(bankAlias, keyStorePassword.toCharArray());
+			return pk;
+		} else
 			return null;
-		} catch (NoSuchProviderException e) {
-			e.printStackTrace();
-			return null;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return null;
-		} catch (CertificateException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		} catch (UnrecoverableKeyException e) {
-			e.printStackTrace();
-			return null;
-		} 
 	}
-	
+
 	/**
 	 * Kriptuje sadrzaj prvog elementa odsek
+	 * 
+	 * @throws Exception
 	 */
-	private static Document decrypt(Document doc, PrivateKey privateKey) {
-		
-		try {
-			//cipher za dekritpovanje XML-a
-			XMLCipher xmlCipher = XMLCipher.getInstance();
-			//inicijalizacija za dekriptovanje
-			xmlCipher.init(XMLCipher.DECRYPT_MODE, null);
-			//postavlja se kljuc za dekriptovanje tajnog kljuca
-			xmlCipher.setKEK(privateKey);
-			
-			//trazi se prvi EncryptedData element
-			NodeList encDataList = doc.getElementsByTagNameNS("http://www.w3.org/2001/04/xmlenc#", "EncryptedData");
-			Element encData = (Element) encDataList.item(0);
-			
-			//dekriptuje se
-			//pri cemu se prvo dekriptuje tajni kljuc, pa onda njime podaci
-			xmlCipher.doFinal(doc, encData); 
-			
-			return doc;
-		} catch (XMLEncryptionException e) {
-			e.printStackTrace();
-			return null;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	private static Document decrypt(Document doc, PrivateKey privateKey) throws Exception {
+		XMLCipher xmlCipher = XMLCipher.getInstance();
+		// inicijalizacija za dekriptovanje
+		xmlCipher.init(XMLCipher.DECRYPT_MODE, null);
+		// postavlja se kljuc za dekriptovanje tajnog kljuca
+		xmlCipher.setKEK(privateKey);
+
+		// trazi se prvi EncryptedData element
+		NodeList encDataList = doc.getElementsByTagNameNS("http://www.w3.org/2001/04/xmlenc#",
+				"EncryptedData");
+		Element encData = (Element) encDataList.item(0);
+
+		// dekriptuje se
+		// pri cemu se prvo dekriptuje tajni kljuc, pa onda njime podaci
+		xmlCipher.doFinal(doc, encData);
+
+		return doc;
 	}
 }

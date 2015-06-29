@@ -14,10 +14,4 @@
 		<mpb:reservedAmount>0.0</mpb:reservedAmount>
 		<mpb:wsUrl>bar</mpb:wsUrl>
 	</mpb:company>
-	<mpb:company>
-		<mpb:accountNumber>000-2222222222222-22</mpb:accountNumber>
-		<mpb:balance>1000.0</mpb:balance>
-		<mpb:reservedAmount>1000.0</mpb:reservedAmount>
-		<mpb:wsUrl>foos</mpb:wsUrl>
-	</mpb:company>
 </mpb:companyData>

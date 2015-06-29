@@ -8,9 +8,11 @@ import javax.xml.ws.handler.MessageContext;
 
 import org.w3c.dom.Document;
 
+import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.misc.DocumentUtil;
 import rs.ac.uns.ftn.xws.security.DecryptKEK;
 import rs.ac.uns.ftn.xws.security.EncryptKEK;
+import rs.ac.uns.ftn.xws.security.VerifyClientSignatureEnveloped;
 
 public class ClientCryptoHandler implements LogicalHandler<LogicalMessageContext> {
 
@@ -19,22 +21,29 @@ public class ClientCryptoHandler implements LogicalHandler<LogicalMessageContext
 
 		System.out.println("\n*** Handler za kriptovanje kod Klijenta ***");
 
-		Boolean isResponse = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
+		Boolean outbound = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		Source source = context.getMessage().getPayload();
 		Document document = DocumentUtil.convertToDocument(source);
-		
-		if (!isResponse) {
-			System.err.println("\n-- Kriptovanje --");
-			Document encryptedDoc = EncryptKEK.encryptDocument(document);
+
+		if (outbound) {
+			System.out.println("\n-- Kriptovanje --");
+
+			// TODO extract doc from wrap when secwrapper is applied
 			try {
+				String cert = CertMap.getCert(VerifyClientSignatureEnveloped.getUnsigned(document));
+				System.out.println(cert);
+				Document encryptedDoc = EncryptKEK.encryptDocument(document, cert);
+				System.out.println("!!!");
 				DocumentUtil.printDocument(encryptedDoc);
+				System.out.println("!!!");
+				context.getMessage().setPayload(new DOMSource(encryptedDoc));
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			context.getMessage().setPayload(new DOMSource(encryptedDoc));
 		} else {
-			System.err.println("\n-- Dekriptovanje --");	
-			
-			Document decryptedDoc=null;
+			System.err.println("\n-- Dekriptovanje --");
+
+			Document decryptedDoc = null;
 			try {
 				DocumentUtil.printDocument(document);
 				decryptedDoc = DecryptKEK.decryptDocument(document);
@@ -43,6 +52,7 @@ public class ClientCryptoHandler implements LogicalHandler<LogicalMessageContext
 			}
 			context.getMessage().setPayload(new DOMSource(decryptedDoc));
 		}
+
 		return true;
 	}
 

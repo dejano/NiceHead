@@ -24,7 +24,7 @@ public class PaymentOrderDataDao {
 			"']&wrap=no" };
 
 	private static final String[] deletePaymentOrderQuery = {
-			"delete node //*[local-name()='paymentOrder'][@messageId='", "']" };
+			"delete node //*[lo 	cal-name()='paymentOrder'][@messageId='", "']" };
 
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");

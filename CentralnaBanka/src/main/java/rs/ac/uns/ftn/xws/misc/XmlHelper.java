@@ -53,11 +53,11 @@ public class XmlHelper {
 		return sw.toString();
 	}
 
-	public static <T> String marshall(T obj, Class<?> objFactoryClazz, String className) {
+	public static <T> String marshall(T obj, Class<?> objFactoryClazz, String elementName) {
 		StringWriter sw = new StringWriter();
 
 		try {
-			JAXBElement<T> el = getJaxbElement(obj, objFactoryClazz, className);
+			JAXBElement<T> el = getJaxbElement(obj, objFactoryClazz, elementName);
 
 			JAXBContext ctx = JAXBContext.newInstance(objFactoryClazz.getPackage().getName());
 

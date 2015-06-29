@@ -32,6 +32,10 @@ public class BanksDataDao {
 			"//*[local-name()='bank'][*[local-name()='bankDetails']/*[local-name()='swiftCode']='",
 			"']/*[local-name()='wsUrl']/text()&wrap=no" };
 
+	private static final String[] getBankCertificateBySwiftCodeQuery = {
+			"//*[local-name()='bank'][*[local-name()='bankDetails']/*[local-name()='swiftCode']='",
+			"']/*[local-name()='certificate']/text()&wrap=no" };
+
 	private static final String[] updateBankBalanceQuery = {
 			"replace value of node //*[local-name()='bank'][*[local-name()='bankDetails']/*[local-name()='swiftCode']='",
 			"']/*[local-name()='balance'] with '", "'" };
@@ -44,9 +48,7 @@ public class BanksDataDao {
 		RESTUtil.deleteResource(CentralBankConstants.SCHEMA_NAME, "banksData.xml");
 		RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME, "banksData.xml",
 				new FileInputStream(new File(file, "banksData.xml")));
-		System.out.println(getBankDetails("222").getSwiftCode());
-		System.out.println(getBankDetails("223").getSwiftCode());
-		System.out.println(isSwiftCodeValid("CONARS24"));
+		System.out.println(getBankCertificateBySwiftCode("CONARS22"));
 	}
 
 	public static BankDetails getBankDetails(String bankCode) {
@@ -87,6 +89,21 @@ public class BanksDataDao {
 		String ret = null;
 
 		String q = getBankWsUrl[0] + swiftCode + getBankWsUrl[1];
+		try {
+			ret = RESTUtil.readString(RESTUtil.retrieveResource(q,
+					CentralBankConstants.SCHEMA_NAME, RequestMethod.GET));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ret;
+	}
+
+	public static String getBankCertificateBySwiftCode(String swiftCode) {
+		String ret = null;
+
+		String q = getBankCertificateBySwiftCodeQuery[0] + swiftCode
+				+ getBankCertificateBySwiftCodeQuery[1];
 		try {
 			ret = RESTUtil.readString(RESTUtil.retrieveResource(q,
 					CentralBankConstants.SCHEMA_NAME, RequestMethod.GET));
