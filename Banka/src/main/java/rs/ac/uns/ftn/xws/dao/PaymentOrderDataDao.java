@@ -32,7 +32,7 @@ public class PaymentOrderDataDao {
 		RESTUtil.createResource(BankConstants.BANK_NAME, "paymentOrders.xml", new FileInputStream(
 				new File(file, "paymentOrders.xml")));
 
-		System.out.println(getPaymentOrders());
+//		System.out.println(getPaymentOrders());
 	}
 
 	public static void addPaymentOrder(PaymentOrder po) {

@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.xws.security;
 
+import java.math.BigInteger;
+import java.net.MalformedURLException;
 import java.security.Security;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
@@ -21,6 +23,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import rs.ac.uns.ftn.xws.misc.DocumentUtil;
+import rs.ac.uns.ftn.xws.ws.crl.CrlDocument_CrlDocumentPort_Client;
 
 //Vrsi proveru potpisa
 public class VerifyClientSignatureEnveloped {
@@ -92,50 +95,91 @@ public class VerifyClientSignatureEnveloped {
 		return ret;
 	}
 
-	public static boolean verifySignature(Document doc) {
-		try {
-			// Pronalazi se prvi Signature element
-			NodeList signatures = doc.getElementsByTagNameNS("http://www.w3.org/2000/09/xmldsig#",
-					"Signature");
-			Element signatureEl = (Element) signatures.item(0);
+	public static boolean verifySignature(Document doc)
+			throws XMLSecurityException, MalformedURLException {
+		boolean retBool = false;
 
-			// kreira se signature objekat od elementa
-			XMLSignature signature = new XMLSignature(signatureEl, null);
-			// preuzima se key info
-			KeyInfo keyInfo = signature.getKeyInfo();
-			// ako postoji
-			if (keyInfo != null) {
-				// registruju se resolver-i za javni kljuc i sertifikat
-				keyInfo.registerInternalKeyResolver(new RSAKeyValueResolver());
-				keyInfo.registerInternalKeyResolver(new X509CertificateResolver());
+		// Pronalazi se prvi Signature element
+		NodeList signatures = doc.getElementsByTagNameNS(
+				"http://www.w3.org/2000/09/xmldsig#", "Signature");
+		Element signatureEl = (Element) signatures.item(0);
 
-				// ako sadrzi sertifikat
-				if (keyInfo.containsX509Data() && keyInfo.itemX509Data(0).containsCertificate()) {
-					Certificate cert = keyInfo.itemX509Data(0).itemCertificate(0)
-							.getX509Certificate();
+		// kreira se signature objekat od elementa
+		XMLSignature signature = new XMLSignature(signatureEl, null);
+		// preuzima se key info
+		KeyInfo keyInfo = signature.getKeyInfo();
+		// ako postoji
+		if (keyInfo != null) {
+			// registruju se resolver-i za javni kljuc i sertifikat
+			keyInfo.registerInternalKeyResolver(new RSAKeyValueResolver());
+			keyInfo.registerInternalKeyResolver(new X509CertificateResolver());
 
-					// ako postoji sertifikat, provera potpisa
-					if (cert != null)
-						return signature.checkSignatureValue((X509Certificate) cert);
-					// TODO @bandjur proveri iz CRListe CrlDataDao za company
-					// sertifikate
-					// else if (){
-					// X509Certificate x509 = ((X509Certificate) cert);
-					// CrlDataDao.isCrlin( x509.getSerialNumber())
-					// }
-					else
-						return false;
-				} else
-					return false;
-			} else
-				return false;
-
-		} catch (XMLSignatureException e) {
-			e.printStackTrace();
-			return false;
-		} catch (XMLSecurityException e) {
-			e.printStackTrace();
-			return false;
+			// ako sadrzi sertifikat
+			if (keyInfo.containsX509Data()
+					&& keyInfo.itemX509Data(0).containsCertificate()) {
+				Certificate cert = keyInfo.itemX509Data(0).itemCertificate(0)
+						.getX509Certificate();
+				BigInteger certSerialNumber = ((X509Certificate) cert)
+						.getSerialNumber();
+				// ako postoji sertifikat, provera potpisa
+				if (cert != null) {
+//					if (CrlDocument_CrlDocumentPort_Client
+//							.isCertificateRevoked(certSerialNumber))
+//						retBool = false;// return false;
+//					else 
+						if (signature
+							.checkSignatureValue((X509Certificate) cert))
+						retBool = true;// return true;
+				}
+			}
 		}
+		return retBool;
 	}
+	
+//	public static boolean verifySignature(Document doc) {
+//		try {
+//			// Pronalazi se prvi Signature element
+//			NodeList signatures = doc.getElementsByTagNameNS("http://www.w3.org/2000/09/xmldsig#",
+//					"Signature");
+//			Element signatureEl = (Element) signatures.item(0);
+//
+//			// kreira se signature objekat od elementa
+//			XMLSignature signature = new XMLSignature(signatureEl, null);
+//			// preuzima se key info
+//			KeyInfo keyInfo = signature.getKeyInfo();
+//			// ako postoji
+//			if (keyInfo != null) {
+//				// registruju se resolver-i za javni kljuc i sertifikat
+//				keyInfo.registerInternalKeyResolver(new RSAKeyValueResolver());
+//				keyInfo.registerInternalKeyResolver(new X509CertificateResolver());
+//
+//				// ako sadrzi sertifikat
+//				if (keyInfo.containsX509Data() && keyInfo.itemX509Data(0).containsCertificate()) {
+//					Certificate cert = keyInfo.itemX509Data(0).itemCertificate(0)
+//							.getX509Certificate();
+//
+//					// ako postoji sertifikat, provera potpisa
+//					if (cert != null)
+//						return signature.checkSignatureValue((X509Certificate) cert);
+//					// TODO @bandjur proveri iz CRListe CrlDataDao za company
+//					// sertifikate
+//					// else if (){
+//					// X509Certificate x509 = ((X509Certificate) cert);
+//					// CrlDataDao.isCrlin( x509.getSerialNumber())
+//					// }
+//					else
+//						return false;
+//				} else
+//					return false;
+//			} else
+//				return false;
+//
+//		} catch (XMLSignatureException e) {
+//			e.printStackTrace();
+//			return false;
+//		} catch (XMLSecurityException e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//	}
 }

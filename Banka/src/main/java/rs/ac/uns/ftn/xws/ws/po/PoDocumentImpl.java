@@ -32,7 +32,7 @@ import rs.ac.uns.ftn.xws.ws.client.mpcb.MpcbDocumentClient;
 		serviceName = "PoDocumentService",
 		portName = "PoDocumentPort",
 		targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/po",
-		wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/po.wsdl",
+		wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/po.wsdl",
 		endpointInterface = "rs.ac.uns.ftn.xws.ws.po.PoDocument")
 @HandlerChain (file= "../handler-chain-document.xml")
 public class PoDocumentImpl implements PoDocument {

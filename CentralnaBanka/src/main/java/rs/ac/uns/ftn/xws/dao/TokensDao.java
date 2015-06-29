@@ -24,9 +24,9 @@ public class TokensDao {
 		RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME, "tokens.xml", new FileInputStream(
 				new File(file, "tokens.xml")));
 
-		System.out.println(isAlreadyUsed("111"));
-		insertToken("112");
-		System.out.println(isAlreadyUsed("112"));
+//		System.out.println(isAlreadyUsed("111"));
+//		insertToken("112");
+//		System.out.println(isAlreadyUsed("112"));
 	}
 
 	public static boolean isAlreadyUsed(String token) {

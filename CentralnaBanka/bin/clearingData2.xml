@@ -36,25 +36,6 @@
 				<mp:paymentOrderId>1</mp:paymentOrderId>
 				<mp:currencyCode>RSD</mp:currencyCode>
 			</mp:payment>
-			<mp:payment>
-				<cmn:debtor>debtor1</cmn:debtor>
-				<cmn:paymentPurpose>paymentPurpose1</cmn:paymentPurpose>
-				<cmn:creditor>creditor1</cmn:creditor>
-				<cmn:orderDate>2006-05-04</cmn:orderDate>
-				<cmn:debtorAccountDetails>
-					<cmn:accountNumber>223-2222222222222-22</cmn:accountNumber>
-					<cmn:model>50</cmn:model>
-					<cmn:referenceNumber>referenceNumber2</cmn:referenceNumber>
-				</cmn:debtorAccountDetails>
-				<cmn:creditorAccountDetails>
-					<cmn:accountNumber>222-2222222222222-22</cmn:accountNumber>
-					<cmn:model>50</cmn:model>
-					<cmn:referenceNumber>referenceNumber3</cmn:referenceNumber>
-				</cmn:creditorAccountDetails>
-				<cmn:amount>0.00</cmn:amount>
-				<mp:paymentOrderId>2</mp:paymentOrderId>
-				<mp:currencyCode>RSD</mp:currencyCode>
-			</mp:payment>
 		</mp:payments>
 	</mp:mt102>
 </cb:clearingData>

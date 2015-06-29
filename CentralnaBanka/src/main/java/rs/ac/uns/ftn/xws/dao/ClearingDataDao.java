@@ -25,7 +25,7 @@ public class ClearingDataDao {
 				"clearingData.xml");
 		RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME,
 				"clearingData.xml", new FileInputStream(new File(file,
-						"clearingData.xml")));
+						"clearingData2.xml")));
 
 		// System.out.println(getClearingDataAsString());
 

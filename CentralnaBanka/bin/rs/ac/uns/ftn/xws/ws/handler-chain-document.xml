@@ -3,10 +3,16 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<hc:handler-chain>
 		<hc:handler>
-			<hc:handler-class>rs.ac.uns.ftn.xws.handler.ws.WSSignatureHandler</hc:handler-class>
+			<hc:handler-class>rs.ac.uns.ftn.xws.handler.SecMessageHandler
+			</hc:handler-class>
 		</hc:handler>
 		<hc:handler>
-			<hc:handler-class>rs.ac.uns.ftn.xws.handler.ws.WSCryptoHandler</hc:handler-class>
+			<hc:handler-class>rs.ac.uns.ftn.xws.handler.ws.WSSignatureHandler
+			</hc:handler-class>
+		</hc:handler>
+		<hc:handler>
+			<hc:handler-class>rs.ac.uns.ftn.xws.handler.ws.WSCryptoHandler
+			</hc:handler-class>
 		</hc:handler>
 	</hc:handler-chain>
 </hc:handler-chains>

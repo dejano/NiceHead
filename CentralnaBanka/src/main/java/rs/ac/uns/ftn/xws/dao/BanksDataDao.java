@@ -43,8 +43,8 @@ public class BanksDataDao {
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/main/resources/");
 
-		// RESTUtil.dropSchema(CentralBankConstants.SCHEMA_NAME);
-		// RESTUtil.createSchema(CentralBankConstants.SCHEMA_NAME);
+//		 RESTUtil.dropSchema(CentralBankConstants.SCHEMA_NAME);
+//		 RESTUtil.createSchema(CentralBankConstants.SCHEMA_NAME);
 		RESTUtil.deleteResource(CentralBankConstants.SCHEMA_NAME, "banksData.xml");
 		RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME, "banksData.xml",
 				new FileInputStream(new File(file, "banksData.xml")));

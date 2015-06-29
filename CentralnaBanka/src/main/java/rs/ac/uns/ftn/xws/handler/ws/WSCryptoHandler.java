@@ -13,29 +13,45 @@ import org.w3c.dom.Document;
 
 import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.misc.DocumentUtil;
+import rs.ac.uns.ftn.xws.misc.SecWrapper;
 import rs.ac.uns.ftn.xws.security.DecryptKEK;
 import rs.ac.uns.ftn.xws.security.EncryptKEK;
 import rs.ac.uns.ftn.xws.security.VerifyClientSignatureEnveloped;
 
 public class WSCryptoHandler implements LogicalHandler<LogicalMessageContext> {
 
-	private static final Logger LOG = Logger.getLogger(WSCryptoHandler.class.getName());
+	private static final Logger LOG = Logger.getLogger(WSCryptoHandler.class
+			.getName());
 
 	@Override
 	public boolean handleMessage(LogicalMessageContext context) {
 
 		LOG.info("\n*** Handler za kriptovanje kod Web Servisa ***");
 
-		Boolean outbound = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
+		Boolean outbound = (Boolean) context
+				.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		Source source = context.getMessage().getPayload();
-		Document document = DocumentUtil.convertToDocument(source);
+
+		Document document;
+		try {
+			document = DocumentUtil.convertToDocument(source);
+			if(document == null || document.getFirstChild() == null){
+				return true;
+			}
+		} catch (Exception e) {
+			return true;
+		}
+
 		if (outbound) {
 			LOG.info("\n-- Kriptovanje --");
 			try {
-				// TODO extract doc from wrap when secwrapper is applied
-				String cert = CertMap.getCert(VerifyClientSignatureEnveloped.getUnsigned(document));
-				
-				Document encryptedDoc = EncryptKEK.encryptDocument(document, cert);
+				Document unwrapped = SecWrapper
+						.unwrap(VerifyClientSignatureEnveloped
+								.getUnsigned(document));
+				String cert = CertMap.getCert(unwrapped);
+
+				Document encryptedDoc = EncryptKEK.encryptDocument(document,
+						cert);
 				context.getMessage().setPayload(new DOMSource(encryptedDoc));
 				DocumentUtil.printDocument(encryptedDoc);
 			} catch (Exception e) {
@@ -46,7 +62,6 @@ public class WSCryptoHandler implements LogicalHandler<LogicalMessageContext> {
 			Document decryptedDoc = null;
 			try {
 				DocumentUtil.printDocument(document); // dodato
-
 				decryptedDoc = DecryptKEK.decryptDocument(document);
 				DocumentUtil.printDocument(decryptedDoc);
 			} catch (Exception e) {

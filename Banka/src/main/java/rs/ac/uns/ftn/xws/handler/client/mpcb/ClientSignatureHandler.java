@@ -12,6 +12,7 @@ import org.w3c.dom.Element;
 
 import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.misc.DocumentUtil;
+import rs.ac.uns.ftn.xws.misc.SecWrapper;
 import rs.ac.uns.ftn.xws.security.SignEnveloped;
 import rs.ac.uns.ftn.xws.security.VerifyClientSignatureEnveloped;
 
@@ -23,7 +24,15 @@ public class ClientSignatureHandler implements LogicalHandler<LogicalMessageCont
 
 		Boolean isResponse = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		Source source = context.getMessage().getPayload();
-		Document document = DocumentUtil.convertToDocument(source);
+		Document document;
+		try {
+			document = DocumentUtil.convertToDocument(source);
+			if(document == null || document.getFirstChild() == null){
+				return true;
+			}
+		} catch (Exception e) {
+			return true;
+		}
 
 		if (isResponse) {
 			System.err.println("\nDokument koji je stigao");
@@ -53,9 +62,9 @@ public class ClientSignatureHandler implements LogicalHandler<LogicalMessageCont
 			try {
 				boolean signatureValid = VerifyClientSignatureEnveloped.verifySignature(document);
 
-				if (!signatureValid) {
-					return false; // potpis nije validan
-				}
+//				if (!signatureValid) {
+//					return false; // potpis nije validan
+//				}
 
 				// uklanjanje potpisa
 				Element element = (Element) document.getElementsByTagNameNS(
@@ -65,7 +74,7 @@ public class ClientSignatureHandler implements LogicalHandler<LogicalMessageCont
 			} catch (Exception e) {
 			}
 
-			CertMap.add(document, cn);
+			CertMap.add(SecWrapper.unwrap(document), cn);
 
 			context.getMessage().setPayload(new DOMSource(document));
 		}

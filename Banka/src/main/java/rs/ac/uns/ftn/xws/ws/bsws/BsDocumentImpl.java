@@ -20,7 +20,7 @@ import rs.ac.uns.ftn.xws.misc.CertMap;
 		serviceName = "BsDocumentService",
 		portName = "BsDocumentPort",
 		targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bsws",
-		wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/Banka/WEB-INF/wsdl/bs.wsdl",
+		wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/Banka/WEB-INF/wsdl/bs.wsdl",
 		endpointInterface = "rs.ac.uns.ftn.xws.ws.bsws.BsDocument")
 @HandlerChain(file = "../handler-chain-document.xml")
 public class BsDocumentImpl implements BsDocument {

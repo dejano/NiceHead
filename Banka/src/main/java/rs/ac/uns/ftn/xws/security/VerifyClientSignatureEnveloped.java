@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.xws.security;
 
+import java.math.BigInteger;
+import java.net.MalformedURLException;
 import java.security.Security;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
@@ -19,6 +21,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import rs.ac.uns.ftn.xws.misc.DocumentUtil;
+import rs.ac.uns.ftn.xws.ws.crl.CrlDocument_CrlDocumentPort_Client;
 
 //Vrsi proveru potpisa
 public class VerifyClientSignatureEnveloped {
@@ -27,11 +30,12 @@ public class VerifyClientSignatureEnveloped {
 		org.apache.xml.security.Init.init();
 	}
 
-	public static String getCommonName(Document doc) throws XMLSecurityException {
+	public static String getCommonName(Document doc)
+			throws XMLSecurityException {
 		String ret = null;
 
-		NodeList signatures = doc.getElementsByTagNameNS("http://www.w3.org/2000/09/xmldsig#",
-				"Signature");
+		NodeList signatures = doc.getElementsByTagNameNS(
+				"http://www.w3.org/2000/09/xmldsig#", "Signature");
 		Element signatureEl = (Element) signatures.item(0);
 
 		// kreira se signature objekat od elementa
@@ -45,9 +49,10 @@ public class VerifyClientSignatureEnveloped {
 			keyInfo.registerInternalKeyResolver(new X509CertificateResolver());
 
 			// ako sadrzi sertifikat
-			if (keyInfo.containsX509Data() && keyInfo.itemX509Data(0).containsCertificate()) {
-				X509Certificate cert = keyInfo.itemX509Data(0).itemCertificate(0)
-						.getX509Certificate();
+			if (keyInfo.containsX509Data()
+					&& keyInfo.itemX509Data(0).containsCertificate()) {
+				X509Certificate cert = keyInfo.itemX509Data(0)
+						.itemCertificate(0).getX509Certificate();
 
 				String dn = cert.getSubjectX500Principal().getName();
 				String[] split = dn.split(",");
@@ -83,10 +88,13 @@ public class VerifyClientSignatureEnveloped {
 		return ret;
 	}
 
-	public static boolean verifySignature(Document doc) throws XMLSecurityException {
+	public static boolean verifySignature(Document doc)
+			throws XMLSecurityException, MalformedURLException {
+		boolean retBool = false;
+
 		// Pronalazi se prvi Signature element
-		NodeList signatures = doc.getElementsByTagNameNS("http://www.w3.org/2000/09/xmldsig#",
-				"Signature");
+		NodeList signatures = doc.getElementsByTagNameNS(
+				"http://www.w3.org/2000/09/xmldsig#", "Signature");
 		Element signatureEl = (Element) signatures.item(0);
 
 		// kreira se signature objekat od elementa
@@ -100,23 +108,24 @@ public class VerifyClientSignatureEnveloped {
 			keyInfo.registerInternalKeyResolver(new X509CertificateResolver());
 
 			// ako sadrzi sertifikat
-			if (keyInfo.containsX509Data() && keyInfo.itemX509Data(0).containsCertificate()) {
-				Certificate cert = keyInfo.itemX509Data(0).itemCertificate(0).getX509Certificate();
-
+			if (keyInfo.containsX509Data()
+					&& keyInfo.itemX509Data(0).containsCertificate()) {
+				Certificate cert = keyInfo.itemX509Data(0).itemCertificate(0)
+						.getX509Certificate();
+				BigInteger certSerialNumber = ((X509Certificate) cert)
+						.getSerialNumber();
 				// ako postoji sertifikat, provera potpisa
-				if (cert != null)
-					return signature.checkSignatureValue((X509Certificate) cert);
-				// TODO @bandjur proveri iz CRListe CrlDataDao za company
-				// sertifikate
-				// else if (){
-				// X509Certificate x509 = ((X509Certificate) cert);
-				// CrlDataDao.isCrlin( x509.getSerialNumber())
-				// }
-				else
-					return false;
-			} else
-				return false;
-		} else
-			return false;
+				if (cert != null) {
+//					if (CrlDocument_CrlDocumentPort_Client
+//							.isCertificateRevoked(certSerialNumber))
+//						retBool = false;// return false;
+//					else 
+						if (signature
+							.checkSignatureValue((X509Certificate) cert))
+						retBool = true;// return true;
+				}
+			}
+		}
+		return retBool;
 	}
 }

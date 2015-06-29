@@ -2,9 +2,13 @@ package rs.ac.uns.ftn.xws.ws.client.mpb;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.namespace.QName;
+import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Service;
+import javax.xml.ws.handler.Handler;
 
 import rs.ac.uns.ftn.xws.dao.BanksDataDao;
 import rs.ac.uns.ftn.xws.generated.mp.ClearingApprovalMessage;
@@ -12,8 +16,11 @@ import rs.ac.uns.ftn.xws.generated.mp.Mt102;
 import rs.ac.uns.ftn.xws.generated.mp.Mt103;
 import rs.ac.uns.ftn.xws.generated.mp.Mt900;
 import rs.ac.uns.ftn.xws.generated.mp.RtgsApprovalMessage;
+import rs.ac.uns.ftn.xws.handler.ClientSecMessageHandler;
 import rs.ac.uns.ftn.xws.misc.CertMap;
 import rs.ac.uns.ftn.xws.misc.ObjectMapper;
+import rs.ac.uns.ftn.xws.handler.client.ClientCryptoHandler;
+import rs.ac.uns.ftn.xws.handler.client.ClientSignatureHandler;
 
 public class MpbDocumentClient {
 
@@ -33,6 +40,18 @@ public class MpbDocumentClient {
 			Service service = Service.create(wsdl, serviceName);
 
 			ret = service.getPort(portName, MpbDocument.class);
+			
+			ClientSecMessageHandler secMessage = new ClientSecMessageHandler();
+			ClientCryptoHandler crypto = new ClientCryptoHandler();
+			ClientSignatureHandler sign = new ClientSignatureHandler();
+
+			@SuppressWarnings("rawtypes")
+			List<Handler> handlerChain = new ArrayList<Handler>();
+			handlerChain.add(secMessage);
+			handlerChain.add(sign);
+			handlerChain.add(crypto);
+
+			((BindingProvider) ret).getBinding().setHandlerChain(handlerChain);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

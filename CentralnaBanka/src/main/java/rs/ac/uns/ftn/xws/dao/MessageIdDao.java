@@ -23,7 +23,7 @@ public class MessageIdDao {
 		RESTUtil.createResource(CentralBankConstants.SCHEMA_NAME, "messageIdData.xml",
 				new FileInputStream(new File(file, "messageIdData.xml")));
 
-		System.out.println(getMessageId());
+//		System.out.println(getMessageId());
 	}
 
 	public static String getMessageId() {

@@ -15,7 +15,7 @@ import javax.xml.ws.Service;
  * 
  */
 @WebServiceClient(name = "CrlDocumentService", 
-                  wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/crl.wsdl",
+                  wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/crl.wsdl",
                   targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/crl") 
 public class CrlDocumentService extends Service {
 
@@ -26,11 +26,11 @@ public class CrlDocumentService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/crl.wsdl");
+            url = new URL("file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/crl.wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(CrlDocumentService.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/crl.wsdl");
+                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/crl.wsdl");
         }
         WSDL_LOCATION = url;
     }

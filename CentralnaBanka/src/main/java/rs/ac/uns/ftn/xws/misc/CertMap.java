@@ -43,8 +43,10 @@ public class CertMap {
 	}
 
 	public static <T> String getCert(T obj, Class<?> objFactoryClazz, String elementName) {
-		return certMap.remove(DocumentUtil.getHashCode(DocumentUtil.toDocument(obj,
-				objFactoryClazz, elementName)));
+		int hash = DocumentUtil.getHashCode(DocumentUtil.toDocument(obj,
+				objFactoryClazz, elementName));
+		LOG.info("certmap removed : " + hash);
+		return certMap.remove(hash);
 	}
 	
 	private CertMap() {

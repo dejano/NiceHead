@@ -15,7 +15,7 @@ import javax.xml.ws.Service;
  * 
  */
 @WebServiceClient(name = "BdDocumentService", 
-                  wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl",
+                  wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl",
                   targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/bankDetails") 
 public class BdDocumentService extends Service {
 
@@ -26,11 +26,11 @@ public class BdDocumentService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl");
+            url = new URL("file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(BdDocumentService.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl");
+                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/bankDetails.wsdl");
         }
         WSDL_LOCATION = url;
     }

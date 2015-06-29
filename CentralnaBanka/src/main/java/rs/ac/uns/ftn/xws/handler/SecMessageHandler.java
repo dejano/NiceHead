@@ -25,7 +25,6 @@ public class SecMessageHandler implements LogicalHandler<LogicalMessageContext> 
 
 		Boolean outbound = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		Source source = context.getMessage().getPayload();
-		
 		Document document;
 		try {
 			document = DocumentUtil.convertToDocument(source);
@@ -41,7 +40,7 @@ public class SecMessageHandler implements LogicalHandler<LogicalMessageContext> 
 
 			Document wrappedDocument = SecWrapper.wrap(document);
 			try {
-				DocumentUtil.printDocument(document);
+				DocumentUtil.printDocument(wrappedDocument);
 			} catch (Exception e) {
 			}
 			context.getMessage().setPayload(new DOMSource(wrappedDocument));
@@ -61,6 +60,10 @@ public class SecMessageHandler implements LogicalHandler<LogicalMessageContext> 
 				TokensDao.insertToken(token);
 				
 				Document unwrappedDocument = SecWrapper.unwrap(document);
+				try {
+					DocumentUtil.printDocument(document);
+				} catch (Exception e) {
+				}
 				context.getMessage().setPayload(new DOMSource(unwrappedDocument));
 			}
 		}

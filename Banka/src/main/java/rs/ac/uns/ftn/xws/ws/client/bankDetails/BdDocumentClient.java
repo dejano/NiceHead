@@ -12,6 +12,7 @@ import javax.xml.ws.Service;
 import javax.xml.ws.handler.Handler;
 
 import rs.ac.uns.ftn.xws.generated.cmn.BankDetails;
+import rs.ac.uns.ftn.xws.handler.SecMessageHandler;
 import rs.ac.uns.ftn.xws.handler.client.mpcb.ClientCryptoHandler;
 import rs.ac.uns.ftn.xws.handler.client.mpcb.ClientSignatureHandler;
 import rs.ac.uns.ftn.xws.misc.BankConstants;
@@ -26,12 +27,13 @@ public class BdDocumentClient {
 			throws NoBankCodeException {
 		BdDocument bankDetailsService = getService();
 		
+		SecMessageHandler secMessage = new SecMessageHandler();
 		ClientCryptoHandler crypto = new ClientCryptoHandler();
 		ClientSignatureHandler sing = new ClientSignatureHandler();
 		
 		@SuppressWarnings("rawtypes")
 		List<Handler> handlerChain = new ArrayList<Handler>();
-		//handlerChain.add(attack);
+		handlerChain.add(secMessage);
 		handlerChain.add(sing);
 		handlerChain.add(crypto);
 		

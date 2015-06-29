@@ -24,7 +24,7 @@ import rs.ac.uns.ftn.xws.ws.client.mpb.MpbDocumentClient;
 		serviceName = "MpcbDocumentService",
 		portName = "MpcbDocumentPort",
 		targetNamespace = "http://www.ftn.uns.ac.rs/xws/ws/mpcb",
-		wsdlLocation = "file:/C:/Users/Nikola/Documents/Fakultet/XWS/projekat/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
+		wsdlLocation = "file:/C:/Users/Bandjur/Desktop/Workspace/XWS-BSEP-PI/XWS/NiceHead/CentralnaBanka/WEB-INF/wsdl/mpcb.wsdl",
 		endpointInterface = "rs.ac.uns.ftn.xws.ws.mpcb.MpcbDocument")
 @HandlerChain(file = "../handler-chain-document.xml")
 public class MpcbDocumentImpl implements MpcbDocument {

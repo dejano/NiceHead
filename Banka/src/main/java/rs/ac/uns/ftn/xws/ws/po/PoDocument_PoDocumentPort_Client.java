@@ -13,6 +13,7 @@ import javax.xml.ws.Service;
 import javax.xml.ws.handler.Handler;
 
 import rs.ac.uns.ftn.xws.generated.po.PaymentOrder;
+import rs.ac.uns.ftn.xws.handler.ClientSecMessageHandler;
 import rs.ac.uns.ftn.xws.handler.client.mpcb.ClientCryptoHandler;
 import rs.ac.uns.ftn.xws.handler.client.mpcb.ClientSignatureHandler;
 import rs.ac.uns.ftn.xws.misc.CertMap;
@@ -31,11 +32,13 @@ public final class PoDocument_PoDocumentPort_Client {
 
 			PoDocument poService = service.getPort(portName, PoDocument.class);
 			
+			ClientSecMessageHandler secMessage = new ClientSecMessageHandler();
 			ClientCryptoHandler crypto = new ClientCryptoHandler();
 			ClientSignatureHandler sign = new ClientSignatureHandler();
 
 			@SuppressWarnings("rawtypes")
 			List<Handler> handlerChain = new ArrayList<Handler>();
+			handlerChain.add(secMessage);
 			handlerChain.add(sign);
 			handlerChain.add(crypto);
 

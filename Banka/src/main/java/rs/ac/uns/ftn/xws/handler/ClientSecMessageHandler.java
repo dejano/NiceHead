@@ -15,7 +15,7 @@ import rs.ac.uns.ftn.xws.misc.DocumentUtil;
 import rs.ac.uns.ftn.xws.misc.SecWrapper;
 
 // TODO add to chain and create one for client one for ws?
-public class SecMessageHandler implements LogicalHandler<LogicalMessageContext> {
+public class ClientSecMessageHandler implements LogicalHandler<LogicalMessageContext> {
 
 	@Override
 	public boolean handleMessage(LogicalMessageContext context) {
@@ -25,7 +25,6 @@ public class SecMessageHandler implements LogicalHandler<LogicalMessageContext> 
 
 		Boolean outbound = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		Source source = context.getMessage().getPayload();
-		
 		Document document;
 		try {
 			document = DocumentUtil.convertToDocument(source);
@@ -35,15 +34,10 @@ public class SecMessageHandler implements LogicalHandler<LogicalMessageContext> 
 		} catch (Exception e) {
 			return true;
 		}
-
 		if (outbound) {
 			System.out.println("\n-- Wrap --");
 
 			Document wrappedDocument = SecWrapper.wrap(document);
-			try {
-				DocumentUtil.printDocument(document);
-			} catch (Exception e) {
-			}
 			context.getMessage().setPayload(new DOMSource(wrappedDocument));
 		} else {
 			System.out.println("\n-- Unwrap --");
