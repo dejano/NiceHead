@@ -114,7 +114,7 @@
         </div>
     </div>
 </div>
-<div class="row"  ng-show="invoice._state != 'partner'" smurf-allow="role.boss || director">
+<div class="row"  ng-show="invoice._state != 'partner'" smurf-allow="role.boss || director || super">
     <div class="col-md-offset-10">
         <button class="btn btn-default" ng-click="openUpdateModal(invoice)">Edit</button>
         <button class="btn btn-primary" ng-click="approve()">Approve</button>

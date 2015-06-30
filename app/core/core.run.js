@@ -3,15 +3,15 @@
 
     angular.module('app.core').run(appRun);
 
-    appRun.$inject = ['$rootScope'];
+    appRun.$inject = ['$rootScope', '$http'];
     function appRun($rootScope) {
         $rootScope.setupData = {
             "name": "YoLo Company",
             "address": "1",
-            "url": "http://localhost:8081/",
-            "pib": "pib1",
+            "url": "http://localhost:8083/",
+            "pib": "pib0",
             "accounts": [
-                "1",
+                "222-2222222222222-22",
                 "2",
                 "3"
             ]

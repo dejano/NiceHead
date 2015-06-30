@@ -25,7 +25,10 @@
                     // $http is already constructed at the time and you may
                     // use it, just as any other service registered in your
                     // app module and modules on which app depends on.
-                    toastr.warning('Please login first.', 'Unauthorized access');
+                    if (response.status === 401)
+                        toastr.warning('Please login first.', 'Unauthorized access');
+                    else if (response.status === 403)
+                        toastr.warning('You are not allowed to perform this action.', 'Forbidden');
                 });
 
                 console.log("Response " + response.status);

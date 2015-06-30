@@ -4,7 +4,7 @@
     angular.module('app.invoices')
         .controller('invoiceController', invoiceController)
 
-    invoiceController.$inject = ['$scope', 'invoiceService', 'dataService', '$log', '$modal', '$route', 'toastr', 'location'];
+    invoiceController.$inject = ['$scope', 'invoiceService', 'dataService', '$log', '$modal', '$route', 'toastr', '$location'];
     function invoiceController($scope, invoiceService, dataService, $log, $modal, $route, toastr, $location) {
         $scope.invoice = invoiceService.data;
 
@@ -19,7 +19,7 @@
 
         function successCallback(title, message) {
             toastr.success(message, title);
-            $location.path( "/dashboard" );
+            $location.path("/");
         }
 
         function reject() {
@@ -27,7 +27,10 @@
         }
 
         function approve() {
-            dataService.Invoice.approve($scope.invoice).success(successCallback('Invoice successfully approved'));
+            dataService.Invoice.approve($scope.invoice).success(function () {
+                toastr.success('', 'Invoice successfully approved');
+                $location.path("/");
+            });
         }
 
         function openUpdateModal(invoice) {
