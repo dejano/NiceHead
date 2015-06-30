@@ -3,18 +3,21 @@ package rs.ac.uns.ftn.xmlbsep.rest;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.ResultWrapper;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.User;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
-import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.partner.Partner;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.payment.AccountDetails;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.payment.PaymentOrder;
 import rs.ac.uns.ftn.xmlbsep.dao.ConfigDao;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDaoLocal;
 import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
+import rs.ac.uns.ftn.xmlbsep.security.handler.SecMessageHandler;
+import rs.ac.uns.ftn.xmlbsep.security.handler.ClientCryptoHandler;
+import rs.ac.uns.ftn.xmlbsep.security.handler.ClientSignatureHandler;
 import rs.ac.uns.ftn.xmlbsep.security.HasPermission;
 import rs.ac.uns.ftn.xmlbsep.security.InvoiceFactory;
 import rs.ac.uns.ftn.xmlbsep.security.InvoiceState;
-import rs.ac.uns.ftn.xmlbsep.validation.ValidXMLSchema;
+import rs.ac.uns.ftn.xmlbsep.util.CertMap;
 import rs.ac.uns.ftn.xmlbsep.ws.PoDocument;
 import rs.ac.uns.ftn.xmlbsep.ws.PoException;
+import rs.ac.uns.ftn.xmlbsep.ws.messageid.MessageIdDocument_MessageIdDocumentPort_Client;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -23,10 +26,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.namespace.QName;
+import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Service;
-import java.io.File;
+import javax.xml.ws.handler.Handler;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 @Consumes({"application/xml", "application/json"})
@@ -147,7 +152,7 @@ public class InvoiceController {
     }
 
     @GET
-    @HasPermission("read.invoice")
+//    @HasPermission("read.invoice")
     @Path("/pending")
     public Response getPendingInvoices(@PathParam("partnerId") String partnerId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
@@ -291,6 +296,11 @@ public class InvoiceController {
 
     private void createPayment(Invoice invoice) {
         PaymentOrder paymentOrder = new PaymentOrder();
+        try {
+            paymentOrder.setMessageId(MessageIdDocument_MessageIdDocumentPort_Client.getMessageId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         paymentOrder.setCurrencyCode(invoice.getInvoiceHeader().getPayment().getCurrency().getValue());
         paymentOrder.setCurrencyDate(invoice.getInvoiceHeader().getPayment().getCurrency().getDate());
         paymentOrder.setOrderDate(invoice.getInvoiceHeader().getBill().getDate());
@@ -306,21 +316,21 @@ public class InvoiceController {
 
         AccountDetails debtorAccountDetails = new AccountDetails();
         debtorAccountDetails.setModel(97);
+//        debtorAccountDetails.setAccountNumber("223-2222222222222-22");
         debtorAccountDetails.setAccountNumber(configDao.get().getAccounts().get(0));
         debtorAccountDetails.setReferenceNumber("referenceNumber0");
-
 
         paymentOrder.setCreditorAccountDetails(creditorAccountDetails);
         paymentOrder.setDebtorAccountDetails(debtorAccountDetails);
 
         paymentOrder.setUrgent(false);
         System.out.println("InvoiceController.createPayment");
-//        sendPaymentOrder(paymentOrder);
+        sendPaymentOrder(paymentOrder);
     }
 
     private void sendPaymentOrder(PaymentOrder paymentOrder) {
         try {
-            URL wsdl = new URL("http://localhost:8080/banka2/webservices/PoDocumentImpl?wsdl");
+            URL wsdl = new URL("http://localhost:8080/banka2/services/PoDocument?wsdl");
 
             QName serviceName = new QName("http://www.ftn.uns.ac.rs/xws/ws/po", "PoDocumentService");
             QName portName = new QName("http://www.ftn.uns.ac.rs/xws/ws/po", "PoDocumentPort");
@@ -329,7 +339,20 @@ public class InvoiceController {
 
             PoDocument poService = service.getPort(portName, PoDocument.class);
 
-            File file = new File("src/main/resources/");
+            SecMessageHandler msg = new SecMessageHandler();
+            ClientCryptoHandler crypto = new ClientCryptoHandler();
+            ClientSignatureHandler sign = new ClientSignatureHandler();
+
+            @SuppressWarnings("rawtypes")
+            List<Handler> handlerChain = new ArrayList<Handler>();
+            handlerChain.add(msg);
+            handlerChain.add(sign);
+            handlerChain.add(crypto);
+
+            ((BindingProvider) poService).getBinding().setHandlerChain(handlerChain);
+
+            CertMap.add(paymentOrder, "banka2");
+
             try {
                 poService.paymentOrderHandle(paymentOrder);
             } catch (PoException e) {
