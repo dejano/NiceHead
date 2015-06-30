@@ -59,8 +59,16 @@
 
                         var result = [];
                         data = X2js.xml_str2json(data);
-                        console.log(data.resultWrapper.partner);
-                        return data.resultWrapper.partner;
+                        var data = data.resultWrapper.partner;
+                        if (data !== undefined) {
+                            if (!Array.isArray(data)) {
+                                result = new Array(data);
+                            } else {
+                                result = data;
+                            }
+                        }
+                        console.log(result);
+                        return result;
                     }
                 });
         }
@@ -107,20 +115,30 @@
 
         function getPendingInvoices() {
             return getInvoices(invoicesUrl + '/pending').error(function (data, status) {
-                toastr.info("Oups, something went wrong! \nDetails: " + status, "Error");
+                if (status == 404)
+                    toastr.info("Oups, There are no pending invoices!", "Error");
             });
         }
 
         function getSentInvoices() {
-            return getInvoices(invoicesUrl + '/sent');
+            return getInvoices(invoicesUrl + '/sent').error(function (data, status) {
+                if (status == 404)
+                    toastr.info("Oups, There are no sent invoices!", "Error");
+            });
         }
 
         function getPendingWithState(state) {
-            return getInvoices(invoicesUrl + '/pending/' + state);
+            return getInvoices(invoicesUrl + '/pending/' + state).error(function (data, status) {
+                if (status == 404)
+                    toastr.info("Oups, There are no pending invoices!", "Error");
+            });
         }
 
         function getReceivedInvoices() {
-            return getInvoices(invoicesUrl + '/received');
+            return getInvoices(invoicesUrl).error(function (data, status) {
+                if (status == 404)
+                    toastr.info("Oups, There are no received invoices!", "Error");
+            });
         }
 
         function getInvoice(invoiceId) {
@@ -138,24 +156,24 @@
                 });
         }
 
-        function createInvoice(invoice, httpUrl) {
-            var url = httpUrl || invoicesUrl;
+        function createInvoice(invoice) {
+            var url = invoicesUrl.format(invoice.invoice.invoice_header.buyer.pib);
             return $http.post(url + '/create', invoice, {
                 withCredentials: true,
                 transformRequest: function (obj) {
                     obj.invoice._id = "id";
                     obj.invoice._state = "boss";
                     obj.invoice.invoice_header.supplier.pib = $rootScope.setupData.pib;
-                    //obj.invoice.invoice_header.buyer.pib = 'pib0';
                     obj.invoice.invoice_header.payment.currency._date = obj.invoice.invoice_header.payment.currency._date.format(dateFormat.toLowerCase());
                     obj.invoice.invoice_header.bill._date = obj.invoice.invoice_header.bill._date.format(dateFormat.toLowerCase());
                     obj.invoice.invoice_header.bill.toString = function () {
                         return obj.invoice.invoice_header.bill.__text;
                     };
-
+                    console.log(obj);
                     var invoiceXmlString = X2js.json2xml_str(obj);
                     var txt2 = invoiceXmlString.slice(0, 8) + ' xmlns="http://www.ftn.uns.ac.rs/xmlbsep/company/invoice"' + invoiceXmlString.slice(8);
                     txt2 = txt2.split("'").join('"');
+                    console.log(txt2);
                     return txt2;
                 },
                 headers: {
@@ -166,42 +184,36 @@
         }
 
         function approveInvoice(invoice) {
-            console.log(invoice);
-            //return $http.put(invoiceUrl + "approve" + '/' + invoice._id, invoice, {
-            //    withCredentials: true,
-            //    transformRequest: function (obj) {
-            //        obj = {invoice: obj};
-            //        obj.invoice.invoice_header.supplier.pib = $rootScope.setupData.pib;
-            //        obj.invoice.invoice_header.buyer.pib = 'pib2';
-            //        obj.invoice.invoice_header.payment.currency._date = obj.invoice.invoice_header.payment.currency._date.format(dateFormat.toLowerCase());
-            //        obj.invoice.invoice_header.bill._date = obj.invoice.invoice_header.bill._date.format(dateFormat.toLowerCase());
-            //        obj.invoice.invoice_header.bill.toString = function () {
-            //            return obj.invoice.invoice_header.bill.__text;
-            //        };
-            //
-            //        return X2js.json2xml_str(obj);
-            //    },
-            //    headers: {
-            //        'Content-Type': 'application/xml',
-            //        'Accept': "application/xml, text/plain, */*"
-            //    }
-            //}).success(function () {
-            //
-            //});
-            console.log(invoice.invoice_header.buyer.pib);
-            //return getPartner(invoice.invoice_header.buyer.pib).success(function (data) {
-            return getPartner('pib2').success(function (data) {
-                var partnerUrl = data.base_rest_url;
-                sendInvoiceToPartner(partnerUrl + '/' + invoice.invoice_header.supplier.pib + '/fakture', invoice)
-                    .success(function (data) {
-                        toastr.success("Invoice sent", "Invoice has been sent to partner " + invoice.invoice_header.buyer.name + "(" + invoice.invoice_header.buyer.pib + ")")
-                    });
-            })
+            return $http.put(invoiceUrl + "approve" + '/' + invoice._id, invoice, {
+                withCredentials: true,
+                transformRequest: function (obj) {
+                    obj = {invoice: obj};
+                    console.log(obj);
+                    return X2js.json2xml_str(obj);
+                },
+                headers: {
+                    'Content-Type': 'application/xml',
+                    'Accept': "application/xml, text/plain, */*"
+                }
+            }).error(function (data, status) {
+                toastr.info("Oups, something went wrong! \nDetails: " + data, "Error");
+            }).success(function(data) {
+                console.log(invoice.invoice_header.buyer.pib);
+                //return getPartner(invoice.invoice_header.buyer.pib).success(function (data) {
+                getPartner(invoice.invoice_header.buyer.pib).success(function (data) {
+                    var partnerUrl = data.base_rest_url;
+                    sendInvoiceToPartner(partnerUrl + 'partneri/' + invoice.invoice_header.supplier.pib + '/fakture', invoice)
+                        .success(function (data) {
+                            toastr.success("Invoice sent", "Invoice has been sent to partner " + invoice.invoice_header.buyer.name + "(" + invoice.invoice_header.buyer.pib + ")")
+                        });
+                });
+            });
+
         }
 
         function sendInvoiceToPartner(url, invoice) {
             console.log(url);
-            url = 'http://localhost:8081/partneri/pib2/fakture';
+            //url = 'http://localhost:8081/partneri/pib2/fakture';
             return $http.post(url, invoice, {
                 withCredentials: true,
                 transformRequest: function (obj) {
@@ -216,13 +228,12 @@
                     'Accept': "application/xml, text/plain, */*"
                 }
             });
+
         }
 
         function rejectInvoice(invoiceId) {
             return $http.delete(invoiceUrl + invoiceId, {
                 withCredentials: true
-            }).success(function (data) {
-                toastr.info("Item has been deleted.", "Successfully Deleted");
             }).error(function (data) {
                 toastr.info("Oups, something went wrong! \nDetails: " + data, "Error");
             });

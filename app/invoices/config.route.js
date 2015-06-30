@@ -76,25 +76,33 @@
         return dataService.Partner.getAll();
     }
 
-    getSentInvoices.$inject = ['dataService'];
-    function getSentInvoices(dataService) {
-        return dataService.Invoice.getSent();
+    getSentInvoices.$inject = ['dataService', "$location"];
+    function getSentInvoices(dataService, $location) {
+        return dataService.Invoice.getSent().error(function () {
+            $location.path('/');
+        });
     }
 
-    getReceivedInvoices.$inject = ['dataService'];
-    function getReceivedInvoices(dataService) {
-        return dataService.Invoice.getReceived();
+    getReceivedInvoices.$inject = ['dataService', '$location'];
+    function getReceivedInvoices(dataService, $location) {
+        return dataService.Invoice.getReceived().error(function () {
+            $location.path('/');
+        });
     }
 
-    getPendingInvoices.$inject = ['dataService', '$cookies'];
-    function getPendingInvoices(dataService, $cookies) {
+    getPendingInvoices.$inject = ['dataService', '$cookies', '$location'];
+    function getPendingInvoices(dataService, $cookies, $location) {
         var user = JSON.parse($cookies.user);
-        for(var i = 0; i < user.roles.length; i++) {
+        for (var i = 0; i < user.roles.length; i++) {
             var role = user.roles[i];
-            if (role.name == 'employee') {
-                return dataService.Invoice.getPending();
+            if (role.name == 'employee' || role.name == 'super') {
+                return dataService.Invoice.getPending().error(function () {
+                    $location.path('/');
+                });
             }
-            return dataService.Invoice.getPendingWithState(role.name.trim());
+            return dataService.Invoice.getPendingWithState(role.name.trim()).error(function () {
+                $location.path('/');
+            });
         }
     }
 
@@ -103,9 +111,11 @@
     //    return dataService.Invoice.getPendingWithState($route.current.params.state);
     //}
 
-    getInvoice.$inject = ['dataService', '$route'];
-    function getInvoice(dataService, $route) {
-        return dataService.Invoice.get($route.current.params.id);
+    getInvoice.$inject = ['dataService', '$route', '$location'];
+    function getInvoice(dataService, $route, $location) {
+        return dataService.Invoice.get($route.current.params.id).error(function () {
+            $location.path('/');
+        });
     }
 
 })();

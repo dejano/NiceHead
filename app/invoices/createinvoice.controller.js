@@ -55,10 +55,13 @@
                 $scope.errorMessage = "please add at least one item.";
                 return;
             }
+            $scope.invoice.invoice_header.payment.account_number = $scope.invoice.invoice_header.payment.account_number.account_number;
+            delete $scope.invoice.invoice_header.buyer.account;
+            delete $scope.invoice.invoice_header.buyer.base_rest_url;
             $scope.invoice.item = $scope.items;
             $scope.invoice = {invoice: $scope.invoice};
             dataService.Invoice.create($scope.invoice).success(function () {
-                $location.path('/invoices');
+                $location.path('/invoices/pending');
             }).error(function () {
                 toastr.error('Something went wrong. Provided data might not be valid. Is it?', 'Ops!');
             });
