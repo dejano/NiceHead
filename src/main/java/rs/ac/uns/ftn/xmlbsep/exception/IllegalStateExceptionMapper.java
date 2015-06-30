@@ -10,7 +10,7 @@ import javax.ws.rs.ext.Provider;
 public class IllegalStateExceptionMapper implements ExceptionMapper<IllegalStateException> {
     @Override
     public Response toResponse(IllegalStateException exception) {
-        ErrorMessage error = new ErrorMessage(exception.getMessage(), 401);
+        ErrorMessage error = new ErrorMessage(exception.getMessage(), 403);
         return Response.status(Response.Status.FORBIDDEN).build();
     }
 }

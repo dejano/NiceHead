@@ -5,6 +5,7 @@ import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Invoice;
 import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.invoice.Item;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDaoLocal;
 import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
+import rs.ac.uns.ftn.xmlbsep.security.HasPermission;
 import rs.ac.uns.ftn.xmlbsep.validation.ValidXMLSchema;
 
 import javax.ejb.EJB;
@@ -47,7 +48,8 @@ public class InvoiceItemController {
     }
 
     @POST
-//    @ValidXMLSchema(value = "/xsd/item.xsd", clazz = Item.class)
+    @ValidXMLSchema(value = "/xsd/item.xsd", clazz = Item.class)
+    @HasPermission("create.item")
     public Response saveItem(Item item, @PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId, @Context UriInfo uriInfo) throws Throwable {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();
@@ -87,6 +89,7 @@ public class InvoiceItemController {
 
     @PUT
     @Path("/{itemId}")
+    @HasPermission("update.item")
     public Response updateItem(Item item, @PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId, @PathParam("itemId") int itemId) throws Throwable {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();
@@ -110,6 +113,7 @@ public class InvoiceItemController {
 
     @DELETE
     @Path("/{itemId}")
+    @HasPermission("delete.item")
     public Response deleteItem(@PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId, @PathParam("itemId") int itemId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();

@@ -17,11 +17,16 @@ public class ResponseFilter implements Filter {
                          FilterChain chain)
             throws java.io.IOException, ServletException {
         HttpServletResponse res = (HttpServletResponse) response;
-        res.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+        HttpServletRequest req = (HttpServletRequest) request;
+        String origin = req.getHeader("Origin");
+        if (origin.contains("http://localhost:8000") || origin.contains("http://localhost:8001")) {
+            res.setHeader("Access-Control-Allow-Origin", origin);
+        } else {
+            res.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+        }
         res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE, PUT");
         res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.setHeader("Access-Control-Allow-Credentials", "true");
-        System.out.println("Filter user session:" + ((HttpServletRequest) request).getSession().getAttribute("user"));
         chain.doFilter(request, res);
     }
 

@@ -266,7 +266,11 @@ public class EntityManagerBaseX<T, ID extends Serializable> {
 
         List<Long> id = executeQuery(xQuery, new IdentityRowMapper(), false);
 
-        return id.get(0);
+        if (id.size() > 0) {
+            return id.get(0);
+        } else {
+            return (long)1;
+        }
     }
 
 	/*

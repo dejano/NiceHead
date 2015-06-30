@@ -4,5 +4,5 @@ import rs.ac.uns.ftn.xmlbsep.beans.jaxb.Config;
 
 public interface ConfigDao {
 
-    Config get();
+    Config get(String pib);
 }

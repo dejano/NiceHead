@@ -10,7 +10,7 @@ import javax.ws.rs.ext.Provider;
 public class UnauthorizedAccessExceptionMapper implements ExceptionMapper<UnauthorizedAccessException> {
     @Override
     public Response toResponse(UnauthorizedAccessException exception) {
-        ErrorMessage error = new ErrorMessage(exception.getMessage(), 403);
-        return Response.status(Response.Status.FORBIDDEN).build();
+        ErrorMessage error = new ErrorMessage(exception.getMessage(), 401);
+        return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 }

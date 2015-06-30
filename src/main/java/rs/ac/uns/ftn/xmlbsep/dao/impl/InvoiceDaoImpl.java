@@ -28,7 +28,9 @@ public class InvoiceDaoImpl extends GenericDao<Invoice, Long> implements Invoice
     private static final String QUERY_FIND_PIB = "//invoice [//supplier/pib = '%s' and //invoice/@state = '%s']";
     private static final String QUERY_FIND_PENDING_PIB = "//invoice [//supplier/pib = '%s' and //invoice/@state != 'partner']";
     private static final String QUERY_FIND_SENT_PIB = "//invoice [//supplier/pib = '%s' and //invoice/@state = 'partner']";
-    private static final String QUERY_FIND_INVOICE_BY_SUPPLIER_PIB_AND_ID = "//invoice [//supplier/pib = '%s' and //invoice/@id = '%s']";
+    private static final String QUERY_FIND_RECEIVED_PIB = "//invoice [//buyer/pib = '%s' and //invoice/@state = 'partner']";
+    private static final String QUERY_FIND_INVOICE_BY_SUPPLIER_PIB_AND_ID = "//invoice [//invoice/@id = '%s']";
+    private static final String QUERY_FIND_RECEIVED_INVOICE = "//invoice [//buyer/pib = '%s' and //invoice/@id = '%s']";
 
     public InvoiceDaoImpl() {
         super(CONTEXT_PATH, SCHEMA_NAME);
@@ -46,12 +48,12 @@ public class InvoiceDaoImpl extends GenericDao<Invoice, Long> implements Invoice
         return findBy(String.format(XBASE_NAMESPACE_QUERY + QUERY_FIND_SENT_PIB, partnerId), new GenericResultHandler<Invoice>());
     }
 
-    public List<Invoice> findReceivedWherePartnersId() throws IOException, JAXBException {
-        return findBy(String.format(XBASE_NAMESPACE_QUERY + QUERY_FIND_SENT_PIB, "1"), new GenericResultHandler<Invoice>());
+    public List<Invoice> findReceivedWherePartnersId(String partnerId) throws IOException, JAXBException {
+        return findBy(String.format(XBASE_NAMESPACE_QUERY + QUERY_FIND_RECEIVED_PIB, partnerId), new GenericResultHandler<Invoice>());
     }
 
     public Invoice findInvoiceBy(String partnerId, String invoiceId) throws IOException, JAXBException {
-        List<Invoice> invoices = findBy(String.format(XBASE_NAMESPACE_QUERY + QUERY_FIND_INVOICE_BY_SUPPLIER_PIB_AND_ID, partnerId, invoiceId), new GenericResultHandler<Invoice>());
+        List<Invoice> invoices = findBy(String.format(XBASE_NAMESPACE_QUERY + QUERY_FIND_INVOICE_BY_SUPPLIER_PIB_AND_ID, invoiceId), new GenericResultHandler<Invoice>());
         return invoices.size() > 0 ? invoices.get(0) : null;
     }
 

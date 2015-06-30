@@ -23,7 +23,7 @@ public class ConfigDaoImpl implements ConfigDao {
     HttpServletRequest request;
 
     @Override
-    public Config get() {
+    public Config get(String pib) {
         final Morphia morphia = new Morphia();
 // tell Morphia where to find your classes
 // can be called multiple times with different packages or classes
@@ -35,7 +35,7 @@ public class ConfigDaoImpl implements ConfigDao {
             final Datastore datastore = morphia.createDatastore(mongoClient, "company");
             datastore.ensureIndexes();
 
-            List<Config> configs = datastore.find(Config.class).asList();
+            List<Config> configs = datastore.createQuery(Config.class).field("pib").equal(pib).asList();
             if (configs.size() > 0) {
                 return configs.get(0);
             }

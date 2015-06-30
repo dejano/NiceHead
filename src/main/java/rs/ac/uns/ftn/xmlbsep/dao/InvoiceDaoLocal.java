@@ -14,7 +14,8 @@ public interface InvoiceDaoLocal extends GenericDaoLocal<Invoice, Long> {
     List<Invoice> findAllWherePartnersId(String id) throws IOException, JAXBException;
 
     List<Invoice> findSentWherePartnersId(String partnerId) throws IOException, JAXBException;
-    List<Invoice> findReceivedWherePartnersId() throws IOException, JAXBException;
+    List<Invoice> findReceivedWherePartnersId(String partnerId) throws IOException, JAXBException;
+
 
     public Invoice findInvoiceBy(String partnerId, String invoiceId) throws IOException, JAXBException;
     List<Item> getItems(String partnerId, String invoiceId) throws IOException, JAXBException;

@@ -578,6 +578,7 @@ public class Invoice extends AbstractBaseEntity<String> {
              *     {@link BigDecimal }
              *     
              */
+            @HasPermission("update.price")
             public void setAmount(BigDecimal value) {
                 this.amount = value;
             }
@@ -708,6 +709,7 @@ public class Invoice extends AbstractBaseEntity<String> {
              *     {@link BigDecimal }
              *     
              */
+            @HasPermission("update.price")
             public void setServices(BigDecimal value) {
                 this.services = value;
             }
@@ -732,6 +734,7 @@ public class Invoice extends AbstractBaseEntity<String> {
              *     {@link BigDecimal }
              *     
              */
+            @HasPermission("update.price")
             public void setGoods(BigDecimal value) {
                 this.goods = value;
             }
@@ -756,6 +759,7 @@ public class Invoice extends AbstractBaseEntity<String> {
              *     {@link BigDecimal }
              *     
              */
+            @HasPermission("update.tax")
             public void setTotalTaxes(BigDecimal value) {
                 this.totalTaxes = value;
             }
@@ -780,6 +784,7 @@ public class Invoice extends AbstractBaseEntity<String> {
              *     {@link BigDecimal }
              *     
              */
+            @HasPermission("update.price")
             public void setTotalDiscount(BigDecimal value) {
                 this.totalDiscount = value;
             }
@@ -805,7 +810,7 @@ public class Invoice extends AbstractBaseEntity<String> {
              *     
              */
 
-            @HasPermission("updatePrice")
+            @HasPermission("update.price")
             public void setTotal(BigDecimal value) {
                 this.total = value;
             }

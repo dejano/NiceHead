@@ -8,13 +8,14 @@ import rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.payment.PaymentOrder;
 import rs.ac.uns.ftn.xmlbsep.dao.ConfigDao;
 import rs.ac.uns.ftn.xmlbsep.dao.InvoiceDaoLocal;
 import rs.ac.uns.ftn.xmlbsep.dao.PartnerDaoLocal;
-import rs.ac.uns.ftn.xmlbsep.security.handler.SecMessageHandler;
-import rs.ac.uns.ftn.xmlbsep.security.handler.ClientCryptoHandler;
-import rs.ac.uns.ftn.xmlbsep.security.handler.ClientSignatureHandler;
 import rs.ac.uns.ftn.xmlbsep.security.HasPermission;
 import rs.ac.uns.ftn.xmlbsep.security.InvoiceFactory;
 import rs.ac.uns.ftn.xmlbsep.security.InvoiceState;
+import rs.ac.uns.ftn.xmlbsep.security.handler.ClientCryptoHandler;
+import rs.ac.uns.ftn.xmlbsep.security.handler.ClientSignatureHandler;
+import rs.ac.uns.ftn.xmlbsep.security.handler.SecMessageHandler;
 import rs.ac.uns.ftn.xmlbsep.util.CertMap;
+import rs.ac.uns.ftn.xmlbsep.validation.ValidXMLSchema;
 import rs.ac.uns.ftn.xmlbsep.ws.PoDocument;
 import rs.ac.uns.ftn.xmlbsep.ws.PoException;
 import rs.ac.uns.ftn.xmlbsep.ws.messageid.MessageIdDocument_MessageIdDocumentPort_Client;
@@ -51,27 +52,35 @@ public class InvoiceController {
     @Context
     private HttpServletRequest request;
 
+    @GET
+    @Path("/test")
+    @HasPermission("read.invoice")
+    public String test() throws Exception {
+        System.out.println(configDao.get("pib0").getAccounts().get(0));
+        return configDao.get("pib0").getAccounts().get(0);
+    }
+
     @POST
-//    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
+    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
     public Response create(Invoice invoice, @PathParam("partnerId") String partnerId, @Context UriInfo uriInfo) throws Throwable {
         if (!partnerDao.isPartner(partnerId)) {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
         Invoice retVal = null;
 
-        try {
-            invoice.setState("partner");
-            retVal = invoiceDao.persist(invoice);
-        } catch (Throwable e) {
-            e.printStackTrace();
-            throw e;
-        }
+//        try {
+//            invoice.setState("partner");
+//            retVal = invoiceDao.persist(invoice);
+//        } catch (Throwable e) {
+//            e.printStackTrace();
+//            throw e;
+//        }
         createPayment(invoice);
-        return Response.status(Response.Status.CREATED).contentLocation(uriInfo.getAbsolutePathBuilder().path(String.valueOf(retVal.getId())).build()).build();
+        return Response.status(Response.Status.CREATED).contentLocation(uriInfo.getAbsolutePathBuilder().path(String.valueOf(invoice.getId())).build()).build();
     }
 
     @POST
-//    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
+    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
     @HasPermission("create.invoice")
     @Path("/create")
     public Response store(Invoice invoice, @PathParam("partnerId") String partnerId, @Context UriInfo uriInfo) throws Throwable {
@@ -98,7 +107,7 @@ public class InvoiceController {
     }
 
     @PUT
-//    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
+    @ValidXMLSchema(value = "/xsd/invoice.xsd", clazz = Invoice.class)
     @HasPermission("approve.invoice")
     @Path("/approve/{invoiceId}")
     public Response approve(@PathParam("invoiceId") String invoiceId, @PathParam("partnerId") String partnerId, @Context UriInfo uriInfo) throws Throwable {
@@ -119,7 +128,6 @@ public class InvoiceController {
             invoice.setState(InvoiceState.DIRECTOR.toString());
         } else {
             invoice.setState(InvoiceState.PARTNER.toString());
-            // send invoice to partner's rest (create endpoint for this)
         }
 
         try {
@@ -133,7 +141,7 @@ public class InvoiceController {
     }
 
     @DELETE
-    @HasPermission("reject.invoice")
+    @HasPermission("delete.invoice")
     @Path("/{invoiceId}")
     public Response reject(@PathParam("partnerId") String partnerId, @PathParam("invoiceId") int invoiceId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
@@ -152,7 +160,7 @@ public class InvoiceController {
     }
 
     @GET
-//    @HasPermission("read.invoice")
+    @HasPermission("read.invoice")
     @Path("/pending")
     public Response getPendingInvoices(@PathParam("partnerId") String partnerId) throws Exception {
         if (!partnerDao.isPartner(partnerId)) {
@@ -210,7 +218,7 @@ public class InvoiceController {
         ResultWrapper wrapper = new ResultWrapper();
 
         try {
-            invoices = invoiceDao.findReceivedWherePartnersId();
+            invoices = invoiceDao.findReceivedWherePartnersId(partnerId);
             if (invoices.size() == 0) {
                 notFound = true;
             }
@@ -278,6 +286,10 @@ public class InvoiceController {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
 
+        if (invoice.getState().equals("partner")) {
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
+
         Invoice oldInvoice = invoiceDao.findInvoiceBy(partnerId, String.valueOf(invoiceId));
 
         if (oldInvoice == null) {
@@ -316,8 +328,8 @@ public class InvoiceController {
 
         AccountDetails debtorAccountDetails = new AccountDetails();
         debtorAccountDetails.setModel(97);
-//        debtorAccountDetails.setAccountNumber("223-2222222222222-22");
-        debtorAccountDetails.setAccountNumber(configDao.get().getAccounts().get(0));
+//        debtorAccountDetails.setAccountNumber(configDao.get("pib1").getAccounts().get(0));
+        debtorAccountDetails.setAccountNumber(configDao.get("pib0").getAccounts().get(0));
         debtorAccountDetails.setReferenceNumber("referenceNumber0");
 
         paymentOrder.setCreditorAccountDetails(creditorAccountDetails);

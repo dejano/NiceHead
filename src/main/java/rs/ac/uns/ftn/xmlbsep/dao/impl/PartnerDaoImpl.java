@@ -22,6 +22,7 @@ public class PartnerDaoImpl extends GenericDao<Partner, Long> implements Partner
 
     public static final String contextPath = "rs.ac.uns.ftn.xmlbsep.beans.jaxb.generated.partner";
 
+//    public static final String schemaName = "partner1";
     public static final String schemaName = "partner";
 
     private static final String XBASE_NAMESPACE_QUERY = "declare default element namespace \"http://www.ftn.uns.ac.rs/xmlbsep/company/invoice\";";
@@ -39,6 +40,7 @@ public class PartnerDaoImpl extends GenericDao<Partner, Long> implements Partner
     }
 
     public List<Partner> getPartners() throws IOException, JAXBException {
+//        return findAll("partner1");
         return findAll("partner");
     }
 
